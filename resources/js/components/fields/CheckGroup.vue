@@ -38,11 +38,7 @@
                 this.$emit("input", this.input);
             },
         },
-        methods: {
-            // isChecked(option) {
-            //     return this.input.includes(option);
-            // },
-        },
+        methods: {},
         computed: {
             inputName() {
                 if (this.type === "check-group") {

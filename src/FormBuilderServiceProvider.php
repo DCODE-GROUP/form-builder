@@ -49,7 +49,7 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     protected function offerPublishing()
     {
-        if ($this->doesntHaveTable()) {
+        if ($this->doesntHaveTables()) {
             $timestamp = date('Y_m_d_His', time());
 
             $this->publishes([
@@ -63,7 +63,7 @@ class FormBuilderServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../resources/sass' => resource_path('sass/form-builder')], 'form-builder-sass');
     }
 
-    private function doesntHaveTable()
+    private function doesntHaveTables()
     {
         return
             !Schema::hasTable('forms') &&
