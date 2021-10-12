@@ -20,8 +20,6 @@ class CreateFormDataTable extends Migration
             $table->unsignedInteger('form_id');
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('last_modified_by')->references('id')->on('users');
         });
     }
 

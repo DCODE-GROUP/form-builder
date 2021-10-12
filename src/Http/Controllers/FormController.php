@@ -2,11 +2,11 @@
 
 namespace Dcodegroup\FormBuilder\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Dcodegroup\FormBuilder\Models\Form;
 use Dcodegroup\FormBuilder\Models\FormData;
 use Dcodegroup\FormBuilder\Http\Requests\StoreFormRequest;
+use Illuminate\Routing\Controller;
 
 class FormController extends Controller
 {

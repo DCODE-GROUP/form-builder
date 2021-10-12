@@ -2,14 +2,10 @@
 
 namespace Dcodegroup\FormBuilder\Models;
 
-use App\Services\Request\AttachmentService;
-use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class FormData extends Model
 {

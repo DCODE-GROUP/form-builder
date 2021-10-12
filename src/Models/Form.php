@@ -61,7 +61,7 @@ class Form extends Model
     }
 
     /**
-     * @param  string|null  $name
+     * @param string $name
      *
      * @return mixed
      */
@@ -70,6 +70,11 @@ class Form extends Model
         return self::latest()->first();
     }
 
+    /**
+     * @param array $formData
+     * @param Form|null $form
+     * @return Form
+     */
     public static function saveModel(
         array $formData,
         Form $form = null

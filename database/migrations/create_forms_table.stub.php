@@ -19,8 +19,6 @@ class CreateFormsTable extends Migration
             $table->json('fields')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('last_modified_by')->references('id')->on('users');
             $table->index('title');
         });
     }
