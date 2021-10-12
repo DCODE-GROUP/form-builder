@@ -4,10 +4,10 @@ namespace Dcodegroup\FormBuilder;
 
 use Dcodegroup\FormBuilder\Commands\InstallCommand;
 use Dcodegroup\FormBuilder\Models\Form;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Migrations\Migration;
 
 class FormBuilderServiceProvider extends ServiceProvider
 {
@@ -49,7 +49,7 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     protected function offerPublishing()
     {
-        if (!Schema::hasTable('forms') && !\DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists()) {
+        if (!Schema::hasTable('forms') && !DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists()) {
             $timestamp = date('Y_m_d_His', time());
 
             $this->publishes([
