@@ -49,7 +49,7 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     protected function offerPublishing()
     {
-        if (!Schema::hasTable('forms') && !DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists()) {
+        if ($this->doesntHaveTables()) {
             $timestamp = date('Y_m_d_His', time());
 
             $this->publishes([
@@ -61,6 +61,13 @@ class FormBuilderServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../config/form-builder.php' => config_path('form-builder.php')], 'form-builder-config');
         $this->publishes([__DIR__ . '/../resources/js' => resource_path('js/dcodegroup/form-builder')], 'form-builder-vue-components');
         $this->publishes([__DIR__ . '/../resources/sass' => resource_path('sass/form-builder')], 'form-builder-sass');
+    }
+
+    private function doesntHaveTables()
+    {
+        return
+            !Schema::hasTable('forms') &&
+            (Schema::hasTable('migrations') && !DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists());
     }
 
     protected function registerResources()
