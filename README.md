@@ -38,16 +38,15 @@ Include vue components to your main vue js file eg: `app.js` with syntax:
 require('./dcodegroup/form-builder');
 ```
 
+#### SCSS
+
+There is a new generated file under `sass\form-builder\index.scss`. You must use this file in your main scss file 
+
 Run the npm build (dev/prod)
 
 ```bash
 npm run dev
 ```
-
-
-#### SCSS
-
-There is a new generated file under `sass\form-builder\index.scss`. You must use this file in your main scss file 
 
 ## Configuration
 
