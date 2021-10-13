@@ -1,6 +1,6 @@
 @extends(config('form-builder.layout_path'))
 
-@section('content')
+@section(config('form-builder.content_section'))
     <div>
         <h2>{{ (isset($form) ? 'Edit' : 'New') . ' Form' }}</h2>
     </div>
