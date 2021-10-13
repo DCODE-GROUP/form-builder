@@ -26,16 +26,10 @@ php artisan migrate
 
 #### JS
 
-Please make sure you have following installed javascript packages:
-```
-    "vuedraggable": "^2.24.0" 
-    "dropzone": "^5.5.1",
-    "vue2-datepicker":"^3.10.1"
-```
 Include vue components to your main vue js file eg: `app.js` with syntax:
 
 ```
-require('./dcodegroup/form-builder');
+require('../../public/vendor/form-builder');
 ```
 
 #### SCSS
@@ -54,9 +48,10 @@ Most of configuration has been set the fair defaults. However you can review the
 
 ```
 return [
-    'path'        => env('FORM_BUILDER_PATH', 'forms'),
-    'middleware'  => ['web', 'auth'],
-    'layout_path' => 'layouts.admin' // Make sure you have correct base layout name
+    'path'            => env('FORM_BUILDER_PATH', 'forms'),
+    'middleware'      => ['web', 'auth'],
+    'layout_path'     => 'layouts.admin' // Make sure you have correct base layout name,
+    'content_section' => 'content'
 ]
 ```
 
@@ -70,7 +65,3 @@ php artisan route:list --name=form
 They are
 
 [example.com/forms] Which is where you will form index. This is by default protected auth middleware but you can modify in the configuration. This is where you want to link to in your admin and possibly a new window
-
-```php
-
-```
