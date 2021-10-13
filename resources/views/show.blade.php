@@ -1,6 +1,6 @@
 @extends(config('form-builder.layout_path'))
 
-@section('content')
+@section(config('form-builder.content_section'))
     <main>
         <div>
             <v-form action="#"

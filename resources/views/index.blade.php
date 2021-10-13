@@ -1,6 +1,6 @@
 @extends(config('form-builder.layout_path'))
 
-@section('content')
+@section(config('form-builder.content_section'))
     <div>
         <a href="{{ route('forms.create') }}" class="button">
             <span class="desktop-text">Create</span>

@@ -25,7 +25,6 @@ mix.options({
     .setPublicPath('public')
     .js('resources/js/index.js', 'public')
     .vue()
-    .sass('resources/sass/index.scss', 'public')
     .version()
     .webpackConfig({
         resolve: {
@@ -34,5 +33,4 @@ mix.options({
                 '@': path.resolve(__dirname, 'resources/js/'),
             },
         },
-        // plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
     });
