@@ -2,12 +2,7 @@
 
 namespace Dcodegroup\FormBuilder\Models;
 
-use App\Http\Resources\Admin\FileResource;
-use App\Models\File;
-use App\Models\Job\JobType;
-use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -79,7 +74,7 @@ class Form extends Model
         array $formData,
         Form $form = null
     ) {
-        if (!$form) {
+        if (! $form) {
             $form = new Form();
         }
 

@@ -24,7 +24,7 @@ class FormData extends Model
      * @var array
      */
     protected $casts = [
-        'values'       => 'array',
+        'values' => 'array',
         'completed_at' => 'datetime',
     ];
 

@@ -2,10 +2,10 @@
 
 namespace Dcodegroup\FormBuilder\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Dcodegroup\FormBuilder\Http\Requests\StoreFormRequest;
 use Dcodegroup\FormBuilder\Models\Form;
 use Dcodegroup\FormBuilder\Models\FormData;
-use Dcodegroup\FormBuilder\Http\Requests\StoreFormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class FormController extends Controller
@@ -32,7 +32,7 @@ class FormController extends Controller
             ->with([
                 'title' => $form->name,
                 'formData' => $formData,
-                'form' => $form
+                'form' => $form,
             ]);
     }
 

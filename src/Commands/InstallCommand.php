@@ -27,7 +27,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        if (!Schema::hasTable('forms') && !DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists()) {
+        if (! Schema::hasTable('forms') && ! DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists()) {
             $this->comment('Publishing Form Builder Migrations');
             $this->callSilent('vendor:publish', ['--tag' => 'form-builder-migrations']);
         }

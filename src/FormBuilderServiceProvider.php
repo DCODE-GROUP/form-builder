@@ -28,7 +28,7 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (!defined('FORM_BUILDER_PATH')) {
+        if (! defined('FORM_BUILDER_PATH')) {
             define('FORM_BUILDER_PATH', realpath(__DIR__ . '/../'));
         }
 
@@ -55,7 +55,7 @@ class FormBuilderServiceProvider extends ServiceProvider
             $timestamp = date('Y_m_d_His', time());
 
             $this->publishes([
-                FORM_BUILDER_PATH . '/database/migrations/create_forms_table.stub.php'     => database_path('migrations/' . $timestamp . '_create_forms_table.php'),
+                FORM_BUILDER_PATH . '/database/migrations/create_forms_table.stub.php' => database_path('migrations/' . $timestamp . '_create_forms_table.php'),
                 FORM_BUILDER_PATH . '/database/migrations/create_form_data_table.stub.php' => database_path('migrations/' . $timestamp . '_create_form_data_table.php'),
             ], 'form-builder-migrations');
         }
@@ -68,8 +68,8 @@ class FormBuilderServiceProvider extends ServiceProvider
     private function doesntHaveTables()
     {
         return
-            !Schema::hasTable('forms') &&
-            (Schema::hasTable('migrations') && !DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists());
+            ! Schema::hasTable('forms') &&
+            (Schema::hasTable('migrations') && ! DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists());
     }
 
     protected function registerResources()
