@@ -2,6 +2,12 @@
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->in([
+        __DIR__ . '/config',
+        __DIR__ . '/database',
+        __DIR__ . '/resources/lang',
+        __DIR__ . '/resources/views',
+        __DIR__ . '/routes',
+        __DIR__ . '/routes',
         __DIR__ . '/src',
         //__DIR__ . '/tests',
     ])
