@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'path'            => env('FORM_BUILDER_PATH', 'forms'),
-    'middleware'      => ['web', 'auth'],
-    'layout_path'     => 'layouts.admin',
-    'content_section' => 'content'
+    'path' => env('FORM_BUILDER_PATH', 'forms'),
+    'middleware' => ['web', 'auth'],
+    'layout_path' => 'layouts.admin',
+    'content_section' => 'content',
 ];
