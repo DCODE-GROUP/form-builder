@@ -51,7 +51,7 @@ class FormBuilderServiceProvider extends ServiceProvider
      */
     protected function offerPublishing()
     {
-        if ($this->doesntHaveTables()) {
+        if ($this->app->runningInConsole( && $this->doesntHaveTables()) {
             $timestamp = date('Y_m_d_His', time());
 
             $this->publishes([
