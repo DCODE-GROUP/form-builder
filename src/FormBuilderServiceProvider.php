@@ -68,6 +68,7 @@ class FormBuilderServiceProvider extends ServiceProvider
     private function doesntHaveTables()
     {
         return
+            $this->app->environment('local') &&
             ! Schema::hasTable('forms') &&
             (Schema::hasTable('migrations') && ! DB::table('migrations')->where('migration', 'like', '%create_forms_table')->exists());
     }
