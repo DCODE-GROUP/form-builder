@@ -26,9 +26,6 @@
         "php": "^7.4|^8.0|^8.1",
         "laravel/framework": "^7.0 |^8.0|^9.0"
     },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16"
-    },
     "autoload": {
         "psr-4": {
             "Dcodegroup\\FormBuilder\\": "src"
@@ -47,5 +44,8 @@
                 "Dcodegroup\\FormBuilder\\FormBuilderServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "laravel/pint": "^0.2.3"
     }
 }
