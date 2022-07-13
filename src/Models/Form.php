@@ -43,7 +43,7 @@ class Form extends Model
     }
 
     /**
-     * @param array $fields
+     * @param  array  $fields
      */
     public function setFields(array $fields): void
     {
@@ -56,8 +56,7 @@ class Form extends Model
     }
 
     /**
-     * @param string $name
-     *
+     * @param  string  $name
      * @return mixed
      */
     public static function get(string $name = null)
@@ -66,8 +65,8 @@ class Form extends Model
     }
 
     /**
-     * @param array $formData
-     * @param Form|null $form
+     * @param  array  $formData
+     * @param  Form|null  $form
      * @return Form
      */
     public static function saveModel(
