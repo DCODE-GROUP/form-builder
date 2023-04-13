@@ -2,7 +2,7 @@
 
 @section(config('form-builder.content_section'))
     <div>
-        <a href="{{ route('forms.create') }}" class="button">
+        <a href="{{ route(config('form-builder.route_name').'.create') }}" class="button">
             <span class="desktop-text">Create</span>
         </a>
     </div>
@@ -20,7 +20,7 @@
             @foreach ($forms as $form)
                 <tr>
                     <td>
-                        <a href="{{ route('forms.show', $form->id) }}">{{ $form->title }}</a>
+                        <a href="{{ route(config('form-builder.route_name').'.show', $form->id) }}">{{ $form->title }}</a>
                     </td>
                     <td>
                         {{ $form->created_at }}
@@ -32,12 +32,13 @@
                                     <button>...</button>
                                     <ul class="right">
                                         <li>
-                                            <a href="{{ route('forms.edit', $form->id) }}">
+                                            <a href="{{ route(config('form-builder.route_name').'.edit', $form->id) }}">
                                                 Edit
                                             </a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('forms.destroy', $form->id) }}" method="POST">
+                                            <form action="{{ route(config('form-builder.route_name').'.destroy', $form->id) }}"
+                                                  method="POST">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                                                 @method('delete')
                                                 <button type="submit">Delete</button>

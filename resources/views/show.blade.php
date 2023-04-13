@@ -1,7 +1,7 @@
 @extends(config('form-builder.layout_path'))
 
 @section(config('form-builder.content_section'))
-    <main>
+    <main id="form-builder-app">
         <div>
             <v-form action="#"
                     method="POST"

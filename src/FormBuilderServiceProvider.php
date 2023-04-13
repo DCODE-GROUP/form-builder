@@ -3,6 +3,7 @@
 namespace Dcodegroup\FormBuilder;
 
 use Dcodegroup\FormBuilder\Commands\InstallCommand;
+use Dcodegroup\FormBuilder\Models\Form;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,10 @@ class FormBuilderServiceProvider extends ServiceProvider
         $this->registerRoutes();
         $this->registerResources();
         $this->registerCommands();
+
+        Route::bind(config('form-builder.binding'), function ($id) {
+            return Form::query()->findOrFail($id);
+        });
     }
 
     /**
