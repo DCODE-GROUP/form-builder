@@ -49,22 +49,24 @@
             :group="{ name: 'fields', pull: false, put: true }"
             handle=".handle"
           >
-            <template #item="{element}" :key="element.id">
+            <template #item="{element, index}" :key="element.id">
               <div
                 class="p-r-2 relative -field"
                 :class="['-type-'+element.type]"
               >
                 <div class="-field-title handle">
                   <h2 @click="element.isShowing = ! element.isShowing">
-                    <span class="fal fa-list"></span>
+                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+                    </svg>
                     <span class="-title">
-                                        <span class="-type-title">{{ getFieldTypeTitle(element) }}:</span>
-                                        <span class="-name">{{ element.label }}</span>
-                                    </span>
+                        <span class="-type-title">{{ getFieldTypeTitle(element) }}:</span>
+                        <span class="-name">{{ element.label }}</span>
+                    </span>
                   </h2>
-                  <span @click="removeField(element.id)">
-                                    <i class="icon fal fa-lg fa-times"></i>
-                                </span>
+                  <svg @click="removeField(index)" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
                 </div>
                 <div class="-field-properties">
                   <div class="-prop -label-text">
@@ -90,18 +92,22 @@
                       :group="{ name: element.id, pull: false, put: false }"
                       handle=".option-handle"
                     >
-                      <template #item="{element}" :key="element.id">
+                      <template #item="{option, index}" :key="option.id">
                         <div class="-option">
                           <div class="option-handle">
-                            <i class="fal fa-lg fa-list"></i>
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>
+                            </svg>
                           </div>
-                          <input v-model="element.options[element].id" type="text"/>
+                          <input v-model="element.options[index]" type="text"/>
                           <button
                             type="button"
                             class="-remove"
-                            @click="removeFieldOption(element, element.id)"
+                            @click="removeFieldOption(option, index)"
                           >
-                            <i class="icon fal fa-times"></i>
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
                           </button>
                         </div>
                       </template>
@@ -118,7 +124,9 @@
                         class="button tiny"
                         @click.prevent="onAddOption(element)"
                       >
-                        <i class="icon fal fa-plus-circle"></i>
+                        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                       </button>
                     </div>
                   </div>
@@ -144,13 +152,19 @@ export default {
   },
   props: {
     name: String,
-    form: {},
+    form: {
+      type: String,
+      default: () => {
+        return {};
+      },
+    },
     cancelUrl: String,
   },
   created() {
-    if (this.form) {
-      this.title = this.form.title;
-      this.fields = this.form.fields;
+    const form = JSON.parse(this.form);
+    if (form.hasOwnProperty('title')) {
+      this.title = form.title;
+      this.fields = form.fields;
     }
   },
   data() {
@@ -275,7 +289,10 @@ export default {
       }
     },
     onAddOption(field) {
+      console.log('field');
+      console.log(field);
       if (field.newOption) {
+        console.log('ss');
         field.options.push(field.newOption);
         field.newOption = null;
       }
@@ -284,10 +301,10 @@ export default {
       return Math.floor(Math.random() * Date.now());
     },
     removeField(index) {
-      this.$delete(this.fields, index);
+      this.fields.splice(index, 1);
     },
     removeFieldOption(field, index) {
-      this.$delete(field.options, index);
+      field.options.splice(index, 1);
     },
     fieldTitle(field) {
       return field.type.charAt(0).toUpperCase() + field.type.slice(1)
@@ -329,3 +346,17 @@ export default {
   },
 };
 </script>
+<style scoped>
+svg {
+  width: 25px;
+  cursor: pointer;
+}
+
+h2 {
+  display: flex;
+}
+
+li {
+  cursor: pointer;
+}
+</style>
