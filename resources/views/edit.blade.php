@@ -6,19 +6,19 @@
     </div>
     <main id="form-builder-app">
         @if (isset($form))
-        <form action="{{ route('forms.update', $form) }}" method="POST">
-            @method('PUT')
-        @else
-        <form action="{{ route('forms.store') }}" method="POST">
-        @endif
-            @csrf
-            <div class="centering">
-                <form-builder
-                    name="form_builder"
-                    :form="{{ isset($form) ? $form->toJson() : 'null' }}"
-                    cancel-url="{{ route('forms.index') }}"
-                ></form-builder>
-            </div>
-        </form>
+            <form action="{{ route(config('form-builder.route_name'). '.update', $form) }}" method="POST">
+                @method('PUT')
+                @else
+            <form action="{{ route(config('form-builder.route_name').'.store') }}" method="POST">
+                @endif
+                @csrf
+                <div class="centering">
+                    <form-builder
+                            name="form_builder"
+                            form="{{ isset($form) ? $form->toJson() : '{}' }}"
+                            cancel-url="{{ route(config('form-builder.route_name').'.index') }}"
+                    ></form-builder>
+                </div>
+            </form>
     </main>
 @endsection
