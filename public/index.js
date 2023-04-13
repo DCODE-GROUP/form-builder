@@ -12412,7 +12412,7 @@ window.Dropzone = Dropzone;
 
 /***/ }),
 
-/***/ 406:
+/***/ 906:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12425,7 +12425,7 @@ window.Dropzone = Dropzone;
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "svg[data-v-b362aa06]{cursor:pointer;width:25px}h2[data-v-b362aa06]{display:flex}li[data-v-b362aa06]{cursor:pointer}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "svg[data-v-5d3706ae]{cursor:pointer;width:25px}h2[data-v-5d3706ae]{display:flex}li[data-v-5d3706ae]{cursor:pointer}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38511,11 +38511,11 @@ var __webpack_exports__ = {};
 
 // EXTERNAL MODULE: ./node_modules/vue/dist/vue.esm-bundler.js + 6 modules
 var vue_esm_bundler = __webpack_require__(166);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FormBuilder.vue?vue&type=template&id=b362aa06&scoped=true
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FormBuilder.vue?vue&type=template&id=5d3706ae&scoped=true
 
 
 var _withScopeId = function _withScopeId(n) {
-  return (0,vue_esm_bundler.pushScopeId)("data-v-b362aa06"), n = n(), (0,vue_esm_bundler.popScopeId)(), n;
+  return (0,vue_esm_bundler.pushScopeId)("data-v-5d3706ae"), n = n(), (0,vue_esm_bundler.popScopeId)(), n;
 };
 
 var _hoisted_1 = {
@@ -38860,7 +38860,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
   }, 8, ["modelValue"])])])]))]);
 }
-;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=template&id=b362aa06&scoped=true
+;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=template&id=5d3706ae&scoped=true
 
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=template&id=6a670c4d
 
@@ -40295,11 +40295,7 @@ var vuedraggable_umd_default = /*#__PURE__*/__webpack_require__.n(vuedraggable_u
       }
     },
     onAddOption: function onAddOption(field) {
-      console.log('field');
-      console.log(field);
-
       if (field.newOption) {
-        console.log('ss');
         field.options.push(field.newOption);
         field.newOption = null;
       }
@@ -40354,23 +40350,23 @@ var vuedraggable_umd_default = /*#__PURE__*/__webpack_require__.n(vuedraggable_u
 });
 ;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=script&lang=js
  
-// EXTERNAL MODULE: ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FormBuilder.vue?vue&type=style&index=0&id=b362aa06&scoped=true&lang=css
-var FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css = __webpack_require__(406);
-;// CONCATENATED MODULE: ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FormBuilder.vue?vue&type=style&index=0&id=b362aa06&scoped=true&lang=css
+// EXTERNAL MODULE: ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FormBuilder.vue?vue&type=style&index=0&id=5d3706ae&scoped=true&lang=css
+var FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css = __webpack_require__(906);
+;// CONCATENATED MODULE: ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-8.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FormBuilder.vue?vue&type=style&index=0&id=5d3706ae&scoped=true&lang=css
 
             
 
-var FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css_options = {};
+var FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css_options = {};
 
-FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css_options.insert = "head";
-FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css_options.singleton = false;
+FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css_options.insert = "head";
+FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css_options.singleton = false;
 
-var FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css_update = injectStylesIntoStyleTag_default()(FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css/* default */.Z, FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css_options);
+var FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css_update = injectStylesIntoStyleTag_default()(FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css/* default */.Z, FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css_options);
 
 
 
-/* harmony default export */ const components_FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css = (FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css/* default.locals */.Z.locals || {});
-;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=style&index=0&id=b362aa06&scoped=true&lang=css
+/* harmony default export */ const components_FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css = (FormBuildervue_type_style_index_0_id_5d3706ae_scoped_true_lang_css/* default.locals */.Z.locals || {});
+;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=style&index=0&id=5d3706ae&scoped=true&lang=css
 
 ;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue
 
@@ -40380,7 +40376,7 @@ var FormBuildervue_type_style_index_0_id_b362aa06_scoped_true_lang_css_update = 
 ;
 
 
-const FormBuilder_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(FormBuildervue_type_script_lang_js, [['render',render],['__scopeId',"data-v-b362aa06"]])
+const FormBuilder_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(FormBuildervue_type_script_lang_js, [['render',render],['__scopeId',"data-v-5d3706ae"]])
 
 /* harmony default export */ const FormBuilder = (FormBuilder_exports_);
 ;// CONCATENATED MODULE: ./resources/js/index.js
@@ -40391,7 +40387,7 @@ window.Vue = vue_esm_bundler;
 var app = window.Vue.createApp({});
 app.component("FormBuilder", FormBuilder);
 app.component("VForm", VForm);
-app.mount('#app');
+app.mount('#form-builder-app');
 })();
 
 /******/ })()
