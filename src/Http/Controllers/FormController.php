@@ -58,7 +58,7 @@ class FormController extends Controller
         Form::saveModel(json_decode($request->input('form_builder'), true), $form);
 
         return redirect()
-            ->route(config('form-builder.route_name'). '.index')
+            ->route(config('form-builder.route_name').'.index')
             ->with('flashNotice', 'Form saved.');
     }
 
