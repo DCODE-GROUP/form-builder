@@ -4,7 +4,7 @@
     <div>
         <h2>{{ (isset($form) ? 'Edit' : 'New') . ' Form' }}</h2>
     </div>
-    <main>
+    <main id="form-builder-app">
         @if (isset($form))
         <form action="{{ route('forms.update', $form) }}" method="POST">
             @method('PUT')

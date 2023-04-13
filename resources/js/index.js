@@ -8,4 +8,4 @@ const app = window.Vue.createApp({});
 app.component("FormBuilder", FormBuilder);
 app.component("VForm", VForm);
 
-app.mount('#app');
+app.mount('#form-builder-app');
