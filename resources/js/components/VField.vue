@@ -24,7 +24,7 @@
     import Select from "./fields/Select";
     import SignaturePad from "./fields/SignaturePad";
     import Textarea from "./fields/Textarea";
-    import VDatePicker from "./fields/VDatepicker";
+    // import VDatePicker from "./fields/VDatepicker";
 
     export default {
         name: "VField",
@@ -43,7 +43,7 @@
                 componentTypes: {
                     checkbox: Input,
                     "check-group": CheckGroup,
-                    datepicker: VDatePicker,
+                    // datepicker: VDatePicker,
                     "file-upload": FileUpload,
                     number: Input,
                     "radio-group": CheckGroup,

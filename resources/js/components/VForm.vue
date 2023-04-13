@@ -7,9 +7,8 @@
                 <h3 class="h4 mb-2">{{ title }}</h3>
                 <hr class="mb-2" />
             </div>
-            <template v-for="field in fields">
+            <template v-for="field in fields" :key="field.id">
                 <v-field
-                    :key="field.id"
                     v-model="inputs[field.name]"
                     :name="fieldName(field)"
                     :label="field.label"
