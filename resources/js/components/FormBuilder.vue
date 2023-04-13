@@ -289,10 +289,7 @@ export default {
       }
     },
     onAddOption(field) {
-      console.log('field');
-      console.log(field);
       if (field.newOption) {
-        console.log('ss');
         field.options.push(field.newOption);
         field.newOption = null;
       }
