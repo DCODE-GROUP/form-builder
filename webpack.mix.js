@@ -33,4 +33,7 @@ mix.options({
                 '@': path.resolve(__dirname, 'resources/js/'),
             },
         },
+        optimization: {
+            minimize: false
+        },
     });
