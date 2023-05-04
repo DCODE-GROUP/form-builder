@@ -15,6 +15,7 @@
           :type="field.type"
           :options="field.options"
           :placeholder="field.placeholder"
+          :field="field"
         ></v-field>
       </template>
     </div>

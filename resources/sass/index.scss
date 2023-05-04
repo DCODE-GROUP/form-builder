@@ -55,7 +55,7 @@ body.hide-overflow {
         }
     }
     .form-builder-fields, .form-builder-templates {
-        height: calc(100vh - 410px);
+        height: 100vh;
         overflow-y: scroll;
     }
     .form-builder-fields {
@@ -101,6 +101,15 @@ body.hide-overflow {
                 .-field-properties {
                     display: flex;
                     flex-wrap: wrap;
+                    .-full {
+                        width: 100%;
+                        margin-bottom: 12px;
+                        > span:first-child {
+                            display: block;
+                            height: 22px;
+                            font-size: 13px;
+                        }
+                    }
                     .-prop {
                         display: inline-block;
                         width: calc(33.33% - 10px);
