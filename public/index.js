@@ -39006,16 +39006,17 @@ function VFormvue_type_template_id_9d8e5480_render(_ctx, _cache, $props, $setup,
 }
 ;// CONCATENATED MODULE: ./resources/js/components/VForm.vue?vue&type=template&id=9d8e5480
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=template&id=73da7441
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=template&id=1add995b
 
-var VFieldvue_type_template_id_73da7441_hoisted_1 = ["for"];
-var VFieldvue_type_template_id_73da7441_hoisted_2 = {
+var VFieldvue_type_template_id_1add995b_hoisted_1 = ["for"];
+var VFieldvue_type_template_id_1add995b_hoisted_2 = {
   key: 1
 };
-function VFieldvue_type_template_id_73da7441_render(_ctx, _cache, $props, $setup, $data, $options) {
+function VFieldvue_type_template_id_1add995b_render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", {
     "class": (0,vue_esm_bundler.normalizeClass)(["v-field", $options.fieldClass])
-  }, [(0,vue_esm_bundler.createElementVNode)("label", {
+  }, [$props.field.type !== 'paragraph' ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("label", {
+    key: 0,
     "for": $props.name
   }, [$props.label ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldLabel), {
     key: 0
@@ -39024,8 +39025,8 @@ function VFieldvue_type_template_id_73da7441_render(_ctx, _cache, $props, $setup
       return [(0,vue_esm_bundler.createTextVNode)((0,vue_esm_bundler.toDisplayString)($props.label), 1)];
     }),
     _: 1
-  })) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("span", VFieldvue_type_template_id_73da7441_hoisted_2, " "))], 8, VFieldvue_type_template_id_73da7441_hoisted_1), $options.fieldComponent ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldComponent), {
-    key: 0,
+  })) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("span", VFieldvue_type_template_id_1add995b_hoisted_2, " "))], 8, VFieldvue_type_template_id_1add995b_hoisted_1)) : (0,vue_esm_bundler.createCommentVNode)("", true), $options.fieldComponent ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldComponent), {
+    key: 1,
     modelValue: $data.input,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.input = $event;
@@ -39038,7 +39039,7 @@ function VFieldvue_type_template_id_73da7441_render(_ctx, _cache, $props, $setup
     field: $props.field
   }, null, 8, ["modelValue", "name", "type", "options", "disabled", "placeholder", "field"])) : (0,vue_esm_bundler.createCommentVNode)("", true)], 2);
 }
-;// CONCATENATED MODULE: ./resources/js/components/VField.vue?vue&type=template&id=73da7441
+;// CONCATENATED MODULE: ./resources/js/components/VField.vue?vue&type=template&id=1add995b
 
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/CheckGroup.vue?vue&type=template&id=6c191078
 
@@ -40255,7 +40256,7 @@ const Paragraph_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(Paragrap
 
 
 ;
-const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_type_script_lang_js, [['render',VFieldvue_type_template_id_73da7441_render]])
+const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_type_script_lang_js, [['render',VFieldvue_type_template_id_1add995b_render]])
 
 /* harmony default export */ const VField = (VField_exports_);
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=script&lang=js

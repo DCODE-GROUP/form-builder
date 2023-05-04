@@ -1,6 +1,6 @@
 <template>
   <div class="v-field" :class="fieldClass">
-    <label :for="name">
+    <label :for="name" v-if="field.type !== 'paragraph'">
       <component v-if="label" :is="fieldLabel">{{ label }}</component>
       <span v-else>&nbsp;</span>
     </label>
