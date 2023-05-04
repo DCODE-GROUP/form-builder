@@ -104,13 +104,28 @@ body.hide-overflow {
                     .-full {
                         width: 100%;
                         margin-bottom: 12px;
-                        > span:first-child {
-                            display: block;
-                            height: 22px;
-                            font-size: 13px;
-                        }
+                        font-size: 13px;
                     }
                     .-prop {
+                        .-prop {
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .checkbox {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            span {
+                                margin-right: 10px;
+                            }
+
+                            input {
+                                width: 14px;
+                                height: 14px;
+                                border-radius: 2px;
+                            }
+                        }
                         display: inline-block;
                         width: calc(33.33% - 10px);
                         margin-right: 15px;

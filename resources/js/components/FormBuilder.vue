@@ -107,6 +107,14 @@
                         <option value="small-6">Half</option>
                       </select>
                     </div>
+                    <div class="-prop -options" v-if="element.hasOwnProperty('required')">
+                      <div class="-prop">
+                        <label class="checkbox">
+                          <span class="-label">Required?</span>
+                          <input type="checkbox" v-model="element.required">
+                        </label>
+                      </div>
+                    </div>
                     <div class="-prop -options" v-if="element.options">
                       <span class="-label">Options</span>
                       <draggable
@@ -224,6 +232,7 @@ export default {
           label: "Text",
           class: "small-6",
           placeholder: "Text",
+          required: false,
         },
         {
           name: "textarea",
@@ -231,6 +240,7 @@ export default {
           label: "Text large",
           class: "small-12",
           placeholder: "Textarea",
+          required: false,
         },
         {
           name: "number",
@@ -238,6 +248,7 @@ export default {
           label: "Number",
           class: "small-6",
           placeholder: "Number",
+          required: false,
         },
         {
           name: "datepicker",
@@ -245,6 +256,7 @@ export default {
           label: "Date Picker",
           class: "small-6",
           placeholder: "Date",
+          required: false,
         },
         {
           name: "checkbox",
@@ -252,6 +264,7 @@ export default {
           label: "Checkbox",
           class: "small-6",
           placeholder: null,
+          required: false,
         },
         {
           name: "signature",
@@ -259,6 +272,7 @@ export default {
           label: "Signature",
           class: "small-12",
           placeholder: null,
+          required: false,
         },
         {
           name: "file-upload",
@@ -266,6 +280,7 @@ export default {
           label: "File Upload",
           class: "small-12",
           placeholder: "Drop file here",
+          required: false,
         },
         {
           name: "select",
@@ -274,6 +289,7 @@ export default {
           class: "small-6",
           placeholder: "Select an Option",
           options: [],
+          required: false,
         },
         {
           name: "check-group",
@@ -282,6 +298,7 @@ export default {
           class: "small-6",
           placeholder: null,
           options: [],
+          required: false,
         },
         {
           name: "radio-group",
@@ -290,6 +307,7 @@ export default {
           class: "small-6",
           placeholder: null,
           options: [],
+          required: false,
         },
       ],
     };
@@ -346,7 +364,7 @@ export default {
     },
     cloneTemplate(template) {
       let id = this.uniqueId();
-      return {
+      let field = {
         id: id,
         name: `${template.type}_${id}`,
         type: template.type,
@@ -356,7 +374,18 @@ export default {
         content_type: template.hasOwnProperty('content_type') ? template.content_type : '',
         class: template.class,
         options: template.options,
-      };
+      }
+
+      if (template.hasOwnProperty('content')) {
+        field.content = template.content
+        field.content_type = template.content_type
+      }
+
+      if (template.hasOwnProperty('required')) {
+        field.required = template.required
+      }
+
+      return field;
     },
     addFieldToBottom(fieldTemplate) {
       let field = this.cloneTemplate(fieldTemplate);
@@ -368,17 +397,26 @@ export default {
       return JSON.stringify({
         title: this.title,
         fields: this.fields.map((field) => {
-          return {
+          let f = {
             id: field.id,
             name: field.name,
             type: field.type,
             label: field.label,
             placeholder: field.placeholder,
-            content: field.hasOwnProperty('content') ? field.content : '',
-            content_type: field.hasOwnProperty('content_type') ? field.content_type : '',
             class: field.class,
             options: field.options,
-          };
+          }
+
+          if (field.hasOwnProperty('content')) {
+            f.content = field.content
+            f.content_type = field.content_type
+          }
+
+          if (field.hasOwnProperty('required')) {
+            f.required = field.required
+          }
+
+          return f;
         }),
       });
     },

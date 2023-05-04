@@ -45,7 +45,7 @@ class FormController extends Controller
     {
         Form::saveModel(json_decode($request->input('form_builder'), true));
 
-        return redirect()->route(config('form-builder.route_name').'.index')->with('flashNotice', 'Form saved.');
+        return redirect()->route(config('form-builder.route_name').'.index')->with('flashSuccess', 'Form saved.');
     }
 
     public function edit(Form $form)
@@ -59,13 +59,13 @@ class FormController extends Controller
 
         return redirect()
             ->route(config('form-builder.route_name').'.index')
-            ->with('flashNotice', 'Form saved.');
+            ->with('flashSuccess', 'Form saved.');
     }
 
     public function destroy(Form $form)
     {
         $form->delete();
 
-        return redirect()->back()->with('flashNotice', 'Form deleted.');
+        return redirect()->back()->with('flashSuccess', 'Form deleted.');
     }
 }
