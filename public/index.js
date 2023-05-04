@@ -38976,27 +38976,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 ;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=template&id=6ceecb22&scoped=true
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=template&id=17a45f0a
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=template&id=3be0a418
 
-var VFormvue_type_template_id_17a45f0a_hoisted_1 = ["action", "method"];
-var VFormvue_type_template_id_17a45f0a_hoisted_2 = ["value"];
-var VFormvue_type_template_id_17a45f0a_hoisted_3 = ["value"];
-var VFormvue_type_template_id_17a45f0a_hoisted_4 = {
+var VFormvue_type_template_id_3be0a418_hoisted_1 = ["action", "method"];
+var VFormvue_type_template_id_3be0a418_hoisted_2 = ["value"];
+var VFormvue_type_template_id_3be0a418_hoisted_3 = ["value"];
+var VFormvue_type_template_id_3be0a418_hoisted_4 = {
   "class": "grid-x grid-margin-x grid-margin-y callout curved-box-shadow"
 };
-var VFormvue_type_template_id_17a45f0a_hoisted_5 = {
+var VFormvue_type_template_id_3be0a418_hoisted_5 = {
   key: 0,
   "class": "small-12"
 };
-var VFormvue_type_template_id_17a45f0a_hoisted_6 = {
+var VFormvue_type_template_id_3be0a418_hoisted_6 = {
   "class": "h4 mb-2"
 };
 
-var VFormvue_type_template_id_17a45f0a_hoisted_7 = /*#__PURE__*/(0,vue_esm_bundler.createElementVNode)("hr", {
+var VFormvue_type_template_id_3be0a418_hoisted_7 = /*#__PURE__*/(0,vue_esm_bundler.createElementVNode)("hr", {
   "class": "mb-2"
 }, null, -1);
 
-function VFormvue_type_template_id_17a45f0a_render(_ctx, _cache, $props, $setup, $data, $options) {
+function VFormvue_type_template_id_3be0a418_render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_v_field = (0,vue_esm_bundler.resolveComponent)("v-field");
 
   return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("form", {
@@ -39007,11 +39007,11 @@ function VFormvue_type_template_id_17a45f0a_render(_ctx, _cache, $props, $setup,
     type: "hidden",
     name: "_token",
     value: $data.csrf
-  }, null, 8, VFormvue_type_template_id_17a45f0a_hoisted_2), (0,vue_esm_bundler.createElementVNode)("input", {
+  }, null, 8, VFormvue_type_template_id_3be0a418_hoisted_2), (0,vue_esm_bundler.createElementVNode)("input", {
     type: "hidden",
     name: "_method",
     value: $props.method
-  }, null, 8, VFormvue_type_template_id_17a45f0a_hoisted_3), (0,vue_esm_bundler.createElementVNode)("div", VFormvue_type_template_id_17a45f0a_hoisted_4, [$props.title ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VFormvue_type_template_id_17a45f0a_hoisted_5, [(0,vue_esm_bundler.createElementVNode)("h3", VFormvue_type_template_id_17a45f0a_hoisted_6, (0,vue_esm_bundler.toDisplayString)($props.title), 1), VFormvue_type_template_id_17a45f0a_hoisted_7])) : (0,vue_esm_bundler.createCommentVNode)("", true), ((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)($data.items, function (field) {
+  }, null, 8, VFormvue_type_template_id_3be0a418_hoisted_3), (0,vue_esm_bundler.createElementVNode)("div", VFormvue_type_template_id_3be0a418_hoisted_4, [$props.title ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VFormvue_type_template_id_3be0a418_hoisted_5, [(0,vue_esm_bundler.createElementVNode)("h3", VFormvue_type_template_id_3be0a418_hoisted_6, (0,vue_esm_bundler.toDisplayString)($props.title), 1), VFormvue_type_template_id_3be0a418_hoisted_7])) : (0,vue_esm_bundler.createCommentVNode)("", true), ((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)($data.items, function (field) {
     return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)(_component_v_field, {
       key: field.id,
       modelValue: $data.inputs[field.name],
@@ -39025,9 +39025,9 @@ function VFormvue_type_template_id_17a45f0a_render(_ctx, _cache, $props, $setup,
       placeholder: field.placeholder,
       field: field
     }, null, 8, ["modelValue", "onUpdate:modelValue", "name", "label", "type", "options", "placeholder", "field"]);
-  }), 128))]), (0,vue_esm_bundler.renderSlot)(_ctx.$slots, "default")], 8, VFormvue_type_template_id_17a45f0a_hoisted_1);
+  }), 128))]), (0,vue_esm_bundler.renderSlot)(_ctx.$slots, "default")], 8, VFormvue_type_template_id_3be0a418_hoisted_1);
 }
-;// CONCATENATED MODULE: ./resources/js/components/VForm.vue?vue&type=template&id=17a45f0a
+;// CONCATENATED MODULE: ./resources/js/components/VForm.vue?vue&type=template&id=3be0a418
 
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=template&id=4faaee6f
 
@@ -40310,10 +40310,6 @@ const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_t
     };
   },
   created: function created() {
-    console.log('this.items');
-    console.log(this.items);
-    console.log(this.fields);
-
     if (this.values) {
       this.inputs = this.values;
     }
@@ -40336,7 +40332,7 @@ const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_t
 
 
 ;
-const VForm_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFormvue_type_script_lang_js, [['render',VFormvue_type_template_id_17a45f0a_render]])
+const VForm_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFormvue_type_script_lang_js, [['render',VFormvue_type_template_id_3be0a418_render]])
 
 /* harmony default export */ const VForm = (VForm_exports_);
 // EXTERNAL MODULE: ./node_modules/vuedraggable/dist/vuedraggable.umd.js
