@@ -13,7 +13,7 @@
       :options="options"
       :disabled="disabled"
       :placeholder="placeholder"
-      :vfield="field"
+      :field="field"
       :required="field.hasOwnProperty('required') && field.required"
     ></component>
   </div>

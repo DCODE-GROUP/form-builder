@@ -38976,27 +38976,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 ;// CONCATENATED MODULE: ./resources/js/components/FormBuilder.vue?vue&type=template&id=6ceecb22&scoped=true
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=template&id=ef909b94
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=template&id=17a45f0a
 
-var VFormvue_type_template_id_ef909b94_hoisted_1 = ["action", "method"];
-var VFormvue_type_template_id_ef909b94_hoisted_2 = ["value"];
-var VFormvue_type_template_id_ef909b94_hoisted_3 = ["value"];
-var VFormvue_type_template_id_ef909b94_hoisted_4 = {
-  "class": "grid-x grid-margin-x grix-margin-y callout curved-box-dshadow"
+var VFormvue_type_template_id_17a45f0a_hoisted_1 = ["action", "method"];
+var VFormvue_type_template_id_17a45f0a_hoisted_2 = ["value"];
+var VFormvue_type_template_id_17a45f0a_hoisted_3 = ["value"];
+var VFormvue_type_template_id_17a45f0a_hoisted_4 = {
+  "class": "grid-x grid-margin-x grid-margin-y callout curved-box-shadow"
 };
-var VFormvue_type_template_id_ef909b94_hoisted_5 = {
+var VFormvue_type_template_id_17a45f0a_hoisted_5 = {
   key: 0,
   "class": "small-12"
 };
-var VFormvue_type_template_id_ef909b94_hoisted_6 = {
+var VFormvue_type_template_id_17a45f0a_hoisted_6 = {
   "class": "h4 mb-2"
 };
 
-var VFormvue_type_template_id_ef909b94_hoisted_7 = /*#__PURE__*/(0,vue_esm_bundler.createElementVNode)("hr", {
+var VFormvue_type_template_id_17a45f0a_hoisted_7 = /*#__PURE__*/(0,vue_esm_bundler.createElementVNode)("hr", {
   "class": "mb-2"
 }, null, -1);
 
-function VFormvue_type_template_id_ef909b94_render(_ctx, _cache, $props, $setup, $data, $options) {
+function VFormvue_type_template_id_17a45f0a_render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_v_field = (0,vue_esm_bundler.resolveComponent)("v-field");
 
   return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("form", {
@@ -39007,11 +39007,11 @@ function VFormvue_type_template_id_ef909b94_render(_ctx, _cache, $props, $setup,
     type: "hidden",
     name: "_token",
     value: $data.csrf
-  }, null, 8, VFormvue_type_template_id_ef909b94_hoisted_2), (0,vue_esm_bundler.createElementVNode)("input", {
+  }, null, 8, VFormvue_type_template_id_17a45f0a_hoisted_2), (0,vue_esm_bundler.createElementVNode)("input", {
     type: "hidden",
     name: "_method",
     value: $props.method
-  }, null, 8, VFormvue_type_template_id_ef909b94_hoisted_3), (0,vue_esm_bundler.createElementVNode)("div", VFormvue_type_template_id_ef909b94_hoisted_4, [$props.title ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VFormvue_type_template_id_ef909b94_hoisted_5, [(0,vue_esm_bundler.createElementVNode)("h3", VFormvue_type_template_id_ef909b94_hoisted_6, (0,vue_esm_bundler.toDisplayString)($props.title), 1), VFormvue_type_template_id_ef909b94_hoisted_7])) : (0,vue_esm_bundler.createCommentVNode)("", true), ((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)($data.items, function (field) {
+  }, null, 8, VFormvue_type_template_id_17a45f0a_hoisted_3), (0,vue_esm_bundler.createElementVNode)("div", VFormvue_type_template_id_17a45f0a_hoisted_4, [$props.title ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VFormvue_type_template_id_17a45f0a_hoisted_5, [(0,vue_esm_bundler.createElementVNode)("h3", VFormvue_type_template_id_17a45f0a_hoisted_6, (0,vue_esm_bundler.toDisplayString)($props.title), 1), VFormvue_type_template_id_17a45f0a_hoisted_7])) : (0,vue_esm_bundler.createCommentVNode)("", true), ((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)($data.items, function (field) {
     return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)(_component_v_field, {
       key: field.id,
       modelValue: $data.inputs[field.name],
@@ -39025,17 +39025,17 @@ function VFormvue_type_template_id_ef909b94_render(_ctx, _cache, $props, $setup,
       placeholder: field.placeholder,
       field: field
     }, null, 8, ["modelValue", "onUpdate:modelValue", "name", "label", "type", "options", "placeholder", "field"]);
-  }), 128))]), (0,vue_esm_bundler.renderSlot)(_ctx.$slots, "default")], 8, VFormvue_type_template_id_ef909b94_hoisted_1);
+  }), 128))]), (0,vue_esm_bundler.renderSlot)(_ctx.$slots, "default")], 8, VFormvue_type_template_id_17a45f0a_hoisted_1);
 }
-;// CONCATENATED MODULE: ./resources/js/components/VForm.vue?vue&type=template&id=ef909b94
+;// CONCATENATED MODULE: ./resources/js/components/VForm.vue?vue&type=template&id=17a45f0a
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=template&id=e6fc96ae
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=template&id=4faaee6f
 
-var VFieldvue_type_template_id_e6fc96ae_hoisted_1 = ["for"];
-var VFieldvue_type_template_id_e6fc96ae_hoisted_2 = {
+var VFieldvue_type_template_id_4faaee6f_hoisted_1 = ["for"];
+var VFieldvue_type_template_id_4faaee6f_hoisted_2 = {
   key: 1
 };
-function VFieldvue_type_template_id_e6fc96ae_render(_ctx, _cache, $props, $setup, $data, $options) {
+function VFieldvue_type_template_id_4faaee6f_render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", {
     "class": (0,vue_esm_bundler.normalizeClass)(["v-field", $options.fieldClass])
   }, [$props.field.type !== 'paragraph' ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("label", {
@@ -39048,7 +39048,7 @@ function VFieldvue_type_template_id_e6fc96ae_render(_ctx, _cache, $props, $setup
       return [(0,vue_esm_bundler.createTextVNode)((0,vue_esm_bundler.toDisplayString)($props.label), 1)];
     }),
     _: 1
-  })) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("span", VFieldvue_type_template_id_e6fc96ae_hoisted_2, " "))], 8, VFieldvue_type_template_id_e6fc96ae_hoisted_1)) : (0,vue_esm_bundler.createCommentVNode)("", true), $options.fieldComponent ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldComponent), {
+  })) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("span", VFieldvue_type_template_id_4faaee6f_hoisted_2, " "))], 8, VFieldvue_type_template_id_4faaee6f_hoisted_1)) : (0,vue_esm_bundler.createCommentVNode)("", true), $options.fieldComponent ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldComponent), {
     key: 1,
     modelValue: $data.input,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -39059,11 +39059,11 @@ function VFieldvue_type_template_id_e6fc96ae_render(_ctx, _cache, $props, $setup
     options: $props.options,
     disabled: $props.disabled,
     placeholder: $props.placeholder,
-    vfield: $props.field,
+    field: $props.field,
     required: $props.field.hasOwnProperty('required') && $props.field.required
-  }, null, 8, ["modelValue", "name", "type", "options", "disabled", "placeholder", "vfield", "required"])) : (0,vue_esm_bundler.createCommentVNode)("", true)], 2);
+  }, null, 8, ["modelValue", "name", "type", "options", "disabled", "placeholder", "field", "required"])) : (0,vue_esm_bundler.createCommentVNode)("", true)], 2);
 }
-;// CONCATENATED MODULE: ./resources/js/components/VField.vue?vue&type=template&id=e6fc96ae
+;// CONCATENATED MODULE: ./resources/js/components/VField.vue?vue&type=template&id=4faaee6f
 
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/CheckGroup.vue?vue&type=template&id=6c191078
 
@@ -40280,7 +40280,7 @@ const Paragraph_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(Paragrap
 
 
 ;
-const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_type_script_lang_js, [['render',VFieldvue_type_template_id_e6fc96ae_render]])
+const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_type_script_lang_js, [['render',VFieldvue_type_template_id_4faaee6f_render]])
 
 /* harmony default export */ const VField = (VField_exports_);
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VForm.vue?vue&type=script&lang=js
@@ -40299,17 +40299,21 @@ const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_t
     },
     name: String,
     title: String,
-    fields: String,
+    fields: Array,
     values: {}
   },
   data: function data() {
     return {
       inputs: {},
-      items: JSON.parse(this.fields),
+      items: typeof this.fields === 'string' ? JSON.parse(this.fields) : this.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]').content
     };
   },
   created: function created() {
+    console.log('this.items');
+    console.log(this.items);
+    console.log(this.fields);
+
     if (this.values) {
       this.inputs = this.values;
     }
@@ -40332,7 +40336,7 @@ const VField_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFieldvue_t
 
 
 ;
-const VForm_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFormvue_type_script_lang_js, [['render',VFormvue_type_template_id_ef909b94_render]])
+const VForm_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VFormvue_type_script_lang_js, [['render',VFormvue_type_template_id_17a45f0a_render]])
 
 /* harmony default export */ const VForm = (VForm_exports_);
 // EXTERNAL MODULE: ./node_modules/vuedraggable/dist/vuedraggable.umd.js

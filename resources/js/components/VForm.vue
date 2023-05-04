@@ -36,13 +36,13 @@ export default {
     method: {required: true},
     name: String,
     title: String,
-    fields: String,
+    fields: Array,
     values: {},
   },
   data() {
     return {
       inputs: {},
-      items: JSON.parse(this.fields),
+      items: typeof this.fields === 'string' ? JSON.parse(this.fields) : this.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]').content
     };
   },
