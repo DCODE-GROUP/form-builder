@@ -15,6 +15,7 @@
       :placeholder="placeholder"
       :field="field"
       :required="field.hasOwnProperty('required') && field.required"
+      :editable="editable"
     ></component>
   </div>
 </template>
@@ -27,7 +28,7 @@ import Select from "./fields/Select";
 import SignaturePad from "./fields/SignaturePad";
 import Textarea from "./fields/Textarea";
 import Paragraph from "./fields/Paragraph";
-// import VDatePicker from "./fields/VDatepicker";
+import VDatePicker from "./fields/VDatepicker";
 
 export default {
   name: "VField",
@@ -35,11 +36,19 @@ export default {
     name: String,
     type: String,
     label: String,
-    value: {},
+    modelValue: {},
     options: {default: () => []},
     disabled: {default: false},
     placeholder: {default: null},
     field: {},
+
+    /**
+     * Form data can be editable after its complete
+     */
+    editable: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
@@ -47,7 +56,7 @@ export default {
       componentTypes: {
         checkbox: Input,
         "check-group": CheckGroup,
-        // datepicker: VDatePicker,
+        datepicker: VDatePicker,
         "file-upload": FileUpload,
         number: Input,
         "radio-group": CheckGroup,
@@ -60,11 +69,12 @@ export default {
     };
   },
   created() {
-    this.input = this.value;
+    console.log(this.type, this.modelValue)
+    this.input = this.modelValue;
   },
   watch: {
-    value() {
-      this.input = this.value;
+    modelValue() {
+      this.input = this.modelValue;
     },
     input() {
       this.$emit("input", this.input);
@@ -78,7 +88,7 @@ export default {
       return this.type === "heading" ? "h4" : "span";
     },
     fieldClass() {
-      return ["cell", this.class, `-type-${this.type}`].join(" ");
+      return ["cell", `-type-${this.type}`].join(" ");
     },
   },
 };

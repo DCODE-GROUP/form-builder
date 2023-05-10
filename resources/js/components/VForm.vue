@@ -2,12 +2,16 @@
   <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
+    <div class="right">
+      <a class="btn-download" target="_blank" :href="`?download=true`" v-if="!editable"> Download Attachments </a>
+      <a class="btn-print" @click="print" v-if="!editable"> Print PDF </a>
+    </div>
     <div class="grid-x grid-margin-x grid-margin-y callout curved-box-shadow">
-      <div class="small-12" v-if="title">
-        <h3 class="h4 mb-2">{{ title }}</h3>
-        <hr class="mb-2"/>
+      <div v-if="title">
+        <h3>{{ title }}</h3>
+        <hr/>
       </div>
-      <template v-for="field in items" :key="field.id">
+      <template v-for="field in fields" :key="field.id" v-if="fields.length">
         <v-field
           v-model="inputs[field.name]"
           :name="fieldName(field)"
@@ -16,15 +20,17 @@
           :options="field.options"
           :placeholder="field.placeholder"
           :field="field"
+          :editable="editable"
         ></v-field>
       </template>
     </div>
-    <slot></slot>
+    <slot v-if="editable"></slot>
   </form>
 </template>
 
 <script>
 import VField from "./VField";
+import axios from "axios";
 
 export default {
   name: "VForm",
@@ -34,24 +40,46 @@ export default {
   props: {
     action: {required: true},
     method: {required: true},
+
+    /**
+     * Form data can be editable after its complete
+     */
+    editable: {
+      type: Boolean,
+      default: false
+    },
     name: String,
     title: String,
-    fields: Array,
-    values: {},
+    form: Array,
+    formData: Array,
   },
   data() {
     return {
       inputs: {},
-      items: typeof this.fields === 'string' ? JSON.parse(this.fields) : this.fields,
+      fields: this.form.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]').content
     };
   },
   created() {
-    if (this.values) {
-      this.inputs = this.values;
+    if (this.formData) {
+      let data = this.formData.values;
+      data.map((o) => {
+        this.inputs[o.name] = o.value ?? '';
+      })
     }
   },
   methods: {
+    print() {
+      window.print()
+    },
+    download() {
+      axios
+        .delete(`/api/generic/form-data/${this.formData.id}/media/${file.id}`)
+        .then((res) => {
+          this.files.splice(index, 1);
+        })
+        .catch(console.error);
+    },
     fieldName(field) {
       if (!this.name) {
         return field.name;
@@ -61,3 +89,19 @@ export default {
   },
 };
 </script>
+<style>
+.v-form {
+  position: relative;
+
+  .right {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    display: flex;
+    gap: 10px;
+  }
+  .btn-print, .btn-download {
+    cursor: pointer;
+  }
+}
+</style>

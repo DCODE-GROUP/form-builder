@@ -17,6 +17,7 @@ class CreateFormDataTable extends Migration
             $table->increments('id');
             $table->morphs('formable');
             $table->json('values')->nullable();
+            $table->timestamp('completed_at')->nullable();
             $table->unsignedInteger('form_id');
             $table->softDeletes();
             $table->timestamps();
