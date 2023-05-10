@@ -7,8 +7,12 @@
 </template>
 
 <script>
+import BaseField from "../mixins/BaseField";
+
 export default {
   name: "VParagraph",
+  mixins: [BaseField],
+
   props: {
     field: {},
   },

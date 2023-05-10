@@ -23,7 +23,9 @@
     "vue": "^3.2.37",
     "vue-loader": "^16.8.3",
     "vue-router": "^3.0.1",
-    "vue2-datepicker": "^3.10.1",
     "vuedraggable": "^4.1.0"
+  },
+  "dependencies": {
+    "vue-datepicker-next": "^1.0.3"
   }
 }
