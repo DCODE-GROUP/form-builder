@@ -17,13 +17,13 @@ trait HasFilledForms
     {
         $formData = $this->filledForms()->where('form_id', $form->id)->latest()->first();
 
-        if (!$formData) {
+        if (! $formData) {
             $formData = FormData::query()->create([
-                    'formable_id' => $this->id,
-                    'formable_type' => get_class($this),
-                    'form_id' => $form->id,
-                    'values' => []
-                ]
+                'formable_id' => $this->id,
+                'formable_type' => get_class($this),
+                'form_id' => $form->id,
+                'values' => [],
+            ]
             );
         }
 

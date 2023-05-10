@@ -56,7 +56,7 @@ class Form extends Model
     }
 
     /**
-     * @param string|null $name
+     * @param  string|null  $name
      * @return mixed
      */
     public static function get(string $name = null)
