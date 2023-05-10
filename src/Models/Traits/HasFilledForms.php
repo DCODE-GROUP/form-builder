@@ -15,7 +15,22 @@ trait HasFilledForms
 
     public function getFormData(Form $form)
     {
-        return $this->filledForms()->where('form_id', $form->id)->latest()->first();
+        $formData = $this->filledForms()->where('form_id', $form->id)->latest()->first();
+
+        if (!$formData) {
+            $formData = FormData::query()->create([
+                    'formable_id' => $this->id,
+                    'formable_type' => get_class($this),
+                    'form_id' => $form->id,
+                    'values' => []
+                ]
+            );
+        }
+
+        $formData->class = get_class($formData);
+
+        return $formData;
+
     }
 
     public function saveFormData(Form $form, string $scheduleDate = null, array $values = null)
