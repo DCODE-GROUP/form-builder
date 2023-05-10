@@ -69,7 +69,6 @@ export default {
     };
   },
   created() {
-    console.log(this.type, this.modelValue)
     this.input = this.modelValue;
   },
   watch: {

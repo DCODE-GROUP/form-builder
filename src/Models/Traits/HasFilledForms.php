@@ -27,13 +27,10 @@ trait HasFilledForms
             );
         }
 
-        $formData->class = get_class($formData);
-
         return $formData;
-
     }
 
-    public function saveFormData(Form $form, string $scheduleDate = null, array $values = null)
+    public function saveFormData(Form $form, array $values = null)
     {
         return FormData::query()->updateOrCreate([
             'formable_id' => $this->id,
