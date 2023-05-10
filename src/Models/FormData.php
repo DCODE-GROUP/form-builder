@@ -101,13 +101,13 @@ class FormData extends Model
     {
         if ($values->isEmpty()) {
             return $this->form->prefill([
-                $field => [$data]
+                $field => [$data],
             ]);
         }
 
         return $values->map(function ($value) use ($field, $data) {
             if ($value['name'] === $field) {
-                if (!is_array($value['value'])) {
+                if (! is_array($value['value'])) {
                     $value['value'] = [];
                 }
                 array_push($value['value'], $data);
