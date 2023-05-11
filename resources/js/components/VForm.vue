@@ -2,7 +2,7 @@
   <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
-    <div class="right">
+    <div class="right" v-if="!preview">
       <a class="btn-download" target="_blank" :href="`?download=true`" v-if="!editable"> Download Attachments </a>
       <a class="btn-print" @click="print" v-if="!editable"> Print PDF </a>
     </div>
@@ -35,7 +35,7 @@ import axios from "axios";
 export default {
   name: "VForm",
   components: {
-    "v-field": VField,
+    VField,
   },
   props: {
     action: {required: true},
@@ -45,6 +45,10 @@ export default {
      * Form data can be editable after its complete
      */
     editable: {
+      type: Boolean,
+      default: false
+    },
+    preview: {
       type: Boolean,
       default: false
     },

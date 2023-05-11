@@ -25,7 +25,7 @@ class FormController extends Controller
     {
         $formData = new FormData([
             'form_id' => $form->id,
-            'values' => request()->input('form_fields') ?? '{}',
+            'values' => request()->input('form_fields') ?? [],
         ]);
 
         return view('form-builder-views::show')
