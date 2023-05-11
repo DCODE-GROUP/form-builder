@@ -7,8 +7,9 @@
                     method="POST"
                     name="form_fields"
                     title="{{ $formData->name }}"
-                    fields="{{ $form->fieldsJson() }}"
-                    values="{{ $formData->values }}"
+                    :form="{{ $form->toJson() }}"
+                    :form-data="{{ $formData->toJson() }}"
+                    :editable="false"
             >
             </v-form>
         </div>

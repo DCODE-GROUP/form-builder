@@ -19,7 +19,7 @@
     <input type="hidden" :name="name" :value="valueJson"/>
     <div v-if="showPreview" class="form-builder-preview-container">
       <div class="form-builder-preview">
-        <v-form action="#" method="get" :fields="fields"></v-form>
+        <v-form action="#" method="get" :form="{fields}" :preview="true"></v-form>
       </div>
     </div>
     <div v-else class="form-builder-container">
