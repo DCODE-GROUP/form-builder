@@ -58,8 +58,6 @@ export default {
     formData: Array,
   },
   data() {
-    console.log('this.form');
-    console.log(this.form);
     return {
       inputs: {},
       fields: this.form.fields,
