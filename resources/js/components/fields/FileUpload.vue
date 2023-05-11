@@ -56,7 +56,7 @@ export default {
   mounted() {
     this.formData = this.$parent._.parent.props.formData;
     const csrf = this.$parent._.parent.data.csrf;
-    if (this.editable) {
+    if (this.editable && this.formData) {
       this.dropzone = new Dropzone(this.$refs.dropzone, {
         url: `/api/generic/form-data/${this.formData.id}/media/upload`,
         addRemoveLinks: true,
