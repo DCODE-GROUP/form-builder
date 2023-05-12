@@ -127,6 +127,7 @@ export default {
   align-items: center;
   gap: 35px;
   margin-bottom: 40px;
+
   @media only screen and (max-width: 600px) {
     flex-direction: column;
   }

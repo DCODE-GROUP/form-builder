@@ -3,7 +3,7 @@
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
     <div class="right" v-if="!preview">
-      <a class="btn-download" target="_blank" :href="`?download=true`" v-if="!editable"> Download Attachments </a>
+      <a class="btn-download" target="_blank" :href="`?download=true`"> Download Attachments </a>
       <a class="btn-print" @click="print" v-if="!editable"> Print PDF </a>
     </div>
     <div class="grid-x grid-margin-x grid-margin-y callout curved-box-shadow">
