@@ -41,6 +41,7 @@ export default {
   props: {
     name: String,
     modelValue: {},
+    field: {},
     placeholder: {
       type: String,
       default: "Drop files here",
@@ -60,7 +61,7 @@ export default {
       this.dropzone = new Dropzone(this.$refs.dropzone, {
         url: `/api/generic/form-data/${this.formData.id}/media/upload`,
         addRemoveLinks: true,
-        dictDefaultMessage: 'Drop files here',
+        dictDefaultMessage: this.field.placeholder,
         sending: (file, xhr, formData) => {
           formData.append("_token", csrf);
           formData.append("field", this.name);

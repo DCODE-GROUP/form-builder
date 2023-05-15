@@ -107,7 +107,7 @@ class FormData extends Model
 
         return $values->map(function ($value) use ($field, $data) {
             if ($value['name'] === $field) {
-                if (! is_array($value['value'])) {
+                if (!isset($value['value']) || ! is_array($value['value'])) {
                     $value['value'] = [];
                 }
                 array_push($value['value'], $data);
