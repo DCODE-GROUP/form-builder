@@ -103,7 +103,11 @@ class Form extends Model
             $value = $this->getFieldValue($values, $field['name']);
             if ($field['type'] === 'checkbox') {
                 $field['value'] = (bool) $value;
+                continue;
+            }
 
+            if ($field['type'] === 'file-upload' && is_string($value)) {
+                $field['value'] = json_decode($value, true);
                 continue;
             }
 
