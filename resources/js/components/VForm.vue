@@ -4,7 +4,7 @@
     <input type="hidden" name="_method" :value="method"/>
     <div class="right" v-if="!preview">
       <a class="btn-download" target="_blank" :href="`?download=true`"> Download Attachments </a>
-      <a class="btn-print" :href="`?pdf=true`" v-if="!editable"> PDF </a>
+      <a class="btn-print" href="?pdf=true" v-if="!editable"> PDF </a>
     </div>
     <div class="grid-x grid-margin-x grid-margin-y callout curved-box-shadow">
       <div v-if="title">
