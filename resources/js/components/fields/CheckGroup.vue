@@ -39,7 +39,7 @@ export default {
       this.input = this.modelValue;
     },
     input() {
-      this.$emit("input", this.input);
+        this.$emit("update:modelValue", this.input);
     },
   },
   methods: {},

@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import CheckGroup from "./fields/CheckGroup";
-import FileUpload from "./fields/FileUpload";
-import Input from "./fields/Input";
-import Select from "./fields/Select";
-import SignaturePad from "./fields/SignaturePad";
-import Textarea from "./fields/Textarea";
-import Paragraph from "./fields/Paragraph";
-import VDatePicker from "./fields/VDatepicker";
+import CheckGroup from "./fields/CheckGroup.vue";
+import FileUpload from "./fields/FileUpload.vue";
+import Input from "./fields/Input.vue";
+import Select from "./fields/Select.vue";
+import SignaturePad from "./fields/SignaturePad.vue";
+import Textarea from "./fields/Textarea.vue";
+import Paragraph from "./fields/Paragraph.vue";
+import VDatePicker from "./fields/VDatepicker.vue";
 
 export default {
   name: "VField",
@@ -76,7 +76,7 @@ export default {
       this.input = this.modelValue;
     },
     input() {
-      this.$emit("input", this.input);
+        this.$emit("update:modelValue", this.input);
     },
   },
   computed: {
