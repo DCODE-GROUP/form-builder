@@ -1970,7 +1970,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 169:
+/***/ 938:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3712,22 +3712,22 @@ var Paragraphvue_type_style_index_0_id_3be0049c_lang_css_update = injectStylesIn
 const Paragraph_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(Paragraphvue_type_script_lang_js, [['render',Paragraphvue_type_template_id_3be0049c_render]])
 
 /* harmony default export */ const Paragraph = (Paragraph_exports_);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/VDatepicker.vue?vue&type=template&id=9e063ede
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/VDatepicker.vue?vue&type=template&id=d74e239a
 
-var VDatepickervue_type_template_id_9e063ede_hoisted_1 = {
+var VDatepickervue_type_template_id_d74e239a_hoisted_1 = {
   "class": "v-datepicker"
 };
-var VDatepickervue_type_template_id_9e063ede_hoisted_2 = ["name", "id", "value"];
-var VDatepickervue_type_template_id_9e063ede_hoisted_3 = ["textContent"];
-function VDatepickervue_type_template_id_9e063ede_render(_ctx, _cache, $props, $setup, $data, $options) {
+var VDatepickervue_type_template_id_d74e239a_hoisted_2 = ["name", "id", "value"];
+var VDatepickervue_type_template_id_d74e239a_hoisted_3 = ["textContent"];
+function VDatepickervue_type_template_id_d74e239a_render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_date_picker = (0,vue_esm_bundler.resolveComponent)("date-picker");
 
-  return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VDatepickervue_type_template_id_9e063ede_hoisted_1, [(0,vue_esm_bundler.createElementVNode)("input", {
+  return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VDatepickervue_type_template_id_d74e239a_hoisted_1, [(0,vue_esm_bundler.createElementVNode)("input", {
     type: "hidden",
     name: $props.name,
     id: $props.name,
     value: $data.date
-  }, null, 8, VDatepickervue_type_template_id_9e063ede_hoisted_2), _ctx.editable ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)(_component_date_picker, {
+  }, null, 8, VDatepickervue_type_template_id_d74e239a_hoisted_2), _ctx.editable ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)(_component_date_picker, {
     key: 0,
     value: $data.date,
     "onUpdate:value": _cache[0] || (_cache[0] = function ($event) {
@@ -3741,9 +3741,9 @@ function VDatepickervue_type_template_id_9e063ede_render(_ctx, _cache, $props, $
   }, null, 8, ["value", "placeholder"])) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("p", {
     key: 1,
     textContent: (0,vue_esm_bundler.toDisplayString)($props.modelValue)
-  }, null, 8, VDatepickervue_type_template_id_9e063ede_hoisted_3))]);
+  }, null, 8, VDatepickervue_type_template_id_d74e239a_hoisted_3))]);
 }
-;// CONCATENATED MODULE: ./resources/js/components/fields/VDatepicker.vue?vue&type=template&id=9e063ede
+;// CONCATENATED MODULE: ./resources/js/components/fields/VDatepicker.vue?vue&type=template&id=d74e239a
 
 ;// CONCATENATED MODULE: ./node_modules/date-format-parse/es/util.js
 function isDate(value) {
@@ -6433,6 +6433,11 @@ var vue_datepicker_next_update = injectStylesIntoStyleTag_default()(vue_datepick
     if (this.modelValue) {
       this.date = this.modelValue;
     }
+  },
+  watch: {
+    date: function date() {
+      this.$emit("update:modelValue", this.date);
+    }
   }
 });
 ;// CONCATENATED MODULE: ./resources/js/components/fields/VDatepicker.vue?vue&type=script&lang=js
@@ -6443,7 +6448,7 @@ var vue_datepicker_next_update = injectStylesIntoStyleTag_default()(vue_datepick
 
 
 ;
-const VDatepicker_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VDatepickervue_type_script_lang_js, [['render',VDatepickervue_type_template_id_9e063ede_render]])
+const VDatepicker_exports_ = /*#__PURE__*/(0,exportHelper/* default */.Z)(VDatepickervue_type_script_lang_js, [['render',VDatepickervue_type_template_id_d74e239a_render]])
 
 /* harmony default export */ const VDatepicker = (VDatepicker_exports_);
 ;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=script&lang=js
@@ -43670,7 +43675,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, [826], () => (__webpack_require__(169)))
+/******/ 	__webpack_require__.O(undefined, [826], () => (__webpack_require__(938)))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [826], () => (__webpack_require__(825)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
