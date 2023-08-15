@@ -34,7 +34,7 @@ Include this built file to your layouts:
 
 #### SCSS
 
-There is a new generated file under `sass\form-builder\index.scss`. You must use this file in your main scss file 
+There is a new generated file under `public/vendor/form-builder/index.css`. You must use this file in your main scss file 
 
 Run the npm build (dev/prod)
 
@@ -75,4 +75,11 @@ Create new folder name `form-builder-views` under `resources/views` section then
 edit.blade.php
 index.blade.php
 show.blade.php
+```
+
+## Traits for form validation
+
+Located in 
+```
+src\Http\Traits\FormValidator.php
 ```
