@@ -12,7 +12,7 @@ trait FormValidator
         $forms = Form::query()->find($formsIds);
         $list = collect($list);
 
-        $forms->each(function (Form $form) use (&$list, $isMessage, $forms) {
+        $forms->each(function (Form $form) use (&$list, $isMessage) {
             if (! empty($form->fields)) {
                 foreach ($form->fields as $field) {
                     if (isset($field['required']) && $field['required']) {
