@@ -21,7 +21,9 @@
           :placeholder="field.placeholder"
           :field="field"
           :editable="editable"
-        ></v-field>
+        >
+          <span class="error" v-text="getValidationMessage(field)" />
+        </v-field>
       </template>
     </div>
     <slot v-if="editable"></slot>
@@ -56,6 +58,12 @@ export default {
     title: String,
     form: Array,
     formData: Array,
+    validationErrors: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
   },
   data() {
     return {
@@ -87,6 +95,20 @@ export default {
       }
       return `${this.name}[${field.name}]`;
     },
+    validationKey(field) {
+      if (!this.name) {
+        return field.name;
+      }
+
+      return `${this.name}.${field.name}`;
+    },
+    getValidationMessage(field) {
+      if (!this.validationErrors.hasOwnProperty(this.validationKey(field))) {
+        return '';
+      }
+
+      return this.validationErrors[this.validationKey(field)].join('|');
+    }
   },
 };
 </script>

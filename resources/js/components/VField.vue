@@ -17,6 +17,7 @@
       :required="field.hasOwnProperty('required') && field.required"
       :editable="editable"
     ></component>
+    <slot></slot>
   </div>
 </template>
 
