@@ -404,7 +404,7 @@ export default {
             label: field.label,
             placeholder: field.placeholder,
             class: field.class,
-            options: field.options,
+            options: [...field.options],
           }
 
           if (field.hasOwnProperty('content')) {
