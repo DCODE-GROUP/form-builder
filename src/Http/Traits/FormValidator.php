@@ -32,7 +32,7 @@ trait FormValidator
             'checkbox' => ['required', 'accepted'],
             'file-upload' => [function ($attribute, $value, $fail) use ($field) {
                 if (strlen($value) < 3 || empty(json_decode($value))) {
-                    return $fail('The ' . ($field['label']) . ' must be required');
+                    return $fail('The '.($field['label']).' must be required');
                 }
 
                 return true;
