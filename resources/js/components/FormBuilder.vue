@@ -3,6 +3,7 @@
     <div class="form-basic">
       <div>
         <input type="text" v-model="title"/>
+        <input type="text" v-model="successMessage" placeholder="Success message"/>
       </div>
       <br>
       <div>
@@ -201,12 +202,14 @@ export default {
     const form = JSON.parse(this.form);
     if (form.hasOwnProperty('title')) {
       this.title = form.title;
+      this.successMessage = form.success_message;
       this.fields = form.fields;
     }
   },
   data() {
     return {
       title: "New Form",
+      successMessage: null,
       fields: [],
       showPreview: false,
       templates: [
@@ -396,6 +399,7 @@ export default {
     valueJson() {
       return JSON.stringify({
         title: this.title,
+        success_message: this.success_message,
         fields: this.fields.map((field) => {
           let f = {
             id: field.id,
