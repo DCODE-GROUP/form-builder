@@ -78,7 +78,7 @@ class Form extends Model
         }
 
         $form->title = $formData['title'];
-        $form->success_message = $formData['success_message'] ?: null;
+        $form->success_message = $formData['success_message'] ?? null;
         $form->save();
 
         $form->setFields($formData['fields'] ?? []);

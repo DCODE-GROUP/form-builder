@@ -399,7 +399,7 @@ export default {
     valueJson() {
       return JSON.stringify({
         title: this.title,
-        success_message: this.success_message,
+        success_message: this.successMessage,
         fields: this.fields.map((field) => {
           let f = {
             id: field.id,
@@ -408,7 +408,7 @@ export default {
             label: field.label,
             placeholder: field.placeholder,
             class: field.class,
-            options: [...field.options],
+            options: [...(field.options || [])],
           }
 
           if (field.hasOwnProperty('content')) {
