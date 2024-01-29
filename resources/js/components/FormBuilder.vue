@@ -3,6 +3,7 @@
     <div class="form-basic">
       <div>
         <input type="text" v-model="title"/>
+        <input type="text" v-model="successMessage" placeholder="Success message"/>
       </div>
       <br>
       <div>
@@ -19,7 +20,7 @@
     <input type="hidden" :name="name" :value="valueJson"/>
     <div v-if="showPreview" class="form-builder-preview-container">
       <div class="form-builder-preview">
-        <v-form action="#" method="get" :form="{fields}" :preview="true" :editable="true"></v-form>
+        <v-form action="#" method="get" :form="{fields}" :preview="true" :editable="true" :can-interact="!showPreview"></v-form>
       </div>
     </div>
     <div v-else class="form-builder-container">
@@ -201,12 +202,14 @@ export default {
     const form = JSON.parse(this.form);
     if (form.hasOwnProperty('title')) {
       this.title = form.title;
+      this.successMessage = form.success_message;
       this.fields = form.fields;
     }
   },
   data() {
     return {
       title: "New Form",
+      successMessage: null,
       fields: [],
       showPreview: false,
       templates: [
@@ -396,6 +399,7 @@ export default {
     valueJson() {
       return JSON.stringify({
         title: this.title,
+        success_message: this.successMessage,
         fields: this.fields.map((field) => {
           let f = {
             id: field.id,
@@ -404,7 +408,7 @@ export default {
             label: field.label,
             placeholder: field.placeholder,
             class: field.class,
-            options: [...field.options],
+            options: [...(field.options || [])],
           }
 
           if (field.hasOwnProperty('content')) {

@@ -6,7 +6,12 @@
       <a class="btn-download" target="_blank" :href="`?download=true`"> Download Attachments </a>
       <a class="btn-print" href="?pdf=true" v-if="!editable"> PDF </a>
     </div>
-    <div class="grid-x grid-margin-x grid-margin-y callout curved-box-shadow">
+    <div class="grid-x grid-margin-x grid-margin-y callout curved-box-shadow"
+        :style="{
+            'pointer-events': canInteract ? 'auto' : 'none',
+            'user-select': canInteract ? 'auto' : 'none'
+        }
+    ">
       <div v-if="title">
         <h3>{{ title }}</h3>
         <hr/>
@@ -53,6 +58,10 @@ export default {
     preview: {
       type: Boolean,
       default: false
+    },
+    canInteract: {
+      type: Boolean,
+      default: true,
     },
     name: String,
     title: String,
