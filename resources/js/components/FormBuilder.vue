@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <h2>{{ showPreview ? 'Preview' : (creating ? 'New Form' : 'Edit Form') }}</h2>
+    </div>
     <div class="form-basic">
       <div>
         <input type="text" v-model="title"/>
@@ -11,10 +14,10 @@
           type="button"
           class="button"
           @click="handleShowPreview"
-        >{{ showPreview ? 'Edit' : 'Preview' }}
+        >{{ showPreview ? (creating ? 'Create' : 'Edit') : 'Preview' }}
         </button>
         <a :href="cancelUrl" class="button">Cancel</a>
-        <input type="submit" :value="form ? 'Update Form' : 'Create Form'" class="button success">
+        <input type="submit" :value="creating ? 'Create Form' : 'Update Form'" class="button success">
       </div>
     </div>
     <input type="hidden" :name="name" :value="valueJson"/>
@@ -201,6 +204,7 @@ export default {
   created() {
     const form = JSON.parse(this.form);
     if (form.hasOwnProperty('title')) {
+      this.creating = false;
       this.title = form.title;
       this.successMessage = form.success_message;
       this.fields = form.fields;
@@ -208,6 +212,7 @@ export default {
   },
   data() {
     return {
+      creating: true,
       title: "New Form",
       successMessage: null,
       fields: [],
