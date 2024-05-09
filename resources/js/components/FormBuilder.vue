@@ -1,14 +1,7 @@
 <template>
   <div>
-    <div>
-      <h2>{{ showPreview ? 'Preview' : (creating ? 'New Form' : 'Edit Form') }}</h2>
-    </div>
     <div class="form-basic">
-      <div>
-        <input type="text" v-model="title"/>
-        <input type="text" v-model="successMessage" placeholder="Success message"/>
-      </div>
-      <br>
+      <h2>{{ showPreview ? 'Preview' : (creating ? 'New Form' : 'Edit Form') }}</h2>
       <div>
         <button
           type="button"
@@ -18,6 +11,17 @@
         </button>
         <a :href="cancelUrl" class="button">Cancel</a>
         <input type="submit" :value="creating ? 'Create Form' : 'Update Form'" class="button success">
+      </div>
+    </div>
+    <hr class="form-separator" />
+    <div class="form-basic">
+      <div v-if="showPreview">
+        <h4 v-text="title"></h4>
+        <p v-if="successMessage" v-text="successMessage"></p>
+      </div>
+      <div v-else>
+        <input type="text" v-model="title"/>
+        <input type="text" v-model="successMessage" placeholder="Success message"/>
       </div>
     </div>
     <input type="hidden" :name="name" :value="valueJson"/>
@@ -119,7 +123,7 @@
                         </label>
                       </div>
                     </div>
-                    <div class="-prop -options" v-if="element.options">
+                    <div class="-prop -options" v-if="hasOptionsFieldTypes.includes(element.type) && element.options">
                       <span class="-label">Options</span>
                       <draggable
                         :list="element.options"
@@ -217,6 +221,7 @@ export default {
       successMessage: null,
       fields: [],
       showPreview: false,
+      hasOptionsFieldTypes: ["select", "check-group", "radio-group"],
       templates: [
         {
           name: "heading",
