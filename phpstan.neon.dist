@@ -1,0 +1,23 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5
+    paths:
+        - src
+        - config
+        - database
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
+    checkGenericClassInNonGenericObjectType: false
+
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder::allowedFilters#'
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Model::getActivityLogUserName#'
+        - '#Class App\\Models\\User not found#'
+        - '#Method Dcodegroup\\LaravelAttachments\\Models\\Media::getImageUrl\(\) is unused#'
+        - '#Access to an undefined property Dcodegroup\\LaravelAttachments\\Models\\Media::\$parent_id#'

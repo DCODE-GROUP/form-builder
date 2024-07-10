@@ -55,6 +55,7 @@
         }
     },
     "require-dev": {
+        "larastan/larastan": "*",
         "laravel/pint": "^1.0"
     }
 }
