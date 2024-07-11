@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property Dcodegroup\\\\FormBuilder\\\\Models\\\\Media\\:\\:\\$alt_text\\.$#"
+			count: 1
+			path: src/Http/Controllers/Media/SetAltTextController.php
+
+		-
+			message: "#^Access to an undefined property Dcodegroup\\\\FormBuilder\\\\Models\\\\Media\\:\\:\\$category_id\\.$#"
+			count: 1
+			path: src/Http/Controllers/Media/SetCategoryController.php
+
+		-
+			message: "#^Access to an undefined property Dcodegroup\\\\FormBuilder\\\\Models\\\\Media\\:\\:\\$title\\.$#"
+			count: 1
+			path: src/Http/Controllers/Media/SetTitleController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Foundation\\\\Auth\\\\User\\:\\:getMediaUserName\\(\\)\\.$#"
+			count: 1
+			path: src/Http/Controllers/Media/UploadController.php
+
+		-
+			message: "#^Property 'category_id' does not exist in Dcodegroup\\\\FormBuilder\\\\Models\\\\Media model\\.$#"
+			count: 1
+			path: src/Models/Media.php
+
+		-
+			message: "#^Property 'parent_id' does not exist in Dcodegroup\\\\FormBuilder\\\\Models\\\\Media model\\.$#"
+			count: 1
+			path: src/Models/Media.php
