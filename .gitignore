@@ -1,7 +1,8 @@
-/vendor
-.idea/
+/.idea
+/build
 /laravel
 /node_modules
-composer.lock
-.phpunit.result.cache
+/vendor
 .php-cs-fixer.cache
+.phpunit.result.cache
+composer.lock
