@@ -26,9 +26,6 @@ class Form extends Model
         'fields' => 'array',
     ];
 
-    /**
-     * @return HasMany
-     */
     public function data(): HasMany
     {
         return $this->hasMany(FormData::class);
@@ -42,9 +39,6 @@ class Form extends Model
         return json_encode($this->fields);
     }
 
-    /**
-     * @param  array  $fields
-     */
     public function setFields(array $fields): void
     {
         $this->update(['fields' => $fields]);
@@ -56,22 +50,19 @@ class Form extends Model
     }
 
     /**
-     * @param  string|null  $name
      * @return mixed
      */
-    public static function get(string $name = null)
+    public static function get(?string $name = null)
     {
         return self::latest()->first();
     }
 
     /**
-     * @param  array  $formData
-     * @param  Form|null  $form
      * @return Form
      */
     public static function saveModel(
         array $formData,
-        Form $form = null
+        ?Form $form = null
     ) {
         if (! $form) {
             $form = new Form();
@@ -89,7 +80,7 @@ class Form extends Model
     /**
      * @return mixed
      */
-    public function prefill(array $values = null)
+    public function prefill(?array $values = null)
     {
         /**
          * This is done because of the pass by reference in &$field
@@ -104,11 +95,13 @@ class Form extends Model
             $value = $this->getFieldValue($values, $field['name']);
             if ($field['type'] === 'checkbox') {
                 $field['value'] = (bool) $value;
+
                 continue;
             }
 
             if ($field['type'] === 'file-upload' && is_string($value)) {
                 $field['value'] = json_decode($value, true);
+
                 continue;
             }
 
@@ -120,11 +113,6 @@ class Form extends Model
         return $fields;
     }
 
-    /**
-     * @param $values
-     * @param $field
-     * @return mixed
-     */
     private function getFieldValue($values, $field): mixed
     {
         $values = collect($values);
