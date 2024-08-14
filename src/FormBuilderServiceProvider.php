@@ -36,7 +36,6 @@ class FormBuilderServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom(app('DCODE_FORM_BUILDER_PATH').'/config/form-builder.php', 'form-builder');
 
-
     }
 
     protected function registerCommands()

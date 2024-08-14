@@ -71,7 +71,7 @@ class Form extends Model
         ?Form $form = null
     ) {
         if (! $form) {
-            $form = new Form();
+            $form = new Form;
         }
 
         $form->title = $formData['title'];
