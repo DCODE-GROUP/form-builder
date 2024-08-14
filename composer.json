@@ -17,14 +17,20 @@
             "role": "Developer"
         },
         {
+            "name": "Aaron Heath",
+            "email": "aaron@aaronheath.com",
+            "role": "Developer",
+            "homepage": "https://aaronheath.com"
+        },
+        {
             "name": "Dcode Group",
             "email": "forge@dcodegroup.com",
             "homepage": "https://dcodegroup.com"
         }
     ],
     "require": {
-        "php": "^7.4|^8.0|^8.1",
-        "laravel/framework": "^7.0|^8.0|^9.0|^10.0"
+        "php": "^8.2 || ^8.3",
+        "laravel/framework": "^11.0"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +41,7 @@
         "psalm": "vendor/bin/psalm",
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
         "post-autoload-dump": [
-            "@php artisan vendor:publish --tag=form-builder-assets --force"
+            "if [ -f artisan ]; then @php artisan vendor:publish --tag=form-builder-assets --force; fi"
         ]
     },
     "config": {
@@ -49,6 +55,8 @@
         }
     },
     "require-dev": {
-        "laravel/pint": "^0.2.3"
+        "larastan/larastan": "*",
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^9.0"
     }
 }

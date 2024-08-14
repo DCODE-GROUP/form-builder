@@ -30,7 +30,7 @@ class FormController extends Controller
 
         return view('form-builder-views::show')
             ->with([
-                'title' => $form->name,
+                'title' => $form->title,
                 'formData' => $formData,
                 'form' => $form,
             ]);

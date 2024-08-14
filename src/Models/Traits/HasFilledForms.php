@@ -30,7 +30,7 @@ trait HasFilledForms
         return $formData;
     }
 
-    public function saveFormData(Form $form, array $values = null)
+    public function saveFormData(Form $form, ?array $values = null)
     {
         return FormData::query()->updateOrCreate([
             'formable_id' => $this->id,

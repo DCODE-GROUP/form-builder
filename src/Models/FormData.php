@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
+/**
+ * @property ?array $values
+ */
 class FormData extends Model
 {
     use SoftDeletes;
@@ -21,21 +24,22 @@ class FormData extends Model
     protected $guarded = ['id'];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'values' => 'array',
-        'completed_at' => 'datetime',
-    ];
-
-    /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'form_data';
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'values' => 'array',
+            'completed_at' => 'datetime',
+        ];
+    }
 
     public function form(): BelongsTo
     {
