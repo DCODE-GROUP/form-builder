@@ -9,8 +9,8 @@ You can install the package via composer:
 
 | Version / Branch | Laravel Support | Install Command                                 |
 |------------------|-----------------|-------------------------------------------------|
-| 1.x              | <= v10          | `composer require dcodegroup/form-builder:^1.*` |
-| 2.x              | >= v11          | `composer require dcodegroup/form-builder:^2.*` |
+| 1.x              | <= v10          | `composer require dcodegroup/form-builder:^1.0` |
+| 2.x              | >= v11          | `composer require dcodegroup/form-builder:^2.0` |
 
 Then run the install command.
 

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property string $title
+ * @property ?string $success_message
+ * @property ?array $fields
+ */
 class Form extends Model
 {
     use SoftDeletes;
@@ -18,13 +23,14 @@ class Form extends Model
     protected $guarded = ['id'];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'fields' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'fields' => 'array',
+        ];
+    }
 
     public function data(): HasMany
     {
