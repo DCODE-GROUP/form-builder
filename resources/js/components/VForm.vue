@@ -2,32 +2,28 @@
   <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
-    <div class="right" v-if="!preview">
-      <a class="btn-download" target="_blank" :href="`?download=true`"> Download Attachments </a>
-      <a class="btn-print" href="?pdf=true" v-if="!editable"> PDF </a>
-    </div>
-    <div class="grid-x grid-margin-x grid-margin-y callout curved-box-shadow"
+    <div
+        class="fields"
         :style="{
-            'pointer-events': canInteract ? 'auto' : 'none',
-            'user-select': canInteract ? 'auto' : 'none'
-        }
-    ">
+        'pointer-events': canInteract ? 'auto' : 'none',
+        'user-select': canInteract ? 'auto' : 'none'
+      }">
       <div v-if="title">
         <h3>{{ title }}</h3>
         <hr/>
       </div>
       <template v-for="field in fields" :key="field.id" v-if="fields.length">
         <v-field
-          v-model="inputs[field.name]"
-          :name="fieldName(field)"
-          :label="field.label"
-          :type="field.type"
-          :options="field.options"
-          :placeholder="field.placeholder"
-          :field="field"
-          :editable="editable"
+            v-model="inputs[field.name]"
+            :name="fieldName(field)"
+            :label="field.label"
+            :type="field.type"
+            :options="field.options"
+            :placeholder="field.placeholder"
+            :field="field"
+            :editable="editable"
         >
-          <span class="error" v-text="getValidationMessage(field)" />
+          <span class="error" v-text="getValidationMessage(field)"/>
         </v-field>
       </template>
     </div>
@@ -37,7 +33,6 @@
 
 <script>
 import VField from "./VField";
-import axios from "axios";
 
 export default {
   name: "VForm",
@@ -55,17 +50,18 @@ export default {
       type: Boolean,
       default: false
     },
-    preview: {
-      type: Boolean,
-      default: false
-    },
     canInteract: {
       type: Boolean,
       default: true,
     },
     name: String,
     title: String,
-    form: Array,
+    form: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
     formData: Array,
     validationErrors: {
       type: Object,
@@ -90,14 +86,6 @@ export default {
     }
   },
   methods: {
-    download() {
-      axios
-        .delete(`/api/generic/form-data/${this.formData.id}/media/${file.id}`)
-        .then((res) => {
-          this.files.splice(index, 1);
-        })
-        .catch(console.error);
-    },
     fieldName(field) {
       if (!this.name) {
         return field.name;
@@ -132,6 +120,7 @@ export default {
     display: flex;
     gap: 10px;
   }
+
   .btn-print, .btn-download {
     cursor: pointer;
   }

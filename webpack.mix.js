@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const webpack = require('webpack');
 const path = require('path');
 
 /*
@@ -14,27 +13,29 @@ const path = require('path');
  */
 
 mix.options({
-    terser: {
-        terserOptions: {
-            compress: {
-                drop_console: true,
-            },
-        },
-    },
+  processCssUrls: false,
+  terser: {
+    extractComments: false,
+  },
+  cssNano: {
+    minify: false,
+  },
 })
-    .setPublicPath('public')
-    .js('resources/js/index.js', 'public')
-    .sass('resources/sass/index.scss', 'public')
-    .vue()
-    .version()
-    .webpackConfig({
-        resolve: {
-            symlinks: false,
-            alias: {
-                '@': path.resolve(__dirname, 'resources/js/'),
-            },
-        },
-        optimization: {
-            minimize: false
-        },
-    });
+  .setPublicPath('public')
+  .js('resources/js/index.js', 'public')
+  .postCss('resources/css/index.css', 'public', [
+    require('tailwindcss'),
+    require('postcss-nested')
+  ])
+  .vue()
+  .webpackConfig({
+    resolve: {
+      symlinks: false,
+      alias: {
+        '@': path.resolve(__dirname, 'resources/'),
+      },
+    },
+    optimization: {
+      minimize: false
+    },
+  });

@@ -10,6 +10,7 @@
       />
       <span>{{ option }}</span>
     </label>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
   </div>
 </template>
 
@@ -22,9 +23,9 @@ export default {
   props: {
     name: {},
     type: {},
+    field: {},
     modelValue: {default: () => []},
     options: {default: () => []},
-    disabled: {default: false},
   },
   data() {
     return {

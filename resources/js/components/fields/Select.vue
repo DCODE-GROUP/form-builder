@@ -1,7 +1,10 @@
 <template>
-  <select :name="name" v-model="input" :disabled="disabled || !editable">
-    <option v-for="option in options">{{ option }}</option>
-  </select>
+  <div :class="field?.class">
+    <select :name="name" v-model="input" :disabled="!editable">
+      <option v-for="option in options">{{ option }}</option>
+    </select>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+  </div>
 </template>
 
 <script>
@@ -14,8 +17,8 @@ export default {
     modelValue: {},
     name: {},
     type: {},
+    field: {},
     options: {default: () => []},
-    disabled: {},
   },
   data() {
     return {

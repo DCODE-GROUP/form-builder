@@ -1,0 +1,196 @@
+@import '../../node_modules/dropzone/dist/dropzone.css';
+@import 'vue-datepicker-next/index.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-base {
+    @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200 focus:ring-opacity-50 py-2 px-3;
+}
+.form-builder-container {
+    @apply relative;
+
+    .form-builder {
+        @apply w-full flex flex-row h-[85vh] overflow-hidden;
+
+        .form-builder-templates {
+            @apply flex flex-col rounded-xl bg-gray-200 p-6 h-fit w-full;
+
+            .heading {
+                @apply pb-5 flex flex-col gap-1;
+
+                h3 {
+                    @apply text-lg font-semibold text-gray-900;
+                }
+
+                p {
+                    @apply text-sm text-gray-500;
+                }
+            }
+
+            .components {
+                @apply flex flex-col gap-2;
+
+                li {
+                    @apply list-none bg-white p-3 rounded-lg text-sm font-semibold text-gray-900 hover:bg-brand hover:text-white;
+                }
+            }
+        }
+
+        .form-builder-fields {
+            @apply flex flex-col rounded-xl w-2/3 pr-4 space-y-4;
+
+            .settings {
+                @apply bg-gray-50 shadow-sm rounded-xl px-6 py-4;
+
+                h3 {
+                    @apply text-lg font-semibold text-gray-900 mb-3 mt-2;
+                }
+            }
+
+            [type="text"],
+            [type="email"],
+            [type="url"],
+            [type="password"],
+            [type="number"],
+            [type="date"],
+            [type="tel"],
+            [multiple],
+            textarea,
+            select {
+                @apply input-base;
+            }
+        }
+    }
+}
+
+.fields {
+    @apply flex flex-col rounded-xl text-sm overflow-y-auto h-full;
+
+    h3 {
+        @apply text-lg font-semibold text-gray-900 mb-2;
+    }
+
+    .draggable {
+        @apply relative space-y-2 h-[586px];
+
+        .-field {
+            @apply px-6 py-4 bg-gray-50 shadow-sm rounded-xl mb-2;
+
+            .-field-title {
+                @apply border-b border-gray-200 text-lg;
+            }
+
+            .handle {
+                @apply flex justify-between pb-4;
+
+                .-title {
+                    .-type-title {
+                        @apply text-lg font-semibold text-gray-900;
+                    }
+                }
+            }
+
+            .-field-properties {
+                @apply space-y-2 mt-6;
+
+                .-two-columns {
+                    @apply grid grid-cols-2 gap-2;
+                }
+
+                .-prop {
+                    @apply flex gap-1.5 flex-col;
+
+                    > span {
+                        @apply text-sm text-gray-700 font-medium;
+                    }
+
+                    .-label {
+                        @apply text-gray-700;
+                    }
+                }
+
+                .-options {
+                    @apply relative !mt-4;
+
+                    .-added {
+                        @apply flex flex-col gap-2;
+                    }
+
+                    .-option {
+                        @apply flex items-center;
+                    }
+                }
+            }
+        }
+
+        [type="text"],
+        [type="email"],
+        [type="url"],
+        [type="password"],
+        [type="number"],
+        [type="date"],
+        [type="tel"],
+        [multiple],
+        textarea,
+        select {
+            @apply input-base;
+        }
+    }
+}
+
+.dragging-item {
+    @apply bg-brand p-3 rounded-xl text-sm font-semibold text-white;
+}
+
+.v-form {
+    .fields {
+        @apply space-y-4 pb-6;
+
+        .v-field {
+            @apply text-sm;
+
+            label {
+                @apply mb-1.5 inline-block font-medium text-gray-700;
+            }
+
+            .v-datepicker {
+                .mx-input-wrapper {
+                    input {
+                        @apply h-[42px];
+                    }
+                }
+            }
+
+            .-options {
+                @apply flex flex-col gap-2 mt-1.5;
+
+                label {
+                    @apply flex items-center;
+
+                    span {
+                        @apply pl-2 text-base;
+                    }
+
+                    input {
+                        @apply h-5 w-5 text-brand-700 border-gray-300 rounded focus:ring-brand focus:ring-2;
+                    }
+                }
+            }
+        }
+    }
+
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="tel"],
+    [multiple],
+    textarea,
+    select {
+        @apply input-base;
+    }
+}

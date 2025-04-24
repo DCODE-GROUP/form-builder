@@ -4,7 +4,6 @@ namespace Dcodegroup\FormBuilder;
 
 use Dcodegroup\FormBuilder\Commands\InstallCommand;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,11 +15,8 @@ class FormBuilderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->offerPublishing();
-        $this->registerRoutes();
         $this->registerResources();
         $this->registerCommands();
-
-        Route::model(config('form-builder.binding'), config('form-builder.model'));
     }
 
     /**
@@ -48,8 +44,6 @@ class FormBuilderServiceProvider extends ServiceProvider
     }
 
     /**
-     * Setup the resource publishing groups for Dcodegroup Xero oAuth.
-     *
      * @return void
      */
     protected function offerPublishing()
@@ -79,15 +73,5 @@ class FormBuilderServiceProvider extends ServiceProvider
     protected function registerResources()
     {
         $this->loadTranslationsFrom(app('DCODE_FORM_BUILDER_PATH').'/resources/lang', 'form-builder-translations');
-        $this->loadViewsFrom(app('DCODE_FORM_BUILDER_PATH').'/resources/views', 'form-builder-views');
-    }
-
-    protected function registerRoutes()
-    {
-        Route::group([
-            'middleware' => config('form-builder.middleware', 'web'),
-        ], function () {
-            $this->loadRoutesFrom(app('DCODE_FORM_BUILDER_PATH').'/routes/form.php');
-        });
     }
 }

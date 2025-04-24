@@ -1,6 +1,6 @@
 # Laravel Form Builder
 
-This package provides the standard form builder functionality used in most projects.
+This package provides the standard scaffolding of form builder functionality used in most projects.
 
 ## Installation
 #### PHP
@@ -11,6 +11,7 @@ You can install the package via composer:
 |------------------|-----------------|-------------------------------------------------|
 | 1.x              | <= v10          | `composer require dcodegroup/form-builder:^1.0` |
 | 2.x              | >= v11          | `composer require dcodegroup/form-builder:^2.0` |
+| 3.x              | >= v11          | `composer require dcodegroup/form-builder:^3.0` |
 
 Then run the install command.
 
@@ -50,33 +51,7 @@ Most of configuration has been set the fair defaults. However you can review the
 
 ```
 return [
-    'middleware' => ['web', 'auth'],
-    'layout_path' => 'layouts.app', // Make sure you have correct base layout name,
-    'content_section' => 'content', // Name of your content section
-    'route_path' => 'forms', // eg 'admin/settings/waivers',
-    'route_name' => 'forms', // eg 'admin.setting.waivers',
-    'binding' => 'form' // eg 'waiver',
 ]
-```
-
-## Usage
-
-The package provides an endpoints which you can use. See the full list by running
-```bash
-php artisan route:list --name=form
-```
-
-They are
-
-[example.com/forms] Which is where you will form index. This is by default protected auth middleware but you can modify in the configuration. This is where you want to link to in your admin and possibly a new window
-
-## Override views
-
-Create new folder name `form-builder-views` under `resources/views` section then put following files to override:
-```
-edit.blade.php
-index.blade.php
-show.blade.php
 ```
 
 ## Traits for form validation

@@ -1,5 +1,5 @@
 <template>
-  <div class="paragraph">
+  <div class="paragraph text-gray-600" :class="field?.class">
     <p v-if="field.content_type === 'p'" v-html="field.content"></p>
     <blockquote v-if="field.content_type === 'blockquote'"><q v-html="field.content"></q></blockquote>
     <address v-if="field.content_type === 'address'" v-html="field.content"></address>
@@ -14,7 +14,12 @@ export default {
   mixins: [BaseField],
 
   props: {
-    field: {},
+    field: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
   },
 };
 </script>

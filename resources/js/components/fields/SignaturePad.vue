@@ -1,7 +1,7 @@
 <template>
-  <div class="signature-pad">
+  <div class="signature-pad" :class="field?.class">
     <input type="hidden" class="signature-input" :name="name" :value="input"/>
-    <div class="signature-pad-body">
+    <div class="signature-pad-body rounded-lg border border-dashed border-gray-300 shadow-sm h-[160px]">
       <canvas ref="signaturePadCanvas"></canvas>
       <div class="signature-pad-actions">
         <button
@@ -15,6 +15,7 @@
         </button>
       </div>
     </div>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ export default {
       type: String,
       required: true
     },
+    field: {},
     modelValue: String
   },
   data() {
@@ -75,17 +77,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.signature-pad-body {
-  position: relative;
-  border: 1px solid #000;
-  margin-bottom: 1rem;
-}
-
-.signature-pad-body .signature-pad-actions {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-}
-</style>

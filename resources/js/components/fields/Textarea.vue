@@ -1,5 +1,8 @@
 <template>
-  <textarea :name="name" v-model="input" :disabled="!editable"></textarea>
+  <div :class="field?.class">
+    <textarea :name="name" v-model="input" rows="4" :disabled="!editable"></textarea>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+  </div>
 </template>
 
 <script>
@@ -11,8 +14,8 @@ export default {
   props: {
     name: {},
     type: {},
+    field: {},
     modelValue: {default: null},
-    disabled: {default: false},
   },
   data() {
     return {

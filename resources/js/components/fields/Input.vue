@@ -1,6 +1,9 @@
 <template>
-  <input v-if="editable" :name="name" :type="type" v-model="input" :disabled="disabled"/>
-  <p v-else v-text="modelValue"></p>
+  <div :class="field?.class">
+    <input v-if="editable" :name="name" :type="type" v-model="input"/>
+    <p v-else v-text="modelValue"></p>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+  </div>
 </template>
 
 <script>
@@ -12,8 +15,8 @@ export default {
   props: {
     name: {},
     type: {},
+    field: {},
     modelValue: {default: null},
-    disabled: {default: false},
   },
   data() {
     return {

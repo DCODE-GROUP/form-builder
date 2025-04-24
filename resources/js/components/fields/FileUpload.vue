@@ -24,7 +24,8 @@
         </a>
       </div>
     </div>
-    <div class="dropzone" ref="dropzone" v-if="editable"></div>
+    <div class="dropzone" :class="field.class" ref="dropzone"></div>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
   </div>
 </template>
 
@@ -127,7 +128,6 @@ export default {
   display: flex;
   align-items: center;
   gap: 35px;
-  margin-bottom: 40px;
 
   @media only screen and (max-width: 600px) {
     flex-direction: column;
