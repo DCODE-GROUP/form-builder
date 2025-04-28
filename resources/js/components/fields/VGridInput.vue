@@ -69,6 +69,7 @@ import {markRaw, toRaw} from "vue";
 import SingleCheckbox from "./SingleCheckbox.vue";
 import CheckGroup from "./CheckGroup.vue";
 import VDatePicker from "./VDatepicker.vue";
+import VAddress from "./VAddress.vue";
 import FileUpload from "./FileUpload.vue";
 import Input from "./Input.vue";
 import Select from "./Select.vue";
@@ -101,6 +102,7 @@ export default {
         text: markRaw(Input),
         textarea: markRaw(Textarea),
         paragraph: markRaw(Paragraph),
+        address: markRaw(VAddress),
       },
     };
   },

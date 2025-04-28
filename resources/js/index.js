@@ -6,6 +6,8 @@ import EditFieldGrid from "./components/common/EditFieldGrid.vue";
 import VForm from "./components/VForm.vue";
 
 const app = window.Vue.createApp({});
+app.config.globalProperties.$googleMapsApiKey = googleMapsApiKey; // eslint-disable-line
+
 app.component("FormBuilder", FormBuilder);
 app.component("VForm", VForm);
 app.component("EditFieldGrid", EditFieldGrid);

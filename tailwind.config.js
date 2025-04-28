@@ -17,6 +17,10 @@ module.exports = {
         'brand-200': 'rgb(250,234,240)',
         'error-700': 'rgba(180, 35, 24, 1)',
         'error-500': 'rgb(206,87,78)',
+        'warning-50': 'rgba(255, 250, 235, 1)',
+        'warning-200': 'rgba(254, 223, 137, 1)',
+        'warning-500': 'rgba(247, 144, 9, 1)',
+        'warning-700': 'rgba(181, 71, 8, 1)',
       },
       width: {
         'fill': '-webkit-fill-available',

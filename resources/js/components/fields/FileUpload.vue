@@ -2,10 +2,10 @@
   <div class="file-upload">
     <input type="hidden" :name="name" :value="valueJson"/>
     <div
-      v-if="files.length"
-      v-for="(file, index) in files"
-      :key="`file_${file.id}_${index}`"
-      class="file-upload-file"
+        v-if="files.length"
+        v-for="(file, index) in files"
+        :key="`file_${file.id}_${index}`"
+        class="file-upload-file"
     >
       <div class="preview">
         <span class="file-upload-preview">
@@ -24,7 +24,18 @@
         </a>
       </div>
     </div>
-    <div class="dropzone" :class="field.class" ref="dropzone"></div>
+    <div class="dropzone" :class="field.class" ref="dropzone">
+      <div class="placeholder">
+        <div>
+          <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M6.66602 12.3333L9.99935 9M9.99935 9L13.3327 12.3333M9.99935 9V16.5M16.666 12.9524C17.6839 12.1117 18.3327 10.8399 18.3327 9.41667C18.3327 6.88536 16.2807 4.83333 13.7493 4.83333C13.5673 4.83333 13.3969 4.73833 13.3044 4.58145C12.2177 2.73736 10.2114 1.5 7.91602 1.5C4.46424 1.5 1.66602 4.29822 1.66602 7.75C1.66602 9.47175 2.36222 11.0309 3.48847 12.1613"
+                stroke="#475467" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div><p><span>Click to upload</span><span> or drag and drop</span></p><span>(max. 20MB)</span></div>
+      </div>
+    </div>
     <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
   </div>
 </template>
@@ -43,17 +54,14 @@ export default {
     name: String,
     modelValue: {},
     field: {},
-    placeholder: {
-      type: String,
-      default: "Drop files here",
-    },
   },
   data() {
     return {
       files: [],
       dropzone: null,
       formData: null,
-    };
+      placeholder: ''
+    }
   },
   mounted() {
     this.formData = this.$parent._.parent.props.formData;
@@ -62,7 +70,7 @@ export default {
       this.dropzone = new Dropzone(this.$refs.dropzone, {
         url: `/api/generic/form-data/${this.formData.id}/media/upload`,
         addRemoveLinks: true,
-        dictDefaultMessage: this.field.placeholder,
+        dictDefaultMessage: '',
         sending: (file, xhr, formData) => {
           formData.append("_token", csrf);
           formData.append("field", this.name);
@@ -86,11 +94,11 @@ export default {
   methods: {
     deleteFile(index, file) {
       axios
-        .delete(`/api/generic/form-data/${this.formData.id}/media/${file.id}`)
-        .then((res) => {
-          this.files.splice(index, 1);
-        })
-        .catch(console.error);
+          .delete(`/api/generic/form-data/${this.formData.id}/media/${file.id}`)
+          .then((res) => {
+            this.files.splice(index, 1);
+          })
+          .catch(console.error);
     },
     isImage(mimeType) {
       let imageMimes = [
@@ -114,11 +122,6 @@ export default {
       });
 
       return JSON.stringify(fileIds);
-    },
-  },
-  watch: {
-    placeholder() {
-      $(this.dropzone.element).find('.dz-message').text(this.placeholder);
     },
   },
 };
@@ -153,10 +156,11 @@ export default {
   }
 
   .dropzone {
-    border-style: dashed !important;
     display: flex;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 12px;
+    min-height: 126px;
+    border: 1px solid #EAECF0;
   }
 
   .file-upload-file {

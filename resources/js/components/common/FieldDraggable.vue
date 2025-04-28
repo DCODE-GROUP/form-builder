@@ -35,7 +35,7 @@
             </h2>
             <div class="flex gap-6 items-center">
               <div class="-prop -options" v-if="element.hasOwnProperty('required')">
-                <v-toggle title="Required" :value="element.required" @input="(v) => element.required = v"></v-toggle>
+                <v-toggle title="Required" v-model="element.required"></v-toggle>
               </div>
               <v-actions>
                 <template v-slot:dropdown>
@@ -204,7 +204,7 @@
         <p
             v-if="!disableDropzone"
             class="absolute shadow-sm border border-dashed border-gray-300 border-spacing-96 mb-[96px] rounded-xl w-full h-36 bottom-0 z-0 flex items-center justify-center text-sm text-gray-600"
-            :class="{'h-[586px] !top-0': !localFields.length}"
+            :class="{'h-[638px] !top-0': !localFields.length}"
         >
           <span v-if="!isDragging">Drag a layout/component in</span>
         </p>
@@ -264,6 +264,8 @@ export default {
           return "Radio Button Group";
         case "check-group":
           return "Checkbox Group";
+        case "address":
+          return "Address";
         default:
           return (
               field.type?.charAt(0).toUpperCase() + field?.type.slice(1)

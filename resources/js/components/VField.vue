@@ -34,6 +34,7 @@ import Paragraph from "./fields/Paragraph.vue";
 import VDatePicker from "./fields/VDatepicker.vue";
 import SingleCheckbox from "./fields/SingleCheckbox.vue";
 import VGridInput from "./fields/VGridInput.vue";
+import VAddress from "./fields/VAddress.vue";
 import { markRaw } from "vue";
 
 export default {
@@ -76,6 +77,7 @@ export default {
         textarea: markRaw(Textarea),
         paragraph: markRaw(Paragraph),
         grid: markRaw(VGridInput),
+        address: markRaw(VAddress),
       },
     };
   },

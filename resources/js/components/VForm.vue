@@ -62,7 +62,7 @@ export default {
         return {}
       }
     },
-    formData: Array,
+    formData: Object,
     validationErrors: {
       type: Object,
       default: () => {
@@ -109,20 +109,3 @@ export default {
   },
 };
 </script>
-<style>
-.v-form {
-  position: relative;
-
-  .right {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    display: flex;
-    gap: 10px;
-  }
-
-  .btn-print, .btn-download {
-    cursor: pointer;
-  }
-}
-</style>

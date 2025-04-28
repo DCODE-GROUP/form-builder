@@ -4,7 +4,7 @@
       type="button"
       class="relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-300 transition-colors duration-200 ease-in-out"
       role="switch"
-      :aria-checked="value"
+      :aria-checked="modelValue"
       @click="toggle"
       :class="classes"
     >
@@ -12,9 +12,9 @@
         aria-hidden="true"
         class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
         :class="{
-          'translate-x-5': value,
-          'translate-x-0': !value,
-          '!translate-x-3': small && value,
+          'translate-x-5': modelValue,
+          'translate-x-0': !modelValue,
+          '!translate-x-3': small && modelValue,
           '!h-2 !w-2': small,
         }"
       >
@@ -27,12 +27,13 @@
 <script>
 export default {
   props: {
-    value: {
+    modelValue: {
       type: [Boolean, Number],
       required: true,
     },
     title: {
       type: String,
+      required: false,
     },
     isDisabled: {
       type: [Boolean],
@@ -45,12 +46,13 @@ export default {
     ring: {
       type: [Boolean],
       default: true,
+      required: false,
     },
   },
   computed: {
     classes() {
       return {
-        "!bg-brand !hover:bg-brand": this.value,
+        "!bg-brand !hover:bg-brand": this.modelValue,
         "!h-3 !w-6": this.small,
         "focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2": this.ring,
       };
@@ -62,7 +64,7 @@ export default {
         return;
       }
 
-      this.$emit("input", !this.value);
+      this.$emit("update:modelValue", !this.modelValue);
     },
   },
 };

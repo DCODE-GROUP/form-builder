@@ -1,8 +1,7 @@
 <template>
   <v-modal></v-modal>
   <div class="flex gap-4 mb-1 px-6 items-center">
-    <a :href="redirectUrl" class="cursor-pointer"> Form </a> / <span class="text-sm font-semibold"
-                                                                     v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
+    <a :href="redirectUrl" class="cursor-pointer"> Form </a> / <span class="text-sm font-semibold" v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
   </div>
   <div class="flex justify-between items-center mb-6 px-6">
     <h4 class="text-gray-900 text-[30px] font-semibold">
@@ -42,7 +41,7 @@
           :form="{fields}"
           :preview="true"
           :editable="true"
-          :can-interact="!showPreview">
+          :can-interact="showPreview">
       </v-form>
     </div>
   </div>
@@ -69,11 +68,11 @@
           <div v-if="id" class="p-6 mb-4 bg-gray-50 shadow-sm rounded-xl">
             <p class="mb-5">Status</p>
             <div class="space-y-3">
-              <div class="px-3 py-1 text-sm text-gray-700 border font-medium border-gray-200 bg-gray-100 rounded-full flex w-fit items-center"
-                   :class="{'text-success-700 !bg-success-50 !border-success-200 pl-0' : localForm.status === 'published'}"
+              <div class="pr-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center"
+                   :class="{'!text-success-700 !bg-success-50 !border-success-200' : localForm.status === 'published'}"
               >
-                <svg v-if="localForm.status === 'published'" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="3" cy="3" r="3" fill="#17B26A"/>
+                <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="3" cy="3" r="3" :fill="localForm.status === 'published' ? '#17B26A' : '#F79009'"/>
                 </svg>
                 {{ cFirst(localForm.status) }}
               </div>
@@ -91,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div class="form-builder-templates">
+          <div class="form-builder-templates overflow-y-auto">
             <div class="heading">
               <h3>Select layouts/components</h3>
               <p>Click and/or drag a field to the left</p>
@@ -293,6 +292,15 @@ export default {
           required: true,
         },
         {
+          name: "address",
+          type: "address",
+          label: "Address",
+          hint: null,
+          class: "w-full",
+          placeholder: "Enter your address",
+          required: true,
+        },
+        {
           name: "datepicker",
           type: "datepicker",
           label: "Date Picker",
@@ -444,7 +452,7 @@ export default {
     valueJson() {
       return JSON.stringify({
         title: this.title,
-        success_message: this.successMessage,
+        status: this.form?.status,
         fields: this.fields.map((field) => {
           let f = {
             id: field.id,

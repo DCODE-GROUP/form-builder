@@ -13,7 +13,7 @@ You can install the package via composer:
 | 2.x              | >= v11          | `composer require dcodegroup/form-builder:^2.0` |
 | 3.x              | >= v11          | `composer require dcodegroup/form-builder:^3.0` |
 
-Then run the install command.
+Then run the installation command.
 
 ```bash
 php artisan form-builder:install
@@ -35,23 +35,28 @@ Include this built file to your layouts:
 <script type="text/javascript" src="/vendor/form-builder/index.js" defer></script>
 ```
 
-#### SCSS
+#### CSS
 
 There is a new generated file under `public/vendor/form-builder/index.css`. You must use this file in your main scss file 
 
 Run the npm build (dev/prod)
 
+### Example a standard header
+
+```html
+<head>
+    <title>Form Builder</title>
+    <meta name="csrf-token" content="John Doe">
+    <link rel="stylesheet" href="index.css">
+    <script>
+        const googleMapsApiKey = "test_key";
+    </script>
+    <script type="text/javascript" src="index.js" defer></script>
+</head>
+```
+
 ```bash
 npm run dev
-```
-
-## Configuration
-
-Most of configuration has been set the fair defaults. However you can review the configuration file at `config/form-builder.php` and adjust as needed
-
-```
-return [
-]
 ```
 
 ## Traits for form validation

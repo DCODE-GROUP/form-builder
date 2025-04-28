@@ -73,7 +73,7 @@
     }
 
     .draggable {
-        @apply relative space-y-2 h-[586px];
+        @apply relative space-y-2 h-[638px];
 
         .-field {
             @apply px-6 py-4 bg-gray-50 shadow-sm rounded-xl mb-2;
@@ -178,6 +178,41 @@
                     }
                 }
             }
+        }
+
+        .-type-file-upload {
+            @apply w-full relative;
+        }
+
+        .dropzone {
+            @apply !p-0;
+            .placeholder {
+                @apply absolute z-0 w-full flex justify-center items-center flex-col cursor-pointer space-y-3;
+                div:nth-child(2) {
+                    @apply text-center;
+
+                    p {
+                        span:nth-child(1) {
+                            @apply text-brand-700 text-sm font-semibold;
+                        }
+
+                        span:nth-child(2) {
+                            @apply text-gray-600 text-sm;
+                        }
+                    }
+
+                    span {
+                        @apply text-gray-600 text-xs;
+                    }
+                }
+
+                div:nth-child(1) {
+                    @apply h-10 w-10 text-gray-400 border border-gray-200 rounded-lg shadow-sm flex items-center justify-center;
+                }
+            }
+        }
+        .dz-message {
+            @apply flex justify-center w-full z-10 m-0 py-8 cursor-pointer;
         }
     }
 
