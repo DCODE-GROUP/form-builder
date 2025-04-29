@@ -61,7 +61,7 @@ Run the npm build (dev/prod)
     <meta name="csrf-token" content="John Doe">
     <link rel="stylesheet" href="index.css">
     <script>
-        const googleMapsApiKey = "test_key";
+        const googleMapsApiKey = "test_key"; // For VAddress google api look up
     </script>
     <script type="text/javascript" src="index.js" defer></script>
 </head>
