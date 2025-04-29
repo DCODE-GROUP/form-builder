@@ -27,6 +27,18 @@ Run the migrations
 php artisan migrate
 ```
 
+To build and copy the assets, run this command
+```bash
+npm run prod && npm run copy-assets {project name here}
+
+```
+
+EG:
+```bash
+npm run prod && npm run copy-assets elaa
+
+```
+
 #### JS
 
 Include this built file to your layouts:

@@ -57,7 +57,7 @@
               <span class="text-red-600 text-sm mt-0.5 inline-block" v-if="errors?.title">{{ errors.title[0] }}</span>
             </div>
           </div>
-          <div class="fields">
+          <div class="fields" :class="{'overflow-y-auto' : !showPreview}">
             <h3>Form</h3>
             <div class="draggable" :class="{'!border-none !shadow-none': fields.length}">
               <field-draggable v-model="fields" :is-dragging="isDragging"></field-draggable>
