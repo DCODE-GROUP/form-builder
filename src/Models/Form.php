@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property string $title
  * @property Carbon|null $published_at
- * @property Carbon $updated_at
+ * @property Carbon|null $updated_at
  * @property array $fields
  */
 class Form extends Model
