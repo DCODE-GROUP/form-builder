@@ -133,7 +133,7 @@
     <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 flex items-center">Discard</a>
     <div class="flex justify-end gap-2">
       <a @click.prevent="save('draft')"
-         class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand hover:text-white px-3 py-2">
+         class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-2">
         <span v-if="!loading">
           Save as draft
         </span>
@@ -161,7 +161,7 @@
         </span>
       </a>
       <a @click.prevent="save('published')"
-         class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand text-white px-3 py-2">
+         class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-2">
         <span v-if="!loading">
           Publish
         </span>
@@ -310,30 +310,6 @@ export default {
           required: true,
         },
         {
-          name: "checkbox",
-          type: "checkbox",
-          label: "Single Checkbox",
-          hint: null,
-          class: "w-full",
-          placeholder: null,
-          required: true,
-        },
-        {
-          name: "signature",
-          type: "signature",
-          label: "Signature",
-          class: "w-full",
-          placeholder: null,
-          required: true,
-        },
-        {
-          name: "file-upload",
-          type: "file-upload",
-          label: "File Upload",
-          class: "w-full",
-          required: true,
-        },
-        {
           name: "select",
           type: "select",
           label: "Select",
@@ -341,6 +317,15 @@ export default {
           class: "w-full",
           placeholder: "Select an Option",
           options: ['Option 1'],
+          required: true,
+        },
+        {
+          name: "checkbox",
+          type: "checkbox",
+          label: "Single Checkbox",
+          hint: null,
+          class: "w-full",
+          placeholder: null,
           required: true,
         },
         {
@@ -359,6 +344,21 @@ export default {
           class: "w-full",
           placeholder: null,
           options: ['Option 1'],
+          required: true,
+        },
+        {
+          name: "signature",
+          type: "signature",
+          label: "Signature",
+          class: "w-full",
+          placeholder: null,
+          required: true,
+        },
+        {
+          name: "file-upload",
+          type: "file-upload",
+          label: "File Upload",
+          class: "w-full",
           required: true,
         },
       ],

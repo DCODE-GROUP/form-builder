@@ -1,12 +1,13 @@
 <template>
   <div class="-options">
-    <label v-for="option in options">
+    <label v-for="option in options" class="cursor-pointer">
       <input
         :type="inputType"
         :name="inputName"
         :value="option"
         v-model="input"
         :disabled="!editable"
+        :class="{'[&]:checked:bg-brand-600 [&]:hover:bg-brand-600 [&]:checked:hover:bg-brand-600 [&]:focus:bg-brand-600 [&]:focus:ring-brand-600 [&]:focus:checked:bg-brand-600 !rounded-full': type === 'radio-group'}"
       />
       <span>{{ option }}</span>
     </label>

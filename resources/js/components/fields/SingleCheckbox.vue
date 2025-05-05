@@ -3,7 +3,7 @@
     <div class="flex flex-row-reverse gap-2 items-center justify-end">
       <span class="inline-block text-base text-gray-700">{{ field.label }}</span>
       <div>
-        <input v-if="editable" :name="name" :type="type" v-model="input" :disabled="!editable" class="h-5 w-5 text-brand-700 border-gray-300 rounded focus:ring-brand focus:ring-2"/>
+        <input v-if="editable" :name="name" :type="type" v-model="input" :disabled="!editable" class="h-5 w-5 text-brand-700 border-gray-300 rounded focus:ring-brand-700 focus:ring-2"/>
         <p v-else v-text="modelValue"></p>
       </div>
     </div>
