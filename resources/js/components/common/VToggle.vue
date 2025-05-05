@@ -52,9 +52,9 @@ export default {
   computed: {
     classes() {
       return {
-        "!bg-brand !hover:bg-brand": this.modelValue,
+        "!bg-brand-700 !hover:bg-brand-700": this.modelValue,
         "!h-3 !w-6": this.small,
-        "focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2": this.ring,
+        "focus:outline-none focus:ring-2 focus:ring-brand-700 focus:ring-offset-2": this.ring,
       };
     },
   },

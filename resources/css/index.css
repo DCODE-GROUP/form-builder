@@ -33,7 +33,7 @@
                 @apply flex flex-col gap-2;
 
                 li {
-                    @apply list-none bg-white p-3 rounded-lg text-sm font-semibold text-gray-900 hover:bg-brand hover:text-white;
+                    @apply list-none bg-white p-3 rounded-lg text-sm font-semibold text-gray-900 hover:bg-brand-700 hover:text-white;
                 }
             }
         }
@@ -141,7 +141,7 @@
 }
 
 .dragging-item {
-    @apply bg-brand p-3 rounded-xl text-sm font-semibold text-white;
+    @apply bg-brand-700 p-3 rounded-xl text-sm font-semibold text-white;
 }
 
 .v-form {
@@ -174,7 +174,7 @@
                     }
 
                     input {
-                        @apply h-5 w-5 text-brand-700 border-gray-300 rounded focus:ring-brand focus:ring-2;
+                        @apply h-5 w-5 text-brand-700 border-gray-300 rounded focus:ring-brand-700 focus:ring-2;
                     }
                 }
             }

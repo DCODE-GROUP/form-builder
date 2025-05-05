@@ -10,7 +10,7 @@
       <div>
         <a
             @click="addColumn"
-            class="cursor-pointer text-brand flex items-center text-sm font-semibold hover:bg-brand-200 p-1 gap-1 rounded"
+            class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="#931C61" stroke-width="1.66667"
@@ -56,7 +56,7 @@
                     <template v-slot:dropdown>
                       <ul class="divide-y text-sm text-gray-700">
                         <li @click="edit(rowIndex)"
-                            class="cursor-pointer flex items-center p-2 hover:bg-brand-200 gap-2 rounded-t">
+                            class="cursor-pointer flex items-center p-2 hover:bg-brand-50 gap-2 rounded-t">
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -76,7 +76,7 @@
                           <span>Remove this cell</span>
                         </li>
                         <li @click="removeColumn(rowIndex, colIndex)"
-                            class="cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-200 rounded-b">
+                            class="cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-50 rounded-b">
                           <svg width="14" height="16" viewBox="0 0 14 16" fill="none"
                                xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -102,7 +102,7 @@
     <div class="mt-2 flex gap-2" v-if="allowAddRowAsTemplate">
       <a
           @click="addRow"
-          class="cursor-pointer text-brand flex items-center text-sm font-semibold hover:bg-brand-200 p-1 gap-1 rounded"
+          class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="#931C61" stroke-width="1.66667"
