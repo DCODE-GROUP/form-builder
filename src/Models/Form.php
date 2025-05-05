@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $title
- * @property ?string $success_message
- * @property ?array $fields
+ * @property string|null $published_at
+ * @property string $updated_at
+ * @property array $fields
  */
 class Form extends Model
 {

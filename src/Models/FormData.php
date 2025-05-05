@@ -10,7 +10,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
- * @property ?array $values
+ * @property array $values
+ * @property Form|null $form
  */
 class FormData extends Model
 {
