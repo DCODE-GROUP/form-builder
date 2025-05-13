@@ -1,6 +1,6 @@
 <template>
   <div :class="field?.class">
-    <input v-if="editable" :name="name" :type="type" v-model="input"/>
+    <input v-if="editable" :name="name" :type="type" v-model="input" :placeholder="field?.placeholder"/>
     <p v-else v-text="modelValue"></p>
     <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
   </div>

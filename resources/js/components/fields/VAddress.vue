@@ -7,9 +7,11 @@
           :disabled="isManual"
           class="border-1 border-solid border-gray-300 rounded-lg bg-white"
           :value="fullAddress"
+          :placeholder="field?.placeholder"
           @input="resetAddressInput"
       />
     </input-wrapper>
+    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
     <label class="flex cursor-pointer items-center space-y-1">
       <v-toggle v-model="isManual" :ring="false" />
       <span class="text-xs inline-block">Manual Address</span>

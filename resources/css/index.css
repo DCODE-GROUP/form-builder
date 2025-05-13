@@ -60,6 +60,10 @@
             textarea,
             select {
                 @apply input-base;
+
+                > option {
+                    @apply text-gray-400;
+                }
             }
         }
     }
@@ -136,6 +140,10 @@
         textarea,
         select {
             @apply input-base;
+
+            > option {
+                @apply text-gray-400;
+            }
         }
     }
 }
