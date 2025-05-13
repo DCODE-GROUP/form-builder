@@ -18,6 +18,7 @@
         :field="field"
         :required="field.hasOwnProperty('required') && field.required"
         :editable="editable"
+        :preview="preview"
     ></component>
     <slot></slot>
   </div>
@@ -57,6 +58,10 @@ export default {
      * Form data can be editable after its complete
      */
     editable: {
+      type: Boolean,
+      default: false
+    },
+    preview: {
       type: Boolean,
       default: false
     },

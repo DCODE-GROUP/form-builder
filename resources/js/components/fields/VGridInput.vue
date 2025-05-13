@@ -85,11 +85,12 @@ export default {
     name: {},
     type: {},
     field: {},
-    modelValue: {default: null},
+    modelValue: {default: {}},
   },
   data() {
     return {
-      inputs: {},
+      inputs: this.modelValue,
+      localField: {},
       componentTypes: {
         checkbox: markRaw(SingleCheckbox),
         "check-group": markRaw(CheckGroup),
@@ -108,7 +109,7 @@ export default {
   },
   computed: {
     grid() {
-      return this.field.grid;
+      return this.localField.grid;
     },
     getLatestColumnIndex() {
       return Math.max(...this.grid.map(row => row.length)) - 1;
@@ -121,24 +122,21 @@ export default {
     }
   },
   created() {
-    this.input = this.modelValue;
+    this.localField = cloneDeep(this.field);
   },
   watch: {
-    modelValue() {
-      this.input = this.modelValue;
-    },
-    input() {
-      this.$emit("update:modelValue", this.input);
+    inputs() {
+      this.$emit("update:modelValue", this.inputs);
     },
   },
   methods: {
     addRow() {
-      if (!this.field.allow_add_row) {
+      if (!this.localField.allow_add_row) {
         return;
       }
 
-      if (this.field.grid && this.field.grid.length) {
-        const filteredGrid = this.field.grid.filter(row =>
+      if (this.localField.grid && this.localField.grid.length) {
+        const filteredGrid = this.localField.grid.filter(row =>
             row.some(cell => cell.some(item => !item?.on_flight))
         );
 
@@ -146,7 +144,7 @@ export default {
           const newRow = cloneDeep(row.map((o) => {
             return toRaw(o);
           }));
-          this.field.grid.push(newRow.map((o) => {
+          this.localField.grid.push(newRow.map((o) => {
             const id = Math.floor(Math.random() * Date.now());
             if (o[0]?.id) {
               o[0].id = id;

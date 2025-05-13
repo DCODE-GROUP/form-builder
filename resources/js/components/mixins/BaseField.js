@@ -7,5 +7,9 @@ export default {
       type: Boolean,
       default: false
     },
+    preview: {
+      type: Boolean,
+      default: false
+    },
   }
 }

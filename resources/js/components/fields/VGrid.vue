@@ -32,7 +32,9 @@
               item-key="id"
               v-model="grid[rowIndex][colIndex]"
               @add="handleAdd($event, rowIndex, colIndex)"
-              :group="{ name: `${rowIndex} - ${colIndex}`, pull: false, put: true }"
+              @drag="onDrag"
+              swap-threshold="0.65"
+              :group="{ name: `${rowIndex} - ${colIndex}`, pull: true, put: true }"
               class="w-full h-full items-center justify-center"
               ghost-class="dragging-item"
               :class="{'flex': !grid[rowIndex][colIndex].length}"
@@ -147,6 +149,7 @@ export default {
   data() {
     return {
       grid: JSON.parse(JSON.stringify(this.modelValue)),
+      previousGrid: JSON.parse(JSON.stringify(this.modelValue)),
       localAllowToAdd: this.allowAddRow,
     };
   },
@@ -188,17 +191,39 @@ export default {
         row.splice(colIndex, 1);
       });
     },
+    findFieldPosition(movingField) {
+      for (let rowIndex = 0; rowIndex < this.previousGrid.length; rowIndex++) {
+        for (let colIndex = 0; colIndex < this.previousGrid[rowIndex].length; colIndex++) {
+          const cell = this.previousGrid[rowIndex][colIndex];
+          if (Array.isArray(cell) && cell.some(field => field.id === movingField.id)) {
+            return { rowIndex, colIndex };
+          }
+        }
+      }
+      return null;
+    },
+    onDrag() {
+      this.previousGrid = cloneDeep(this.grid);
+    },
     handleAdd($event, rowIndex, colIndex) {
-      const currentField = cloneDeep($event.item._underlying_vm_);
-      if (currentField.type === 'grid') {
+      const movingField = cloneDeep($event.item._underlying_vm_);
+      const originalPosition = this.findFieldPosition(movingField);
+      const currentField = this.previousGrid[rowIndex][colIndex];
+      if (movingField.type === 'grid') {
         this.grid[rowIndex][colIndex] = [];
         return;
       }
       if (this.grid[rowIndex][colIndex].length > 1) {
+        if (originalPosition && Object.keys(originalPosition).length && currentField[0].id !== movingField.id) {
+          this.grid[originalPosition.rowIndex][originalPosition.colIndex] = [];
+          this.grid[originalPosition.rowIndex][originalPosition.colIndex].push(currentField[0]);
+        }
 
         this.grid[rowIndex][colIndex] = [];
-        this.grid[rowIndex][colIndex].push(currentField);
+        this.grid[rowIndex][colIndex].push(movingField);
       }
+
+      this.previousGrid = cloneDeep(this.grid);
     },
     item(rowIndex, colIndex) {
       return this.grid[rowIndex][colIndex]
@@ -214,8 +239,6 @@ export default {
         });
       }
     },
-  },
-  mounted() {
   },
   watch: {
     grid: {

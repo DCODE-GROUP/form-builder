@@ -1,6 +1,6 @@
 <template>
   <div :class="field?.class">
-    <textarea :name="name" v-model="input" rows="4" :disabled="!editable"></textarea>
+    <textarea :name="name" v-model="input" rows="4" :disabled="!editable" :placeholder="field?.placeholder"></textarea>
     <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
   </div>
 </template>

@@ -22,6 +22,7 @@
             :placeholder="field.placeholder"
             :field="field"
             :editable="editable"
+            :preview="preview"
         >
           <span class="error" v-text="getValidationMessage(field)"/>
         </v-field>
@@ -47,6 +48,10 @@ export default {
      * Form data can be editable after its complete
      */
     editable: {
+      type: Boolean,
+      default: false
+    },
+    preview: {
       type: Boolean,
       default: false
     },
