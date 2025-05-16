@@ -2,7 +2,8 @@
   <div class="grid space-y-2" :class="field?.class">
     <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0">
       <input
-          :id="'search_address_' + field.id"
+          :id="name"
+          :name="name"
           type="text"
           :disabled="isManual"
           class="border-1 border-solid border-gray-300 rounded-lg bg-white"
@@ -72,6 +73,7 @@ export default {
     modelValue: {
       required: false,
     },
+    name: {},
     field: {},
   },
   data() {
@@ -138,7 +140,7 @@ export default {
     },
     initializeAutocomplete() {
       const autocomplete = new google.maps.places.Autocomplete(
-          document.getElementById("search_address_" + this.field.id),
+          document.getElementById(this.name),
           {
             fields: ["address_components", "geometry"],
             strictBounds: false,
@@ -196,7 +198,9 @@ export default {
   mounted() {
     this.loadGoogleMapsScript()
         .then(() => {
-          this.initializeAutocomplete();
+          setTimeout(() => {
+            this.initializeAutocomplete();
+          }, 1000)
         })
         .catch((error) => {
           console.error("Failed to load Google Maps script: " + this.$googleMapsApiKey, error);

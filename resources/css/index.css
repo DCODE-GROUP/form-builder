@@ -70,7 +70,7 @@
 }
 
 .fields {
-    @apply flex flex-col rounded-xl text-sm h-full;
+    @apply flex flex-col rounded-xl text-sm;
 
     h3 {
         @apply text-lg font-semibold text-gray-900 mb-2;

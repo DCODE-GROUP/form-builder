@@ -23,6 +23,7 @@ $form = [
 ];
 $form = json_encode($form, JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS);
 ?>
+
 <body id="form-builder-app">
 <form action="#" method="POST">
     <h1 class="text-[30px] p-6">Form Builder Example</h1>

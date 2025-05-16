@@ -29,9 +29,6 @@ class FormBuilderServiceProvider extends ServiceProvider
         $this->app->singletonIf('DCODE_FORM_BUILDER_PATH', function ($app) {
             return realpath(__DIR__.'/../');
         });
-
-        $this->mergeConfigFrom(app('DCODE_FORM_BUILDER_PATH').'/config/form-builder.php', 'form-builder');
-
     }
 
     protected function registerCommands()
@@ -57,7 +54,6 @@ class FormBuilderServiceProvider extends ServiceProvider
             ], 'form-builder-migrations');
         }
 
-        $this->publishes([app('DCODE_FORM_BUILDER_PATH').'/config/form-builder.php' => config_path('form-builder.php')], 'form-builder-config');
         $this->publishes([app('DCODE_FORM_BUILDER_PATH').'/resources/sass' => resource_path('sass/form-builder')], 'form-builder-sass');
         $this->publishes([app('DCODE_FORM_BUILDER_PATH').'/public' => public_path('vendor/form-builder')], ['form-builder-assets']);
     }
