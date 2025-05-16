@@ -34,7 +34,7 @@
                   v-if="fieldComponent(cell[0]) && cell[0]?.name"
                   v-model="inputs[cell[0]?.name]"
                   :is="fieldComponent(cell[0])"
-                  :name="cell[0].name"
+                  :name="`${name}[${rowIndex}][${cell[0].name}]`"
                   :type="cell[0].type"
                   :options="cell[0]?.options"
                   :placeholder="cell[0]?.placeholder"

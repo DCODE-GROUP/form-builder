@@ -53,18 +53,101 @@ There is a new generated file under `public/vendor/form-builder/index.css`. You 
 
 Run the npm build (dev/prod)
 
-### Example a standard header
+### [BUILDER]Example a standard usage on blade / html file
 
 ```html
 <head>
     <title>Form Builder</title>
     <meta name="csrf-token" content="John Doe">
     <link rel="stylesheet" href="index.css">
-    <script>
-        const googleMapsApiKey = "test_key"; // For VAddress google api look up
-    </script>
-    <script type="text/javascript" src="index.js" defer></script>
+    <script type="text/javascript" src="index.js?appId=test&googleMapsApiKey="testKey" defer></script>
 </head>
+<body>
+    <div id="test">
+        <form-builder
+            name="form_builder"
+            form='<?php echo $form; ?>'
+        ></form-builder>
+    </div>
+</body>
+```
+
+### [USAGE]Example a standard usage on blade / html file
+
+```html
+<head>
+    <title>Form Builder</title>
+    <meta name="csrf-token" content="John Doe">
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="index.js?appId=test&googleMapsApiKey="testKey" defer></script>
+</head>
+<body>
+    <div id="test">
+        <v-form
+                action="#"
+                method="get"
+                :form="form"
+                :name="name"
+                :editable="true"
+        >
+        </v-form>
+    </div>
+</body>
+```
+
+### [TYPESCRIPT INTEGRATION] Example a standard usage on vue file
+
+```vue
+<template>
+  <div :id="name">
+    <v-form
+        action="#"
+        method="get"
+        :form="form"
+        :name="name"
+        :editable="true"
+    >
+    </v-form>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { onMounted, watch } from "vue";
+  const emits = defineEmits(["update:modelValue"]);
+
+  const props = defineProps({
+    form: { type: Object, required: true, default: () => ({}) },
+    googleMapsApiKey: {type: String, required: true},
+    modelValue: { type: Object, required: true, default: () => ({}) },
+    name: {type: String, required: false},
+  });
+
+  let form = JSON.stringify(props.form);
+
+  onMounted(() => {
+    const linkExists = document.querySelector('link[href="/vendor/form-builder/index.css"]');
+    if (!linkExists) {
+
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/vendor/form-builder/index.css";
+      document.head.appendChild(link);
+    }
+
+    const script = document.createElement("script");
+    script.src = `/vendor/form-builder/index.js?appId=${props.name}&googleMapsApiKey=${props.googleMapsApiKey}`;
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    setInterval(() => {
+      const nameInput = document.querySelector(`input[name="${props.name}"]`);
+      if (nameInput) {
+        emits("update:modelValue", JSON.parse(nameInput.value));
+      }
+    }, 100);
+  });
+</script>
 ```
 
 ```bash

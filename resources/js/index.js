@@ -6,7 +6,6 @@ import EditFieldGrid from "./components/common/EditFieldGrid.vue";
 import VForm from "./components/VForm.vue";
 
 const app = window.Vue.createApp({});
-app.config.globalProperties.$googleMapsApiKey = googleMapsApiKey; // eslint-disable-line
 
 app.component("FormBuilder", FormBuilder);
 app.component("VForm", VForm);
@@ -27,4 +26,10 @@ app.directive("click-outside",  {
 
 app.provide("bus", $bus);
 
-app.mount('#form-builder-app');
+const currentScript = document.currentScript;
+const urlParams = new URL(currentScript.src).searchParams;
+const appId = urlParams.get("appId");
+app.config.globalProperties.$googleMapsApiKey = urlParams.get("googleMapsApiKey");
+if (appId) {
+  app.mount(`#${appId}`);
+}

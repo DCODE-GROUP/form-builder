@@ -1,5 +1,6 @@
 <template>
   <div :class="field?.class" class="relative">
+    <input type="hidden" :name="name" :id="name" :value="selectedLabel"/>
     <div
         class="input-base cursor-pointer"
         :class="{'text-gray-400' : !selectedLabel && field?.placeholder }"
@@ -9,7 +10,7 @@
     </div>
     <ul
         v-if="isOpen"
-        class="absolute z-10 bg-white border border-gray-300 rounded-lg mt-1 w-full max-h-60 overflow-auto"
+        class="absolute z-50 bg-white border border-gray-300 rounded-lg mt-1 w-full max-h-60 overflow-auto"
     >
       <li
           v-for="(option, index) in options"

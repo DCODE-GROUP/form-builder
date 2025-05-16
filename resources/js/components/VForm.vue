@@ -1,7 +1,8 @@
 <template>
-  <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'">
+  <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'" :name="name">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
+    <input type="hidden" :name="name" :value="JSON.stringify(inputs)"/>
     <div
         class="fields"
         :style="{
@@ -14,7 +15,8 @@
       </div>
       <template v-for="field in fields" :key="field.id" v-if="fields.length">
         <v-field
-            v-model="inputs[field.name]"
+            :model-value="getInputValue(field.name)"
+            @update:model-value="updateInputValue(field.name, $event)"
             :name="fieldName(field)"
             :label="field.label"
             :type="field.type"
@@ -62,35 +64,66 @@ export default {
     name: String,
     title: String,
     form: {
-      type: Object,
+      type: [Object, String],
       default: () => {
         return {}
       }
     },
-    formData: Object,
+    formData: {
+      type: [Object, String],
+      default: () => {
+        return {}
+      }
+    },
     validationErrors: {
       type: Object,
       default: () => {
         return {}
       }
-    }
+    },
   },
   data() {
     return {
       inputs: {},
-      fields: this.form.fields,
+      fields: typeof this.form === 'string' ? JSON.parse(this.form)?.fields : this.form.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]').content
     };
   },
   created() {
     if (this.formData) {
-      let data = this.formData.values;
+      let data = ((typeof this.formData === 'string')  ? JSON.parse(this.formData).values : this.formData?.values) ?? [];
       data.map((o) => {
-        this.inputs[o.name] = o.value ?? '';
+        if (this.name) {
+          this.inputs[this.name][o.name] = o.value ?? '';
+        } else {
+          this.inputs[o.name] = o.value ?? '';
+        }
       })
     }
   },
+  watch: {
+    inputs: {
+      handler(newInputs) {
+        const event = new CustomEvent("formUpdated", { detail: newInputs });
+        window.dispatchEvent(event);
+      },
+      deep: true,
+    },
+  },
   methods: {
+    updateInputValue(fieldName, value) {
+      if (this.name) {
+        if (!this.inputs[this.name]) {
+          this.inputs[this.name] = {}; // Directly assign an empty object
+        }
+        this.inputs[this.name][fieldName] = value;
+      } else {
+        this.inputs[fieldName] = value;
+      }
+    },
+    getInputValue(fieldName) {
+      return this.name ? this.inputs[this.name]?.[fieldName] : this.inputs[fieldName];
+    },
     fieldName(field) {
       if (!this.name) {
         return field.name;

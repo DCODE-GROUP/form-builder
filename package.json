@@ -17,6 +17,7 @@
     "axios": "^1.8.4",
     "dropzone": "^5.5.1",
     "laravel-mix": "^6.0.13",
+    "mitt": "^3.0.1",
     "postcss": "^8.5.3",
     "postcss-nested": "^7.0.2",
     "resolve-url-loader": "^5.0.0",
