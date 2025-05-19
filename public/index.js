@@ -39264,7 +39264,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 707:
+/***/ 636:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -47762,35 +47762,35 @@ function SingleCheckboxvue_type_template_id_2101e73a_render(_ctx, _cache, $props
 const SingleCheckbox_exports_ = /*#__PURE__*/(0,exportHelper/* default */.A)(SingleCheckboxvue_type_script_lang_js, [['render',SingleCheckboxvue_type_template_id_2101e73a_render]])
 
 /* harmony default export */ const SingleCheckbox = (SingleCheckbox_exports_);
-;// ./node_modules/.pnpm/babel-loader@8.4.1_@babel+core@7.27.1_webpack@5.99.8/node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/VGridInput.vue?vue&type=template&id=e4d8f292
+;// ./node_modules/.pnpm/babel-loader@8.4.1_@babel+core@7.27.1_webpack@5.99.8/node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/VGridInput.vue?vue&type=template&id=9eda2872
 
-var VGridInputvue_type_template_id_e4d8f292_hoisted_1 = {
+var VGridInputvue_type_template_id_9eda2872_hoisted_1 = {
   key: 0,
   "class": "mb-4 font-regular text-gray-600"
 };
-var VGridInputvue_type_template_id_e4d8f292_hoisted_2 = {
+var VGridInputvue_type_template_id_9eda2872_hoisted_2 = {
   "class": "grid gap-4 w-full"
 };
-var VGridInputvue_type_template_id_e4d8f292_hoisted_3 = {
+var VGridInputvue_type_template_id_9eda2872_hoisted_3 = {
   key: 0,
   "class": "flex gap-2 relative"
 };
-var VGridInputvue_type_template_id_e4d8f292_hoisted_4 = ["for"];
-var VGridInputvue_type_template_id_e4d8f292_hoisted_5 = ["for"];
-var VGridInputvue_type_template_id_e4d8f292_hoisted_6 = {
+var VGridInputvue_type_template_id_9eda2872_hoisted_4 = ["for"];
+var VGridInputvue_type_template_id_9eda2872_hoisted_5 = ["for"];
+var VGridInputvue_type_template_id_9eda2872_hoisted_6 = {
   key: 1
 };
-var VGridInputvue_type_template_id_e4d8f292_hoisted_7 = {
+var VGridInputvue_type_template_id_9eda2872_hoisted_7 = {
   key: 1,
   "class": "mt-2 flex gap-2"
 };
-function VGridInputvue_type_template_id_e4d8f292_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", null, [$props.field.hint ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("p", VGridInputvue_type_template_id_e4d8f292_hoisted_1, (0,vue_esm_bundler.toDisplayString)($props.field.hint), 1)) : (0,vue_esm_bundler.createCommentVNode)("", true), (0,vue_esm_bundler.createElementVNode)("div", VGridInputvue_type_template_id_e4d8f292_hoisted_2, [((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)($options.grid, function (row, rowIndex) {
+function VGridInputvue_type_template_id_9eda2872_render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", null, [$props.field.hint ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("p", VGridInputvue_type_template_id_9eda2872_hoisted_1, (0,vue_esm_bundler.toDisplayString)($props.field.hint), 1)) : (0,vue_esm_bundler.createCommentVNode)("", true), (0,vue_esm_bundler.createElementVNode)("div", VGridInputvue_type_template_id_9eda2872_hoisted_2, [((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)($options.grid, function (row, rowIndex) {
     return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, {
       key: 'row-' + rowIndex
     }, [row.filter(function (o) {
       return o.length;
-    }).length ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VGridInputvue_type_template_id_e4d8f292_hoisted_3, [((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)(row, function (cell, colIndex) {
+    }).length ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VGridInputvue_type_template_id_9eda2872_hoisted_3, [((0,vue_esm_bundler.openBlock)(true), (0,vue_esm_bundler.createElementBlock)(vue_esm_bundler.Fragment, null, (0,vue_esm_bundler.renderList)(row, function (cell, colIndex) {
       var _cell$, _cell$2, _cell$3, _cell$4, _cell$5, _cell$6, _cell$9, _cell$0, _cell$10, _cell$11;
       return (0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", {
         key: 'cell-' + rowIndex + '-' + colIndex,
@@ -47802,7 +47802,7 @@ function VGridInputvue_type_template_id_e4d8f292_render(_ctx, _cache, $props, $s
         key: 0,
         "for": $props.name,
         "class": "text-lg font-semibold !text-gray-900"
-      }, (0,vue_esm_bundler.toDisplayString)((_cell$3 = cell[0]) === null || _cell$3 === void 0 ? void 0 : _cell$3.label), 9, VGridInputvue_type_template_id_e4d8f292_hoisted_4)) : !['paragraph', 'checkbox'].includes((_cell$4 = cell[0]) === null || _cell$4 === void 0 ? void 0 : _cell$4.type) && !((_cell$5 = cell[0]) !== null && _cell$5 !== void 0 && _cell$5.on_flight) ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("label", {
+      }, (0,vue_esm_bundler.toDisplayString)((_cell$3 = cell[0]) === null || _cell$3 === void 0 ? void 0 : _cell$3.label), 9, VGridInputvue_type_template_id_9eda2872_hoisted_4)) : !['paragraph', 'checkbox'].includes((_cell$4 = cell[0]) === null || _cell$4 === void 0 ? void 0 : _cell$4.type) && !((_cell$5 = cell[0]) !== null && _cell$5 !== void 0 && _cell$5.on_flight) ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("label", {
         key: 1,
         "class": "text-sm text-gray-700",
         "for": $props.name
@@ -47814,7 +47814,7 @@ function VGridInputvue_type_template_id_e4d8f292_render(_ctx, _cache, $props, $s
           return [(0,vue_esm_bundler.createTextVNode)((0,vue_esm_bundler.toDisplayString)((_cell$7 = cell[0]) === null || _cell$7 === void 0 ? void 0 : _cell$7.label) + " " + (0,vue_esm_bundler.toDisplayString)((_cell$8 = cell[0]) !== null && _cell$8 !== void 0 && _cell$8.required ? '*' : ''), 1)];
         }),
         _: 2
-      }, 1024)) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("span", VGridInputvue_type_template_id_e4d8f292_hoisted_6, " "))], 8, VGridInputvue_type_template_id_e4d8f292_hoisted_5)) : (0,vue_esm_bundler.createCommentVNode)("", true), $options.fieldComponent(cell[0]) && (_cell$9 = cell[0]) !== null && _cell$9 !== void 0 && _cell$9.name ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldComponent(cell[0])), {
+      }, 1024)) : ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("span", VGridInputvue_type_template_id_9eda2872_hoisted_6, " "))], 8, VGridInputvue_type_template_id_9eda2872_hoisted_5)) : (0,vue_esm_bundler.createCommentVNode)("", true), $options.fieldComponent(cell[0]) && (_cell$9 = cell[0]) !== null && _cell$9 !== void 0 && _cell$9.name ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createBlock)((0,vue_esm_bundler.resolveDynamicComponent)($options.fieldComponent(cell[0])), {
         key: 2,
         modelValue: $data.inputs[(_cell$0 = cell[0]) === null || _cell$0 === void 0 ? void 0 : _cell$0.name],
         "onUpdate:modelValue": function onUpdateModelValue($event) {
@@ -47830,7 +47830,7 @@ function VGridInputvue_type_template_id_e4d8f292_render(_ctx, _cache, $props, $s
         editable: _ctx.editable
       }, null, 8, ["modelValue", "onUpdate:modelValue", "name", "type", "options", "placeholder", "field", "required", "editable"])) : (0,vue_esm_bundler.createCommentVNode)("", true), (0,vue_esm_bundler.renderSlot)(_ctx.$slots, "default")], 2)) : (0,vue_esm_bundler.createCommentVNode)("", true)], 2);
     }), 128))])) : (0,vue_esm_bundler.createCommentVNode)("", true)], 64);
-  }), 128))]), $props.field.allow_add_row ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VGridInputvue_type_template_id_e4d8f292_hoisted_7, [(0,vue_esm_bundler.createElementVNode)("a", {
+  }), 128))]), $props.field.allow_add_row ? ((0,vue_esm_bundler.openBlock)(), (0,vue_esm_bundler.createElementBlock)("div", VGridInputvue_type_template_id_9eda2872_hoisted_7, [(0,vue_esm_bundler.createElementVNode)("a", {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.addRow && $options.addRow.apply($options, arguments);
     }),
@@ -47849,7 +47849,7 @@ function VGridInputvue_type_template_id_e4d8f292_render(_ctx, _cache, $props, $s
     "stroke-linejoin": "round"
   })], -1), (0,vue_esm_bundler.createTextVNode)(" Add Row ")]))])) : (0,vue_esm_bundler.createCommentVNode)("", true)]);
 }
-;// ./resources/js/components/fields/VGridInput.vue?vue&type=template&id=e4d8f292
+;// ./resources/js/components/fields/VGridInput.vue?vue&type=template&id=9eda2872
 
 ;// ./node_modules/.pnpm/babel-loader@8.4.1_@babel+core@7.27.1_webpack@5.99.8/node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/fields/VAddress.vue?vue&type=template&id=57bf93f3
 
@@ -48363,8 +48363,11 @@ function VGridInputvue_type_script_lang_js_arrayLikeToArray(r, a) { (null == a |
     this.localField = (0,lodash.cloneDeep)(this.field);
   },
   watch: {
-    inputs: function inputs() {
-      this.$emit("update:modelValue", this.inputs);
+    inputs: {
+      handler: function handler(newValue) {
+        this.$emit("update:modelValue", newValue);
+      },
+      deep: true
     }
   },
   methods: {
@@ -48410,12 +48413,6 @@ function VGridInputvue_type_script_lang_js_arrayLikeToArray(r, a) { (null == a |
       }
       return this.componentTypes[cell.type];
     },
-    getValidationMessage: function getValidationMessage(cell) {
-      if (!this.validationErrors.hasOwnProperty(this.validationKey(cell))) {
-        return '';
-      }
-      return this.validationErrors[this.validationKey(cell)].join('|');
-    },
     getClassForItem: function getClassForItem(rowItems, colIndex) {
       var hasItem = rowItems[colIndex].some(function (item) {
         return item.hasOwnProperty('label');
@@ -48438,7 +48435,7 @@ function VGridInputvue_type_script_lang_js_arrayLikeToArray(r, a) { (null == a |
 
 
 ;
-const VGridInput_exports_ = /*#__PURE__*/(0,exportHelper/* default */.A)(VGridInputvue_type_script_lang_js, [['render',VGridInputvue_type_template_id_e4d8f292_render]])
+const VGridInput_exports_ = /*#__PURE__*/(0,exportHelper/* default */.A)(VGridInputvue_type_script_lang_js, [['render',VGridInputvue_type_template_id_9eda2872_render]])
 
 /* harmony default export */ const VGridInput = (VGridInput_exports_);
 ;// ./node_modules/.pnpm/babel-loader@8.4.1_@babel+core@7.27.1_webpack@5.99.8/node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/.pnpm/vue-loader@16.8.3_@vue+compiler-sfc@3.5.14_vue@3.5.14_webpack@5.99.8/node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/VField.vue?vue&type=script&lang=js
@@ -69065,7 +69062,7 @@ exports.A = (sfc, props) => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, [57], () => (__webpack_require__(707)))
+/******/ 	__webpack_require__.O(undefined, [57], () => (__webpack_require__(636)))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [57], () => (__webpack_require__(23)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

@@ -125,8 +125,11 @@ export default {
     this.localField = cloneDeep(this.field);
   },
   watch: {
-    inputs() {
-      this.$emit("update:modelValue", this.inputs);
+    inputs: {
+      handler: function handler(newValue) {
+        this.$emit("update:modelValue", newValue);
+      },
+      deep: true
     },
   },
   methods: {
@@ -169,13 +172,6 @@ export default {
       }
 
       return this.componentTypes[cell.type];
-    },
-    getValidationMessage(cell) {
-      if (!this.validationErrors.hasOwnProperty(this.validationKey(cell))) {
-        return '';
-      }
-
-      return this.validationErrors[this.validationKey(cell)].join('|');
     },
     getClassForItem(rowItems, colIndex) {
       const hasItem = rowItems[colIndex].some((item) => item.hasOwnProperty('label'))
