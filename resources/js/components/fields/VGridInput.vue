@@ -9,7 +9,7 @@
         <div v-if="row.filter(o => o.length).length" class="flex gap-2 relative">
           <div
               v-for="(cell, colIndex) in row"
-              :key="'cell-' + rowIndex + '-' + colIndex"
+              :key="'cell-' + rowIndex + '-' + colIndex + '-' + cell[0]?.name"
               :class="getClassForItem(grid[rowIndex], colIndex)">
             <div
                 v-if="cell[0]?.type"
@@ -31,8 +31,9 @@
                 <span v-else>&nbsp;</span>
               </label>
               <component
-                  v-if="fieldComponent(cell[0]) && cell[0]?.name"
-                  v-model="inputs[cell[0]?.name]"
+                  :key="name + cell[0]?.name"
+                  v-if="fieldComponent(cell[0]) && cell[0]?.name && !processing"
+                  v-model="inputs[field.name][rowIndex][cell[0]?.name]"
                   :is="fieldComponent(cell[0])"
                   :name="`${name}[${rowIndex}][${cell[0].name}]`"
                   :type="cell[0].type"
@@ -89,7 +90,9 @@ export default {
   },
   data() {
     return {
+      generatedNumbers: new Set(),
       inputs: this.modelValue,
+      processing: false,
       localField: {},
       componentTypes: {
         checkbox: markRaw(SingleCheckbox),
@@ -123,6 +126,7 @@ export default {
   },
   created() {
     this.localField = cloneDeep(this.field);
+    this.initiateGrid();
   },
   watch: {
     inputs: {
@@ -133,12 +137,32 @@ export default {
     },
   },
   methods: {
+    initiateGrid() {
+      this.grid.forEach((row, rowIndex) => {
+        row.forEach((cell, colIndex) => {
+          if (cell[0]?.name) {
+            if (!this.inputs.hasOwnProperty(this.field.name)) {
+              this.inputs[this.field.name] = {};
+            }
+
+            if (!this.inputs[this.field.name].hasOwnProperty(rowIndex)) {
+              this.inputs[this.field.name][rowIndex] = {};
+            }
+
+            if (!this.inputs[this.field.name][rowIndex].hasOwnProperty(cell[0].name)) {
+              this.inputs[this.field.name][rowIndex][cell[0].name] = null;
+            }
+          }
+        });
+      });
+    },
     addRow() {
       if (!this.localField.allow_add_row) {
         return;
       }
 
       if (this.localField.grid && this.localField.grid.length) {
+        this.processing = true;
         const filteredGrid = this.localField.grid.filter(row =>
             row.some(cell => cell.some(item => !item?.on_flight))
         );
@@ -147,6 +171,7 @@ export default {
           const newRow = cloneDeep(row.map((o) => {
             return toRaw(o);
           }));
+
           this.localField.grid.push(newRow.map((o) => {
             const id = Math.floor(Math.random() * Date.now());
             if (o[0]?.id) {
@@ -158,6 +183,10 @@ export default {
             return o;
           }));
         });
+
+        this.initiateGrid();
+
+        this.processing = false;
       }
     },
     fieldLabel(cell) {

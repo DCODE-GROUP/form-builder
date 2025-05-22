@@ -8,6 +8,7 @@
 
 <script>
 import BaseField from "../mixins/BaseField";
+import {cloneDeep} from "lodash";
 
 export default {
   name: "Input",
@@ -24,14 +25,14 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue;
+    this.input = cloneDeep(this.modelValue);
   },
   watch: {
     modelValue() {
-      this.input = this.modelValue;
+      this.input = cloneDeep(this.modelValue);
     },
     input() {
-        this.$emit("update:modelValue", this.input);
+      this.$emit("update:modelValue", this.input);
     },
   },
 };

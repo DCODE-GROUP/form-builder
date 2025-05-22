@@ -8,6 +8,7 @@
       <span v-else>&nbsp;</span>
     </label>
     <component
+        :key="name"
         v-if="fieldComponent"
         v-model="input"
         :is="fieldComponent"
@@ -37,6 +38,7 @@ import SingleCheckbox from "./fields/SingleCheckbox.vue";
 import VGridInput from "./fields/VGridInput.vue";
 import VAddress from "./fields/VAddress.vue";
 import { markRaw } from "vue";
+import {cloneDeep} from "lodash";
 
 export default {
   name: "VField",
@@ -87,14 +89,14 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue;
+    this.input = cloneDeep(this.modelValue);
   },
   watch: {
-    modelValue() {
-      this.input = this.modelValue;
-    },
-    input() {
-      this.$emit("update:modelValue", this.input);
+    input: {
+      handler(newInputs) {
+        this.$emit("update:modelValue", newInputs);
+      },
+      deep: true,
     },
   },
   computed: {

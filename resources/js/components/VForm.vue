@@ -13,8 +13,9 @@
         <h3>{{ title }}</h3>
         <hr/>
       </div>
-      <template v-for="field in fields" :key="field.id" v-if="fields.length">
+      <div v-for="field in fields" :key="field.id" v-if="fields.length">
         <v-field
+            :key="name + field.name"
             :model-value="getInputValue(field.name)"
             @update:model-value="updateInputValue(field.name, $event)"
             :name="fieldName(field)"
@@ -28,7 +29,7 @@
         >
           <span class="error" v-text="getValidationMessage(field)"/>
         </v-field>
-      </template>
+      </div>
     </div>
     <slot v-if="editable"></slot>
   </form>
@@ -116,7 +117,12 @@ export default {
         if (!this.inputs[this.name]) {
           this.inputs[this.name] = {}; // Directly assign an empty object
         }
-        this.inputs[this.name][fieldName] = value;
+
+        if (fieldName.includes('grid')) {
+          this.inputs[this.name] = value;
+        } else {
+          this.inputs[this.name][fieldName] = value;
+        }
       } else {
         this.inputs[fieldName] = value;
       }
