@@ -33,7 +33,7 @@
               <component
                   :key="name + cell[0]?.name"
                   v-if="fieldComponent(cell[0]) && cell[0]?.name && !processing"
-                  v-model="inputs[field.name][rowIndex][cell[0]?.name]"
+                  v-model="inputs[rowIndex][cell[0]?.name]"
                   :is="fieldComponent(cell[0])"
                   :name="`${name}[${rowIndex}][${cell[0].name}]`"
                   :type="cell[0].type"
@@ -90,8 +90,7 @@ export default {
   },
   data() {
     return {
-      generatedNumbers: new Set(),
-      inputs: this.modelValue,
+      inputs: cloneDeep(this.modelValue),
       processing: false,
       localField: {},
       componentTypes: {
@@ -126,7 +125,7 @@ export default {
   },
   created() {
     this.localField = cloneDeep(this.field);
-    this.initiateGrid();
+    this.initiateGrid(this.inputs?.length > this.grid.length);
   },
   watch: {
     inputs: {
@@ -137,33 +136,77 @@ export default {
     },
   },
   methods: {
-    initiateGrid() {
+    initiateGrid(populate = false) {
       this.grid.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
           if (cell[0]?.name) {
-            if (!this.inputs.hasOwnProperty(this.field.name)) {
-              this.inputs[this.field.name] = {};
+            if (!this.inputs) {
+              this.inputs = {};
             }
 
-            if (!this.inputs[this.field.name].hasOwnProperty(rowIndex)) {
-              this.inputs[this.field.name][rowIndex] = {};
+            if (!this.inputs.hasOwnProperty(rowIndex)) {
+              this.inputs[rowIndex] = {};
             }
 
-            if (!this.inputs[this.field.name][rowIndex].hasOwnProperty(cell[0].name)) {
-              this.inputs[this.field.name][rowIndex][cell[0].name] = null;
+            if (!this.inputs[rowIndex].hasOwnProperty(cell[0].name)) {
+              this.inputs[rowIndex][cell[0].name] = null;
             }
           }
         });
       });
+
+      if (populate) {
+        this.processing = true;
+        const filteredGrid = this.grid.filter(row =>
+            row.some(cell => cell.some(item => !item?.on_flight))
+        );
+
+        this.inputs.filter((value, index) => (index + 1) > this.grid.length).forEach((savedRow) => {
+
+          filteredGrid.forEach((row) => {
+            const newRow = cloneDeep(row.map((o) => {
+              return toRaw(o);
+            })).map((r) => {
+              Object.keys(savedRow)
+                  .forEach((key) => {
+                    if (r[0].name === this.getTemplateFieldName(key)) {
+                      r[0].name = key;
+                    }
+                  });
+
+              return r;
+            });
+
+            this.grid.push(newRow.map((o) => {
+              const id = Math.floor(Math.random() * Date.now());
+              if (o[0]?.id) {
+                o[0].id = id;
+                o[0].on_flight = true;
+              }
+
+              return o;
+            }));
+          });
+        })
+
+        this.processing = false;
+      }
+    },
+    getTemplateFieldName(str) {
+      const lastUnderscoreIndex = str.lastIndexOf("_");
+      if (lastUnderscoreIndex === -1) {
+        return str;
+      }
+      return str.substring(0, lastUnderscoreIndex);
     },
     addRow() {
       if (!this.localField.allow_add_row) {
         return;
       }
 
-      if (this.localField.grid && this.localField.grid.length) {
+      if (this.grid && this.grid.length) {
         this.processing = true;
-        const filteredGrid = this.localField.grid.filter(row =>
+        const filteredGrid = this.grid.filter(row =>
             row.some(cell => cell.some(item => !item?.on_flight))
         );
 
@@ -172,12 +215,12 @@ export default {
             return toRaw(o);
           }));
 
-          this.localField.grid.push(newRow.map((o) => {
+          this.grid.push(newRow.map((o) => {
             const id = Math.floor(Math.random() * Date.now());
             if (o[0]?.id) {
               o[0].id = id;
               o[0].on_flight = true;
-              o[0].name = `${o[0].type}_${id}`;
+              o[0].name = `${o[0].name}_${id}`;
             }
 
             return o;

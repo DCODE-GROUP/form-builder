@@ -16,8 +16,7 @@
       <div v-for="field in fields" :key="field.id" v-if="fields.length">
         <v-field
             :key="name + field.name"
-            :model-value="getInputValue(field.name)"
-            @update:model-value="updateInputValue(field.name, $event)"
+            v-model="inputs[field.name]"
             :name="fieldName(field)"
             :label="field.label"
             :type="field.type"
@@ -91,14 +90,18 @@ export default {
     };
   },
   created() {
-    if (this.formData) {
-      let data = ((typeof this.formData === 'string')  ? JSON.parse(this.formData).values : this.formData?.values) ?? [];
-      data.map((o) => {
-        if (this.name) {
-          this.inputs[this.name][o.name] = o.value ?? '';
-        } else {
-          this.inputs[o.name] = o.value ?? '';
-        }
+    if (this.formData && this.formData !== '{}') {
+      const entry = JSON.parse(this.formData);
+      if(entry.hasOwnProperty('id')) {
+        this.inputs['id'] = entry.id;
+      }
+
+      Object.keys(entry?.values ?? []).forEach((key) => {
+          this.updateInputValue(key, entry?.values[key]);
+      });
+    } else {
+      this.fields.forEach((field) => {
+        this.updateInputValue(field.name, this.getDefaultValue(field))
       })
     }
   },
@@ -112,23 +115,20 @@ export default {
     },
   },
   methods: {
-    updateInputValue(fieldName, value) {
-      if (this.name) {
-        if (!this.inputs[this.name]) {
-          this.inputs[this.name] = {}; // Directly assign an empty object
-        }
-
-        if (fieldName.includes('grid')) {
-          this.inputs[this.name] = value;
-        } else {
-          this.inputs[this.name][fieldName] = value;
-        }
-      } else {
-        this.inputs[fieldName] = value;
+    getDefaultValue(field) {
+      switch (field.type) {
+        case 'text':
+        case 'datepicker':
+        case 'textarea':
+          return '';
+        case 'grid':
+          return {};
+        default:
+          return null;
       }
     },
-    getInputValue(fieldName) {
-      return this.name ? this.inputs[this.name]?.[fieldName] : this.inputs[fieldName];
+    updateInputValue(fieldName, value) {
+      this.inputs[fieldName] = value;
     },
     fieldName(field) {
       if (!this.name) {

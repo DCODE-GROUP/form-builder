@@ -17,7 +17,10 @@ export default {
     name: {},
     type: {},
     field: {},
-    modelValue: {default: null},
+    modelValue: {
+      type: String,
+      default: null
+    },
   },
   data() {
     return {
@@ -28,11 +31,8 @@ export default {
     this.input = cloneDeep(this.modelValue);
   },
   watch: {
-    modelValue() {
-      this.input = cloneDeep(this.modelValue);
-    },
-    input() {
-      this.$emit("update:modelValue", this.input);
+    input(val) {
+      this.$emit("update:modelValue", val);
     },
   },
 };
