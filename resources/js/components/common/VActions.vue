@@ -28,8 +28,13 @@
 </template>
 
 <script>
+import clickOutside from "@/helpers/ClickOutSide";
+
 export default {
   name: "VActions",
+  directives: {
+    clickOutside,
+  },
   props: {
     classes: {
       type: String,

@@ -193,10 +193,10 @@
 </template>
 
 <script>
-import VForm from "./VForm";
-import VModal from "./common/VModal";
+import VForm from "@/components/VForm.vue";
+import VModal from "@/components/common/VModal.vue";
 import draggable from "vuedraggable";
-import FieldDraggable from "./common/FieldDraggable.vue";
+import FieldDraggable from "@/components/common/FieldDraggable.vue";
 import axios from "axios";
 
 export default {

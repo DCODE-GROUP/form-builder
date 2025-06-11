@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import VField from "./VField";
+import VField from "@/components/VField.vue";
 
 export default {
   name: "VForm",
