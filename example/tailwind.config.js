@@ -1,8 +1,9 @@
 module.exports = {
   content: [
-    './resources/**/*.js',
-    './public/index.php',
-    './resources/**/*.vue',
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+    // Add package files here
+    '../resources/js/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {

@@ -38,7 +38,7 @@ import SingleCheckbox from "./fields/SingleCheckbox.vue";
 import VGridInput from "./fields/VGridInput.vue";
 import VAddress from "./fields/VAddress.vue";
 import { markRaw } from "vue";
-import {cloneDeep} from "lodash";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VField",
@@ -71,21 +71,21 @@ export default {
   data() {
     return {
       input: null,
-      componentTypes: {
-        checkbox: markRaw(SingleCheckbox),
-        "check-group": markRaw(CheckGroup),
-        datepicker: markRaw(VDatePicker),
-        "file-upload": markRaw(FileUpload),
-        number: markRaw(Input),
-        "radio-group": markRaw(CheckGroup),
-        select: markRaw(Select),
-        signature: markRaw(SignaturePad),
-        text: markRaw(Input),
-        textarea: markRaw(Textarea),
-        paragraph: markRaw(Paragraph),
-        grid: markRaw(VGridInput),
-        address: markRaw(VAddress),
-      },
+      componentTypes: markRaw({
+        checkbox: SingleCheckbox,
+        "check-group": CheckGroup,
+        datepicker: VDatePicker,
+        "file-upload": FileUpload,
+        number: Input,
+        "radio-group": CheckGroup,
+        select: Select,
+        signature: SignaturePad,
+        text: Input,
+        textarea: Textarea,
+        paragraph: Paragraph,
+        grid: VGridInput,
+        address: VAddress,
+      }),
     };
   },
   created() {

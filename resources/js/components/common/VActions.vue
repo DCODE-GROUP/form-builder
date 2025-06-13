@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import clickOutside from "@/helpers/ClickOutSide";
+import clickOutside from "../../helpers/ClickOutSide";
 
 export default {
   name: "VActions",

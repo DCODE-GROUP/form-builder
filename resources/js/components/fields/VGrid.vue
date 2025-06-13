@@ -120,7 +120,7 @@
 import VToggle from "../common/VToggle.vue";
 import draggable from "vuedraggable";
 import VActions from "../common/VActions.vue";
-import {cloneDeep} from "lodash";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VGrid",

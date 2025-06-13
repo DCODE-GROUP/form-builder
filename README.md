@@ -41,6 +41,13 @@ npm run prod && npm run copy-assets elaa
 
 #### JS
 
+##### For new version with Vite
+Import Vue components for Vite development
+```
+import { FormBuilder } from '/path/to/vendor/dcodegroup/form-builder/resources/js/index.js';
+```
+
+##### For deprecated version or using directly from vendor
 Include this built file to your layouts:
 
 ```
@@ -48,6 +55,20 @@ Include this built file to your layouts:
 ```
 
 #### CSS
+
+##### For new version with Vite/TailwindCSS
+
+Listing the components in the `tailwind.config.js` file
+
+```
+   [
+      ...
+      "/path/to/vendor/dcodegroup/form-builder/resources/**/*.{vue,js,ts,jsx,tsx}",
+      ...
+  ]
+```
+
+##### For the deprecated version or using directly from vendor
 
 There is a new generated file under `public/vendor/form-builder/index.css`. You must use this file in your main scss file 
 
