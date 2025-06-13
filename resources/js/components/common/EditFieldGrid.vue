@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     close() {
-      this.bus.$emit('closeModal');
+      this.bus?.$emit('closeModal');
     },
     confirm() {
       const updatedFields = this.fields.map((column) =>

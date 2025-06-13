@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <h1>Form Builder Example</h1>
-    <VForm :form="formData" />
+    <VForm :form="formData"  action="/forms/store" method="post" />
     <FormBuilder
-        :form="formData"
-        :fields="fields"
+        :form="JSON.stringify(formData)"
+        :fields="formData.fields"
         @update:fields="updateFields"
     />
   </div>
@@ -25,25 +25,25 @@ export default {
       formData: {
         title: "Example Form",
         status: "active",
+        fields: [
+          {
+            id: 1,
+            name: "name",
+            type: "text",
+            label: "Name",
+            placeholder: "Enter your name",
+            required: true,
+          },
+          {
+            id: 2,
+            name: "email",
+            type: "email",
+            label: "Email",
+            placeholder: "Enter your email",
+            required: true,
+          },
+        ],
       },
-      fields: [
-        {
-          id: 1,
-          name: "name",
-          type: "text",
-          label: "Name",
-          placeholder: "Enter your name",
-          required: true,
-        },
-        {
-          id: 2,
-          name: "email",
-          type: "email",
-          label: "Email",
-          placeholder: "Enter your email",
-          required: true,
-        },
-      ],
     };
   },
   methods: {

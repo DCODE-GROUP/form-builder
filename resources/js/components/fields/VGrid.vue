@@ -168,7 +168,7 @@ export default {
       return 'relative text-center border-gray-300 rounded-lg w-full';
     },
     edit(rowIndex) {
-      this.bus.$emit("openModal", {
+      this.bus?.$emit("openModal", {
         componentName: "EditFieldGrid",
         componentData: {
           fields: this.grid[rowIndex],

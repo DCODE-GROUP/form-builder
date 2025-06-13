@@ -38368,7 +38368,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   },
   created: function created() {
     var _this = this;
-    this.bus.$on("openModal", function (payload) {
+    this.bus?.$on("openModal", function (payload) {
       var _payload$isAsyncCallb;
       _this.open();
       _this.componentName = payload.componentName;
@@ -38380,7 +38380,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _this.callback = payload.callback;
       _this.cancelCallback = payload.cancelCallback;
     });
-    this.bus.$on("closeModal", function () {
+    this.bus?.$on("closeModal", function () {
       _this.close();
     });
   },
@@ -39362,7 +39362,7 @@ function VGridvue_type_script_lang_js_asyncToGenerator(n) { return function () {
     },
     edit: function edit(rowIndex) {
       var _this = this;
-      this.bus.$emit("openModal", {
+      this.bus?.$emit("openModal", {
         componentName: "EditFieldGrid",
         componentData: {
           fields: this.grid[rowIndex],
@@ -39941,7 +39941,7 @@ function EditFieldGridvue_type_template_id_2313d15f_render(_ctx, _cache, $props,
   },
   methods: {
     close: function close() {
-      this.bus.$emit('closeModal');
+      this.bus?.$emit('closeModal');
     },
     confirm: function confirm() {
       var _this = this;
