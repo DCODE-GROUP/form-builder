@@ -1,17 +1,16 @@
 <template>
-  <form-builder-provider>
-    <v-modal></v-modal>
-    <div class="flex gap-4 items-center">
-      <a :href="redirectUrl" class="cursor-pointer"> Form </a> / <span class="text-sm font-semibold"
-                                                                       v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
-    </div>
-    <div class="flex justify-between items-center">
-      <h4 class="text-gray-900 text-[30px] font-semibold">
-        {{ showPreview ? 'Preview' : (title ? title : 'Add New Form') }}</h4>
-      <a
-        class="inline-block rounded-full px-3 py-2 cursor-pointer text-sm text-gray-700 font-semibold border border-gray-300 hover:bg-gray-200"
-        @click="handleShowPreview"
-      >
+  <v-modal></v-modal>
+  <div class="flex gap-4 items-center">
+    <a :href="redirectUrl" class="cursor-pointer"> Form </a> / <span class="text-sm font-semibold"
+                                                                     v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
+  </div>
+  <div class="flex justify-between items-center">
+    <h4 class="text-gray-900 text-[30px] font-semibold">
+      {{ showPreview ? 'Preview' : (title ? title : 'Add New Form') }}</h4>
+    <a
+      class="inline-block rounded-full px-3 py-2 cursor-pointer text-sm text-gray-700 font-semibold border border-gray-300 hover:bg-gray-200"
+      @click="handleShowPreview"
+    >
         <span v-if="!showPreview" class="flex gap-1 items-center">
           <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -23,7 +22,7 @@
           </svg>
            Preview
         </span>
-        <span v-else class="flex gap-1 items-center">
+      <span v-else class="flex gap-1 items-center">
           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1.08398 17.9166L5.70838 16.138C6.00416 16.0242 6.15205 15.9673 6.29042 15.8931C6.41332 15.8271 6.53048 15.751 6.64068 15.6654C6.76475 15.5692 6.8768 15.4571 7.10088 15.233L16.5007 5.83326C17.4211 4.91279 17.4211 3.4204 16.5007 2.49993C15.5802 1.57945 14.0878 1.57945 13.1673 2.49992L3.76755 11.8997C3.54346 12.1238 3.43142 12.2358 3.33514 12.3599C3.24963 12.4701 3.17349 12.5873 3.10751 12.7102C3.03324 12.8485 2.97636 12.9964 2.86259 13.2922L1.08398 17.9166ZM1.08398 17.9166L2.79908 13.4574C2.92182 13.1383 2.98318 12.9787 3.08843 12.9057C3.18042 12.8418 3.29424 12.8176 3.40423 12.8386C3.5301 12.8627 3.65097 12.9836 3.89272 13.2253L5.7753 15.1079C6.01704 15.3496 6.13792 15.4705 6.16196 15.5964C6.18296 15.7064 6.15881 15.8202 6.09494 15.9122C6.02186 16.0174 5.86231 16.0788 5.54321 16.2015L1.08398 17.9166Z"
@@ -31,117 +30,117 @@
           </svg>
           Edit
         </span>
-      </a>
+    </a>
+  </div>
+  <input type="hidden" :name="name" :value="valueJson"/>
+  <div v-if="showPreview" class="form-builder-preview-container">
+    <p class="pb-6 text-xl font-semibold text-gray-900" v-if="title">{{ title }}</p>
+    <div class="form-builder-preview">
+      <v-form
+        action="#"
+        method="get"
+        :form="{fields}"
+        :preview="true"
+        :editable="true"
+        :can-interact="showPreview">
+      </v-form>
     </div>
-    <input type="hidden" :name="name" :value="valueJson"/>
-    <div v-if="showPreview" class="form-builder-preview-container">
-      <p class="pb-6 text-xl font-semibold text-gray-900" v-if="title">{{ title }}</p>
-      <div class="form-builder-preview">
-        <v-form
-          action="#"
-          method="get"
-          :form="{fields}"
-          :preview="true"
-          :editable="true"
-          :can-interact="showPreview">
-        </v-form>
-      </div>
-    </div>
-    <div v-else class="form-builder-container">
-      <div class="flex">
-        <div class="form-builder">
-          <div class="form-builder-fields">
-            <div class="settings">
-              <h3>Settings</h3>
-              <div>
-                <p class="mb-1">Form Title *</p>
-                <input type="text" placeholder="Enter your form name" v-model="title"/>
-                <span class="text-red-600 text-sm mt-0.5 inline-block" v-if="errors?.title">{{ errors.title[0] }}</span>
-              </div>
+  </div>
+  <div v-else class="form-builder-container">
+    <div class="flex">
+      <div class="form-builder">
+        <div class="form-builder-fields">
+          <div class="settings">
+            <h3>Settings</h3>
+            <div>
+              <p class="mb-1">Form Title *</p>
+              <input type="text" placeholder="Enter your form name" v-model="title"/>
+              <span class="text-red-600 text-sm mt-0.5 inline-block" v-if="errors?.title">{{ errors.title[0] }}</span>
             </div>
-            <div class="fields" :class="{'overflow-y-auto' : !showPreview}">
-              <h3>Form</h3>
-              <div class="draggable" :class="{'!border-none !shadow-none': fields.length}">
-                <field-draggable v-model="fields" :is-dragging="isDragging"></field-draggable>
+          </div>
+          <div class="fields" :class="{'overflow-y-auto' : !showPreview}">
+            <h3>Form</h3>
+            <div class="draggable" :class="{'!border-none !shadow-none': fields.length}">
+              <field-draggable v-model="fields" :is-dragging="isDragging"></field-draggable>
+            </div>
+          </div>
+        </div>
+        <div class="flex w-1/3 flex-col">
+          <div v-if="id" class="p-6 mb-4 bg-gray-50 shadow-sm rounded-xl">
+            <p class="mb-5">Status</p>
+            <div class="space-y-3">
+              <div
+                class="pr-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center"
+                :class="{'!text-success-700 !bg-success-50 !border-success-200' : localForm.status === 'published'}"
+              >
+                <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="3" cy="3" r="3" :fill="localForm.status === 'published' ? '#17B26A' : '#F79009'"/>
+                </svg>
+                {{ cFirst(localForm.status) }}
+              </div>
+              <div v-if="localForm.status === 'published'"
+                   class="flex flex-col text-sm font-regular text-gray-900 gap-1">
+                <label>
+                  Published
+                </label>
+                <label class="text-base">{{ localForm.formatted_published_at }}</label>
+              </div>
+              <div class="flex flex-col text-sm font-regular text-gray-900 gap-1">
+                <label>
+                  Last Modified
+                </label>
+                <label class="text-base">{{ localForm.last_modified }}</label>
               </div>
             </div>
           </div>
-          <div class="flex w-1/3 flex-col">
-            <div v-if="id" class="p-6 mb-4 bg-gray-50 shadow-sm rounded-xl">
-              <p class="mb-5">Status</p>
-              <div class="space-y-3">
-                <div
-                  class="pr-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center"
-                  :class="{'!text-success-700 !bg-success-50 !border-success-200' : localForm.status === 'published'}"
+          <div class="form-builder-templates overflow-y-auto">
+            <div class="heading">
+              <h3>Select layouts/components</h3>
+              <p>Click and/or drag a field to the left</p>
+            </div>
+            <draggable
+              item-key="id"
+              v-model="templates"
+              :clone="cloneTemplate"
+              :group="{ name: 'fields', pull: 'clone', put: false }"
+              @start="onDragStart"
+              @end="onDragEnd"
+              class="components"
+            >
+              <template #item="{element}">
+                <li
+                  class="flex gap-1 flex-row items-center"
+                  :key="element.name"
+                  @click="addFieldToBottom(element)"
                 >
-                  <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="3" cy="3" r="3" :fill="localForm.status === 'published' ? '#17B26A' : '#F79009'"/>
-                  </svg>
-                  {{ cFirst(localForm.status) }}
-                </div>
-                <div v-if="localForm.status === 'published'"
-                     class="flex flex-col text-sm font-regular text-gray-900 gap-1">
-                  <label>
-                    Published
-                  </label>
-                  <label class="text-base">{{ localForm.formatted_published_at }}</label>
-                </div>
-                <div class="flex flex-col text-sm font-regular text-gray-900 gap-1">
-                  <label>
-                    Last Modified
-                  </label>
-                  <label class="text-base">{{ localForm.last_modified }}</label>
-                </div>
-              </div>
-            </div>
-            <div class="form-builder-templates overflow-y-auto">
-              <div class="heading">
-                <h3>Select layouts/components</h3>
-                <p>Click and/or drag a field to the left</p>
-              </div>
-              <draggable
-                item-key="id"
-                v-model="templates"
-                :clone="cloneTemplate"
-                :group="{ name: 'fields', pull: 'clone', put: false }"
-                @start="onDragStart"
-                @end="onDragEnd"
-                class="components"
-              >
-                <template #item="{element}">
-                  <li
-                    class="flex gap-1 flex-row items-center"
-                    :key="element.name"
-                    @click="addFieldToBottom(element)"
-                  >
-                    {{ element.label }}
-                    <div class="relative group">
-                      <span v-if="element.icon" v-html="element.icon"></span>
-                      <div
-                        class="absolute hidden group-hover:block bg-black text-white text-sm rounded px-4 py-2 -top-16 left-0 w-[200px]"
-                      >
-                        {{ element.tooltip_text }}
-                      </div>
+                  {{ element.label }}
+                  <div class="relative group">
+                    <span v-if="element.icon" v-html="element.icon"></span>
+                    <div
+                      class="absolute hidden group-hover:block bg-black text-white text-sm rounded px-4 py-2 -top-16 left-0 w-[200px]"
+                    >
+                      {{ element.tooltip_text }}
                     </div>
-                  </li>
-                </template>
-              </draggable>
-              <slot></slot>
-            </div>
+                  </div>
+                </li>
+              </template>
+            </draggable>
+            <slot></slot>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="!showPreview"
-         class="fixed bottom-0 flex justify-between text-sm font-semibold w-fill z-50 bg-gray-200">
-      <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 flex items-center">Discard</a>
-      <div class="flex justify-end gap-2">
-        <a @click.prevent="save('draft')"
-           class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-2">
+  </div>
+  <div v-if="!showPreview"
+       class="fixed bottom-0 flex justify-between text-sm font-semibold w-fill z-50 bg-gray-200">
+    <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 flex items-center">Discard</a>
+    <div class="flex justify-end gap-2">
+      <a @click.prevent="save('draft')"
+         class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-2">
         <span v-if="!loading">
           Save as draft
         </span>
-          <span v-else class="flex items-center gap-2">
+        <span v-else class="flex items-center gap-2">
           <svg
             class="animate-spin h-5 w-5 text-white"
             xmlns="http://www.w3.org/2000/svg"
@@ -163,13 +162,13 @@
           ></path>
           </svg>
         </span>
-        </a>
-        <a @click.prevent="save('published')"
-           class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-2">
+      </a>
+      <a @click.prevent="save('published')"
+         class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-2">
         <span v-if="!loading">
           Publish
         </span>
-          <span v-else class="flex items-center gap-2">
+        <span v-else class="flex items-center gap-2">
           <svg
             class="animate-spin h-5 w-5 text-white"
             xmlns="http://www.w3.org/2000/svg"
@@ -191,14 +190,12 @@
           ></path>
         </svg>
         </span>
-        </a>
-      </div>
+      </a>
     </div>
-  </form-builder-provider>
+  </div>
 </template>
 
 <script>
-import FormBuilderProvider from "./providers/FormBuilderProvider.vue";
 import VForm from "./VForm.vue";
 import VModal from "./common/VModal.vue";
 import draggable from "vuedraggable";
@@ -209,7 +206,6 @@ export default {
   name: "FormBuilder",
   inject: ['bus'],
   components: {
-    FormBuilderProvider,
     FieldDraggable,
     VForm,
     draggable: draggable,
