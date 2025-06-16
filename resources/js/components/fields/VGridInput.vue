@@ -77,7 +77,7 @@ import Select from "./Select.vue";
 import SignaturePad from "./SignaturePad.vue";
 import Textarea from "./Textarea.vue";
 import Paragraph from "./Paragraph.vue";
-import {cloneDeep} from "lodash";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VGridInput",

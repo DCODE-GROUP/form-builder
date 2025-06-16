@@ -1,8 +1,8 @@
 <template>
-  <div :class="field?.class" class="relative">
+  <div :class="field?.class" v-click-outside="() => this.isOpen && (this.isOpen = false)" class="relative">
     <input type="hidden" :name="name" :id="name" :value="selectedLabel"/>
     <div
-        class="input-base cursor-pointer"
+        class="input-base bg-white cursor-pointer"
         :class="{'text-gray-400' : !selectedLabel && field?.placeholder }"
         @click="toggleDropdown"
     >
@@ -29,10 +29,14 @@
 
 <script>
 import BaseField from "../mixins/BaseField";
+import clickOutside from "../../helpers/ClickOutSide";
 
 export default {
   name: "Select",
   mixins: [BaseField],
+  directives: {
+    clickOutside,
+  },
 
   props: {
     modelValue: {},

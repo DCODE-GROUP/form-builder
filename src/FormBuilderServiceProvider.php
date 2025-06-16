@@ -55,7 +55,9 @@ class FormBuilderServiceProvider extends ServiceProvider
         }
 
         $this->publishes([app('DCODE_FORM_BUILDER_PATH').'/resources/sass' => resource_path('sass/form-builder')], 'form-builder-sass');
-        $this->publishes([app('DCODE_FORM_BUILDER_PATH').'/public' => public_path('vendor/form-builder')], ['form-builder-assets']);
+        $this->publishes([
+            __DIR__.'/../dist' => public_path('vendor/form-builder'),
+        ], 'form-builder-assets');
     }
 
     private function doesntHaveTables()

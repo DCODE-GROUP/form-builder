@@ -1,38 +1,39 @@
 {
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider npm run development",
-    "development": "mix",
-    "watch": "NODE_OPTIONS=--openssl-legacy-provider mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "NODE_OPTIONS=--openssl-legacy-provider mix watch --hot",
-    "prod": "npm run production",
-    "production": "NODE_OPTIONS=--openssl-legacy-provider mix --production",
-    "copy-assets": "node ./tasks-compile/copy-assets.task.js"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/form-builder.es.js",
+      "require": "./dist/form-builder.umd.js"
+    },
+    "./form-builder.css": "./dist/form-builder.css"
   },
   "name": "form-builder",
-  "version": "1.4.0",
-  "devDependencies": {
-    "@vue/compiler-sfc": "^3.5.13",
-    "axios": "^1.8.4",
+  "version": "2.0.0",
+  "dependencies": {
     "dropzone": "^5.5.1",
-    "laravel-mix": "^6.0.13",
-    "postcss": "^8.5.3",
-    "postcss-nested": "^7.0.2",
-    "resolve-url-loader": "^5.0.0",
+    "lodash.clonedeep": "^4.5.0",
     "signature_pad": "^3.0.0-beta.4",
-    "tailwindcss": "^3.4.17",
-    "vue": "^3.5.13",
-    "vue-loader": "^16.8.3",
-    "vue-router": "^3.0.1",
+    "vue-datepicker-next": "^1.0.3",
     "vuedraggable": "^4.1.0"
   },
-  "dependencies": {
-    "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.1.4",
-    "@tailwindcss/typography": "^0.5.16",
-    "components": "^0.1.0",
-    "lodash": "^4.17.21",
-    "vue-datepicker-next": "^1.0.3"
+  "devDependencies": {
+    "@types/lodash.clonedeep": "^4.5.9",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/compiler-sfc": "^3.5.13",
+    "laravel-mix": "^6.0.13",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.13"
+  },
+  "peerDependencies": {
+    "axios": "*",
+    "vue": "^3"
   }
 }

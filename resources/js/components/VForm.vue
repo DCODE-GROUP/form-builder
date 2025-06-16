@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import VField from "./VField";
+import VField from "./VField.vue";
 
 export default {
   name: "VForm",
@@ -86,11 +86,11 @@ export default {
     return {
       inputs: {},
       fields: typeof this.form === 'string' ? JSON.parse(this.form)?.fields : this.form.fields,
-      csrf: document.head.querySelector('meta[name="csrf-token"]').content
+      csrf: document.head.querySelector('meta[name="csrf-token"]')?.content
     };
   },
   created() {
-    if (this.formData && this.formData !== '{}') {
+    if (typeof this.formData === 'string' && this.formData !== '{}') {
       const entry = JSON.parse(this.formData);
       if(entry.hasOwnProperty('id')) {
         this.inputs['id'] = entry.id;

@@ -8,7 +8,7 @@
 
 <script>
 import BaseField from "../mixins/BaseField";
-import {cloneDeep} from "lodash";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "Input",

@@ -120,7 +120,7 @@
 import VToggle from "../common/VToggle.vue";
 import draggable from "vuedraggable";
 import VActions from "../common/VActions.vue";
-import {cloneDeep} from "lodash";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VGrid",
@@ -168,7 +168,7 @@ export default {
       return 'relative text-center border-gray-300 rounded-lg w-full';
     },
     edit(rowIndex) {
-      this.bus.$emit("openModal", {
+      this.bus?.$emit("openModal", {
         componentName: "EditFieldGrid",
         componentData: {
           fields: this.grid[rowIndex],

@@ -44,7 +44,7 @@ export default {
     };
   },
   created() {
-    this.bus.$on("openModal", (payload) => {
+    this.bus?.$on("openModal", (payload) => {
       this.open();
       this.componentName = payload.componentName;
       this.componentData = payload.componentData;
@@ -55,7 +55,7 @@ export default {
       this.callback = payload.callback;
       this.cancelCallback = payload.cancelCallback;
     });
-    this.bus.$on("closeModal", () => {
+    this.bus?.$on("closeModal", () => {
       this.close();
     });
   },
