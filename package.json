@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/DCODE-GROUP/form-builder#readme",
   "name": "@dcodegroup-au/form-builder",
+  "author": "DCODE GROUP",
+  "keywords": [],
   "version": "2.0.2",
   "dependencies": {
     "dropzone": "^5.5.1",
