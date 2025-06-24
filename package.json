@@ -11,8 +11,8 @@
     },
     "./form-builder.css": "./dist/form-builder.css"
   },
-  "name": "form-builder",
-  "version": "2.0.1",
+  "name": "@dcodegroup-au/form-builder",
+  "version": "2.0.2",
   "dependencies": {
     "dropzone": "^5.5.1",
     "lodash.clonedeep": "^4.5.0",
