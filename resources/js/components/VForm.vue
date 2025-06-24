@@ -43,12 +43,18 @@ export default {
     VField,
   },
   props: {
-    action: {required: true},
-    method: {required: true},
-
-    /**
-     * Form data can be editable after its complete
-     */
+    action: {
+      required: false,
+      default: () => {
+        return '#'
+      }
+    },
+    method: {
+      required: false,
+      default: () => {
+        return 'get'
+      }
+    },
     editable: {
       type: Boolean,
       default: false
@@ -64,13 +70,13 @@ export default {
     name: String,
     title: String,
     form: {
-      type: [Object, String],
+      type: [Object],
       default: () => {
         return {}
       }
     },
     formData: {
-      type: [Object, String],
+      type: [Object],
       default: () => {
         return {}
       }
@@ -84,52 +90,27 @@ export default {
   },
   data() {
     return {
-      inputs: {},
-      fields: typeof this.form === 'string' ? JSON.parse(this.form)?.fields : this.form.fields,
+      inputs: this.formData,
+      fields: this.form.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]')?.content
     };
   },
   created() {
-    if (typeof this.formData === 'string' && this.formData !== '{}') {
-      const entry = JSON.parse(this.formData);
-      if(entry.hasOwnProperty('id')) {
-        this.inputs['id'] = entry.id;
-      }
-
-      Object.keys(entry?.values ?? []).forEach((key) => {
-          this.updateInputValue(key, entry?.values[key]);
-      });
-    } else {
-      this.fields.forEach((field) => {
-        this.updateInputValue(field.name, this.getDefaultValue(field))
-      })
+    const entry = this.formData;
+    if(entry.hasOwnProperty('id')) {
+      this.inputs['id'] = entry.id;
     }
   },
   watch: {
     inputs: {
       handler(newInputs) {
-        const event = new CustomEvent("formUpdated", { detail: newInputs });
-        window.dispatchEvent(event);
+        console.log('newInputs', newInputs)
+        this.$emit('update:formData', newInputs);
       },
       deep: true,
     },
   },
   methods: {
-    getDefaultValue(field) {
-      switch (field.type) {
-        case 'text':
-        case 'datepicker':
-        case 'textarea':
-          return '';
-        case 'grid':
-          return {};
-        default:
-          return null;
-      }
-    },
-    updateInputValue(fieldName, value) {
-      this.inputs[fieldName] = value;
-    },
     fieldName(field) {
       if (!this.name) {
         return field.name;

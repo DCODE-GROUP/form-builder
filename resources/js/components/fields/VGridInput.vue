@@ -2,7 +2,7 @@
   <div>
     <p v-if="field.hint" class="mb-4 font-regular text-gray-600">{{ field.hint }}</p>
     <div class="grid gap-4 w-full">
-      <template
+      <div
           v-for="(row, rowIndex) in grid"
           :key="'row-' + rowIndex"
       >
@@ -10,7 +10,7 @@
           <div
               v-for="(cell, colIndex) in row"
               :key="'cell-' + rowIndex + '-' + colIndex + '-' + cell[0]?.name"
-              :class="getClassForItem(grid[rowIndex], colIndex)">
+              :class="getClassForItem(grid[rowIndex], colIndex) + (canRemove ? ' pr-[40px]' : '')">
             <div
                 v-if="cell[0]?.type"
                 class="v-field"
@@ -46,18 +46,21 @@
               <slot></slot>
             </div>
           </div>
+          <a v-if="canRemoveRow(rowIndex)"
+             class="cursor-pointer absolute top-[-48px] right-[12px]"
+             @click="removeRow(rowIndex)"
+          >
+            <MinusCircle class="w-5 h-5 text-brand-700 hover:text-brand-800"></MinusCircle>
+          </a>
         </div>
-      </template>
+      </div>
     </div>
     <div class="mt-2 flex gap-2" v-if="field.allow_add_row">
       <a
           @click="addRow"
           class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
       >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="#931C61" stroke-width="1.66667"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <Plus class="w-5 h-5"></Plus>
         Add Row
       </a>
     </div>
@@ -77,11 +80,17 @@ import Select from "./Select.vue";
 import SignaturePad from "./SignaturePad.vue";
 import Textarea from "./Textarea.vue";
 import Paragraph from "./Paragraph.vue";
+import MinusCircle from "@r/icons/minus-circle.svg";
+import Plus from "@r/icons/plus.svg";
 import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VGridInput",
   mixins: [BaseField],
+  components: {
+    MinusCircle,
+    Plus,
+  },
   props: {
     name: {},
     type: {},
@@ -121,7 +130,15 @@ export default {
         const lastColumn = row[row.length - 1];
         return !lastColumn || lastColumn.length === 0;
       });
-    }
+    },
+    originalGrid() {
+      return this.grid.filter(row =>
+        row.some(cell => cell.some(item => !item?.on_flight))
+      );
+    },
+    canRemove() {
+      return this.grid.some((row, rowIndex) => this.canRemoveRow(rowIndex));
+    },
   },
   created() {
     this.localField = cloneDeep(this.field);
@@ -136,6 +153,11 @@ export default {
     },
   },
   methods: {
+    canRemoveRow(rowIndex) {
+      return (rowIndex + 1) % this.originalGrid.length === 0 &&
+          this.field.allow_add_row &&
+          (rowIndex + 1 !== this.originalGrid.length || this.grid.length > this.originalGrid.length);
+    },
     initiateGrid(populate = false) {
       this.grid.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
@@ -157,13 +179,8 @@ export default {
 
       if (populate) {
         this.processing = true;
-        const filteredGrid = this.grid.filter(row =>
-            row.some(cell => cell.some(item => !item?.on_flight))
-        );
-
         this.inputs.filter((value, index) => (index + 1) > this.grid.length).forEach((savedRow) => {
-
-          filteredGrid.forEach((row) => {
+          this.originalGrid.forEach((row) => {
             const newRow = cloneDeep(row.map((o) => {
               return toRaw(o);
             })).map((r) => {
@@ -199,6 +216,39 @@ export default {
       }
       return str.substring(0, lastUnderscoreIndex);
     },
+    removeRow(rowIndex) {
+      if (rowIndex >= 0 && rowIndex < this.grid.length) {
+        const isOriginalGrid = this.grid[rowIndex].some(cell =>
+            cell.some(item => !item.hasOwnProperty('on_flight') || !item.on_flight)
+        );
+
+        const length = this.originalGrid.length;
+        this.grid.splice(rowIndex - 1, length);
+        if (isOriginalGrid) {
+          for (let i = 0; i < length; i++) {
+            this.grid[i].forEach(cell => {
+              cell.forEach(item => {
+                item.on_flight = false;
+              });
+            });
+          }
+        }
+
+        if (this.inputs.hasOwnProperty(rowIndex)) {
+          for (let i = (rowIndex - 1); i < ((rowIndex - 1) + length); i++) {
+            delete this.inputs[i];
+          }
+        }
+
+        //Re-index the inputs to ensure proper order
+        this.inputs = Object.keys(this.inputs)
+            .sort((a, b) => a - b)
+            .reduce((acc, key, index) => {
+              acc[index] = this.inputs[key];
+              return acc;
+            }, {});
+      }
+    },
     addRow() {
       if (!this.localField.allow_add_row) {
         return;
@@ -206,11 +256,11 @@ export default {
 
       if (this.grid && this.grid.length) {
         this.processing = true;
-        const filteredGrid = this.grid.filter(row =>
+        const originalGrid = this.grid.filter(row =>
             row.some(cell => cell.some(item => !item?.on_flight))
         );
 
-        filteredGrid.forEach((row) => {
+        originalGrid.forEach((row) => {
           const newRow = cloneDeep(row.map((o) => {
             return toRaw(o);
           }));

@@ -1,10 +1,10 @@
 <template>
   <v-modal></v-modal>
-  <div class="flex gap-4 items-center">
+  <div class="flex gap-4 mb-1 px-6 items-center">
     <a :href="redirectUrl" class="cursor-pointer"> Form </a>
     / <span class="text-sm font-semibold" v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
   </div>
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center mb-6 px-6">
     <h4 class="text-gray-900 text-[30px] font-semibold">
       {{ showPreview ? 'Preview' : (title ? title : 'Add New Form') }}</h4>
     <a
@@ -33,7 +33,7 @@
     </a>
   </div>
   <input type="hidden" :name="name" :value="valueJson"/>
-  <div v-if="showPreview" class="form-builder-preview-container">
+  <div v-if="showPreview" class="form-builder-preview-container px-6">
     <p class="pb-6 text-xl font-semibold text-gray-900" v-if="title">{{ title }}</p>
     <div class="form-builder-preview">
       <v-form
@@ -46,7 +46,7 @@
       </v-form>
     </div>
   </div>
-  <div v-else class="form-builder-container">
+  <div v-else class="form-builder-container mb-1 px-6">
     <div class="flex">
       <div class="form-builder">
         <div class="form-builder-fields">
@@ -132,7 +132,7 @@
     </div>
   </div>
   <div v-if="!showPreview"
-       class="fixed bottom-0 flex justify-between text-sm font-semibold w-fill py-2 px-6 z-50 bg-gray-200">
+       class="sticky bottom-0 flex justify-between text-sm font-semibold w-fill py-2 px-6 z-50 bg-gray-200">
     <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 flex items-center">Discard</a>
     <div class="flex justify-end gap-2">
       <a @click.prevent="save('draft')"
@@ -201,6 +201,7 @@ import VModal from "./common/VModal.vue";
 import draggable from "vuedraggable";
 import FieldDraggable from "./common/FieldDraggable.vue";
 import axios from "axios";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "FormBuilder",
@@ -214,16 +215,16 @@ export default {
   props: {
     name: String,
     form: {
-      type: String,
+      type: Object,
       default: () => {
-        return '{}';
+        return {};
       },
     },
     redirectUrl: String,
     storeUrl: String,
   },
   created() {
-    this.localForm = JSON.parse(this.form);
+    this.localForm = this.form;
     if (this.localForm.hasOwnProperty('id')) {
       this.title = this.localForm.title;
       this.id = this.localForm.id;
@@ -413,7 +414,7 @@ export default {
         name: `${template.type}_${id}`,
         type: template.type,
         label: template.label,
-        options: template.options,
+        options: cloneDeep(template.options),
       }
 
       const fields = ['hint', 'placeholder', 'class', 'content', 'content_type', 'allow_add_row'];
@@ -455,7 +456,7 @@ export default {
     valueJson() {
       return JSON.stringify({
         title: this.title,
-        status: this.form?.status,
+        status: this.localForm?.status,
         fields: this.fields.map((field) => {
           let f = {
             id: field.id,

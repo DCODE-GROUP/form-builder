@@ -6,7 +6,7 @@
         format="DD/MM/YYYY"
         value-type="format"
         type="date"
-        class="w-full h-[40px]"
+        class="!w-full h-[40px]"
         :placeholder="placeholder"
         v-if="editable"
     />
@@ -17,6 +17,7 @@
 
 <script>
 import DatePicker from "vue-datepicker-next";
+import 'vue-datepicker-next/index.css';
 import BaseField from "../mixins/BaseField";
 
 export default {
