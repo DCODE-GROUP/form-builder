@@ -1,5 +1,10 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import { FormBuilder, VForm } from '../../dist/form-builder.es.js';
+import '../../dist/form-builder.css';
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.component('FormBuilder', FormBuilder);
+app.component('VForm', VForm);
+
+app.mount('#app');

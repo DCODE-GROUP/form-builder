@@ -1,21 +1,22 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
-import { resolve } from 'path';
+import svgLoader from "vite-svg-loader";
+import path from 'path';
 
 export default defineConfig({
-  plugins: [
-      vue(),
-      dts({
-        insertTypesEntry: true,
-      })
-  ],
+  plugins: [vue(), svgLoader()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@r': path.resolve(__dirname, './resources'),
+    },
+  },
   build: {
     outDir: 'dist',
+    commonjsOptions: { esmExternals: true },
     lib: {
-      entry: resolve(__dirname, 'resources/js/index.js'),
+      entry: path.resolve(__dirname, 'resources/js/index.js'),
       name: 'FormBuilder',
-      formats: ['es', 'umd'],
       fileName: (format) => `form-builder.${format}.js`,
     },
     rollupOptions: {

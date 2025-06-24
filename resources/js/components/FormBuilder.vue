@@ -1,8 +1,8 @@
 <template>
   <v-modal></v-modal>
   <div class="flex gap-4 items-center">
-    <a :href="redirectUrl" class="cursor-pointer"> Form </a> / <span class="text-sm font-semibold"
-                                                                     v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
+    <a :href="redirectUrl" class="cursor-pointer"> Form </a>
+    / <span class="text-sm font-semibold" v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
   </div>
   <div class="flex justify-between items-center">
     <h4 class="text-gray-900 text-[30px] font-semibold">
@@ -132,7 +132,7 @@
     </div>
   </div>
   <div v-if="!showPreview"
-       class="fixed bottom-0 flex justify-between text-sm font-semibold w-fill z-50 bg-gray-200">
+       class="fixed bottom-0 flex justify-between text-sm font-semibold w-fill py-2 px-6 z-50 bg-gray-200">
     <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 flex items-center">Discard</a>
     <div class="flex justify-end gap-2">
       <a @click.prevent="save('draft')"

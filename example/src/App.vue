@@ -3,22 +3,13 @@
   <VForm :form="formData" action="/forms/store" method="post" editable/>
   <FormBuilder
     :form="JSON.stringify(formData)"
-    :fields="formData.fields"
     @update:fields="updateFields"
   />
 </template>
 
 <script>
-import FormBuilder from "form-builder/js/components/FormBuilder.vue";
-import VForm from "form-builder/js/components/VForm.vue";
-import 'form-builder/css/index.css';
-
 export default {
   name: "App",
-  components: {
-    FormBuilder,
-    VForm,
-  },
   data() {
     return {
       formData: {
