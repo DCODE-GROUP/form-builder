@@ -47,7 +47,8 @@
             </div>
           </div>
           <a v-if="canRemoveRow(rowIndex)"
-             class="cursor-pointer absolute top-[-48px] right-[12px]"
+             class="cursor-pointer absolute top-2.5 right-[12px]"
+             :class="{'!top-[38px]': rowIndex === 0}"
              @click="removeRow(rowIndex)"
           >
             <MinusCircle class="w-5 h-5 text-brand-700 hover:text-brand-800"></MinusCircle>
