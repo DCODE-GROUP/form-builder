@@ -19,6 +19,7 @@
 import DatePicker from "vue-datepicker-next";
 import 'vue-datepicker-next/index.css';
 import BaseField from "../mixins/BaseField";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VDatepicker",
@@ -49,6 +50,12 @@ export default {
   watch: {
     date() {
       this.$emit("update:modelValue", this.date);
+    },
+    modelValue: {
+      handler: function handler(newValue) {
+        this.date = cloneDeep(newValue);
+      },
+      deep: true
     },
   },
 };

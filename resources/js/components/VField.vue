@@ -3,14 +3,15 @@
     <label :for="name" v-if="field.type === 'heading'" class="text-lg font-semibold !text-gray-900">
       {{ label }}
     </label>
-    <label :for="name" v-else-if="!['paragraph', 'checkbox'].includes(field.type)">
+    <label :for="name" v-else-if="!['paragraph', 'checkbox'].includes(field.type) && !field?.presenter">
       <component v-if="label" :is="fieldLabel">{{ label }} {{ field.required ? '*' : '' }}</component>
       <span v-else>&nbsp;</span>
     </label>
     <component
         :key="name"
         v-if="fieldComponent"
-        v-model="input"
+        :model-value="modelValue"
+        @update:modelValue="$emit('update:modelValue', $event)"
         :is="fieldComponent"
         :name="name"
         :type="type"
@@ -21,6 +22,7 @@
         :editable="editable"
         :preview="preview"
     ></component>
+    <component v-else-if="field.presenter" :is="field.presenter" v-bind="{field: field}"></component>
     <slot></slot>
   </div>
 </template>
@@ -38,7 +40,6 @@ import SingleCheckbox from "./fields/SingleCheckbox.vue";
 import VGridInput from "./fields/VGridInput.vue";
 import VAddress from "./fields/VAddress.vue";
 import { markRaw } from "vue";
-import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VField",
@@ -70,7 +71,6 @@ export default {
   },
   data() {
     return {
-      input: null,
       componentTypes: markRaw({
         checkbox: SingleCheckbox,
         "check-group": CheckGroup,
@@ -87,17 +87,6 @@ export default {
         address: VAddress,
       }),
     };
-  },
-  created() {
-    this.input = cloneDeep(this.modelValue);
-  },
-  watch: {
-    input: {
-      handler(newInputs) {
-        this.$emit("update:modelValue", newInputs);
-      },
-      deep: true,
-    },
   },
   computed: {
     fieldComponent() {

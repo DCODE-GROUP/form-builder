@@ -46,7 +46,7 @@
               <slot></slot>
             </div>
           </div>
-          <a v-if="canRemoveRow(rowIndex)"
+          <a v-if="canRemoveRow(rowIndex) && originalGrid"
              class="cursor-pointer absolute top-2.5 right-[12px]"
              :class="{'!top-[38px]': rowIndex === 0}"
              @click="removeRow(rowIndex)"
@@ -96,7 +96,7 @@ export default {
     name: {},
     type: {},
     field: {},
-    modelValue: {default: {}},
+    modelValue: {default: []},
   },
   data() {
     return {
@@ -134,7 +134,7 @@ export default {
     },
     originalGrid() {
       return this.grid.filter(row =>
-        row.some(cell => cell.some(item => !item?.on_flight))
+          row.some(cell => cell.some(item => !item?.on_flight))
       );
     },
     canRemove() {
@@ -143,28 +143,27 @@ export default {
   },
   created() {
     this.localField = cloneDeep(this.field);
-    this.initiateGrid(this.inputs?.length > this.grid.length);
+    this.initiateGrid(this.grid && this.inputs?.length > this.grid.length);
   },
   watch: {
     inputs: {
       handler: function handler(newValue) {
-        this.$emit("update:modelValue", newValue);
+        this.$emit("update:modelValue", cloneDeep(newValue));
       },
       deep: true
     },
   },
   methods: {
     canRemoveRow(rowIndex) {
-      return (rowIndex + 1) % this.originalGrid.length === 0 &&
-          this.field.allow_add_row &&
-          (rowIndex + 1 !== this.originalGrid.length || this.grid.length > this.originalGrid.length);
+      return (rowIndex + this.originalGrid.length) % this.originalGrid.length === 0 &&
+          this.field.allow_add_row && this.grid.length > this.originalGrid.length;
     },
     initiateGrid(populate = false) {
-      this.grid.forEach((row, rowIndex) => {
+      this.grid?.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
           if (cell[0]?.name) {
             if (!this.inputs) {
-              this.inputs = {};
+              this.inputs = [];
             }
 
             if (!this.inputs.hasOwnProperty(rowIndex)) {
@@ -224,7 +223,7 @@ export default {
         );
 
         const length = this.originalGrid.length;
-        this.grid.splice(rowIndex - 1, length);
+        this.grid.splice(rowIndex, length);
         if (isOriginalGrid) {
           for (let i = 0; i < length; i++) {
             this.grid[i].forEach(cell => {
@@ -236,18 +235,8 @@ export default {
         }
 
         if (this.inputs.hasOwnProperty(rowIndex)) {
-          for (let i = (rowIndex - 1); i < ((rowIndex - 1) + length); i++) {
-            delete this.inputs[i];
-          }
+          this.inputs.splice(rowIndex, length);
         }
-
-        //Re-index the inputs to ensure proper order
-        this.inputs = Object.keys(this.inputs)
-            .sort((a, b) => a - b)
-            .reduce((acc, key, index) => {
-              acc[index] = this.inputs[key];
-              return acc;
-            }, {});
       }
     },
     addRow() {
@@ -298,7 +287,7 @@ export default {
     },
     getClassForItem(rowItems, colIndex) {
       const hasItem = rowItems[colIndex].some((item) => item.hasOwnProperty('label'))
-      if (!hasItem && colIndex ===! this.getLatestColumnIndex) {
+      if (!hasItem && colIndex === !this.getLatestColumnIndex) {
         return 'relative flex items-center justify-center rounded-lg w-full';
       }
 

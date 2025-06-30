@@ -67,7 +67,14 @@ export default {
   watch: {
     input() {
         this.$emit("update:modelValue", this.input);
-    }
+    },
+    modelValue: {
+      handler: function handler(newValue) {
+        this.input = this.modelValue;
+        this.signaturePad.fromDataURL(this.input);
+      },
+      deep: true
+    },
   },
   methods: {
     clear() {

@@ -1,21 +1,21 @@
 <template>
   <label
-    :for="field"
-    class="block space-y-2xsSpace text-sm font-medium leading-none text-tertiary-700"
+      :for="field"
+      class="block space-y-2xsSpace text-sm font-medium leading-none text-tertiary-700"
   >
     <span
-      v-if="labelText || $slots.label"
-      class="v-field-label inline-block mb-2"
+        v-if="labelText || $slots.label"
+        class="v-field-label inline-block mb-2"
     >
       <template v-if="$slots.label">
         <slot name="label"></slot>
       </template>
       <template v-else>
-        {{ labelText }}
+        <span v-html="labelText"></span>
         <span v-if="isRequired"> *</span>
       </template>
     </span>
-    <slot />
+    <slot/>
   </label>
 </template>
 

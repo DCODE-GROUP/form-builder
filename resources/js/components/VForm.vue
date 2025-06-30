@@ -2,7 +2,7 @@
   <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'" :name="name">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
-    <input type="hidden" :name="name" :value="JSON.stringify(inputs)"/>
+    <input type="hidden" :name="name" :value="JSON.stringify(formData)"/>
     <div
         class="fields"
         :style="{
@@ -16,7 +16,7 @@
       <div v-for="field in fields" :key="field.id" v-if="fields.length">
         <v-field
             :key="name + field.name"
-            v-model="inputs[field.name]"
+            v-model="formData[field.name]"
             :name="fieldName(field)"
             :label="field.label"
             :type="field.type"
@@ -90,22 +90,14 @@ export default {
   },
   data() {
     return {
-      inputs: this.formData,
       fields: this.form.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]')?.content
     };
   },
-  created() {
-    const entry = this.formData;
-    if(entry.hasOwnProperty('id')) {
-      this.inputs['id'] = entry.id;
-    }
-  },
   watch: {
-    inputs: {
-      handler(newInputs) {
-        console.log('newInputs', newInputs)
-        this.$emit('update:formData', newInputs);
+    form: {
+      handler(change) {
+        this.fields = this.form.fields
       },
       deep: true,
     },

@@ -22,11 +22,16 @@
   "name": "@dcodegroup-au/form-builder",
   "author": "DCODE GROUP",
   "keywords": [],
-  "version": "2.0.5",
+  "version": "2.0.6",
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/typography": "^0.5.16",
     "dropzone": "^5.5.1",
     "lodash.clonedeep": "^4.5.0",
+    "postcss-nested": "^7.0.2",
     "signature_pad": "^3.0.0-beta.4",
+    "tailwindcss": "^3.4.17",
     "vite-svg-loader": "^5.1.0",
     "vue-datepicker-next": "^1.0.3",
     "vuedraggable": "^4.1.0"
