@@ -130,7 +130,7 @@ export default {
     modelValue: {
       type: Array,
       default: () => [
-        [[], []]
+        [[]]
       ],
     },
     allowAddRow: {
@@ -139,7 +139,7 @@ export default {
     },
     allowAddRowAsTemplate: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     isDragging: {
       type: Boolean,
@@ -179,8 +179,7 @@ export default {
         callback: async (updatedFields) => {
           this.grid[rowIndex] = updatedFields;
         },
-        cancelCallback: () => {
-        },
+        cancelCallback: () => {},
       });
     },
     removeField(rowIndex, colIndex) {

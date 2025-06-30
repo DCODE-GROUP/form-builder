@@ -11,6 +11,15 @@ export default defineConfig({
       '@r': path.resolve(__dirname, './resources'),
     },
   },
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss')('./tailwind.config.js'),
+        require('autoprefixer'),
+        require('postcss-nested')
+      ],
+    },
+  },
   build: {
     outDir: 'dist',
     commonjsOptions: { esmExternals: true },

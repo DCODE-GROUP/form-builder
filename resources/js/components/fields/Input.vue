@@ -34,6 +34,9 @@ export default {
     input(val) {
       this.$emit("update:modelValue", val);
     },
+    modelValue(val) {
+      this.input = val;
+    },
   },
 };
 </script>

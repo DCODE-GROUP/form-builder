@@ -28,8 +28,13 @@
   </div>
 </template>
 <script>
+import EditFieldGrid from "./EditFieldGrid.vue";
+
 export default {
   inject: ["bus"],
+  components: {
+    EditFieldGrid
+  },
   data() {
     return {
       isOpen: false,

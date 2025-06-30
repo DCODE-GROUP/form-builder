@@ -14,7 +14,7 @@
     </input-wrapper>
     <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
     <label class="flex cursor-pointer items-center space-y-1">
-      <v-toggle v-model="isManual" :ring="false" />
+      <v-toggle v-model="isManual" :ring="false"/>
       <span class="text-xs inline-block">Manual Address</span>
     </label>
     <div class="relative space-y-2" v-if="isManual">
@@ -65,6 +65,7 @@
 <script>
 import InputWrapper from "../common/InputWrapper.vue";
 import VToggle from "../common/VToggle.vue";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VAddress",
@@ -118,6 +119,12 @@ export default {
         this.copy = false;
         this.form.reset();
       }
+    },
+    modelValue: {
+      handler: function handler(newValue) {
+        this.form = Object.keys(this.modelValue ?? []).length ? this.modelValue : this.form;
+      },
+      deep: true
     },
   },
   methods: {
