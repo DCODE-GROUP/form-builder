@@ -1,6 +1,6 @@
 <template>
   <div class="grid space-y-2" :class="field?.class">
-    <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0">
+    <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0" v-if="typeof modelValue !== 'string'">
       <input
           :id="name"
           :name="name"
@@ -12,6 +12,20 @@
           @input="resetAddressInput"
       />
     </input-wrapper>
+    <div v-else>
+      <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0">
+        <input
+            :id="name"
+            :name="name"
+            type="text"
+            :disabled="isManual"
+            class="border-1 border-solid border-gray-300 rounded-lg bg-white"
+            :value="modelValue"
+            :placeholder="field?.placeholder"
+            @input="resetAddressInput"
+        />
+      </input-wrapper>
+    </div>
     <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
     <label class="flex cursor-pointer items-center space-y-1">
       <v-toggle v-model="isManual" :ring="false"/>

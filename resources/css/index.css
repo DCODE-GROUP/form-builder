@@ -76,7 +76,7 @@
     }
 
     .draggable {
-        @apply relative space-y-2 h-[638px];
+        @apply relative space-y-2 h-[100vh];
 
         .-field {
             @apply px-6 py-4 bg-gray-50 shadow-sm rounded-xl mb-2;

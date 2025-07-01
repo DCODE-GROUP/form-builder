@@ -151,7 +151,7 @@
 </template>
 
 <script setup>
-import {ref, reactive, computed, watch, getCurrentInstance, onMounted, provide} from "vue";
+import {ref, reactive, computed, watch, getCurrentInstance, onMounted, provide, markRaw} from "vue";
 import VForm from "./VForm.vue";
 import Event from "./mixins/Vue3EventBus.js";
 import VModal from "./common/VModal.vue";
@@ -175,15 +175,33 @@ const props = defineProps({
 
 provide('bus', Event);
 
-const localForm = reactive(props.form);
-const id = ref(localForm.id || null);
-const title = ref(localForm.title || null);
-const fields = ref(localForm.fields || []);
+console.log('form', props.form)
+
+let localForm = reactive(props.form);
+let id = ref(localForm.id || null);
+let title = ref(localForm.title || null);
+let fields = ref(localForm.fields || []);
 const errors = ref([]);
 const showPreview = ref(false);
 const isDragging = ref(false);
 const loading = ref(false);
 const templates = ref(getTemplates());
+
+const populateCustomComponents = (customFormComponents) => {
+  fields.value.map((o) => {
+    ['builder', 'presenter'].forEach((field) => {
+      const found = customFormComponents.find((c) => {
+        return o.hasOwnProperty(field) && c[field].__name === o[field].__name;
+      });
+
+      if (found) {
+        o[field] = markRaw(found[field])
+      }
+    });
+
+    return o;
+  });
+}
 
 onMounted(() => {
   const instance = getCurrentInstance();
@@ -191,6 +209,8 @@ onMounted(() => {
   customFormComponents.forEach((template) => {
     templates.value.push(template)
   })
+
+  populateCustomComponents(customFormComponents);
 });
 
 const valueJson = computed(() => {
@@ -313,4 +333,5 @@ const cFirst = (string) => {
   if (!string) return '';
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 </script>

@@ -3,9 +3,9 @@
     <input type="hidden" :name="name" :id="name" :value="date"/>
     <date-picker
         v-model:value="date"
-        format="DD/MM/YYYY"
+        :format="formatTimeString()"
         value-type="format"
-        type="date"
+        :type="formatTimeString() === 'hh:mm' ? 'time' : 'date'"
         class="!w-full h-[40px]"
         :placeholder="placeholder"
         v-if="editable"
@@ -43,6 +43,7 @@ export default {
     };
   },
   created() {
+    console.log('date', this.modelValue)
     if (this.modelValue) {
       this.date = this.modelValue;
     }
@@ -53,11 +54,20 @@ export default {
     },
     modelValue: {
       handler: function handler(newValue) {
+        console.log('date11', this.modelValue)
         this.date = cloneDeep(newValue);
       },
       deep: true
     },
   },
+  methods: {
+    formatTimeString() {
+      if (typeof this.modelValue === 'string' && this.modelValue.includes(':')) {
+        return `hh:mm`;
+      }
+      return 'DD/MM/YY';
+    }
+  }
 };
 </script>
 

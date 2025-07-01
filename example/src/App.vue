@@ -1,8 +1,8 @@
 <template>
   <div class="m-8">
     <h1>Form Builder Example</h1>
-    <VForm :form="formData" v-model:formData="formData" action="/forms/store" method="post" editable/>
-    <FormBuilder v-model:form="formData"/>
+<!--    <VForm :form="formData" v-model:formData="formData" action="/forms/store" method="post" editable/>-->
+    <FormBuilder v-model:form="formData1"/>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   name: "App",
   data() {
     return {
-      formData1: {},
+      formData1: this.getData(),
       formData: {
         title: "Example Form",
         status: "active",
@@ -411,9 +411,15 @@ export default {
   watch: {
     formData1: {
       handler(newValue) {
-        console.log("Form Data Updated:", newValue);
+        console.log("Form Data Updated:", newValue, this.$customFormComponents);
       },
       deep: true,
+    }
+  },
+  methods: {
+    getData() {
+      let a = '{"id":2,"title":"Tung Test Form","version":"1.0","status":"draft","published_at":null,"fields":[{"id":1313742323755,"hint":null,"name":"text_1313742323755","type":"text","class":"w-full","label":"Site Name","required":true,"placeholder":"Enter your site name"},{"id":1163101150978,"hint":null,"name":"datepicker_1163101150978","type":"datepicker","class":"w-full","label":"Date","required":true,"placeholder":"Select date"},{"id":502076699943,"hint":null,"name":"number_502076699943","type":"number","class":"w-full","label":"Work Order No.","required":true,"placeholder":"Number"},{"id":1503178739477,"hint":null,"name":"address_1503178739477","type":"address","class":"w-full","label":"Site Address","required":true,"placeholder":"Enter your address"},{"id":1084974421574,"hint":null,"name":"datepicker_1084974421574","type":"datepicker","class":"w-full","label":"Time","required":true,"placeholder":"Select time"},{"id":1357428031910,"hint":null,"name":"number_1357428031910","type":"number","class":"w-full","label":"Site ID","required":true,"placeholder":"Number"},{"id":1511069538997,"data":[{"column1":{"name":"item_no","value":null},"column2":{"name":"action","value":[{"type":"heading","label":"All previous defects and non-conformances attended to and recorded"}]},"column3":{"name":"pass","type":"checkbox","value":null},"column4":{"name":"fail","type":"checkbox","value":null},"column5":{"name":"na","type":"checkbox","value":null}},{"column1":{"name":"item_no","value":"1.1"},"column2":{"name":"action","value":[{"type":"heading","label":"Check control valve assembly is unobstructed"}]},"column3":{"name":"pass","type":"checkbox","value":null},"column4":{"name":"fail","type":"checkbox","value":null},"column5":{"name":"na","type":"checkbox","value":null}},{"column1":{"name":"item_no","value":"1.2"},"column2":{"name":"action","value":[{"type":"heading","label":"Check spare sprinklers and spanner are available"}]},"column3":{"name":"pass","type":"checkbox","value":null},"column4":{"name":"fail","type":"checkbox","value":null},"column5":{"name":"na","type":"checkbox","value":null}},{"column1":{"name":"item_no","value":"1.3"},"column2":{"name":"action","value":[{"type":"heading","label":"Check signage for damage, legibility and location"}]},"column3":{"name":"pass","type":"checkbox","value":null},"column4":{"name":"fail","type":"checkbox","value":null},"column5":{"name":"na","type":"checkbox","value":null}},{"column1":{"name":"item_no","value":"1.4"},"column2":{"name":"action","value":[{"type":"heading","label":"Check fire brigade booster connection is operational"}]},"column3":{"name":"pass","type":"checkbox","value":null},"column4":{"name":"fail","type":"checkbox","value":null},"column5":{"name":"na","type":"checkbox","value":null}}],"name":"required_actions_table_1511069538997","type":"required_actions_table","label":"Required Actions Table","builder":{"props":{"data":[]},"__name":"RequiredActionsTable"},"presenter":"CustomInput"}],"deleted_at":null,"created_at":"2025-06-30T08:26:04.000000Z","updated_at":"2025-06-30T08:33:14.000000Z","formatted_published_at":null,"last_modified":"30 Jun 2025, 18:33"}';
+      return JSON.parse(a);
     }
   }
 };

@@ -5,6 +5,7 @@ import '../../dist/form-builder.css';
 import RequiredActionsTable from "./components/RequiredActionsTable.vue";
 import TestResultsTable from "@s/components/TestResultsTable.vue";
 import EquipmentServiceTable from "@s/components/EquipmentServiceTable.vue";
+import DefectTable from "@s/components/DefectTable.vue";
 
 const app = createApp(App);
 app.config.globalProperties.$customFormComponents = [
@@ -28,6 +29,18 @@ app.config.globalProperties.$customFormComponents = [
     type: 'equipment_service',
     label: 'Equipment Service',
     data: []
+  },
+  {
+    builder: DefectTable,
+    presenter: "CustomInput",
+    type: "defect",
+    label: "Defect",
+    data: {
+      other_note_label: "Further information recorded on notes page",
+      other_note_value: null,
+      defects: [],
+      defect_types: [],
+    },
   },
 ]
 

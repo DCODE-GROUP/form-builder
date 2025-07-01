@@ -36,6 +36,7 @@
 
 <script>
 import VField from "./VField.vue";
+import {getCurrentInstance, markRaw} from "vue";
 
 export default {
   name: "VForm",
@@ -102,7 +103,29 @@ export default {
       deep: true,
     },
   },
+  mounted() {
+    console.log('VForm mounted', this.formData);
+    const instance = getCurrentInstance();
+    const customFormComponents = instance?.appContext.config.globalProperties.$customFormComponents;
+
+    this.populateCustomComponents(customFormComponents);
+  },
   methods: {
+    populateCustomComponents(customFormComponents) {
+      this.fields.map((o) => {
+        ['builder', 'presenter'].forEach((field) => {
+          const found = customFormComponents.find((c) => {
+            return o.hasOwnProperty(field) && c[field].__name === o[field].__name;
+          });
+
+          if (found) {
+            o[field] = markRaw(found[field])
+          }
+        });
+
+        return o;
+      });
+    },
     fieldName(field) {
       if (!this.name) {
         return field.name;

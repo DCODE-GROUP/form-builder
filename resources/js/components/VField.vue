@@ -7,11 +7,25 @@
       <component v-if="label" :is="fieldLabel">{{ label }} {{ field.required ? '*' : '' }}</component>
       <span v-else>&nbsp;</span>
     </label>
+<!--    <component-->
+<!--        :key="name"-->
+<!--        v-if="fieldComponent"-->
+<!--        :model-value="modelValue"-->
+<!--        @update:modelValue="$emit('update:modelValue', $event)"-->
+<!--        :is="fieldComponent"-->
+<!--        :name="name"-->
+<!--        :type="type"-->
+<!--        :options="options"-->
+<!--        :placeholder="placeholder"-->
+<!--        :field="field"-->
+<!--        :required="field.hasOwnProperty('required') && field.required"-->
+<!--        :editable="editable"-->
+<!--        :preview="preview"-->
+<!--    ></component> -->
     <component
         :key="name"
         v-if="fieldComponent"
         :model-value="modelValue"
-        @update:modelValue="$emit('update:modelValue', $event)"
         :is="fieldComponent"
         :name="name"
         :type="type"
@@ -22,7 +36,7 @@
         :editable="editable"
         :preview="preview"
     ></component>
-    <component v-else-if="field.presenter" :is="field.presenter" v-bind="{field: field}"></component>
+    <component v-else-if="field.presenter" :model-value="modelValue" :is="field.presenter" v-bind="{field: field}"></component>
     <slot></slot>
   </div>
 </template>

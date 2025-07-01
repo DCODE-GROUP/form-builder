@@ -43,7 +43,7 @@
           <component
               v-if="element?.builder"
               :is="element.builder"
-              v-bind="{data :element?.data}"
+              v-bind="{component: element}"
           ></component>
           <template v-else-if="element.type === 'grid'">
             <div class="-prop">
@@ -228,6 +228,8 @@ const props = defineProps({
     default: false,
   },
 });
+
+console.log('modelValue', props.modelValue)
 
 const emit = defineEmits(["update:modelValue"]);
 
