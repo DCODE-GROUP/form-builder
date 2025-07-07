@@ -63,7 +63,7 @@
             <p class="mb-5">Status</p>
             <div class="space-y-3">
               <div
-                  class="pr-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center"
+                  class="px-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center gap-2"
                   :class="{'!text-success-700 !bg-success-50 !border-success-200' : localForm.status === 'published'}"
               >
                 <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,11 +125,11 @@
     </div>
   </div>
   <div v-if="!showPreview"
-       class="sticky bottom-0 flex justify-between text-sm font-semibold w-fill py-2 px-6 z-50 bg-gray-200">
-    <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 flex items-center">Discard</a>
-    <div class="flex justify-end gap-2">
+       class="sticky bottom-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 mt-[22px] bg-gray-200">
+    <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 inline-block">Discard</a>
+    <div class="flex gap-2">
       <a @click.prevent="save('draft')"
-         class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-2">
+         class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-[7px]">
         <span v-if="!loading">
           Save as draft
         </span>
@@ -138,7 +138,7 @@
         </span>
       </a>
       <a @click.prevent="save('published')"
-         class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-2">
+         class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-[7px]">
         <span v-if="!loading">
           Publish
         </span>

@@ -53,11 +53,6 @@ class FormBuilderServiceProvider extends ServiceProvider
                 app('DCODE_FORM_BUILDER_PATH').'/database/migrations/create_form_data_table.stub.php' => database_path('migrations/'.$timestamp.'_create_form_data_table.php'),
             ], 'form-builder-migrations');
         }
-
-        $this->publishes([app('DCODE_FORM_BUILDER_PATH').'/resources/sass' => resource_path('sass/form-builder')], 'form-builder-sass');
-        $this->publishes([
-            __DIR__.'/../dist' => public_path('vendor/form-builder'),
-        ], 'form-builder-assets');
     }
 
     private function doesntHaveTables()

@@ -17102,8 +17102,8 @@ const eg = { class: "flex gap-4 mb-1 px-6 items-center" }, tg = ["href"], ng = [
   class: "flex flex-col text-sm font-regular text-gray-900 gap-1"
 }, wg = { class: "text-base" }, Tg = { class: "flex flex-col text-sm font-regular text-gray-900 gap-1" }, Ag = { class: "text-base" }, Cg = { class: "form-builder-templates overflow-y-auto" }, Og = ["onClick"], Pg = { class: "relative group" }, Rg = ["innerHTML"], Ig = { class: "absolute hidden group-hover:block bg-black text-white text-sm rounded px-4 py-2 -top-16 left-0 w-[200px]" }, Dg = {
   key: 2,
-  class: "sticky bottom-0 flex justify-between text-sm font-semibold w-fill py-2 px-6 z-50 bg-gray-200"
-}, Fg = { class: "flex justify-end gap-2" }, Mg = { key: 0 }, Lg = {
+  class: "sticky bottom-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 mt-[22px] bg-gray-200"
+}, Fg = { class: "flex gap-2" }, Mg = { key: 0 }, Lg = {
   key: 1,
   class: "flex items-center gap-2"
 }, Ug = { key: 0 }, Ng = {
@@ -17295,7 +17295,7 @@ const eg = { class: "flex gap-4 mb-1 px-6 items-center" }, tg = ["href"], ng = [
                   A[13] || (A[13] = j("p", { class: "mb-5" }, "Status", -1)),
                   j("div", bg, [
                     j("div", {
-                      class: tt(["pr-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center", { "!text-success-700 !bg-success-50 !border-success-200": et(n).status === "published" }])
+                      class: tt(["px-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center gap-2", { "!text-success-700 !bg-success-50 !border-success-200": et(n).status === "published" }])
                     }, [
                       (oe(), ie("svg", xg, [
                         j("circle", {
@@ -17359,12 +17359,12 @@ const eg = { class: "flex gap-4 mb-1 px-6 items-center" }, tg = ["href"], ng = [
         l.value ? je("", !0) : (oe(), ie("div", Dg, [
           j("a", {
             onClick: p,
-            class: "cursor-pointer text-error-500 hover:text-error-700 flex items-center"
+            class: "cursor-pointer text-error-500 hover:text-error-700 inline-block"
           }, "Discard"),
           j("div", Fg, [
             j("a", {
               onClick: A[3] || (A[3] = rr((M) => h("draft"), ["prevent"])),
-              class: "rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-2"
+              class: "rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-[7px]"
             }, [
               s.value ? (oe(), ie("span", Lg, [
                 se(et(es), { class: "w-5 h-5 animate-spin text-white" })
@@ -17372,7 +17372,7 @@ const eg = { class: "flex gap-4 mb-1 px-6 items-center" }, tg = ["href"], ng = [
             ]),
             j("a", {
               onClick: A[4] || (A[4] = rr((M) => h("published"), ["prevent"])),
-              class: "rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-2"
+              class: "rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-[7px]"
             }, [
               s.value ? (oe(), ie("span", Ng, [
                 se(et(es), { class: "w-5 h-5 animate-spin text-white" })

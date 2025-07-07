@@ -32,15 +32,6 @@ class InstallCommand extends Command
             $this->callSilent('vendor:publish', ['--tag' => 'form-builder-migrations']);
         }
 
-        $this->comment('Publishing Form Builder Configuration...');
-        $this->callSilent('vendor:publish', ['--tag' => 'form-builder-config']);
-
-        $this->comment('Publishing Form Builder Sass...');
-        $this->callSilent('vendor:publish', ['--tag' => 'form-builder-sass']);
-
-        $this->comment('Publishing Form Builder Assets..');
-        $this->callSilent('vendor:publish', ['--tag' => 'form-builder-assets']);
-
         $this->info('Form Builder scaffolding installed successfully.');
     }
 }
