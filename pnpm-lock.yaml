@@ -41,6 +41,9 @@ importers:
       vue-datepicker-next:
         specifier: ^1.0.3
         version: 1.0.3(vue@3.5.17(typescript@5.8.3))
+      vue-json-pretty:
+        specifier: ^2.5.0
+        version: 2.5.0(vue@3.5.17(typescript@5.8.3))
       vuedraggable:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.5.17(typescript@5.8.3))
@@ -3909,6 +3912,12 @@ packages:
     resolution: {integrity: sha512-Brqjh896BJGVxP7d6tGDsPMu0SDAB8hAdtG7zWF8VIHJB21dk1VB9KgdajD9Y9uXbg+wHN0vmL7sbMPIyehQVQ==}
     peerDependencies:
       vue: ^3.0.0
+
+  vue-json-pretty@2.5.0:
+    resolution: {integrity: sha512-nZA6qXYaiMaE2J0HkKtkrLcPJoN03SDSBdZWEPiRwoOVySWOfoZCyadhBwBN6wAHTga+c/R49ExGWoKFXnu37A==}
+    engines: {node: '>= 10.0.0', npm: '>= 5.0.0'}
+    peerDependencies:
+      vue: '>=3.0.0'
 
   vue-style-loader@4.1.3:
     resolution: {integrity: sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg==}
@@ -8266,6 +8275,10 @@ snapshots:
   vue-datepicker-next@1.0.3(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       date-format-parse: 0.2.7
+      vue: 3.5.17(typescript@5.8.3)
+
+  vue-json-pretty@2.5.0(vue@3.5.17(typescript@5.8.3)):
+    dependencies:
       vue: 3.5.17(typescript@5.8.3)
 
   vue-style-loader@4.1.3:

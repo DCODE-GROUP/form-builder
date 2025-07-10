@@ -1,42 +1,26 @@
 <template>
   <div class="v-field" :class="fieldClass">
-    <label :for="name" v-if="field.type === 'heading'" class="text-lg font-semibold !text-gray-900">
-      {{ label }}
+    <label :for="localModelValue.name" v-if="localModelValue.type === 'heading'" class="text-lg font-semibold !text-gray-900">
+      {{ localModelValue.label }}
     </label>
-    <label :for="name" v-else-if="!['paragraph', 'checkbox'].includes(field.type) && !field?.presenter">
-      <component v-if="label" :is="fieldLabel">{{ label }} {{ field.required ? '*' : '' }}</component>
+    <label :for="localModelValue.name" v-else-if="!['paragraph', 'checkbox'].includes(localModelValue.type) && !localModelValue?.presenter">
+      <component v-if="localModelValue.label" :is="fieldLabel">{{ localModelValue.label }} {{ localModelValue.required ? '*' : '' }}</component>
       <span v-else>&nbsp;</span>
     </label>
-<!--    <component-->
-<!--        :key="name"-->
-<!--        v-if="fieldComponent"-->
-<!--        :model-value="modelValue"-->
-<!--        @update:modelValue="$emit('update:modelValue', $event)"-->
-<!--        :is="fieldComponent"-->
-<!--        :name="name"-->
-<!--        :type="type"-->
-<!--        :options="options"-->
-<!--        :placeholder="placeholder"-->
-<!--        :field="field"-->
-<!--        :required="field.hasOwnProperty('required') && field.required"-->
-<!--        :editable="editable"-->
-<!--        :preview="preview"-->
-<!--    ></component> -->
     <component
-        :key="name"
-        v-if="fieldComponent"
-        :model-value="modelValue"
+        :key="localModelValue.name"
+        v-model="localModelValue"
         :is="fieldComponent"
-        :name="name"
-        :type="type"
-        :options="options"
-        :placeholder="placeholder"
-        :field="field"
-        :required="field.hasOwnProperty('required') && field.required"
         :editable="editable"
         :preview="preview"
     ></component>
-    <component v-else-if="field.presenter" :model-value="modelValue" :is="field.presenter" v-bind="{field: field}"></component>
+    <component
+        v-if="modelValue.presenter"
+        :model-value="modelValue"
+        :is="modelValue.presenter"
+        v-bind="{possibleValues: possibleValues}"
+    >
+    </component>
     <slot></slot>
   </div>
 </template>
@@ -58,18 +42,7 @@ import { markRaw } from "vue";
 export default {
   name: "VField",
   props: {
-    name: String,
-    type: String,
-    label: String,
     modelValue: {},
-    options: {default: () => []},
-    placeholder: {default: null},
-    field: {
-      type: Object,
-      default: () => {
-        return {}
-      }
-    },
 
     /**
      * Form data can be editable after its complete
@@ -82,35 +55,52 @@ export default {
       type: Boolean,
       default: false
     },
+    possibleValues: {
+      type: [Object],
+      default: () => {
+        return {}
+      }
+    },
   },
   data() {
     return {
       componentTypes: markRaw({
-        checkbox: SingleCheckbox,
-        "check-group": CheckGroup,
-        datepicker: VDatePicker,
-        "file-upload": FileUpload,
-        number: Input,
-        "radio-group": CheckGroup,
-        select: Select,
-        signature: SignaturePad,
-        text: Input,
-        textarea: Textarea,
-        paragraph: Paragraph,
-        grid: VGridInput,
-        address: VAddress,
+        checkbox: markRaw(SingleCheckbox),
+        "check-group": markRaw(CheckGroup),
+        datepicker: markRaw(VDatePicker),
+        "file-upload": markRaw(FileUpload),
+        number: markRaw(Input),
+        "radio-group": markRaw(CheckGroup),
+        select: markRaw(Select),
+        signature: markRaw(SignaturePad),
+        text: markRaw(Input),
+        textarea: markRaw(Textarea),
+        paragraph: markRaw(Paragraph),
+        grid: markRaw(VGridInput),
+        address: markRaw(VAddress),
       }),
+      localModelValue: this.modelValue
     };
+  },
+  watch: {
+    localModelValue: {
+      handler(newValue) {
+        this.$emit("update:modelValue", {
+          ...newValue
+        });
+      },
+      deep: true,
+    }
   },
   computed: {
     fieldComponent() {
-      return this.componentTypes[this.type];
+      return this.componentTypes[this.localModelValue.type];
     },
     fieldLabel() {
-      return this.type === "heading" ? "h4" : "span";
+      return this.localModelValue.type === "heading" ? "h4" : "span";
     },
     fieldClass() {
-      return ["cell", `-type-${this.type}`].join(" ");
+      return ["cell", `-type-${this.localModelValue.type}`].join(" ");
     },
   },
 };

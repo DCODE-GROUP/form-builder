@@ -1,32 +1,18 @@
 <template>
-  <div class="grid space-y-2" :class="field?.class">
-    <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0" v-if="typeof modelValue !== 'string'">
+  <div class="grid space-y-2" :class="modelValue?.class">
+    <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0">
       <input
           :id="name"
           :name="name"
           type="text"
           :disabled="isManual"
           class="border-1 border-solid border-gray-300 rounded-lg bg-white"
-          :value="fullAddress"
-          :placeholder="field?.placeholder"
+          :value="form?.address ? form.address : fullAddress"
+          :placeholder="modelValue?.placeholder"
           @input="resetAddressInput"
       />
     </input-wrapper>
-    <div v-else>
-      <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0">
-        <input
-            :id="name"
-            :name="name"
-            type="text"
-            :disabled="isManual"
-            class="border-1 border-solid border-gray-300 rounded-lg bg-white"
-            :value="modelValue"
-            :placeholder="field?.placeholder"
-            @input="resetAddressInput"
-        />
-      </input-wrapper>
-    </div>
-    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+    <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
     <label class="flex cursor-pointer items-center space-y-1">
       <v-toggle v-model="isManual" :ring="false"/>
       <span class="text-xs inline-block">Manual Address</span>
@@ -84,15 +70,16 @@ import cloneDeep from "lodash.clonedeep";
 export default {
   name: "VAddress",
   components: {InputWrapper, VToggle},
+  inject: ["possibleFormValues", "getFormValue"],
   props: {
     modelValue: {
+      type: Object,
       required: false,
     },
-    name: {},
-    field: {},
   },
   data() {
     return {
+      name: this.modelValue?.name,
       form: {
         address: null,
         city: null,
@@ -117,6 +104,7 @@ export default {
       handler(newValue) {
         if (Object.keys(newValue).length) {
           this.$emit("update:modelValue", {
+            ...this.modelValue,
             address: newValue?.address,
             city: newValue?.city,
             state: newValue?.state,
@@ -133,12 +121,6 @@ export default {
         this.copy = false;
         this.form.reset();
       }
-    },
-    modelValue: {
-      handler: function handler(newValue) {
-        this.form = Object.keys(this.modelValue ?? []).length ? this.modelValue : this.form;
-      },
-      deep: true
     },
   },
   methods: {
@@ -227,7 +209,10 @@ export default {
           console.error("Failed to load Google Maps script: " + this.$googleMapsApiKey, error);
         });
 
-    this.form = Object.keys(this.modelValue ?? []).length ? this.modelValue : this.form;
+    this.form = Object.keys(this.modelValue?.value ?? []).length ? this.modelValue.value : this.form;
+    if (!this.form.address) {
+      this.form.address = cloneDeep(this.modelValue?.address) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
+    }
   },
 };
 </script>

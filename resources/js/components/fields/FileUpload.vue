@@ -29,7 +29,7 @@
         </a>
       </div>
     </div>
-    <div class="dropzone" :class="field.class" ref="dropzone">
+    <div class="dropzone" :class="modelValue.class" ref="dropzone">
       <div class="placeholder">
         <div>
           <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@
         <div><p><span>Click to upload</span><span> or drag and drop</span></p><span>(max. 20MB)</span></div>
       </div>
     </div>
-    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+    <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
   </div>
 </template>
 
@@ -58,7 +58,6 @@ export default {
   props: {
     name: String,
     modelValue: {},
-    field: {},
   },
   data() {
     return {

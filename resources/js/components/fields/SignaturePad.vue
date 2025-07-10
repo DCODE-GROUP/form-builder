@@ -1,5 +1,5 @@
 <template>
-  <div class="signature-pad" :class="field?.class">
+  <div class="signature-pad" :class="modelValue?.class">
     <input type="hidden" class="signature-input" :name="name" :value="input"/>
     <div class="signature-pad-body rounded-lg border border-dashed border-gray-300 shadow-sm h-[160px]">
       <canvas ref="signaturePadCanvas"></canvas>
@@ -15,7 +15,7 @@
         </button>
       </div>
     </div>
-    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+    <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
   </div>
 </template>
 
@@ -32,7 +32,6 @@ export default {
       type: String,
       required: true
     },
-    field: {},
     modelValue: String
   },
   data() {

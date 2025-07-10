@@ -22,7 +22,7 @@
   "name": "@dcodegroup-au/form-builder",
   "author": "DCODE GROUP",
   "keywords": [],
-  "version": "2.0.8",
+  "version": "3.0.0",
   "dependencies": {
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.10",
@@ -34,6 +34,7 @@
     "tailwindcss": "^3.4.17",
     "vite-svg-loader": "^5.1.0",
     "vue-datepicker-next": "^1.0.3",
+    "vue-json-pretty": "^2.5.0",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 <template>
   <div class="-options">
-    <label v-for="option in options" class="cursor-pointer">
+    <label v-for="option in (modelValue?.options ?? [])" class="cursor-pointer">
       <input
         :type="inputType"
         :name="inputName"
@@ -11,7 +11,7 @@
       />
       <span>{{ option }}</span>
     </label>
-    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+    <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
   </div>
 </template>
 
@@ -22,11 +22,7 @@ export default {
   name: "CheckGroup",
   mixins: [BaseField],
   props: {
-    name: {},
-    type: {},
-    field: {},
     modelValue: {default: () => []},
-    options: {default: () => []},
   },
   data() {
     return {
@@ -34,29 +30,25 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue;
+    this.input = this.modelValue?.value;
   },
   watch: {
-    modelValue() {
-      this.input = this.modelValue;
-    },
-    input() {
-        this.$emit("update:modelValue", this.input);
+    input(val) {
+      this.modelValue.value = val;
     },
   },
-  methods: {},
   computed: {
     inputName() {
-      if (this.type === "check-group") {
-        return `${this.name}[]`;
+      if (this.modelValue.type === "check-group") {
+        return `${this.modelValue.name}[]`;
       }
       return this.name;
     },
     inputType() {
-      if (this.type === "check-group") {
+      if (this.modelValue.type === "check-group") {
         return "checkbox";
       }
-      if (this.type === "radio-group") {
+      if (this.modelValue.type === "radio-group") {
         return "radio";
       }
     },

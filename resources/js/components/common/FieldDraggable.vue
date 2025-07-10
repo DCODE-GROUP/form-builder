@@ -99,12 +99,18 @@
               <span class="-label">Supporting Text</span>
               <textarea cols="30" rows="3" v-model="element.hint" placeholder="Supporting text" />
             </div>
-            <div class="-prop -width" v-if="element.class">
-              <span class="-label">Width</span>
-              <select v-model="element.class">
-                <option value="w-full">Full</option>
-                <option value="w-1/2">Half</option>
-              </select>
+            <div class="flex w-full gap-2">
+              <div class="-prop -width w-full" v-if="element.class">
+                <span class="-label">Width</span>
+                <select v-model="element.class">
+                  <option value="w-full">Full</option>
+                  <option value="w-1/2">Half</option>
+                </select>
+              </div>
+              <div class="-prop w-full" v-if="element.hasOwnProperty('defined_key')">
+                <span class="-label">Defined Key</span>
+                <input type="text" name="defined_key" v-model="element.defined_key" />
+              </div>
             </div>
           </template>
           <template v-else>
@@ -143,9 +149,15 @@
                 </div>
               </div>
             </template>
-            <div class="-prop" v-if="element.hasOwnProperty('hint')">
-              <span class="-label">Hint Text</span>
-              <input type="text" v-model="element.hint" />
+            <div class="flex w-full gap-2">
+              <div class="-prop w-full" v-if="element.hasOwnProperty('hint')">
+                <span class="-label">Hint Text</span>
+                <input type="text" name="hint" v-model="element.hint" />
+              </div>
+              <div class="-prop w-full" v-if="element.hasOwnProperty('defined_key')">
+                <span class="-label">Defined Key</span>
+                <input type="text" name="defined_key" v-model="element.defined_key" />
+              </div>
             </div>
             <div
                 class="-prop -options"
@@ -228,8 +240,6 @@ const props = defineProps({
     default: false,
   },
 });
-
-console.log('modelValue', props.modelValue)
 
 const emit = defineEmits(["update:modelValue"]);
 

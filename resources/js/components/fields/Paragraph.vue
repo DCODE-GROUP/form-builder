@@ -1,8 +1,8 @@
 <template>
-  <div class="paragraph text-gray-600" :class="field?.class">
-    <p v-if="field.content_type === 'p'" v-html="field.content"></p>
-    <blockquote v-if="field.content_type === 'blockquote'"><q v-html="field.content"></q></blockquote>
-    <address v-if="field.content_type === 'address'" v-html="field.content"></address>
+  <div class="paragraph text-gray-600" :class="modelValue?.class">
+    <p v-if="modelValue.content_type === 'p'" v-html="modelValue.content"></p>
+    <blockquote v-if="modelValue.content_type === 'blockquote'"><q v-html="modelValue.content"></q></blockquote>
+    <address v-if="modelValue.content_type === 'address'" v-html="modelValue.content"></address>
   </div>
 </template>
 
@@ -14,11 +14,9 @@ export default {
   mixins: [BaseField],
 
   props: {
-    field: {
-      type: Object,
-      default: () => {
-        return {}
-      }
+    modelValue: {
+      type: String,
+      default: null
     },
   },
 };

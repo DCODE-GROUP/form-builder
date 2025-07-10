@@ -2,7 +2,7 @@
   <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'" :name="name">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
-    <input type="hidden" :name="name" :value="JSON.stringify(formData)"/>
+    <input type="hidden" :name="name" :value="JSON.stringify(modelValue)"/>
     <div
         class="fields"
         :style="{
@@ -13,18 +13,13 @@
         <h3>{{ title }}</h3>
         <hr/>
       </div>
-      <div v-for="field in fields" :key="field.id" v-if="fields.length">
+      <div v-for="field in modelValue.fields" :key="field.id" v-if="modelValue?.fields?.length">
         <v-field
-            :key="name + field.name"
-            v-model="formData[field.name]"
-            :name="fieldName(field)"
-            :label="field.label"
-            :type="field.type"
-            :options="field.options"
-            :placeholder="field.placeholder"
-            :field="field"
+            :key="field.name"
+            :model-value="field"
             :editable="editable"
             :preview="preview"
+            :possible-values="possibleValues"
         >
           <span class="error" v-text="getValidationMessage(field)"/>
         </v-field>
@@ -70,13 +65,13 @@ export default {
     },
     name: String,
     title: String,
-    form: {
+    modelValue: {
       type: [Object],
       default: () => {
         return {}
       }
     },
-    formData: {
+    possibleValues: {
       type: [Object],
       default: () => {
         return {}
@@ -91,20 +86,20 @@ export default {
   },
   data() {
     return {
-      fields: this.form.fields,
       csrf: document.head.querySelector('meta[name="csrf-token"]')?.content
     };
   },
-  watch: {
-    form: {
-      handler(change) {
-        this.fields = this.form.fields
+  provide() {
+    return {
+      possibleFormValues: this.possibleValues,
+      getFormValue: (obj, path) => {
+        return path?.split('.').reduce((acc, key) => {
+          return acc && acc[key];
+        }, obj);
       },
-      deep: true,
-    },
+    };
   },
   mounted() {
-    console.log('VForm mounted', this.formData);
     const instance = getCurrentInstance();
     const customFormComponents = instance?.appContext.config.globalProperties.$customFormComponents;
 
@@ -112,25 +107,21 @@ export default {
   },
   methods: {
     populateCustomComponents(customFormComponents) {
-      this.fields.map((o) => {
-        ['builder', 'presenter'].forEach((field) => {
-          const found = customFormComponents.find((c) => {
-            return o.hasOwnProperty(field) && c[field].__name === o[field].__name;
-          });
+      this.modelValue.fields = this.modelValue.fields.map((field) => {
+        ['builder', 'presenter'].forEach((key) => {
+          if (field[key]) {
+            const found = customFormComponents.find((component) => {
+              return component[key]?.__name === field[key]?.__name;
+            });
 
-          if (found) {
-            o[field] = markRaw(found[field])
+            if (found) {
+              field[key] = markRaw(found[key]);
+            }
           }
         });
 
-        return o;
+        return field;
       });
-    },
-    fieldName(field) {
-      if (!this.name) {
-        return field.name;
-      }
-      return `${this.name}[${field.name}]`;
     },
     validationKey(field) {
       if (!this.name) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="field.hint" class="mb-4 font-regular text-gray-600">{{ field.hint }}</p>
+    <p v-if="modelValue.hint" class="mb-4 font-regular text-gray-600">{{ modelValue.hint }}</p>
     <div class="grid gap-4 w-full">
       <div
           v-for="(row, rowIndex) in grid"
@@ -16,14 +16,14 @@
                 class="v-field"
                 :class="fieldClass(cell[0])">
               <label
-                  :for="name"
+                  :for="modelValue.name"
                   v-if="cell[0].type === 'heading' && !cell[0]?.on_flight"
                   class="text-lg font-semibold !text-gray-900">
                 {{ cell[0]?.label }}
               </label>
               <label
                   class="text-sm text-gray-700"
-                  :for="name"
+                  :for="modelValue.name"
                   v-else-if="!['paragraph', 'checkbox'].includes(cell[0]?.type) && !cell[0]?.on_flight">
                 <component v-if="cell[0]?.label" :is="fieldLabel(cell[0])">{{ cell[0]?.label }}
                   {{ cell[0]?.required ? '*' : '' }}
@@ -31,16 +31,10 @@
                 <span v-else>&nbsp;</span>
               </label>
               <component
-                  :key="name + cell[0]?.name"
+                  :key="modelValue.name + cell[0]?.name"
                   v-if="fieldComponent(cell[0]) && cell[0]?.name && !processing"
-                  v-model="inputs[rowIndex][cell[0]?.name]"
+                  v-model="grid[rowIndex][colIndex][0]"
                   :is="fieldComponent(cell[0])"
-                  :name="`${name}[${rowIndex}][${cell[0].name}]`"
-                  :type="cell[0].type"
-                  :options="cell[0]?.options"
-                  :placeholder="cell[0]?.placeholder"
-                  :field="cell[0]"
-                  :required="cell[0].hasOwnProperty('required') && cell[0].required"
                   :editable="editable"
               ></component>
               <slot></slot>
@@ -56,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-2 flex gap-2" v-if="field.allow_add_row">
+    <div class="mt-2 flex gap-2" v-if="modelValue.allow_add_row">
       <a
           @click="addRow"
           class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
@@ -93,16 +87,12 @@ export default {
     Plus,
   },
   props: {
-    name: {},
-    type: {},
-    field: {},
     modelValue: {default: []},
   },
   data() {
     return {
-      inputs: cloneDeep(this.modelValue),
+      localField: this.modelValue,
       processing: false,
-      localField: {},
       componentTypes: {
         checkbox: markRaw(SingleCheckbox),
         "check-group": markRaw(CheckGroup),
@@ -142,36 +132,28 @@ export default {
     },
   },
   created() {
-    this.localField = cloneDeep(this.field);
-    this.initiateGrid(this.grid && this.inputs?.length > this.grid.length);
-  },
-  watch: {
-    inputs: {
-      handler: function handler(newValue) {
-        this.$emit("update:modelValue", cloneDeep(newValue));
-      },
-      deep: true
-    },
+    this.localField = this.modelValue;
+    // this.initiateGrid(this.grid && this.localField?.length > this.grid.length);
   },
   methods: {
     canRemoveRow(rowIndex) {
       return (rowIndex + this.originalGrid.length) % this.originalGrid.length === 0 &&
-          this.field.allow_add_row && this.grid.length > this.originalGrid.length;
+          this.modelValue.allow_add_row && this.grid.length > this.originalGrid.length;
     },
     initiateGrid(populate = false) {
       this.grid?.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
           if (cell[0]?.name) {
-            if (!this.inputs) {
-              this.inputs = [];
+            if (!this.localField) {
+              this.localField = [];
             }
 
-            if (!this.inputs.hasOwnProperty(rowIndex)) {
-              this.inputs[rowIndex] = {};
+            if (!this.localField.hasOwnProperty(rowIndex)) {
+              this.localField[rowIndex] = {};
             }
 
-            if (!this.inputs[rowIndex].hasOwnProperty(cell[0].name)) {
-              this.inputs[rowIndex][cell[0].name] = null;
+            if (!this.localField[rowIndex].hasOwnProperty(cell[0].name)) {
+              // this.localField[rowIndex][colIndex][0] = null;
             }
           }
         });
@@ -179,7 +161,7 @@ export default {
 
       if (populate) {
         this.processing = true;
-        this.inputs.filter((value, index) => (index + 1) > this.grid.length).forEach((savedRow) => {
+        this.localField.filter((value, index) => (index + 1) > this.grid.length).forEach((savedRow) => {
           this.originalGrid.forEach((row) => {
             const newRow = cloneDeep(row.map((o) => {
               return toRaw(o);
@@ -234,8 +216,8 @@ export default {
           }
         }
 
-        if (this.inputs.hasOwnProperty(rowIndex)) {
-          this.inputs.splice(rowIndex, length);
+        if (this.localField.hasOwnProperty(rowIndex)) {
+          this.localField.splice(rowIndex, length);
         }
       }
     },
@@ -246,9 +228,9 @@ export default {
 
       if (this.grid && this.grid.length) {
         this.processing = true;
-        const originalGrid = this.grid.filter(row =>
+        const originalGrid = cloneDeep(this.grid.filter(row =>
             row.some(cell => cell.some(item => !item?.on_flight))
-        );
+        ));
 
         originalGrid.forEach((row) => {
           const newRow = cloneDeep(row.map((o) => {
@@ -257,6 +239,7 @@ export default {
 
           this.grid.push(newRow.map((o) => {
             const id = Math.floor(Math.random() * Date.now());
+            o[0].value = null;
             if (o[0]?.id) {
               o[0].id = id;
               o[0].on_flight = true;

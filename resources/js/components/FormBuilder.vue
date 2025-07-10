@@ -30,9 +30,7 @@
     <p class="pb-6 text-xl font-semibold text-gray-900" v-if="title">{{ title }}</p>
     <div class="form-builder-preview">
       <v-form
-          action="#"
-          method="get"
-          :form="{fields}"
+          :model-value="{fields}"
           :preview="true"
           :editable="true"
           :can-interact="showPreview">
@@ -175,8 +173,6 @@ const props = defineProps({
 
 provide('bus', Event);
 
-console.log('form', props.form)
-
 let localForm = reactive(props.form);
 let id = ref(localForm.id || null);
 let title = ref(localForm.title || null);
@@ -205,8 +201,8 @@ const populateCustomComponents = (customFormComponents) => {
 
 onMounted(() => {
   const instance = getCurrentInstance();
-  const customFormComponents = instance?.appContext.config.globalProperties.$customFormComponents;
-  customFormComponents.forEach((template) => {
+  const customFormComponents = instance?.appContext.config.globalProperties?.$customFormComponents;
+  customFormComponents?.forEach((template) => {
     templates.value.push(template)
   })
 

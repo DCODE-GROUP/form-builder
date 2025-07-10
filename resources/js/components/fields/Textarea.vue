@@ -1,7 +1,8 @@
 <template>
-  <div :class="field?.class">
-    <textarea :name="name" v-model="input" rows="4" :disabled="!editable" :placeholder="field?.placeholder"></textarea>
-    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+  <div :class="modelValue?.class">
+    <textarea :name="modelValue.name" v-model="input" rows="4" :disabled="!editable"
+              :placeholder="modelValue?.placeholder"></textarea>
+    <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
   </div>
 </template>
 
@@ -12,9 +13,6 @@ export default {
   name: "Textarea",
   mixins: [BaseField],
   props: {
-    name: {},
-    type: {},
-    field: {},
     modelValue: {default: null},
   },
   data() {
@@ -23,14 +21,11 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue;
+    this.input = this.modelValue.value;
   },
   watch: {
-    modelValue() {
-      this.input = this.modelValue;
-    },
-    input() {
-        this.$emit("update:modelValue", this.input);
+    input(val) {
+      this.modelValue.value = val;
     },
   },
 };

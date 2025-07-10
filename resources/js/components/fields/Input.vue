@@ -1,8 +1,8 @@
 <template>
-  <div :class="field?.class">
-    <input v-if="editable" :name="name" :type="type" v-model="input" :placeholder="field?.placeholder"/>
-    <p v-else v-text="modelValue"></p>
-    <p v-if="field?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ field.hint }}</p>
+  <div :class="modelValue?.class">
+    <input v-if="editable" :name="modelValue.name" :type="modelValue.type" v-model="input" :placeholder="modelValue?.placeholder"/>
+    <p v-else v-text="input"></p>
+    <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
   </div>
 </template>
 
@@ -13,12 +13,10 @@ import cloneDeep from "lodash.clonedeep";
 export default {
   name: "Input",
   mixins: [BaseField],
+  inject: ["possibleFormValues", "getFormValue"],
   props: {
-    name: {},
-    type: {},
-    field: {},
     modelValue: {
-      type: String,
+      type: Object,
       default: null
     },
   },
@@ -28,14 +26,11 @@ export default {
     };
   },
   created() {
-    this.input = cloneDeep(this.modelValue);
+    this.input = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
   },
   watch: {
     input(val) {
-      this.$emit("update:modelValue", val);
-    },
-    modelValue(val) {
-      this.input = val;
+      this.modelValue.value = val;
     },
   },
 };
