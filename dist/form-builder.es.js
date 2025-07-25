@@ -32,7 +32,7 @@ const fn = {
   },
   created() {
     var t;
-    this.input = (t = this.modelValue) == null ? void 0 : t.value;
+    this.input = ((t = this.modelValue) == null ? void 0 : t.value) ?? [];
   },
   watch: {
     input(t) {
@@ -11332,7 +11332,7 @@ const dp = /* @__PURE__ */ bt(ip, [["render", cp]]), fp = {
     };
   },
   mounted() {
-    const t = ns(), e = t == null ? void 0 : t.appContext.config.globalProperties.$customFormComponents;
+    const t = ns(), e = (t == null ? void 0 : t.appContext.config.globalProperties.$customFormComponents) ?? [];
     this.populateCustomComponents(e);
   },
   methods: {

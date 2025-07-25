@@ -30,7 +30,7 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue?.value;
+    this.input = this.modelValue?.value ?? [];
   },
   watch: {
     input(val) {

@@ -101,7 +101,7 @@ export default {
   },
   mounted() {
     const instance = getCurrentInstance();
-    const customFormComponents = instance?.appContext.config.globalProperties.$customFormComponents;
+    const customFormComponents = instance?.appContext.config.globalProperties.$customFormComponents ?? [];
 
     this.populateCustomComponents(customFormComponents);
   },
