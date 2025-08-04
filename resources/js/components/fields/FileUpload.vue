@@ -1,32 +1,33 @@
 <template>
-  <div class="file-upload">
+  <div class="file-upload flex-col">
     <input type="hidden" :name="name" :value="valueJson"/>
-    <div
-        v-if="files.length"
-        v-for="(file, index) in files"
-        :key="`file_${file.id}_${index}`"
-        class="file-upload-file"
-    >
-      <div class="preview">
-        <span class="file-upload-preview">
-          <img class="img" v-if="isImage(file.mime_type)" :src="file.url" :title="file.file_name"/>
-          <svg class="svg" v-else fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
-          </svg>
-        </span>
-        <a :href="file.url" target="_blank" class="link">
-          <div class="file-upload-title">{{ file.file_name }}</div>
-        </a>
-        <a class="file-upload-file-remove" v-if="editable" @click="deleteFile(index, file)">
-          <svg width="14" height="16" viewBox="0 0 14 16" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M9.66667 3.99992V3.46659C9.66667 2.71985 9.66667 2.34648 9.52134 2.06126C9.39351 1.81038 9.18954 1.60641 8.93865 1.47858C8.65344 1.33325 8.28007 1.33325 7.53333 1.33325H6.46667C5.71993 1.33325 5.34656 1.33325 5.06135 1.47858C4.81046 1.60641 4.60649 1.81038 4.47866 2.06126C4.33333 2.34648 4.33333 2.71985 4.33333 3.46659V3.99992M5.66667 7.66659V10.9999M8.33333 7.66659V10.9999M1 3.99992H13M11.6667 3.99992V11.4666C11.6667 12.5867 11.6667 13.1467 11.4487 13.5746C11.2569 13.9509 10.951 14.2569 10.5746 14.4486C10.1468 14.6666 9.58677 14.6666 8.46667 14.6666H5.53333C4.41323 14.6666 3.85318 14.6666 3.42535 14.4486C3.04903 14.2569 2.74307 13.9509 2.55132 13.5746C2.33333 13.1467 2.33333 12.5867 2.33333 11.4666V3.99992"
-                stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+    <div class="flex flex-row gap-4 mt-1 mb-[55px]" v-if="files.length">
+      <div
+          v-for="(file, index) in files"
+          :key="`file_${file?.id}_${index}`"
+          class="file-upload-file"
+      >
+        <div class="preview">
+          <span class="file-upload-preview">
+            <img class="img" v-if="isImage(file.mime_type)" :src="file.url" :title="file.name"/>
+            <svg class="svg" v-else fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
+            </svg>
+          </span>
+          <a :href="file.url" target="_blank" class="link">
+            <div class="file-upload-title line-clamp-2 hover:text-blue-500">{{ file.name }}</div>
+          </a>
+          <a class="file-upload-file-remove" v-if="editable" @click="deleteFile(index, file)">
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M9.66667 3.99992V3.46659C9.66667 2.71985 9.66667 2.34648 9.52134 2.06126C9.39351 1.81038 9.18954 1.60641 8.93865 1.47858C8.65344 1.33325 8.28007 1.33325 7.53333 1.33325H6.46667C5.71993 1.33325 5.34656 1.33325 5.06135 1.47858C4.81046 1.60641 4.60649 1.81038 4.47866 2.06126C4.33333 2.34648 4.33333 2.71985 4.33333 3.46659V3.99992M5.66667 7.66659V10.9999M8.33333 7.66659V10.9999M1 3.99992H13M11.6667 3.99992V11.4666C11.6667 12.5867 11.6667 13.1467 11.4487 13.5746C11.2569 13.9509 10.951 14.2569 10.5746 14.4486C10.1468 14.6666 9.58677 14.6666 8.46667 14.6666H5.53333C4.41323 14.6666 3.85318 14.6666 3.42535 14.4486C3.04903 14.2569 2.74307 13.9509 2.55132 13.5746C2.33333 13.1467 2.33333 12.5867 2.33333 11.4666V3.99992"
+                  stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          </div>
       </div>
     </div>
     <div class="dropzone" :class="modelValue.class" ref="dropzone">
@@ -63,21 +64,18 @@ export default {
     return {
       files: [],
       dropzone: null,
-      formData: null,
       placeholder: ''
     }
   },
   mounted() {
-    this.formData = this.$parent._.parent.props.formData;
     const csrf = this.$parent._.parent.data.csrf;
-    if (this.editable && this.formData || this.preview) {
+    if (this.editable || this.preview) {
       this.dropzone = new Dropzone(this.$refs.dropzone, {
-        url: `/api/generic/form-data/media/upload?id=${this.formData?.id}`,
+        url: `/api/generic/media/upload`,
         addRemoveLinks: true,
         dictDefaultMessage: '',
         sending: (file, xhr, formData) => {
           formData.append("_token", csrf);
-          formData.append("field", this.name);
         },
         success: (file, response) => {
           this.files.push(response);
@@ -89,16 +87,23 @@ export default {
     }
   },
   created() {
-    let files = typeof this.modelValue === 'string' ? JSON.parse(this.modelValue) : this.modelValue;
-
-    if (files) {
-      this.files = Object.values(files);
+    this.files = this.modelValue?.value ?? [];
+  },
+  watch: {
+    files: {
+      handler(newValue) {
+        this.$emit("update:modelValue", {
+          ...this.modelValue,
+          value: {...newValue}
+        });
+      },
+      deep: true,
     }
   },
   methods: {
     deleteFile(index, file) {
       axios
-          .delete(`/api/generic/form-data/${this.formData.id}/media/${file.id}`)
+          .delete(`/api/generic/media?path=${file.path}`)
           .then((res) => {
             this.files.splice(index, 1);
           })
@@ -116,16 +121,14 @@ export default {
   },
   computed: {
     valueJson() {
-      let fileIds = this.files.map((file) => {
+      return JSON.stringify(this.files.map((file) => {
         return {
-          id: file.id,
+          path: file.path,
           url: file.url,
-          file_name: file.file_name,
+          name: file.file_name,
           mime_type: file.mime_type,
         };
-      });
-
-      return JSON.stringify(fileIds);
+      }));
     },
   },
 };
@@ -133,7 +136,7 @@ export default {
 <style>
 .file-upload {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 4px;
 
   @media only screen and (max-width: 600px) {
@@ -149,7 +152,8 @@ export default {
     }
 
     .svg {
-      width: 100px;
+      width: 80px;
+      height: 120px;
     }
   }
 
@@ -172,6 +176,11 @@ export default {
     position: relative;
 
     .preview {
+      width: 80px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      overflow: hidden;
       display: inline-block;
 
       .file-upload-file-remove {
@@ -180,7 +189,6 @@ export default {
         right: 0;
         top: 0;
         padding: 2px 6px;
-        background: white;
         border-radius: 2px;
         line-height: 0;
       }

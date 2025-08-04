@@ -5,7 +5,7 @@
            :possible-values="possibleValues"
            action="/forms/store"
            method="post" editable/>
-    <FormBuilder v-model:form="formData1"/>
+    <!--    <FormBuilder v-model:form="formData1"/>-->
   </div>
 </template>
 

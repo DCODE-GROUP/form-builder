@@ -2,7 +2,7 @@
   <form class="v-form" :action="action" :method="method !== 'get' ? 'post' : 'get'" :name="name">
     <input type="hidden" name="_token" :value="csrf"/>
     <input type="hidden" name="_method" :value="method"/>
-    <input type="hidden" :name="name" :value="JSON.stringify(modelValue)"/>
+    <input type="hidden" :name="name" :value="JSON.stringify(updatedData)"/>
     <div
         class="fields"
         :style="{
@@ -13,10 +13,11 @@
         <h3>{{ title }}</h3>
         <hr/>
       </div>
-      <div v-for="field in modelValue.fields" :key="field.id" v-if="modelValue?.fields?.length">
+      <div v-for="(field, index) in modelValue.fields" :key="field.id" v-if="modelValue?.fields?.length">
         <v-field
             :key="field.name"
             :model-value="field"
+            @update:modelValue="(value) => updateField(index, value)"
             :editable="editable"
             :preview="preview"
             :possible-values="possibleValues"
@@ -32,6 +33,7 @@
 <script>
 import VField from "./VField.vue";
 import {getCurrentInstance, markRaw} from "vue";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VForm",
@@ -86,8 +88,16 @@ export default {
   },
   data() {
     return {
-      csrf: document.head.querySelector('meta[name="csrf-token"]')?.content
+      csrf: document.head.querySelector('meta[name="csrf-token"]')?.content,
+      updatedData: cloneDeep(this.modelValue)
     };
+  },
+  watch: {
+    updatedData: {
+      handler(newValue) {
+      },
+      deep: true,
+    }
   },
   provide() {
     return {
@@ -106,6 +116,10 @@ export default {
     this.populateCustomComponents(customFormComponents);
   },
   methods: {
+    updateField(index, value) {
+     this.modelValue.fields[index]= value;
+     this.updatedData = cloneDeep(this.modelValue);
+    },
     populateCustomComponents(customFormComponents) {
       this.modelValue.fields = this.modelValue.fields.map((field) => {
         ['builder', 'presenter'].forEach((key) => {

@@ -56,7 +56,7 @@ export default {
       default: false
     },
     possibleValues: {
-      type: [Object],
+      type: [Object, null],
       default: () => {
         return {}
       }
