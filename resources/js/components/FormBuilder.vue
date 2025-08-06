@@ -48,6 +48,12 @@
               <input type="text" placeholder="Enter your form name" v-model="title"/>
               <span class="text-red-600 text-sm mt-0.5 inline-block" v-if="errors?.title">{{ errors.title[0] }}</span>
             </div>
+            <div v-if="hasRecipient" class="mt-2">
+              <p class="mb-1">Submission Recipients</p>
+              <input type="text" placeholder="Emails separated by comma to have multiple recipients" v-model="recipients"/>
+              <span class="text-gray-600 text-sm mt-0.5 inline-block">A notification email will be sent to this address when the form is submitted.</span>
+              <span class="text-red-600 text-sm mt-0.5 inline-block" v-if="errors?.recipients">{{ errors.recipients[0] }}</span>
+            </div>
           </div>
           <div class="fields" :class="{'overflow-y-auto' : !showPreview}">
             <h3>Form</h3>
@@ -167,6 +173,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  hasRecipient: {
+    type: Boolean,
+    default: false,
+  },
   redirectUrl: String,
   storeUrl: String,
 });
@@ -176,6 +186,7 @@ provide('bus', Event);
 let localForm = reactive(props.form);
 let id = ref(localForm.id || null);
 let title = ref(localForm.title || null);
+let recipients = ref(localForm?.recipients ?? '');
 let fields = ref(localForm.fields || []);
 const errors = ref([]);
 const showPreview = ref(false);
@@ -186,7 +197,7 @@ const templates = ref(getTemplates());
 const populateCustomComponents = (customFormComponents) => {
   fields.value.map((o) => {
     ['builder', 'presenter'].forEach((field) => {
-      const found = customFormComponents.find((c) => {
+      const found = customFormComponents?.find((c) => {
         return o.hasOwnProperty(field) && c[field].__name === o[field].__name;
       });
 
@@ -212,6 +223,7 @@ onMounted(() => {
 const valueJson = computed(() => {
   return JSON.stringify({
     title: title.value,
+    recipients: recipients.value,
     status: localForm.value?.status,
     fields: fields.value.map((field) => {
       let f = {
@@ -244,6 +256,12 @@ watch(title, (newValue, oldValue) => {
   }
 });
 
+watch(recipients, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    errors.value = [];
+  }
+});
+
 const close = () => {
   window.location.href = props.redirectUrl;
 };
@@ -256,6 +274,7 @@ const save = async (status = null) => {
   const data = {
     title: title.value,
     fields: fields.value,
+    recipients: recipients.value,
     ...(id.value && {id: id.value}),
     ...(status && {status}),
   };
