@@ -221,7 +221,7 @@ onMounted(() => {
 });
 
 const valueJson = computed(() => {
-  return JSON.stringify({
+  let data = {
     title: title.value,
     recipients: recipients.value,
     status: localForm.value?.status,
@@ -247,7 +247,13 @@ const valueJson = computed(() => {
 
       return f;
     }),
-  });
+  };
+
+  if (props.hasRecipient) {
+    data.recipients = recipients.value;
+  }
+
+  return JSON.stringify(data);
 });
 
 watch(title, (newValue, oldValue) => {
@@ -271,13 +277,16 @@ const save = async (status = null) => {
 
   loading.value = true;
 
-  const data = {
+  let data = {
     title: title.value,
     fields: fields.value,
-    recipients: recipients.value,
     ...(id.value && {id: id.value}),
     ...(status && {status}),
   };
+
+  if (props.hasRecipient) {
+    data.recipients = recipients.value;
+  }
 
   try {
     await axios.post(props.storeUrl, data);
