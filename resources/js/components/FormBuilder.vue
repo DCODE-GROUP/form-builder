@@ -51,7 +51,7 @@
             <div v-if="hasRecipient" class="mt-2">
               <p class="mb-1">Submission Recipients</p>
               <input type="text" placeholder="Emails separated by comma to have multiple recipients" v-model="recipients"/>
-              <span class="text-gray-600 text-sm mt-0.5 inline-block">A notification email will be sent to this address when the form is submitted.</span>
+              <span class="text-gray-600 text-sm mt-0.5 inline-block">Notification emails will be sent to the specified address(es) upon form submission. Use commas to separate multiple addresses.</span>
               <span class="text-red-600 text-sm mt-0.5 inline-block" v-if="errors?.recipients">{{ errors.recipients[0] }}</span>
             </div>
           </div>

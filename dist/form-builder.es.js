@@ -17274,7 +17274,7 @@ const ag = { class: "flex gap-4 mb-1 px-6 items-center" }, ig = ["href"], sg = [
                     }, null, 512), [
                       [yt, tt(d)]
                     ]),
-                    C[11] || (C[11] = V("span", { class: "text-gray-600 text-sm mt-0.5 inline-block" }, "A notification email will be sent to this address when the form is submitted.", -1)),
+                    C[11] || (C[11] = V("span", { class: "text-gray-600 text-sm mt-0.5 inline-block" }, "Notification emails will be sent to the specified address(es) upon form submission. Use commas to separate multiple addresses.", -1)),
                     (j = l.value) != null && j.recipients ? (re(), ae("span", wg, Ge(l.value.recipients[0]), 1)) : Ue("", !0)
                   ])) : Ue("", !0)
                 ]),
