@@ -85,6 +85,10 @@ export default {
         return {}
       }
     },
+    googleApiKey: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {

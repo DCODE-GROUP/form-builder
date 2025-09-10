@@ -79,6 +79,7 @@ export default {
   },
   data() {
     return {
+      googleApiKey: null,
       name: this.modelValue?.name,
       form: {
         address: null,
@@ -133,7 +134,7 @@ export default {
 
         const script = document.createElement("script");
         script.id = "google-maps-script";
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${this.$googleMapsApiKey}&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${this.googleApiKey}&libraries=places`;
         script.async = true;
         script.defer = true;
         script.onload = resolve;
@@ -199,6 +200,7 @@ export default {
     },
   },
   mounted() {
+    this.googleApiKey = this.$parent?.$parent?.$props?.googleApiKey;
     this.loadGoogleMapsScript()
         .then(() => {
           setTimeout(() => {
@@ -206,7 +208,7 @@ export default {
           }, 1000)
         })
         .catch((error) => {
-          console.error("Failed to load Google Maps script: " + this.$googleMapsApiKey, error);
+          console.error("Failed to load Google Maps script: " + this.googleApiKey, error);
         });
 
     this.form = Object.keys(this.modelValue?.value ?? []).length ? this.modelValue.value : this.form;

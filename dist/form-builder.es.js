@@ -10734,6 +10734,7 @@ const Qa = /* @__PURE__ */ bt(Ih, [["render", Lh]]), Uh = {
   data() {
     var t;
     return {
+      googleApiKey: null,
       name: (t = this.modelValue) == null ? void 0 : t.name,
       form: {
         address: null,
@@ -10780,7 +10781,7 @@ const Qa = /* @__PURE__ */ bt(Ih, [["render", Lh]]), Uh = {
           return;
         }
         const r = document.createElement("script");
-        r.id = "google-maps-script", r.src = `https://maps.googleapis.com/maps/api/js?key=${this.$googleMapsApiKey}&libraries=places`, r.async = !0, r.defer = !0, r.onload = t, r.onerror = e, document.head.appendChild(r);
+        r.id = "google-maps-script", r.src = `https://maps.googleapis.com/maps/api/js?key=${this.googleApiKey}&libraries=places`, r.async = !0, r.defer = !0, r.onload = t, r.onerror = e, document.head.appendChild(r);
       });
     },
     initializeAutocomplete() {
@@ -10823,14 +10824,14 @@ const Qa = /* @__PURE__ */ bt(Ih, [["render", Lh]]), Uh = {
     }
   },
   mounted() {
-    var t, e, r;
-    this.loadGoogleMapsScript().then(() => {
+    var t, e, r, a, i, d;
+    this.googleApiKey = (r = (e = (t = this.$parent) == null ? void 0 : t.$parent) == null ? void 0 : e.$props) == null ? void 0 : r.googleApiKey, this.loadGoogleMapsScript().then(() => {
       setTimeout(() => {
         this.initializeAutocomplete();
       }, 1e3);
-    }).catch((a) => {
-      console.error("Failed to load Google Maps script: " + this.$googleMapsApiKey, a);
-    }), this.form = Object.keys(((t = this.modelValue) == null ? void 0 : t.value) ?? []).length ? this.modelValue.value : this.form, this.form.address || (this.form.address = Jt((e = this.modelValue) == null ? void 0 : e.address) ?? this.getFormValue(this.possibleFormValues, (r = this.modelValue) == null ? void 0 : r.defined_key));
+    }).catch((n) => {
+      console.error("Failed to load Google Maps script: " + this.googleApiKey, n);
+    }), this.form = Object.keys(((a = this.modelValue) == null ? void 0 : a.value) ?? []).length ? this.modelValue.value : this.form, this.form.address || (this.form.address = Jt((i = this.modelValue) == null ? void 0 : i.address) ?? this.getFormValue(this.possibleFormValues, (d = this.modelValue) == null ? void 0 : d.defined_key));
   }
 }, Nh = ["id", "name", "disabled", "value", "placeholder"], jh = {
   key: 0,
@@ -11329,6 +11330,10 @@ const fp = /* @__PURE__ */ bt(sp, [["render", dp]]), hp = {
     validationErrors: {
       type: Object,
       default: () => ({})
+    },
+    googleApiKey: {
+      type: String,
+      default: null
     }
   },
   data() {
