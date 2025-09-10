@@ -10759,7 +10759,7 @@ const Qa = /* @__PURE__ */ bt(Ih, [["render", Lh]]), Uh = {
       handler(t) {
         Object.keys(t).length && this.$emit("update:modelValue", {
           ...this.modelValue,
-          address: t == null ? void 0 : t.address,
+          address: this.fullAddress,
           city: t == null ? void 0 : t.city,
           state: t == null ? void 0 : t.state,
           postcode: t == null ? void 0 : t.postcode,

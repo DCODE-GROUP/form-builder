@@ -106,7 +106,7 @@ export default {
         if (Object.keys(newValue).length) {
           this.$emit("update:modelValue", {
             ...this.modelValue,
-            address: newValue?.address,
+            address: this.fullAddress,
             city: newValue?.city,
             state: newValue?.state,
             postcode: newValue?.postcode,
