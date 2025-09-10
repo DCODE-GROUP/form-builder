@@ -4,7 +4,9 @@
     <VForm v-model="formData1"
            :possible-values="possibleValues"
            action="/forms/store"
-           method="post" editable/>
+           method="post" editable
+           google-api-key="AIzaSyBEbm9sxrbXcpUdKoqDMXMSqlh8h7t5Mko"
+    />
     <!--    <FormBuilder v-model:form="formData1"/>-->
   </div>
 </template>

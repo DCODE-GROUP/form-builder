@@ -7,7 +7,7 @@
           type="text"
           :disabled="isManual"
           class="border-1 border-solid border-gray-300 rounded-lg bg-white"
-          :value="form?.address ? form.address : fullAddress"
+          :value="fullAddress"
           :placeholder="modelValue?.placeholder"
           @input="resetAddressInput"
       />

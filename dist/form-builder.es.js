@@ -10851,7 +10851,7 @@ function Gh(t, e, r, a, i, d) {
       class: "space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0"
     }, {
       default: Tt(() => {
-        var u, c;
+        var u;
         return [
           V("input", {
             id: i.name,
@@ -10859,9 +10859,9 @@ function Gh(t, e, r, a, i, d) {
             type: "text",
             disabled: i.isManual,
             class: "border-1 border-solid border-gray-300 rounded-lg bg-white",
-            value: (u = i.form) != null && u.address ? i.form.address : d.fullAddress,
-            placeholder: (c = r.modelValue) == null ? void 0 : c.placeholder,
-            onInput: e[0] || (e[0] = (...f) => d.resetAddressInput && d.resetAddressInput(...f))
+            value: d.fullAddress,
+            placeholder: (u = r.modelValue) == null ? void 0 : u.placeholder,
+            onInput: e[0] || (e[0] = (...c) => d.resetAddressInput && d.resetAddressInput(...c))
           }, null, 40, Nh)
         ];
       }),
