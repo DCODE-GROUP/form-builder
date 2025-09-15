@@ -20,9 +20,10 @@
             @update:modelValue="(value) => updateField(index, value)"
             :editable="editable"
             :preview="preview"
+            :validation-errors="getValidationMessage(index)"
             :possible-values="possibleValues"
         >
-          <span class="error" v-text="getValidationMessage(field)"/>
+          <p v-if="!field.hasOwnProperty('presenter')" class="text-red-700 text-xs mt-1" v-text="getValidationMessage(index)"/>
         </v-field>
       </div>
     </div>
@@ -141,19 +142,13 @@ export default {
         return field;
       });
     },
-    validationKey(field) {
-      if (!this.name) {
-        return field.name;
-      }
-
-      return `${this.name}.${field.name}`;
-    },
-    getValidationMessage(field) {
-      if (!this.validationErrors.hasOwnProperty(this.validationKey(field))) {
+    getValidationMessage(index) {
+      const key = `fields.${index}.value`;
+      if (!this.validationErrors.hasOwnProperty(key)) {
         return '';
       }
 
-      return this.validationErrors[this.validationKey(field)].join('|');
+      return this.validationErrors[key].join('|');
     }
   },
 };

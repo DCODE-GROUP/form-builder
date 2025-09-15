@@ -17,6 +17,7 @@
     <component
         v-if="modelValue.presenter"
         :model-value="modelValue"
+        :validation-errors="validationErrors"
         :is="modelValue.presenter"
         v-bind="{possibleValues: possibleValues}"
     >
@@ -43,10 +44,6 @@ export default {
   name: "VField",
   props: {
     modelValue: {},
-
-    /**
-     * Form data can be editable after its complete
-     */
     editable: {
       type: Boolean,
       default: false
@@ -56,6 +53,12 @@ export default {
       default: false
     },
     possibleValues: {
+      type: [Object, null],
+      default: () => {
+        return {}
+      }
+    },
+    validationErrors: {
       type: [Object, null],
       default: () => {
         return {}
@@ -90,7 +93,7 @@ export default {
         });
       },
       deep: true,
-    }
+    },
   },
   computed: {
     fieldComponent() {

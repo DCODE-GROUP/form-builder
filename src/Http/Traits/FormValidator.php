@@ -13,9 +13,9 @@ trait FormValidator
 
         $forms->each(function (Form $form) use (&$list, $isMessage) {
             if (! empty($form->fields)) {
-                foreach ($form->fields as $field) {
+                foreach ($form->fields as $index => $field) {
                     if (isset($field['required']) && $field['required']) {
-                        [$key, $value] = $this->getValue($isMessage, $form, $field);
+                        [$key, $value] = $this->getValue($isMessage, $index, $field);
                         $list->put($key, $value);
                     }
                 }
@@ -25,9 +25,9 @@ trait FormValidator
         return $list->toArray();
     }
 
-    private function getValue(bool $isMessage, Form $form, array $field): array
+    private function getValue(bool $isMessage, int $index, array $field): array
     {
-        $key = sprintf('form%s.%s', $form->id, $field['name']);
+        $key = sprintf('fields.%s.value', $index);
         $value = match ($field['type']) {
             'checkbox' => ['required', 'accepted'],
             'file-upload' => [function ($attribute, $value, $fail) use ($field) {
