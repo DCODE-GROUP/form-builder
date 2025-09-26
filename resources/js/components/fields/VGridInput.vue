@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-2 flex gap-2" v-if="modelValue.allow_add_row">
+    <div class="mt-2 flex gap-2" v-if="modelValue.allow_add_row && editable">
       <a
           @click="addRow"
           class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
@@ -137,7 +137,7 @@ export default {
   },
   methods: {
     canRemoveRow(rowIndex) {
-      return (rowIndex + this.originalGrid.length) % this.originalGrid.length === 0 &&
+      return this.editable && (rowIndex + this.originalGrid.length) % this.originalGrid.length === 0 &&
           this.modelValue.allow_add_row && this.grid.length > this.originalGrid.length;
     },
     initiateGrid(populate = false) {

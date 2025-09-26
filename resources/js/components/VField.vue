@@ -19,6 +19,7 @@
         :model-value="modelValue"
         :validation-errors="validationErrors"
         :is="modelValue.presenter"
+        :editable="editable"
         v-bind="{possibleValues: possibleValues}"
     >
     </component>

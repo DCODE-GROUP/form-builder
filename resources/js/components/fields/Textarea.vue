@@ -1,7 +1,12 @@
 <template>
   <div :class="modelValue?.class">
-    <textarea :name="modelValue.name" v-model="input" rows="4" :disabled="!editable"
-              :placeholder="modelValue?.placeholder"></textarea>
+    <textarea :name="modelValue.name"
+              v-model="input"
+              rows="4"
+              v-if="editable"
+              :placeholder="modelValue?.placeholder">
+    </textarea>
+    <p v-else>{{ input }}</p>
     <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
   </div>
 </template>

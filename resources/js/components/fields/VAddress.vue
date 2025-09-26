@@ -1,7 +1,14 @@
 <template>
   <div class="grid space-y-2" :class="modelValue?.class">
     <input-wrapper field="full_address" class="space-y-0 [&_label]:mx-0 [&_div.w-full]:pt-0">
+      <p
+          v-if="!editable"
+          class="text-md text-gray-900"
+      >
+        {{ fullAddress }}
+      </p>
       <input
+          v-else
           :id="name"
           :name="name"
           type="text"
@@ -13,7 +20,7 @@
       />
     </input-wrapper>
     <p v-if="modelValue?.hint" class="inline-block text-sm text-gray-600 mt-1.5 brand-200">{{ modelValue.hint }}</p>
-    <label class="flex cursor-pointer items-center space-y-1">
+    <label class="flex cursor-pointer items-center space-y-1" v-if="editable">
       <v-toggle v-model="isManual" :ring="false"/>
       <span class="text-xs inline-block">Manual Address</span>
     </label>
@@ -75,6 +82,10 @@ export default {
     modelValue: {
       type: Object,
       required: false,
+    },
+    editable: {
+      type: Boolean,
+      default: true
     },
   },
   data() {
