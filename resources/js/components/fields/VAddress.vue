@@ -14,7 +14,7 @@
           type="text"
           :disabled="isManual"
           class="border-1 border-solid border-gray-300 rounded-lg bg-white"
-          :value="fullAddress"
+          :value="modelValue.value"
           :placeholder="modelValue?.placeholder"
           @input="resetAddressInput"
       />
@@ -72,7 +72,6 @@
 <script>
 import InputWrapper from "../common/InputWrapper.vue";
 import VToggle from "../common/VToggle.vue";
-import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VAddress",
@@ -117,7 +116,8 @@ export default {
         if (Object.keys(newValue).length) {
           this.$emit("update:modelValue", {
             ...this.modelValue,
-            address: this.fullAddress,
+            address: newValue.address,
+            value: this.fullAddress,
             city: newValue?.city,
             state: newValue?.state,
             postcode: newValue?.postcode,
@@ -165,6 +165,7 @@ export default {
 
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
+        this.resetAddressInput();
         this.form.lat = place.geometry.location?.lat();
         this.form.lng = place.geometry.location?.lng();
         const address = {};
@@ -198,9 +199,10 @@ export default {
       });
     },
     resetAddressInput(event) {
-      const target = event.target;
-      if (!target.value) {
+      const target = event?.target;
+      if (!target?.value) {
         this.form.address = null;
+        this.form.value = null;
         this.form.city = null;
         this.form.state = null;
         this.form.lat = null;
@@ -222,9 +224,9 @@ export default {
           console.error("Failed to load Google Maps script: " + this.googleApiKey, error);
         });
 
-    this.form = Object.keys(this.modelValue?.value ?? []).length ? this.modelValue.value : this.form;
+    this.form = Object.keys(this.modelValue).length ? this.modelValue : this.form;
     if (!this.form.address) {
-      this.form.address = cloneDeep(this.modelValue?.address) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
+      this.form.address = this.modelValue?.value ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
     }
   },
 };

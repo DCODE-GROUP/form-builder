@@ -6,7 +6,7 @@ use Dcodegroup\FormBuilder\Models\Form;
 
 trait FormValidator
 {
-    public function validate(array $formsIds, $list = [], $isMessage = false): array
+    public function getRules(array $formsIds, $list = [], $isMessage = false): array
     {
         $forms = Form::query()->find($formsIds);
         $list = collect($list);
