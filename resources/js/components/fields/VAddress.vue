@@ -32,6 +32,7 @@
             v-model="form.address"
             placeholder="Address"
         />
+        <p class="text-red-700 text-xs mt-1" v-text="getValidationMessage('address')"/>
       </input-wrapper>
       <div class="flex flex-row space-x-3">
         <div class="basis-1/3">
@@ -42,6 +43,7 @@
                 v-model="form.city"
                 placeholder="Suburb"
             />
+            <p class="text-red-700 text-xs mt-1" v-text="getValidationMessage('city')"/>
           </input-wrapper>
         </div>
         <div class="basis-1/3">
@@ -52,6 +54,7 @@
                 placeholder="State"
                 class="border-1 border-solid border-gray-300 rounded-lg bg-white w-full"
             />
+            <p class="text-red-700 text-xs mt-1" v-text="getValidationMessage('state')"/>
           </input-wrapper>
         </div>
         <div class="basis-1/3">
@@ -62,6 +65,7 @@
                 v-model="form.postcode"
                 placeholder="Postcode"
             />
+            <p class="text-red-700 text-xs mt-1" v-text="getValidationMessage('postcode')"/>
           </input-wrapper>
         </div>
       </div>
@@ -86,6 +90,16 @@ export default {
       type: Boolean,
       default: true
     },
+    index: {
+      type: [Number, String],
+      default: null,
+    },
+    validationErrors: {
+      type: [Object, null],
+      default: () => {
+        return {}
+      }
+    },
   },
   data() {
     return {
@@ -100,7 +114,6 @@ export default {
         lng: null,
       },
       isManual: false,
-      copy: false,
     };
   },
   computed: {
@@ -123,19 +136,31 @@ export default {
             postcode: newValue?.postcode,
             lat: newValue?.lat,
             lng: newValue?.lng,
+            is_manual: this.isManual,
           });
         }
       },
       deep: true,
     },
-    isManual(newValue) {
-      if (newValue && this.copy) {
-        this.copy = false;
-        this.form.reset();
-      }
-    },
+    isManual: {
+      handler(newValue) {
+        this.$emit("update:modelValue", {
+          ...this.modelValue,
+          is_manual: newValue,
+        });
+      },
+      deep: true,
+    }
   },
   methods: {
+    getValidationMessage(field) {
+      const key = `fields.${this.index}.${field}`;
+      if (!this.validationErrors.hasOwnProperty(key)) {
+        return '';
+      }
+
+      return this.validationErrors[key].join('|');
+    },
     loadGoogleMapsScript() {
       return new Promise((resolve, reject) => {
         if (document.getElementById("google-maps-script")) {

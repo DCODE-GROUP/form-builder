@@ -11,5 +11,15 @@ export default {
       type: Boolean,
       default: false
     },
+    index: {
+      type: [Number, String],
+      default: null,
+    },
+    validationErrors: {
+      type: [Object, null],
+      default: () => {
+        return {}
+      }
+    },
   }
 }

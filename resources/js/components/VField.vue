@@ -11,8 +11,10 @@
         :key="localModelValue.name"
         v-model="localModelValue"
         :is="fieldComponent"
+        :index="index"
         :editable="editable"
         :preview="preview"
+        :validation-errors="validationErrors"
     ></component>
     <component
         v-if="modelValue.presenter"
@@ -58,6 +60,10 @@ export default {
       default: () => {
         return {}
       }
+    },
+    index: {
+      type: [Number, String],
+      default: null,
     },
     validationErrors: {
       type: [Object, null],

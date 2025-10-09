@@ -16,11 +16,12 @@
       <div v-for="(field, index) in modelValue.fields" :key="field.id" v-if="modelValue?.fields?.length">
         <v-field
             :key="field.name"
+            :index="index"
             :model-value="field"
             @update:modelValue="(value) => updateField(index, value)"
             :editable="editable"
             :preview="preview"
-            :validation-errors="getValidationMessage(index)"
+            :validation-errors="validationErrors"
             :possible-values="possibleValues"
         >
           <p v-if="!field.hasOwnProperty('presenter')" class="text-red-700 text-xs mt-1" v-text="getValidationMessage(index)"/>
@@ -94,15 +95,8 @@ export default {
   data() {
     return {
       csrf: document.head.querySelector('meta[name="csrf-token"]')?.content,
-      updatedData: cloneDeep(this.modelValue)
+      updatedData: cloneDeep(this.modelValue),
     };
-  },
-  watch: {
-    updatedData: {
-      handler(newValue) {
-      },
-      deep: true,
-    }
   },
   provide() {
     return {
