@@ -8217,8 +8217,9 @@ const rn = /* @__PURE__ */ La(td), nd = {
     };
   },
   created() {
-    var t, e;
-    this.input = rn((t = this.modelValue) == null ? void 0 : t.value) ?? this.getFormValue(this.possibleFormValues, (e = this.modelValue) == null ? void 0 : e.defined_key);
+    var e, r, a, i;
+    let t = rn((e = this.modelValue) == null ? void 0 : e.value) ?? this.getFormValue(this.possibleFormValues, (r = this.modelValue) == null ? void 0 : r.defined_key);
+    ((a = this.modelValue.label) != null && a.includes("signature") || (i = this.modelValue) != null && i.defined_key.includes("signature")) && t.length > 0 && (t = t.length > 0 ? "Yes" : "No"), this.input = t;
   },
   watch: {
     input(t) {
@@ -10521,15 +10522,14 @@ const fh = {
     };
   },
   created() {
-    var t;
-    this.date = this.modelValue.value ?? this.getFormValue(this.possibleFormValues, (t = this.modelValue) == null ? void 0 : t.defined_key);
+    this.date = this.formatValue();
   },
   watch: {
     date() {
       Object.assign(this.modelValue, { value: this.date });
     }
   },
-  methods: {
+  computed: {
     formatTimeString() {
       var t;
       if (((t = this.modelValue) == null ? void 0 : t.sub_type) === "time")
@@ -10538,10 +10538,103 @@ const fh = {
         let e = !1;
         if ([":", "am", "pm", "AM", "PM"].forEach((r) => {
           this.modelValue.value.includes(r) && (e = !0);
-        }), e)
+        }), this.modelValue.value.length <= 5 && this.modelValue.value.includes(".") && (e = !0), e)
           return "hh:mm";
       }
       return "DD/MM/YY";
+    }
+  },
+  methods: {
+    formatValue() {
+      var e;
+      const t = this.modelValue.value ?? this.getFormValue(this.possibleFormValues, (e = this.modelValue) == null ? void 0 : e.defined_key);
+      return this.formatTimeString === "hh:mm" ? this.detectAndFormatToHHMM(t) : this.detectAndFormatToDDMMYY(t);
+    },
+    /**
+     * detectAndFormatToHHMM("7.57")   -> "07:57"
+     * detectAndFormatToHHMM("7:5")    -> "07:05"
+     * detectAndFormatToHHMM("07:57")  -> "07:57"
+     * detectAndFormatToHHMM("07.57")  -> "07:57"
+     * detectAndFormatToHHMM("0757")   -> "07:57"
+     * detectAndFormatToHHMM("757")    -> "07:57"
+     * detectAndFormatToHHMM("7")      -> "07:00"
+     * detectAndFormatToHHMM("12am")   -> "00:00"
+     * detectAndFormatToHHMM("12:30pm")-> "12:30"
+     * detectAndFormatToHHMM("1pm")    -> "13:00"
+     * detectAndFormatToHHMM("23:59")  -> "23:59"
+     * detectAndFormatToHHMM("24:00")  -> null
+     * @param input
+     * @returns {string|null}
+     */
+    detectAndFormatToHHMM(t) {
+      if (!t || typeof t != "string") return null;
+      let e = t.trim();
+      const r = e.match(/(am|pm)\.?$/i);
+      let a = null;
+      r && (a = r[1].toLowerCase(), e = e.slice(0, r.index).trim());
+      let i = e.match(/^(\d{1,2})\s*[:.\-]\s*(\d{1,2})(?:\s*[:.\-]\s*\d{1,2})?$/), d, n;
+      if (i)
+        d = i[1], n = i[2];
+      else if (i = e.match(/^(\d{3,4})$/), i) {
+        const c = i[1];
+        c.length === 3 ? (d = c.slice(0, 1), n = c.slice(1)) : (d = c.slice(0, 2), n = c.slice(2));
+      } else if (i = e.match(/^(\d{1,2})$/), i)
+        d = i[1], n = "0";
+      else {
+        const c = e.split(/[^0-9]+/).filter(Boolean);
+        if (c.length >= 2)
+          d = c[0], n = c[1];
+        else
+          return null;
+      }
+      const l = parseInt(d, 10), o = parseInt(n, 10);
+      if (Number.isNaN(l) || Number.isNaN(o) || o < 0 || o > 59) return null;
+      let s = l;
+      if (a) {
+        if (s < 1 || s > 12) return null;
+        a === "pm" ? s !== 12 && (s += 12) : s === 12 && (s = 0);
+      } else if (s < 0 || s > 23) return null;
+      const u = (c) => String(c).padStart(2, "0");
+      return `${u(s)}:${u(o)}`;
+    },
+    detectAndFormatToDDMMYY(t) {
+      if (!t || typeof t != "string") return null;
+      const r = t.trim().replace(/[^\d]/g, "/").replace(/\/+/g, "/").split("/").filter(Boolean);
+      if (r.length < 3) return null;
+      let [a, i, d] = r;
+      d = d.slice(0, 4);
+      const n = parseInt(a, 10), l = parseInt(i, 10);
+      if (Number.isNaN(n) || Number.isNaN(l)) return null;
+      let o;
+      if (/^\d{4}$/.test(d))
+        o = parseInt(d, 10);
+      else if (/^\d{1,2}$/.test(d))
+        o = 2e3 + parseInt(d, 10);
+      else {
+        const v = parseInt(d, 10);
+        if (Number.isNaN(v)) return null;
+        o = v < 100 ? 2e3 + v : v;
+      }
+      const s = (v, m, g) => {
+        if (m < 1 || m > 12 || v < 1 || v > 31) return !1;
+        const y = new Date(g, m - 1, v);
+        return y.getFullYear() === g && y.getMonth() === m - 1 && y.getDate() === v;
+      };
+      if (n > 31 || l > 31) return null;
+      let u = null, c = null;
+      if (n > 12 && l <= 12)
+        u = n, c = l;
+      else if (l > 12 && n <= 12)
+        u = l, c = n;
+      else if (s(n, l, o))
+        u = n, c = l;
+      else if (s(l, n, o))
+        u = l, c = n;
+      else
+        return null;
+      if (!s(u, c, o)) return null;
+      const f = String(u).padStart(2, "0"), p = String(c).padStart(2, "0"), h = String(o).slice(-2);
+      return `${f}/${p}/${h}`;
     }
   }
 }, hh = ["name", "id", "value"], ph = ["textContent"], vh = {
@@ -10564,9 +10657,9 @@ function mh(t, e, r, a, i, d) {
       key: 0,
       value: i.date,
       "onUpdate:value": e[0] || (e[0] = (s) => i.date = s),
-      format: d.formatTimeString(),
+      format: d.formatTimeString,
       "value-type": "format",
-      type: d.formatTimeString() === "hh:mm" ? "time" : "date",
+      type: d.formatTimeString === "hh:mm" ? "time" : "date",
       class: "!w-full h-[40px]",
       placeholder: r.modelValue.placeholder
     }, null, 8, ["value", "format", "type", "placeholder"])) : (te(), ae("p", {

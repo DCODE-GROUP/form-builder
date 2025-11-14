@@ -26,7 +26,14 @@ export default {
     };
   },
   created() {
-    this.input = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
+    let value = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
+    if (this.modelValue.label?.includes('signature') || this.modelValue?.defined_key.includes('signature')) {
+      if (value.length > 0) {
+        value = value.length > 0 ? 'Yes' : 'No';
+      }
+    }
+
+    this.input = value;
   },
   watch: {
     input(val) {
