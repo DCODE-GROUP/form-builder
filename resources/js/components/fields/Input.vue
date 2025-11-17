@@ -27,8 +27,8 @@ export default {
   },
   created() {
     let value = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
-    if (this.modelValue.label?.includes('signature') || this.modelValue?.defined_key.includes('signature')) {
-      if (value.length > 0) {
+    if (this.modelValue.label?.includes('signature') || this.modelValue?.defined_key?.includes('signature')) {
+      if (value?.length > 0) {
         value = value.length > 0 ? 'Yes' : 'No';
       }
     }

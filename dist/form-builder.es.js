@@ -8217,9 +8217,9 @@ const rn = /* @__PURE__ */ La(td), nd = {
     };
   },
   created() {
-    var e, r, a, i;
+    var e, r, a, i, d;
     let t = rn((e = this.modelValue) == null ? void 0 : e.value) ?? this.getFormValue(this.possibleFormValues, (r = this.modelValue) == null ? void 0 : r.defined_key);
-    ((a = this.modelValue.label) != null && a.includes("signature") || (i = this.modelValue) != null && i.defined_key.includes("signature")) && t.length > 0 && (t = t.length > 0 ? "Yes" : "No"), this.input = t;
+    ((a = this.modelValue.label) != null && a.includes("signature") || (d = (i = this.modelValue) == null ? void 0 : i.defined_key) != null && d.includes("signature")) && (t == null ? void 0 : t.length) > 0 && (t = t.length > 0 ? "Yes" : "No"), this.input = t;
   },
   watch: {
     input(t) {
