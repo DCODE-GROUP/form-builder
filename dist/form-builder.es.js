@@ -11204,7 +11204,9 @@ const cl = { render: tp }, np = {
       (e = this.grid) == null || e.forEach((r, a) => {
         r.forEach((i, d) => {
           var n;
-          (n = i[0]) != null && n.name && (this.localField || (this.localField = []), this.localField.hasOwnProperty(a) || (this.localField[a] = {}), this.localField[a].hasOwnProperty(i[0].name));
+          (n = i[0]) != null && n.name && (this.localField || (this.localField = {
+            grid: []
+          }), this.localField.hasOwnProperty("grid") || (this.localField.grid = []), this.localField.grid.hasOwnProperty(a) || (this.localField.grid[a] = {}));
         });
       }), t && (this.processing = !0, this.localField.filter((r, a) => a + 1 > this.grid.length).forEach((r) => {
         this.originalGrid.forEach((a) => {
@@ -11507,6 +11509,7 @@ const yp = /* @__PURE__ */ bt(hp, [["render", gp]]), bp = {
     };
   },
   mounted() {
+    console.log("Mounted VForm", this.googleApiKey);
     const t = ns(), e = (t == null ? void 0 : t.appContext.config.globalProperties.$customFormComponents) ?? [];
     this.populateCustomComponents(e);
   },

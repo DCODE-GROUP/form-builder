@@ -145,15 +145,17 @@ export default {
         row.forEach((cell, colIndex) => {
           if (cell[0]?.name) {
             if (!this.localField) {
-              this.localField = [];
+              this.localField = {
+                grid: []
+              };
             }
 
-            if (!this.localField.hasOwnProperty(rowIndex)) {
-              this.localField[rowIndex] = {};
+            if (!this.localField.hasOwnProperty('grid')) {
+              this.localField.grid = [];
             }
 
-            if (!this.localField[rowIndex].hasOwnProperty(cell[0].name)) {
-              // this.localField[rowIndex][colIndex][0] = null;
+            if (!this.localField.grid.hasOwnProperty(rowIndex)) {
+              this.localField.grid[rowIndex] = {};
             }
           }
         });

@@ -109,6 +109,7 @@ export default {
     };
   },
   mounted() {
+    console.log('Mounted VForm', this.googleApiKey);
     const instance = getCurrentInstance();
     const customFormComponents = instance?.appContext.config.globalProperties.$customFormComponents ?? [];
 
