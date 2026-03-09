@@ -201,6 +201,19 @@
               </draggable>
             </div>
           </template>
+          <div v-if="actions.length">
+            <a class="rounded-full text-brand-600 hover:text-brand-900 py-1 cursor-pointer text-sm inline-flex gap-1" @click="showAction[index] = !showAction[index]"> Actions
+              <ChevronUp class="w-5 h-5" v-if="showAction[index]"></ChevronUp>
+              <ChevronDown class="w-5 h-5" v-else></ChevronDown>
+            </a>
+            <div class="bg-gray-100 py-2 px-3 flex gap-2 rounded-lg mt-2" v-if="showAction[index]">
+              <template v-for="action in actions">
+                <a class="cursor-pointer hover:bg-brand-400 px-2 py-1 bg-brand-200 rounded-lg text-white"
+                   :class="{'!bg-brand-700': element?.actions?.includes(action.value)}"
+                   @click="addAction(element, action.value)">{{ action.label }}</a>
+              </template>
+            </div>
+          </div>
         </div>
       </div>
     </template>
@@ -217,13 +230,15 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import draggable from "vuedraggable";
 import VGrid from "../fields/VGrid.vue";
 import VActions from "./VActions.vue";
 import VToggle from "./VToggle.vue";
 import Trash from "@r/icons/trash-01.svg";
 import Handle from "@r/icons/handle.svg";
+import ChevronUp from "@r/icons/chevron-up.svg";
+import ChevronDown from "@r/icons/chevron-down.svg";
 import Plus from "@r/icons/plus.svg";
 
 const props = defineProps({
@@ -235,12 +250,19 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  actions: {
+    type: Array,
+    default: () => {
+      return []
+    },
+  },
   isDragging: {
     type: Boolean,
     default: false,
   },
 });
 
+const showAction = ref({});
 const emit = defineEmits(["update:modelValue"]);
 
 const localFields = ref([...props.modelValue]);
@@ -253,6 +275,29 @@ watch(
     },
     { deep: true }
 );
+
+onMounted(() => {
+  localFields.value.forEach((field, index) => {
+    showAction.value[index] = !!field.actions?.length;
+  })
+})
+
+const addAction = (element, action) => {
+  if (!element.hasOwnProperty('actions')) {
+    element = Object.assign( element, {actions: []});
+  }
+
+  if (!Array.isArray(element.actions)) {
+    element.actions = [];
+  }
+
+  const idx = element.actions.indexOf(action);
+  if (idx === -1) {
+    element.actions.push(action);
+  } else {
+    element.actions.splice(idx, 1);
+  }
+}
 
 const getFieldTypeTitle = (field) => {
   switch (field.type) {

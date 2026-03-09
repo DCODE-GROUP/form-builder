@@ -58,7 +58,7 @@
           <div class="fields" :class="{'overflow-y-auto' : !showPreview}">
             <h3>Form</h3>
             <div class="draggable" :class="{'!border-none !shadow-none': fields.length}">
-              <field-draggable v-model="fields" :is-dragging="isDragging"></field-draggable>
+              <field-draggable v-model="fields" :is-dragging="isDragging" :actions="actions"></field-draggable>
             </div>
           </div>
         </div>
@@ -176,6 +176,12 @@ const props = defineProps({
   hasRecipient: {
     type: Boolean,
     default: false,
+  },
+  actions: {
+    type: Array,
+    default: () => {
+      return []
+    },
   },
   redirectUrl: String,
   storeUrl: String,
