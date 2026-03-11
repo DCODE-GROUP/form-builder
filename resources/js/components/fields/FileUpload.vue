@@ -87,14 +87,28 @@ export default {
     }
   },
   created() {
-    this.files = this.modelValue?.value ?? [];
+    const val = this.modelValue?.value;
+
+    if (Array.isArray(val)) {
+      this.files = [...val];
+    } else if (val && typeof val === 'object') {
+      // If it's a keyed object (or a single file object), convert to array of values.
+      // An empty object will become an empty array.
+      const values = Object.keys(val).length ? Object.values(val) : [];
+      this.files = [...values];
+    } else if (val) {
+      // Primitive or single file-like value
+      this.files = [val];
+    } else {
+      this.files = [];
+    }
   },
   watch: {
     files: {
       handler(newValue) {
         this.$emit("update:modelValue", {
           ...this.modelValue,
-          value: {...newValue}
+          value: [...newValue]
         });
       },
       deep: true,
