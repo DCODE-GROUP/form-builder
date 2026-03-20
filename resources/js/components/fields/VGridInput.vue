@@ -37,6 +37,7 @@
                   :is="fieldComponent(cell[0])"
                   :editable="editable"
               ></component>
+              <p v-if="getError(rowIndex, colIndex)" class="text-red-700 text-xs mt-1">{{ getError(rowIndex, colIndex) }}</p>
               <slot></slot>
             </div>
           </div>
@@ -262,6 +263,14 @@ export default {
     },
     fieldClass(cell) {
       return ["cell", `-type-${cell?.type}`].join(" ");
+    },
+    getError(rowIndex, colIndex) {
+      const key = `fields.${this.index}.${rowIndex}.${colIndex}.0.value`;
+      if (!this.validationErrors.hasOwnProperty(key)) {
+        return null;
+      }
+
+      return this.validationErrors[key][0];
     },
     fieldComponent(cell) {
       if (!cell?.type) {
