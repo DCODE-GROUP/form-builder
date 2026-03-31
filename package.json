@@ -50,5 +50,8 @@
   "peerDependencies": {
     "axios": "*",
     "vue": "^3"
+  },
+  "overrides": {
+    "axios": "1.13.6"
   }
 }
