@@ -265,7 +265,7 @@ export default {
       return ["cell", `-type-${cell?.type}`].join(" ");
     },
     getError(rowIndex, colIndex) {
-      const key = `fields.${this.index}.${rowIndex}.${colIndex}.0.value`;
+      const key = `fields.${this.index}.grid.${rowIndex}.${colIndex}.0.value`;
       if (!this.validationErrors.hasOwnProperty(key)) {
         return null;
       }

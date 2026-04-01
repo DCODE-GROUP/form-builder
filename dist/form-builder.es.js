@@ -11265,7 +11265,7 @@ const cl = { render: tp }, np = {
       return ["cell", `-type-${t == null ? void 0 : t.type}`].join(" ");
     },
     getError(t, e) {
-      const r = `fields.${this.index}.${t}.${e}.0.value`;
+      const r = `fields.${this.index}.grid.${t}.${e}.0.value`;
       return this.validationErrors.hasOwnProperty(r) ? this.validationErrors[r][0] : null;
     },
     fieldComponent(t) {
