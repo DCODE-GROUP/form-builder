@@ -8586,34 +8586,42 @@ const vd = {
       type: String,
       required: !0
     },
-    modelValue: String
+    modelValue: {
+      type: Object,
+      default: null
+    }
   },
   data() {
     return {
-      input: null,
+      input: {},
       signaturePad: null
     };
   },
   mounted() {
+    var e, r;
     let t = this.$refs.signaturePadCanvas;
     t.style.width = "100%", t.style.height = "100%", t.width = t.offsetWidth, t.height = t.offsetHeight, this.signaturePad = new pd(t), this.signaturePad.onEnd = () => {
-      this.signaturePad.isEmpty() || (this.input = this.signaturePad.toDataURL());
-    }, this.modelValue && (this.input = this.modelValue, this.signaturePad.fromDataURL(this.input)), this.editable || this.signaturePad.off();
+      this.signaturePad.isEmpty() || (this.input.value = this.signaturePad.toDataURL());
+    }, this.modelValue && (this.input = this.modelValue, (e = this.input) != null && e.value && this.signaturePad.fromDataURL((r = this.input) == null ? void 0 : r.value)), this.editable || this.signaturePad.off();
   },
   watch: {
-    input() {
-      this.$emit("update:modelValue", this.input);
+    input: {
+      handler: function(e) {
+        this.$emit("update:modelValue", this.input);
+      },
+      deep: !0
     },
     modelValue: {
       handler: function(e) {
-        this.input = this.modelValue, this.signaturePad.fromDataURL(this.input);
+        var r;
+        this.input = this.modelValue, this.signaturePad.fromDataURL((r = this.input) == null ? void 0 : r.value);
       },
       deep: !0
     }
   },
   methods: {
     clear() {
-      this.input = null, this.signaturePad.clear();
+      this.input.value = null, this.signaturePad.clear();
     }
   }
 }, md = ["name", "value"], gd = { class: "signature-pad-body rounded-lg border border-dashed border-gray-300 shadow-sm h-[160px]" }, yd = { ref: "signaturePadCanvas" }, bd = { class: "signature-pad-actions" }, xd = {

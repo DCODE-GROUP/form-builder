@@ -32,11 +32,14 @@ export default {
       type: String,
       required: true
     },
-    modelValue: String
+    modelValue: {
+      type: Object,
+      default: null
+    },
   },
   data() {
     return {
-      input: null,
+      input: {},
       signaturePad: null
     };
   },
@@ -50,13 +53,15 @@ export default {
     this.signaturePad = new SignaturePad(canvas);
     this.signaturePad.onEnd = () => {
       if (!this.signaturePad.isEmpty()) {
-        this.input = this.signaturePad.toDataURL();
+        this.input.value = this.signaturePad.toDataURL();
       }
     };
 
     if (this.modelValue) {
       this.input = this.modelValue;
-      this.signaturePad.fromDataURL(this.input);
+      if (this.input?.value) {
+        this.signaturePad.fromDataURL(this.input?.value);
+      }
     }
 
     if (!this.editable) {
@@ -64,20 +69,23 @@ export default {
     }
   },
   watch: {
-    input() {
+    input: {
+      handler: function handler(newValue) {
         this.$emit("update:modelValue", this.input);
+      },
+      deep: true
     },
     modelValue: {
       handler: function handler(newValue) {
         this.input = this.modelValue;
-        this.signaturePad.fromDataURL(this.input);
+        this.signaturePad.fromDataURL(this.input?.value);
       },
       deep: true
     },
   },
   methods: {
     clear() {
-      this.input = null;
+      this.input.value = null;
       this.signaturePad.clear();
     }
   }
