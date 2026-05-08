@@ -1,9 +1,9 @@
 <template>
   <div class="signature-pad" :class="modelValue?.class">
     <input type="hidden" class="signature-input" :name="name" :value="input"/>
-    <div class="signature-pad-body rounded-lg border border-dashed border-gray-300 shadow-sm h-[160px]">
+    <div class="signature-pad-body rounded-lg border border-dashed border-gray-300 shadow-sm h-[160px] relative">
       <canvas ref="signaturePadCanvas"></canvas>
-      <div class="signature-pad-actions">
+      <div class="signature-pad-actions absolute top-2 right-2">
         <button
           v-if="input && editable"
           data-action="clear"
@@ -11,7 +11,7 @@
           class="p-1"
           @click="clear"
         >
-          <i class="fa fa-times primary-text"></i>
+          <XClose class="w-5 h-5 hover:text-red-500" />
         </button>
       </div>
     </div>
@@ -21,10 +21,12 @@
 
 <script>
 import SignaturePad from "signature_pad";
+import XClose from "@r/icons/x-close.svg";
 import BaseField from "../mixins/BaseField";
 
 export default {
   name: "SignaturePad",
+  components: {XClose},
   mixins: [BaseField],
 
   props: {
