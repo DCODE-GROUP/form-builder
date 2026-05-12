@@ -42,33 +42,36 @@ export default {
   data() {
     return {
       input: {},
-      signaturePad: null
+      signaturePad: null,
+      updatingFromCanvas: false
     };
   },
   mounted() {
     let canvas = this.$refs.signaturePadCanvas;
     canvas.style.width = "100%";
     canvas.style.height = "100%";
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
 
-    this.signaturePad = new SignaturePad(canvas);
-    this.signaturePad.onEnd = () => {
-      if (!this.signaturePad.isEmpty()) {
-        this.input.value = this.signaturePad.toDataURL();
+    this.$nextTick(() => {
+      this.resizeCanvas(canvas);
+      this.signaturePad = new SignaturePad(canvas);
+      this.signaturePad.onEnd = () => {
+        if (!this.signaturePad.isEmpty()) {
+          this.updatingFromCanvas = true;
+          this.input.value = this.signaturePad.toDataURL();
+        }
+      };
+
+      if (this.modelValue) {
+        this.input = this.modelValue;
+        if (this.input?.value) {
+          this.signaturePad.fromDataURL(this.input?.value);
+        }
       }
-    };
 
-    if (this.modelValue) {
-      this.input = this.modelValue;
-      if (this.input?.value) {
-        this.signaturePad.fromDataURL(this.input?.value);
+      if (!this.editable) {
+        this.signaturePad.off();
       }
-    }
-
-    if (!this.editable) {
-      this.signaturePad.off();
-    }
+    });
   },
   watch: {
     input: {
@@ -79,13 +82,25 @@ export default {
     },
     modelValue: {
       handler: function handler(newValue) {
+        if (this.updatingFromCanvas) {
+          this.updatingFromCanvas = false;
+          return;
+        }
         this.input = this.modelValue;
-        this.signaturePad.fromDataURL(this.input?.value);
+        if (this.input?.value) {
+          this.signaturePad.fromDataURL(this.input.value);
+        }
       },
       deep: true
     },
   },
   methods: {
+    resizeCanvas(canvas) {
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+    },
     clear() {
       this.input.value = null;
       this.signaturePad.clear();

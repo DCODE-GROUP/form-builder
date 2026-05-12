@@ -8611,15 +8611,18 @@ const gd = { render: md }, yd = {
   data() {
     return {
       input: {},
-      signaturePad: null
+      signaturePad: null,
+      updatingFromCanvas: !1
     };
   },
   mounted() {
-    var e, r;
     let t = this.$refs.signaturePadCanvas;
-    t.style.width = "100%", t.style.height = "100%", t.width = t.offsetWidth, t.height = t.offsetHeight, this.signaturePad = new pd(t), this.signaturePad.onEnd = () => {
-      this.signaturePad.isEmpty() || (this.input.value = this.signaturePad.toDataURL());
-    }, this.modelValue && (this.input = this.modelValue, (e = this.input) != null && e.value && this.signaturePad.fromDataURL((r = this.input) == null ? void 0 : r.value)), this.editable || this.signaturePad.off();
+    t.style.width = "100%", t.style.height = "100%", this.$nextTick(() => {
+      var e, r;
+      this.resizeCanvas(t), this.signaturePad = new pd(t), this.signaturePad.onEnd = () => {
+        this.signaturePad.isEmpty() || (this.updatingFromCanvas = !0, this.input.value = this.signaturePad.toDataURL());
+      }, this.modelValue && (this.input = this.modelValue, (e = this.input) != null && e.value && this.signaturePad.fromDataURL((r = this.input) == null ? void 0 : r.value)), this.editable || this.signaturePad.off();
+    });
   },
   watch: {
     input: {
@@ -8631,12 +8634,20 @@ const gd = { render: md }, yd = {
     modelValue: {
       handler: function(e) {
         var r;
-        this.input = this.modelValue, this.signaturePad.fromDataURL((r = this.input) == null ? void 0 : r.value);
+        if (this.updatingFromCanvas) {
+          this.updatingFromCanvas = !1;
+          return;
+        }
+        this.input = this.modelValue, (r = this.input) != null && r.value && this.signaturePad.fromDataURL(this.input.value);
       },
       deep: !0
     }
   },
   methods: {
+    resizeCanvas(t) {
+      const e = Math.max(window.devicePixelRatio || 1, 1);
+      t.width = t.offsetWidth * e, t.height = t.offsetHeight * e, t.getContext("2d").scale(e, e);
+    },
     clear() {
       this.input.value = null, this.signaturePad.clear();
     }
