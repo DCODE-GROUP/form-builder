@@ -10561,11 +10561,13 @@ const vh = {
   },
   data() {
     return {
+      dateFullYear: !1,
       date: null
     };
   },
   created() {
-    this.date = this.formatValue();
+    var t, e, r;
+    this.dateFullYear = (r = (e = (t = this.$parent) == null ? void 0 : t.$parent) == null ? void 0 : e.$props) == null ? void 0 : r.dateFullYear, this.date = this.formatValue();
   },
   watch: {
     date() {
@@ -10584,7 +10586,7 @@ const vh = {
         }), this.modelValue.value.length <= 5 && this.modelValue.value.includes(".") && (e = !0), e)
           return "hh:mm";
       }
-      return "DD/MM/YY";
+      return this.dateFullYear ? "DD/MM/YYYY" : "DD/MM/YY";
     }
   },
   methods: {
@@ -10676,7 +10678,7 @@ const vh = {
       else
         return null;
       if (!s(u, d, o)) return null;
-      const h = String(u).padStart(2, "0"), p = String(d).padStart(2, "0"), f = String(o).slice(-2);
+      const h = String(u).padStart(2, "0"), p = String(d).padStart(2, "0"), f = this.dateFullYear ? String(o) : String(o).slice(-2);
       return `${h}/${p}/${f}`;
     }
   }
@@ -11544,6 +11546,10 @@ const Ep = /* @__PURE__ */ bt(gp, [["render", Sp]]), wp = {
     googleApiKey: {
       type: String,
       default: null
+    },
+    dateFullYear: {
+      type: Boolean,
+      default: !1
     }
   },
   data() {
