@@ -91,6 +91,10 @@ export default {
       type: String,
       default: null,
     },
+    dateFullYear: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {

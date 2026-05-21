@@ -35,10 +35,12 @@ export default {
   },
   data() {
     return {
+      dateFullYear: false,
       date: null,
     };
   },
   created() {
+    this.dateFullYear = this.$parent?.$parent?.$props?.dateFullYear;
     this.date = this.formatValue();
   },
   watch: {
@@ -69,7 +71,7 @@ export default {
         }
       }
 
-      return 'DD/MM/YY';
+      return this.dateFullYear ? 'DD/MM/YYYY' : 'DD/MM/YY';
     },
   },
   methods: {
@@ -233,7 +235,7 @@ export default {
 
       const dd = String(day).padStart(2, '0');
       const mm = String(month).padStart(2, '0');
-      const yy = String(yearFull).slice(-2);
+      const yy = this.dateFullYear ? String(yearFull) : String(yearFull).slice(-2);
 
       return `${dd}/${mm}/${yy}`;
     }
