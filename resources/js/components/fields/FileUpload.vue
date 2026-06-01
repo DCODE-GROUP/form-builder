@@ -64,14 +64,16 @@ export default {
     return {
       files: [],
       dropzone: null,
-      placeholder: ''
+      placeholder: '',
+      uploadUrl: '',
     }
   },
   mounted() {
     const csrf = this.$parent._.parent.data.csrf;
     if (this.editable || this.preview) {
+      this.uploadUrl = this.$parent?.$parent?.$props?.uploadUrl || `/api/generic/media/upload`;
       this.dropzone = new Dropzone(this.$refs.dropzone, {
-        url: `/api/generic/media/upload`,
+        url: this.uploadUrl,
         addRemoveLinks: true,
         dictDefaultMessage: '',
         sending: (file, xhr, formData) => {

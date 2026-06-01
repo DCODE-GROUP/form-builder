@@ -95,6 +95,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    uploadUrl: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {

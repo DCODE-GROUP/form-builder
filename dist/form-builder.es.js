@@ -7582,23 +7582,25 @@ const Bc = {
     return {
       files: [],
       dropzone: null,
-      placeholder: ""
+      placeholder: "",
+      uploadUrl: ""
     };
   },
   mounted() {
+    var e, r, a;
     const t = this.$parent._.parent.data.csrf;
-    (this.editable || this.preview) && (this.dropzone = new Rs(this.$refs.dropzone, {
-      url: "/api/generic/media/upload",
+    (this.editable || this.preview) && (this.uploadUrl = ((a = (r = (e = this.$parent) == null ? void 0 : e.$parent) == null ? void 0 : r.$props) == null ? void 0 : a.uploadUrl) || "/api/generic/media/upload", this.dropzone = new Rs(this.$refs.dropzone, {
+      url: this.uploadUrl,
       addRemoveLinks: !0,
       dictDefaultMessage: "",
-      sending: (e, r, a) => {
-        a.append("_token", t);
+      sending: (i, c, n) => {
+        n.append("_token", t);
       },
-      success: (e, r) => {
-        this.files.push(r);
+      success: (i, c) => {
+        this.files.push(c);
       },
-      complete: (e) => {
-        this.dropzone.removeFile(e);
+      complete: (i) => {
+        this.dropzone.removeFile(i);
       }
     }));
   },
@@ -11550,6 +11552,10 @@ const Ep = /* @__PURE__ */ bt(gp, [["render", Sp]]), wp = {
     dateFullYear: {
       type: Boolean,
       default: !1
+    },
+    uploadUrl: {
+      type: String,
+      default: ""
     }
   },
   data() {
