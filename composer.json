@@ -17,24 +17,13 @@
             "role": "Developer"
         },
         {
-            "name": "Aaron Heath",
-            "email": "aaron@aaronheath.com",
-            "role": "Developer",
-            "homepage": "https://aaronheath.com"
-        },
-        {
-            "name": "Tung Ngoc Vu",
-            "email": "tungv@dcodegroup.com",
-            "role": "Developer"
-        },
-        {
             "name": "Dcode Group",
             "email": "forge@dcodegroup.com",
             "homepage": "https://dcodegroup.com"
         }
     ],
     "require": {
-        "php": "^8.2 || ^8.3",
+        "php": "^8.2 || ^8.3 || ^8.4 || ^8.5",
         "laravel/framework": "^11.0||^12.0||^13.0"
     },
     "autoload": {
