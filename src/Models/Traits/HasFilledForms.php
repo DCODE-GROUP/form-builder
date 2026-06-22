@@ -13,12 +13,12 @@ trait HasFilledForms
         return $this->morphMany(FormData::class, 'formable');
     }
 
-    public function getFormData(Form $form): FormData
+    public function getFormData(Form $form, bool $createNew = false): FormData
     {
         /** @var FormData $formData */
         $formData = $this->filledForms()->where('form_id', $form->id)->latest()->first();
 
-        if (! $formData) {
+        if (! $formData && $createNew) {
             $formData = FormData::query()->create([
                 'formable_id' => $this->id,
                 'formable_type' => get_class($this),
@@ -37,7 +37,7 @@ trait HasFilledForms
             'formable_type' => get_class($this),
             'form_id' => $form->id,
         ], [
-            'values' => $form->prefill($values),
+            'values' => $values,
         ]);
     }
 }
