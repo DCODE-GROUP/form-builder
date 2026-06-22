@@ -14,9 +14,9 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        require('tailwindcss')('./tailwind.config.js'),
-        require('autoprefixer'),
-        require('postcss-nested')
+        require('tailwindcss'),
+        require('postcss-nested'),
+        require('autoprefixer')
       ],
     },
   },

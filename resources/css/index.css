@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 .input-base {
-    @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200 focus:ring-opacity-50 py-2 px-3;
+    @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200/50 py-2 px-3;
 }
 .form-builder-container {
     @apply relative;
