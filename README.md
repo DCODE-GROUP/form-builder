@@ -37,13 +37,26 @@ src\Http\Traits\FormValidator.php
 ## Development
 To build the assets, run this command
 ```bash
-npm run prod
-
+npm run build
 ```
+
+### Tailwind CSS
+
+The project uses **Tailwind CSS v3** with **v4-compatible syntax**. This means:
+
+- All CSS utilities and Vue components are compatible with both Tailwind v3 and v4
+- Opacity syntax uses the modern slash notation: `ring-sky-200/50` instead of `ring-opacity-50`
+- When upgrading to Tailwind v4 in the future, no CSS or component changes will be needed
+
+**Custom Theme Extensions:**
+- `brand` color palette (25, 50, 100, ..., 950) for brand styling
+- `success`, `error`, `warning` color utilities
+- Custom `fill` width utility for responsive layouts
+
+**Note:** The `/example` directory remains on Tailwind v3 for backwards compatibility.
 
 ## Example
 Check example folder to see how to use the package.
 ```bash
 /example
-
 ```
