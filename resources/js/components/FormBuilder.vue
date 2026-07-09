@@ -1,14 +1,14 @@
 <template>
   <v-modal></v-modal>
-  <div class="flex gap-4 mb-1 px-6 items-center">
+  <div v-if="showBreadcrumbs" class="form-builder__breadcrumbs flex gap-4 mb-1 px-6 items-center">
     <a :href="redirectUrl" class="cursor-pointer"> Form </a>
     / <span class="text-sm font-semibold" v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
   </div>
   <div class="flex justify-between items-center mb-6 px-6">
-    <h4 class="text-gray-900 text-[30px] font-semibold">
+    <h4 class="form-builder__page-title text-gray-900 text-[30px] font-semibold">
       {{ showPreview ? 'Preview' : (title ? title : 'Add New Form') }}</h4>
     <a
-        class="inline-block rounded-full px-3 py-2 cursor-pointer text-sm text-gray-700 font-semibold border border-gray-300 hover:bg-gray-200"
+        class="form-builder__btn form-builder__btn--preview inline-block rounded-full px-3 py-2 cursor-pointer text-sm text-gray-700 font-semibold border border-gray-300 hover:bg-gray-200"
         @click="handleShowPreview"
     >
       <span v-if="!showPreview" class="flex gap-1 items-center">
@@ -41,7 +41,7 @@
     <div class="flex">
       <div class="form-builder">
         <div class="form-builder-fields">
-          <div class="settings">
+          <div class="form-builder__settings settings">
             <h3>Settings</h3>
             <div>
               <p class="mb-1">Form Title *</p>
@@ -129,11 +129,11 @@
     </div>
   </div>
   <div v-if="!showPreview"
-       class="sticky bottom-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 mt-[22px] bg-gray-200">
-    <a @click="close" class="cursor-pointer text-error-500 hover:text-error-700 inline-block">Discard</a>
+       class="form-builder__actions sticky bottom-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 mt-[22px] bg-gray-200">
+    <a @click="close" class="form-builder__btn form-builder__btn--discard cursor-pointer text-error-500 hover:text-error-700 inline-block">Discard</a>
     <div class="flex gap-2">
       <a @click.prevent="save('draft')"
-         class="rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-[7px]">
+         class="form-builder__btn form-builder__btn--draft rounded-full cursor-pointer border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-[7px]">
         <span v-if="!loading">
           Save as draft
         </span>
@@ -142,7 +142,7 @@
         </span>
       </a>
       <a @click.prevent="save('published')"
-         class="rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-[7px]">
+         class="form-builder__btn form-builder__btn--publish rounded-full cursor-pointer bg-brand-400 hover:bg-brand-700 text-white px-3 py-[7px]">
         <span v-if="!loading">
           Publish
         </span>
@@ -176,6 +176,10 @@ const props = defineProps({
   hasRecipient: {
     type: Boolean,
     default: false,
+  },
+  showBreadcrumbs: {
+    type: Boolean,
+    default: true,
   },
   actions: {
     type: Array,
