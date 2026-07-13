@@ -4,16 +4,16 @@
     <input type="hidden" name="_method" :value="method"/>
     <input type="hidden" :name="name" :value="JSON.stringify(updatedData)"/>
     <div
-        class="fields"
+        class="v-form__fields fields"
         :style="{
         'pointer-events': canInteract ? 'auto' : 'none',
         'user-select': canInteract ? 'auto' : 'none'
       }">
-      <div v-if="title">
-        <h3>{{ title }}</h3>
-        <hr/>
+      <div v-if="title" class="v-form__header">
+        <h3 class="v-form__title">{{ title }}</h3>
+        <hr class="v-form__divider"/>
       </div>
-      <div v-for="(field, index) in modelValue.fields" :key="field.id" v-if="modelValue?.fields?.length">
+      <div v-for="(field, index) in modelValue.fields" :key="field.id" v-if="modelValue?.fields?.length" class="v-form__field">
         <v-field
             :key="field.name"
             :index="index"
@@ -24,7 +24,7 @@
             :validation-errors="validationErrors"
             :possible-values="possibleValues"
         >
-          <p v-if="!field.hasOwnProperty('presenter')" class="text-red-700 text-xs mt-1" v-text="getValidationMessage(index)"/>
+          <p v-if="!field.hasOwnProperty('presenter')" class="v-form__field-error" v-text="getValidationMessage(index)"/>
         </v-field>
       </div>
     </div>
