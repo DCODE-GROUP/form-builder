@@ -53,6 +53,28 @@ The project uses **Tailwind CSS v3** with **v4-compatible syntax**. This means:
 - `success`, `error`, `warning` color utilities
 - Custom `fill` width utility for responsive layouts
 
+### Theming brand colours
+
+Brand colours are driven by CSS custom properties (with package defaults). Override them
+after importing `@dcodegroup-au/form-builder/form-builder.css`:
+
+```css
+:root {
+  --fb-brand-50: #eff6ff;
+  --fb-brand-200: #bfdbfe;
+  --fb-brand-300: #93c5fd;
+  --fb-brand-400: #60a5fa;
+  --fb-brand-500: #3b82f6;
+  --fb-brand-600: #2563eb;
+  --fb-brand-700: #1d4ed8;
+  --fb-brand-800: #1e40af;
+  --fb-brand-900: #1e3a8a;
+}
+```
+
+You can also scope overrides to a parent selector. Components that use `brand-*`
+utilities (buttons, checkboxes, radios, toggles/switches, links, etc.) pick these up automatically.
+
 **Note:** The `/example` directory remains on Tailwind v3 for backwards compatibility.
 
 ## Example
