@@ -57,7 +57,10 @@
           </div>
           <div class="fields">
             <h3>Form</h3>
-            <div class="draggable" :class="{'draggable--has-fields': fields.length}">
+            <div
+                class="form-builder-draggable"
+                :class="{ 'form-builder-draggable--filled': fields.length }"
+            >
               <field-draggable v-model="fields" :is-dragging="isDragging" :actions="actions"></field-draggable>
             </div>
           </div>

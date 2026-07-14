@@ -1,7 +1,7 @@
 <template>
   <draggable
-      class="pb-60 relative z-10"
-      :class="{ '!pb-4': disableDropzone }"
+      class="form-builder-draggable__list"
+      :class="{ 'form-builder-draggable__list--compact': disableDropzone }"
       v-model="localFields"
       item-key="id"
       ghost-class="dragging-item"
@@ -12,26 +12,27 @@
       handle=".handle"
   >
     <template #item="{ element, index }" :key="element.id">
-      <div class="relative -field" :class="['-type-' + element.type]">
-        <div class="-field-title handle">
-          <h2 @click="element.isShowing = !element.isShowing" class="relative cursor-pointer">
-            <Handle class="w-5 h-5 absolute top-[6px] -left-[20px]" />
-            <span class="-title">
-              <span class="-type-title">{{ getFieldTypeTitle(element) }}</span>
-            </span>
+      <div
+          class="form-builder-field"
+          :class="`form-builder-field--${element.type}`"
+      >
+        <div class="form-builder-field__header handle">
+          <h2 @click="element.isShowing = !element.isShowing" class="form-builder-field__heading">
+            <Handle class="form-builder-field__handle-icon" />
+            <span class="form-builder-field__type-title">{{ getFieldTypeTitle(element) }}</span>
           </h2>
-          <div class="flex gap-6 items-center">
-            <div class="-prop -options" v-if="element.hasOwnProperty('required')">
+          <div class="form-builder-field__header-actions">
+            <div class="form-builder-field__prop form-builder-field__options" v-if="element.hasOwnProperty('required')">
               <v-toggle title="Required" v-model="element.required" />
             </div>
             <v-actions>
               <template v-slot:dropdown>
-                <ul class="divide-y text-sm text-gray-700">
+                <ul class="form-builder-field__actions-menu">
                   <li
                       @click="removeField(index)"
-                      class="cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-50 rounded"
+                      class="form-builder-field__actions-item"
                   >
-                    <Trash class="w-5 h-5" />
+                    <Trash class="form-builder-field__icon" />
                     <span>Remove</span>
                   </li>
                 </ul>
@@ -39,19 +40,19 @@
             </v-actions>
           </div>
         </div>
-        <div class="-field-properties">
+        <div class="form-builder-field__body">
           <component
               v-if="element?.builder"
               :is="element.builder"
               v-bind="{component: element}"
           ></component>
           <template v-else-if="element.type === 'grid'">
-            <div class="-prop">
-              <span class="-label">Label</span>
+            <div class="form-builder-field__prop">
+              <span class="form-builder-field__label">Label</span>
               <input type="text" v-model="element.label" />
             </div>
-            <div class="-prop">
-              <span class="-label">Supporting Text</span>
+            <div class="form-builder-field__prop">
+              <span class="form-builder-field__label">Supporting Text</span>
               <input type="text" v-model="element.hint" />
             </div>
             <v-grid
@@ -61,8 +62,8 @@
             ></v-grid>
           </template>
           <template v-else-if="element.type === 'paragraph'">
-            <div class="-prop">
-              <span>Content</span>
+            <div class="form-builder-field__prop">
+              <span class="form-builder-field__label">Content</span>
               <textarea
                   cols="30"
                   rows="3"
@@ -70,17 +71,17 @@
                   :placeholder="element.placeholder"
               ></textarea>
             </div>
-            <div class="-two-columns">
-              <div class="-prop">
-                <span>Type</span>
+            <div class="form-builder-field__two-columns">
+              <div class="form-builder-field__prop">
+                <span class="form-builder-field__label">Type</span>
                 <select v-model="element.content_type">
                   <option value="p">p</option>
                   <option value="blockquote">blockquote</option>
                   <option value="address">address</option>
                 </select>
               </div>
-              <div class="-prop -width">
-                <span class="-label">Classes</span>
+              <div class="form-builder-field__prop form-builder-field__prop--width">
+                <span class="form-builder-field__label">Classes</span>
                 <input
                     v-model="element.class"
                     type="text"
@@ -91,39 +92,39 @@
             </div>
           </template>
           <template v-else-if="element.type === 'checkbox'">
-            <div class="-prop">
-              <span class="-label">Label</span>
+            <div class="form-builder-field__prop">
+              <span class="form-builder-field__label">Label</span>
               <input type="text" v-model="element.label" />
             </div>
-            <div class="-prop" v-if="element.hasOwnProperty('hint')">
-              <span class="-label">Supporting Text</span>
+            <div class="form-builder-field__prop" v-if="element.hasOwnProperty('hint')">
+              <span class="form-builder-field__label">Supporting Text</span>
               <textarea cols="30" rows="3" v-model="element.hint" placeholder="Supporting text" />
             </div>
-            <div class="flex w-full gap-2">
-              <div class="-prop -width w-full" v-if="element.class">
-                <span class="-label">Width</span>
+            <div class="form-builder-field__row">
+              <div class="form-builder-field__prop form-builder-field__prop--grow form-builder-field__prop--width" v-if="element.class">
+                <span class="form-builder-field__label">Width</span>
                 <select v-model="element.class">
                   <option value="w-full">Full</option>
                   <option value="w-1/2">Half</option>
                 </select>
               </div>
-              <div class="-prop w-full" v-if="element.hasOwnProperty('defined_key')">
-                <span class="-label">Defined Key</span>
+              <div class="form-builder-field__prop form-builder-field__prop--grow" v-if="element.hasOwnProperty('defined_key')">
+                <span class="form-builder-field__label">Defined Key</span>
                 <input type="text" name="defined_key" v-model="element.defined_key" />
               </div>
             </div>
           </template>
           <template v-else>
             <div
-                class="-two-columns"
+                class="form-builder-field__two-columns"
                 v-if="['check-group', 'radio-group', 'signature', 'file-upload'].includes(element.type)"
             >
-              <div class="-prop">
-                <span class="-label">Label</span>
+              <div class="form-builder-field__prop">
+                <span class="form-builder-field__label">Label</span>
                 <input type="text" v-model="element.label" />
               </div>
-              <div class="-prop -width" v-if="element.class">
-                <span class="-label">Width</span>
+              <div class="form-builder-field__prop form-builder-field__prop--width" v-if="element.class">
+                <span class="form-builder-field__label">Width</span>
                 <select v-model="element.class">
                   <option value="w-full">Full</option>
                   <option value="w-1/2">Half</option>
@@ -131,17 +132,17 @@
               </div>
             </div>
             <template v-else>
-              <div class="-prop">
-                <span class="-label">{{ element.type === 'heading' ? 'Heading' : 'Label' }}</span>
+              <div class="form-builder-field__prop">
+                <span class="form-builder-field__label">{{ element.type === 'heading' ? 'Heading' : 'Label' }}</span>
                 <input type="text" v-model="element.label" />
               </div>
-              <div class="-two-columns">
-                <div class="-prop" v-if="element.placeholder !== null">
-                  <span class="-label">Placeholder</span>
+              <div class="form-builder-field__two-columns">
+                <div class="form-builder-field__prop" v-if="element.placeholder !== null">
+                  <span class="form-builder-field__label">Placeholder</span>
                   <input type="text" name="placeholder" v-model="element.placeholder" />
                 </div>
-                <div class="-prop -width" v-if="element.class">
-                  <span class="-label">Width</span>
+                <div class="form-builder-field__prop form-builder-field__prop--width" v-if="element.class">
+                  <span class="form-builder-field__label">Width</span>
                   <select v-model="element.class">
                     <option value="w-full">Full</option>
                     <option value="w-1/2">Half</option>
@@ -149,52 +150,52 @@
                 </div>
               </div>
             </template>
-            <div class="flex w-full gap-2">
-              <div class="-prop w-full" v-if="element.hasOwnProperty('hint')">
-                <span class="-label">Hint Text</span>
+            <div class="form-builder-field__row">
+              <div class="form-builder-field__prop form-builder-field__prop--grow" v-if="element.hasOwnProperty('hint')">
+                <span class="form-builder-field__label">Hint Text</span>
                 <input type="text" name="hint" v-model="element.hint" />
               </div>
-              <div class="-prop w-full" v-if="element.hasOwnProperty('defined_key')">
-                <span class="-label">Defined Key</span>
+              <div class="form-builder-field__prop form-builder-field__prop--grow" v-if="element.hasOwnProperty('defined_key')">
+                <span class="form-builder-field__label">Defined Key</span>
                 <input type="text" name="defined_key" v-model="element.defined_key" />
               </div>
             </div>
             <div
-                class="-prop -options"
+                class="form-builder-field__prop form-builder-field__options"
                 v-if="hasOptionsFieldTypes.includes(element.type) && element.options"
             >
-              <div class="flex justify-between">
-                <span class="-label mb-2 text-base font-semibold text-gray-900">Options</span>
-                <div class="-new">
+              <div class="form-builder-field__options-header">
+                <span class="form-builder-field__label form-builder-field__label--options">Options</span>
+                <div>
                   <a
-                      class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold mr-3.5 hover:bg-brand-50 py-1 px-2 gap-1 rounded"
+                      class="form-builder-field__add-option"
                       @click.prevent="onAddOption(element)"
                   >
-                    <Plus class="w-5 h-5" />
+                    <Plus class="form-builder-field__icon" />
                     Add
                   </a>
                 </div>
               </div>
               <draggable
                   :list="element.options"
-                  class="-added"
+                  class="form-builder-field__options-list"
                   item-key="id"
                   :group="{ name: element.id, pull: false, put: false }"
                   handle=".option-handle"
               >
                 <template #item="{ option, index }" :key="option.id">
-                  <div class="-option">
-                    <Handle class="w-5 h-5" />
+                  <div class="form-builder-field__option">
+                    <Handle class="form-builder-field__icon option-handle" />
                     <input
                         v-model="element.options[index]"
                         type="text"
-                        class="mx-2 text-base text-gray-900"
+                        class="form-builder-field__option-input"
                     />
                     <a
-                        class="hover:bg-brand-50 rounded cursor-pointer py-1"
+                        class="form-builder-field__option-remove"
                         @click="removeFieldOption(element, index)"
                     >
-                      <Trash class="w-5 h-5" />
+                      <Trash class="form-builder-field__icon" />
                     </a>
                   </div>
                 </template>
@@ -202,15 +203,17 @@
             </div>
           </template>
           <div v-if="actions.length">
-            <a class="rounded-full text-brand-600 hover:text-brand-900 py-1 cursor-pointer text-sm inline-flex gap-1" @click="showAction[index] = !showAction[index]"> Actions
-              <ChevronUp class="w-5 h-5" v-if="showAction[index]"></ChevronUp>
-              <ChevronDown class="w-5 h-5" v-else></ChevronDown>
+            <a class="form-builder-field__custom-actions-toggle" @click="showAction[index] = !showAction[index]"> Actions
+              <ChevronUp class="form-builder-field__icon" v-if="showAction[index]"></ChevronUp>
+              <ChevronDown class="form-builder-field__icon" v-else></ChevronDown>
             </a>
-            <div class="bg-gray-100 py-2 px-3 flex gap-2 rounded-lg mt-2" v-if="showAction[index]">
+            <div class="form-builder-field__custom-actions" v-if="showAction[index]">
               <template v-for="action in actions">
-                <a class="cursor-pointer hover:bg-brand-400 px-2 py-1 bg-brand-200 rounded-lg text-white"
-                   :class="{'!bg-brand-700': element?.actions?.includes(action.value)}"
-                   @click="addAction(element, action.value)">{{ action.label }}</a>
+                <a
+                    class="form-builder-field__custom-action"
+                    :class="{'form-builder-field__custom-action--active': element?.actions?.includes(action.value)}"
+                    @click="addAction(element, action.value)"
+                >{{ action.label }}</a>
               </template>
             </div>
           </div>
@@ -220,8 +223,8 @@
     <template #footer>
       <p
           v-if="!disableDropzone"
-          class="absolute shadow-sm border border-dashed border-gray-300 border-spacing-96 mb-[96px] rounded-xl w-full h-36 bottom-0 z-0 flex items-center justify-center text-sm text-gray-600"
-          :class="{ 'h-[638px] !top-0': !localFields.length }"
+          class="form-builder-draggable__dropzone"
+          :class="{ 'form-builder-draggable__dropzone--empty': !localFields.length }"
       >
         <span v-if="!isDragging">Drag a layout/component in</span>
       </p>

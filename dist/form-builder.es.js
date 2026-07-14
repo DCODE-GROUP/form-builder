@@ -2369,23 +2369,23 @@ vt.getAdapter = Ns.getAdapter;
 vt.HttpStatusCode = Ea;
 vt.default = vt;
 const {
-  Axios: Jy,
-  AxiosError: Qy,
-  CanceledError: Zy,
-  isCancel: qy,
-  CancelToken: _y,
-  VERSION: e1,
-  all: t1,
-  Cancel: n1,
-  isAxiosError: r1,
-  spread: o1,
-  toFormData: a1,
-  AxiosHeaders: i1,
-  HttpStatusCode: s1,
-  formToJSON: l1,
-  getAdapter: u1,
-  mergeConfig: c1,
-  create: d1
+  Axios: Ky,
+  AxiosError: Xy,
+  CanceledError: Jy,
+  isCancel: Qy,
+  CancelToken: Zy,
+  VERSION: qy,
+  all: _y,
+  Cancel: e1,
+  isAxiosError: t1,
+  spread: n1,
+  toFormData: r1,
+  AxiosHeaders: o1,
+  HttpStatusCode: a1,
+  formToJSON: i1,
+  getAdapter: s1,
+  mergeConfig: l1,
+  create: u1
 } = vt;
 var ao = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function Ba(t) {
@@ -17198,43 +17198,43 @@ function Rm(t, e) {
     }, null, -1)
   ])]);
 }
-const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick"], Mm = { class: "-title" }, Lm = { class: "-type-title" }, Um = { class: "flex gap-6 items-center" }, Nm = {
+const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, Fm = ["onClick"], Mm = { class: "form-builder-field__type-title" }, Lm = { class: "form-builder-field__header-actions" }, Um = {
   key: 0,
-  class: "-prop -options"
-}, jm = { class: "divide-y text-sm text-gray-700" }, Vm = ["onClick"], km = { class: "-field-properties" }, $m = { class: "-prop" }, Bm = ["onUpdate:modelValue"], Hm = { class: "-prop" }, zm = ["onUpdate:modelValue"], Gm = { class: "-prop" }, Wm = ["onUpdate:modelValue", "placeholder"], Ym = { class: "-two-columns" }, Km = { class: "-prop" }, Xm = ["onUpdate:modelValue"], Jm = { class: "-prop -width" }, Qm = ["onUpdate:modelValue"], Zm = { class: "-prop" }, qm = ["onUpdate:modelValue"], _m = {
+  class: "form-builder-field__prop form-builder-field__options"
+}, Nm = { class: "form-builder-field__actions-menu" }, jm = ["onClick"], Vm = { class: "form-builder-field__body" }, km = { class: "form-builder-field__prop" }, $m = ["onUpdate:modelValue"], Bm = { class: "form-builder-field__prop" }, Hm = ["onUpdate:modelValue"], zm = { class: "form-builder-field__prop" }, Gm = ["onUpdate:modelValue", "placeholder"], Wm = { class: "form-builder-field__two-columns" }, Ym = { class: "form-builder-field__prop" }, Km = ["onUpdate:modelValue"], Xm = { class: "form-builder-field__prop form-builder-field__prop--width" }, Jm = ["onUpdate:modelValue"], Qm = { class: "form-builder-field__prop" }, Zm = ["onUpdate:modelValue"], qm = {
   key: 0,
-  class: "-prop"
-}, eg = ["onUpdate:modelValue"], tg = { class: "flex w-full gap-2" }, ng = {
+  class: "form-builder-field__prop"
+}, _m = ["onUpdate:modelValue"], eg = { class: "form-builder-field__row" }, tg = {
   key: 0,
-  class: "-prop -width w-full"
-}, rg = ["onUpdate:modelValue"], og = {
+  class: "form-builder-field__prop form-builder-field__prop--grow form-builder-field__prop--width"
+}, ng = ["onUpdate:modelValue"], rg = {
   key: 1,
-  class: "-prop w-full"
-}, ag = ["onUpdate:modelValue"], ig = {
+  class: "form-builder-field__prop form-builder-field__prop--grow"
+}, og = ["onUpdate:modelValue"], ag = {
   key: 0,
-  class: "-two-columns"
-}, sg = { class: "-prop" }, lg = ["onUpdate:modelValue"], ug = {
+  class: "form-builder-field__two-columns"
+}, ig = { class: "form-builder-field__prop" }, sg = ["onUpdate:modelValue"], lg = {
   key: 0,
-  class: "-prop -width"
-}, cg = ["onUpdate:modelValue"], dg = { class: "-prop" }, fg = { class: "-label" }, hg = ["onUpdate:modelValue"], pg = { class: "-two-columns" }, vg = {
+  class: "form-builder-field__prop form-builder-field__prop--width"
+}, ug = ["onUpdate:modelValue"], cg = { class: "form-builder-field__prop" }, dg = { class: "form-builder-field__label" }, fg = ["onUpdate:modelValue"], hg = { class: "form-builder-field__two-columns" }, pg = {
   key: 0,
-  class: "-prop"
-}, mg = ["onUpdate:modelValue"], gg = {
+  class: "form-builder-field__prop"
+}, vg = ["onUpdate:modelValue"], mg = {
   key: 1,
-  class: "-prop -width"
-}, yg = ["onUpdate:modelValue"], bg = { class: "flex w-full gap-2" }, xg = {
+  class: "form-builder-field__prop form-builder-field__prop--width"
+}, gg = ["onUpdate:modelValue"], yg = { class: "form-builder-field__row" }, bg = {
   key: 0,
-  class: "-prop w-full"
-}, Sg = ["onUpdate:modelValue"], Eg = {
+  class: "form-builder-field__prop form-builder-field__prop--grow"
+}, xg = ["onUpdate:modelValue"], Sg = {
   key: 1,
-  class: "-prop w-full"
-}, wg = ["onUpdate:modelValue"], Tg = {
+  class: "form-builder-field__prop form-builder-field__prop--grow"
+}, Eg = ["onUpdate:modelValue"], wg = {
   key: 2,
-  class: "-prop -options"
-}, Ag = { class: "flex justify-between" }, Og = { class: "-new" }, Cg = ["onClick"], Pg = { class: "-option" }, Rg = ["onUpdate:modelValue"], Ig = ["onClick"], Dg = { key: 5 }, Fg = ["onClick"], Mg = {
+  class: "form-builder-field__prop form-builder-field__options"
+}, Tg = { class: "form-builder-field__options-header" }, Ag = ["onClick"], Og = { class: "form-builder-field__option" }, Cg = ["onUpdate:modelValue"], Pg = ["onClick"], Rg = { key: 5 }, Ig = ["onClick"], Dg = {
   key: 0,
-  class: "bg-gray-100 py-2 px-3 flex gap-2 rounded-lg mt-2"
-}, Lg = ["onClick"], Ug = { key: 0 }, Ll = {
+  class: "form-builder-field__custom-actions"
+}, Fg = ["onClick"], Mg = { key: 0 }, Ll = {
   __name: "FieldDraggable",
   props: {
     modelValue: {
@@ -17300,7 +17300,7 @@ const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick
       h.options.splice(p, 1);
     };
     return (h, p) => (_(), Qt(Ze(ko), {
-      class: rt(["pb-60 relative z-10", { "!pb-4": t.disableDropzone }]),
+      class: rt(["form-builder-draggable__list", { "form-builder-draggable__list--compact": t.disableDropzone }]),
       modelValue: c.value,
       "onUpdate:modelValue": p[0] || (p[0] = (f) => c.value = f),
       "item-key": "id",
@@ -17313,20 +17313,18 @@ const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick
     }, {
       item: Tt(({ element: f, index: m }) => [
         k("div", {
-          class: rt(["relative -field", ["-type-" + f.type]])
+          class: rt(["form-builder-field", `form-builder-field--${f.type}`])
         }, [
           k("div", Dm, [
             k("h2", {
               onClick: (v) => f.isShowing = !f.isShowing,
-              class: "relative cursor-pointer"
+              class: "form-builder-field__heading"
             }, [
-              ie(Ze(cs), { class: "w-5 h-5 absolute top-[6px] -left-[20px]" }),
-              k("span", Mm, [
-                k("span", Lm, $e(o(f)), 1)
-              ])
+              ie(Ze(cs), { class: "form-builder-field__handle-icon" }),
+              k("span", Mm, $e(o(f)), 1)
             ], 8, Fm),
-            k("div", Um, [
-              f.hasOwnProperty("required") ? (_(), oe("div", Nm, [
+            k("div", Lm, [
+              f.hasOwnProperty("required") ? (_(), oe("div", Um, [
                 ie(ri, {
                   title: "Required",
                   modelValue: f.required,
@@ -17335,37 +17333,37 @@ const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick
               ])) : Me("", !0),
               ie(Ml, null, {
                 dropdown: Tt(() => [
-                  k("ul", jm, [
+                  k("ul", Nm, [
                     k("li", {
                       onClick: (v) => l(m),
-                      class: "cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-50 rounded"
+                      class: "form-builder-field__actions-item"
                     }, [
-                      ie(Ze(us), { class: "w-5 h-5" }),
+                      ie(Ze(us), { class: "form-builder-field__icon" }),
                       p[1] || (p[1] = k("span", null, "Remove", -1))
-                    ], 8, Vm)
+                    ], 8, jm)
                   ])
                 ]),
                 _: 2
               }, 1024)
             ])
           ]),
-          k("div", km, [
+          k("div", Vm, [
             f != null && f.builder ? (_(), Qt(Hn(f.builder), fu(Ma({ key: 0 }, { component: f })), null, 16)) : f.type === "grid" ? (_(), oe(Pt, { key: 1 }, [
-              k("div", $m, [
-                p[2] || (p[2] = k("span", { class: "-label" }, "Label", -1)),
+              k("div", km, [
+                p[2] || (p[2] = k("span", { class: "form-builder-field__label" }, "Label", -1)),
                 et(k("input", {
                   type: "text",
                   "onUpdate:modelValue": (v) => f.label = v
-                }, null, 8, Bm), [
+                }, null, 8, $m), [
                   [yt, f.label]
                 ])
               ]),
-              k("div", Hm, [
-                p[3] || (p[3] = k("span", { class: "-label" }, "Supporting Text", -1)),
+              k("div", Bm, [
+                p[3] || (p[3] = k("span", { class: "form-builder-field__label" }, "Supporting Text", -1)),
                 et(k("input", {
                   type: "text",
                   "onUpdate:modelValue": (v) => f.hint = v
-                }, null, 8, zm), [
+                }, null, 8, Hm), [
                   [yt, f.hint]
                 ])
               ]),
@@ -17377,227 +17375,227 @@ const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick
                 "onUpdate:allowAddRow": (v) => f.allow_add_row = v
               }, null, 8, ["modelValue", "onUpdate:modelValue", "is-dragging", "allow-add-row", "onUpdate:allowAddRow"])
             ], 64)) : f.type === "paragraph" ? (_(), oe(Pt, { key: 2 }, [
-              k("div", Gm, [
-                p[4] || (p[4] = k("span", null, "Content", -1)),
+              k("div", zm, [
+                p[4] || (p[4] = k("span", { class: "form-builder-field__label" }, "Content", -1)),
                 et(k("textarea", {
                   cols: "30",
                   rows: "3",
                   "onUpdate:modelValue": (v) => f.content = v,
                   placeholder: f.placeholder
-                }, null, 8, Wm), [
+                }, null, 8, Gm), [
                   [yt, f.content]
                 ])
               ]),
-              k("div", Ym, [
-                k("div", Km, [
-                  p[6] || (p[6] = k("span", null, "Type", -1)),
+              k("div", Wm, [
+                k("div", Ym, [
+                  p[6] || (p[6] = k("span", { class: "form-builder-field__label" }, "Type", -1)),
                   et(k("select", {
                     "onUpdate:modelValue": (v) => f.content_type = v
                   }, [...p[5] || (p[5] = [
                     k("option", { value: "p" }, "p", -1),
                     k("option", { value: "blockquote" }, "blockquote", -1),
                     k("option", { value: "address" }, "address", -1)
-                  ])], 8, Xm), [
+                  ])], 8, Km), [
                     [ro, f.content_type]
                   ])
                 ]),
-                k("div", Jm, [
-                  p[7] || (p[7] = k("span", { class: "-label" }, "Classes", -1)),
+                k("div", Xm, [
+                  p[7] || (p[7] = k("span", { class: "form-builder-field__label" }, "Classes", -1)),
                   et(k("input", {
                     "onUpdate:modelValue": (v) => f.class = v,
                     type: "text",
                     name: "classes",
                     placeholder: "Input space separated classes"
-                  }, null, 8, Qm), [
+                  }, null, 8, Jm), [
                     [yt, f.class]
                   ])
                 ])
               ])
             ], 64)) : f.type === "checkbox" ? (_(), oe(Pt, { key: 3 }, [
-              k("div", Zm, [
-                p[8] || (p[8] = k("span", { class: "-label" }, "Label", -1)),
+              k("div", Qm, [
+                p[8] || (p[8] = k("span", { class: "form-builder-field__label" }, "Label", -1)),
                 et(k("input", {
                   type: "text",
                   "onUpdate:modelValue": (v) => f.label = v
-                }, null, 8, qm), [
+                }, null, 8, Zm), [
                   [yt, f.label]
                 ])
               ]),
-              f.hasOwnProperty("hint") ? (_(), oe("div", _m, [
-                p[9] || (p[9] = k("span", { class: "-label" }, "Supporting Text", -1)),
+              f.hasOwnProperty("hint") ? (_(), oe("div", qm, [
+                p[9] || (p[9] = k("span", { class: "form-builder-field__label" }, "Supporting Text", -1)),
                 et(k("textarea", {
                   cols: "30",
                   rows: "3",
                   "onUpdate:modelValue": (v) => f.hint = v,
                   placeholder: "Supporting text"
-                }, null, 8, eg), [
+                }, null, 8, _m), [
                   [yt, f.hint]
                 ])
               ])) : Me("", !0),
-              k("div", tg, [
-                f.class ? (_(), oe("div", ng, [
-                  p[11] || (p[11] = k("span", { class: "-label" }, "Width", -1)),
+              k("div", eg, [
+                f.class ? (_(), oe("div", tg, [
+                  p[11] || (p[11] = k("span", { class: "form-builder-field__label" }, "Width", -1)),
                   et(k("select", {
                     "onUpdate:modelValue": (v) => f.class = v
                   }, [...p[10] || (p[10] = [
                     k("option", { value: "w-full" }, "Full", -1),
                     k("option", { value: "w-1/2" }, "Half", -1)
-                  ])], 8, rg), [
+                  ])], 8, ng), [
                     [ro, f.class]
                   ])
                 ])) : Me("", !0),
-                f.hasOwnProperty("defined_key") ? (_(), oe("div", og, [
-                  p[12] || (p[12] = k("span", { class: "-label" }, "Defined Key", -1)),
+                f.hasOwnProperty("defined_key") ? (_(), oe("div", rg, [
+                  p[12] || (p[12] = k("span", { class: "form-builder-field__label" }, "Defined Key", -1)),
                   et(k("input", {
                     type: "text",
                     name: "defined_key",
                     "onUpdate:modelValue": (v) => f.defined_key = v
-                  }, null, 8, ag), [
+                  }, null, 8, og), [
                     [yt, f.defined_key]
                   ])
                 ])) : Me("", !0)
               ])
             ], 64)) : (_(), oe(Pt, { key: 4 }, [
-              ["check-group", "radio-group", "signature", "file-upload"].includes(f.type) ? (_(), oe("div", ig, [
-                k("div", sg, [
-                  p[13] || (p[13] = k("span", { class: "-label" }, "Label", -1)),
+              ["check-group", "radio-group", "signature", "file-upload"].includes(f.type) ? (_(), oe("div", ag, [
+                k("div", ig, [
+                  p[13] || (p[13] = k("span", { class: "form-builder-field__label" }, "Label", -1)),
                   et(k("input", {
                     type: "text",
                     "onUpdate:modelValue": (v) => f.label = v
-                  }, null, 8, lg), [
+                  }, null, 8, sg), [
                     [yt, f.label]
                   ])
                 ]),
-                f.class ? (_(), oe("div", ug, [
-                  p[15] || (p[15] = k("span", { class: "-label" }, "Width", -1)),
+                f.class ? (_(), oe("div", lg, [
+                  p[15] || (p[15] = k("span", { class: "form-builder-field__label" }, "Width", -1)),
                   et(k("select", {
                     "onUpdate:modelValue": (v) => f.class = v
                   }, [...p[14] || (p[14] = [
                     k("option", { value: "w-full" }, "Full", -1),
                     k("option", { value: "w-1/2" }, "Half", -1)
-                  ])], 8, cg), [
+                  ])], 8, ug), [
                     [ro, f.class]
                   ])
                 ])) : Me("", !0)
               ])) : (_(), oe(Pt, { key: 1 }, [
-                k("div", dg, [
-                  k("span", fg, $e(f.type === "heading" ? "Heading" : "Label"), 1),
+                k("div", cg, [
+                  k("span", dg, $e(f.type === "heading" ? "Heading" : "Label"), 1),
                   et(k("input", {
                     type: "text",
                     "onUpdate:modelValue": (v) => f.label = v
-                  }, null, 8, hg), [
+                  }, null, 8, fg), [
                     [yt, f.label]
                   ])
                 ]),
-                k("div", pg, [
-                  f.placeholder !== null ? (_(), oe("div", vg, [
-                    p[16] || (p[16] = k("span", { class: "-label" }, "Placeholder", -1)),
+                k("div", hg, [
+                  f.placeholder !== null ? (_(), oe("div", pg, [
+                    p[16] || (p[16] = k("span", { class: "form-builder-field__label" }, "Placeholder", -1)),
                     et(k("input", {
                       type: "text",
                       name: "placeholder",
                       "onUpdate:modelValue": (v) => f.placeholder = v
-                    }, null, 8, mg), [
+                    }, null, 8, vg), [
                       [yt, f.placeholder]
                     ])
                   ])) : Me("", !0),
-                  f.class ? (_(), oe("div", gg, [
-                    p[18] || (p[18] = k("span", { class: "-label" }, "Width", -1)),
+                  f.class ? (_(), oe("div", mg, [
+                    p[18] || (p[18] = k("span", { class: "form-builder-field__label" }, "Width", -1)),
                     et(k("select", {
                       "onUpdate:modelValue": (v) => f.class = v
                     }, [...p[17] || (p[17] = [
                       k("option", { value: "w-full" }, "Full", -1),
                       k("option", { value: "w-1/2" }, "Half", -1)
-                    ])], 8, yg), [
+                    ])], 8, gg), [
                       [ro, f.class]
                     ])
                   ])) : Me("", !0)
                 ])
               ], 64)),
-              k("div", bg, [
-                f.hasOwnProperty("hint") ? (_(), oe("div", xg, [
-                  p[19] || (p[19] = k("span", { class: "-label" }, "Hint Text", -1)),
+              k("div", yg, [
+                f.hasOwnProperty("hint") ? (_(), oe("div", bg, [
+                  p[19] || (p[19] = k("span", { class: "form-builder-field__label" }, "Hint Text", -1)),
                   et(k("input", {
                     type: "text",
                     name: "hint",
                     "onUpdate:modelValue": (v) => f.hint = v
-                  }, null, 8, Sg), [
+                  }, null, 8, xg), [
                     [yt, f.hint]
                   ])
                 ])) : Me("", !0),
-                f.hasOwnProperty("defined_key") ? (_(), oe("div", Eg, [
-                  p[20] || (p[20] = k("span", { class: "-label" }, "Defined Key", -1)),
+                f.hasOwnProperty("defined_key") ? (_(), oe("div", Sg, [
+                  p[20] || (p[20] = k("span", { class: "form-builder-field__label" }, "Defined Key", -1)),
                   et(k("input", {
                     type: "text",
                     name: "defined_key",
                     "onUpdate:modelValue": (v) => f.defined_key = v
-                  }, null, 8, wg), [
+                  }, null, 8, Eg), [
                     [yt, f.defined_key]
                   ])
                 ])) : Me("", !0)
               ]),
-              r.includes(f.type) && f.options ? (_(), oe("div", Tg, [
-                k("div", Ag, [
-                  p[22] || (p[22] = k("span", { class: "-label mb-2 text-base font-semibold text-gray-900" }, "Options", -1)),
-                  k("div", Og, [
+              r.includes(f.type) && f.options ? (_(), oe("div", wg, [
+                k("div", Tg, [
+                  p[22] || (p[22] = k("span", { class: "form-builder-field__label form-builder-field__label--options" }, "Options", -1)),
+                  k("div", null, [
                     k("a", {
-                      class: "cursor-pointer text-brand-700 flex items-center text-sm font-semibold mr-3.5 hover:bg-brand-50 py-1 px-2 gap-1 rounded",
+                      class: "form-builder-field__add-option",
                       onClick: ar((v) => u(f), ["prevent"])
                     }, [
-                      ie(Ze(Sl), { class: "w-5 h-5" }),
+                      ie(Ze(Sl), { class: "form-builder-field__icon" }),
                       p[21] || (p[21] = Jt(" Add ", -1))
-                    ], 8, Cg)
+                    ], 8, Ag)
                   ])
                 ]),
                 ie(Ze(ko), {
                   list: f.options,
-                  class: "-added",
+                  class: "form-builder-field__options-list",
                   "item-key": "id",
                   group: { name: f.id, pull: !1, put: !1 },
                   handle: ".option-handle"
                 }, {
                   item: Tt(({ option: v, index: g }) => [
-                    k("div", Pg, [
-                      ie(Ze(cs), { class: "w-5 h-5" }),
+                    k("div", Og, [
+                      ie(Ze(cs), { class: "form-builder-field__icon option-handle" }),
                       et(k("input", {
                         "onUpdate:modelValue": (y) => f.options[g] = y,
                         type: "text",
-                        class: "mx-2 text-base text-gray-900"
-                      }, null, 8, Rg), [
+                        class: "form-builder-field__option-input"
+                      }, null, 8, Cg), [
                         [yt, f.options[g]]
                       ]),
                       k("a", {
-                        class: "hover:bg-brand-50 rounded cursor-pointer py-1",
+                        class: "form-builder-field__option-remove",
                         onClick: (y) => d(f, g)
                       }, [
-                        ie(Ze(us), { class: "w-5 h-5" })
-                      ], 8, Ig)
+                        ie(Ze(us), { class: "form-builder-field__icon" })
+                      ], 8, Pg)
                     ])
                   ]),
                   _: 2
                 }, 1032, ["list", "group"])
               ])) : Me("", !0)
             ], 64)),
-            t.actions.length ? (_(), oe("div", Dg, [
+            t.actions.length ? (_(), oe("div", Rg, [
               k("a", {
-                class: "rounded-full text-brand-600 hover:text-brand-900 py-1 cursor-pointer text-sm inline-flex gap-1",
+                class: "form-builder-field__custom-actions-toggle",
                 onClick: (v) => a.value[m] = !a.value[m]
               }, [
                 p[23] || (p[23] = Jt(" Actions ", -1)),
                 a.value[m] ? (_(), Qt(Ze(Cm), {
                   key: 0,
-                  class: "w-5 h-5"
+                  class: "form-builder-field__icon"
                 })) : (_(), Qt(Ze(Im), {
                   key: 1,
-                  class: "w-5 h-5"
+                  class: "form-builder-field__icon"
                 }))
-              ], 8, Fg),
-              a.value[m] ? (_(), oe("div", Mg, [
+              ], 8, Ig),
+              a.value[m] ? (_(), oe("div", Dg, [
                 (_(!0), oe(Pt, null, bn(t.actions, (v) => {
                   var g;
                   return _(), oe("a", {
-                    class: rt(["cursor-pointer hover:bg-brand-400 px-2 py-1 bg-brand-200 rounded-lg text-white", { "!bg-brand-700": (g = f == null ? void 0 : f.actions) == null ? void 0 : g.includes(v.value) }]),
+                    class: rt(["form-builder-field__custom-action", { "form-builder-field__custom-action--active": (g = f == null ? void 0 : f.actions) == null ? void 0 : g.includes(v.value) }]),
                     onClick: (y) => s(f, v.value)
-                  }, $e(v.label), 11, Lg);
+                  }, $e(v.label), 11, Fg);
                 }), 256))
               ])) : Me("", !0)
             ])) : Me("", !0)
@@ -17607,15 +17605,15 @@ const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick
       footer: Tt(() => [
         t.disableDropzone ? Me("", !0) : (_(), oe("p", {
           key: 0,
-          class: rt(["absolute shadow-sm border border-dashed border-gray-300 border-spacing-96 mb-[96px] rounded-xl w-full h-36 bottom-0 z-0 flex items-center justify-center text-sm text-gray-600", { "h-[638px] !top-0": !c.value.length }])
+          class: rt(["form-builder-draggable__dropzone", { "form-builder-draggable__dropzone--empty": !c.value.length }])
         }, [
-          t.isDragging ? Me("", !0) : (_(), oe("span", Ug, "Drag a layout/component in"))
+          t.isDragging ? Me("", !0) : (_(), oe("span", Mg, "Drag a layout/component in"))
         ], 2))
       ]),
       _: 1
     }, 8, ["class", "modelValue"]));
   }
-}, Ng = {
+}, Lg = {
   name: "EditFieldGrid",
   inject: ["bus"],
   components: { FieldDraggable: Ll },
@@ -17650,20 +17648,20 @@ const Im = { render: Rm }, Dm = { class: "-field-title handle" }, Fm = ["onClick
       this.$emit("confirm", t);
     }
   }
-}, jg = { class: "p-6 w-[776px]" }, Vg = { class: "fields" }, kg = { class: "draggable" }, $g = { class: "mb-[20px] text-lg font-semibold text-gray-900" }, Bg = { class: "fixed -bottom-8 right-0 flex justify-end gap-2 text-sm font-semibold bg-white w-full py-2 px-6 rounded-b-lg z-50" };
-function Hg(t, e, n, a, i, c) {
+}, Ug = { class: "p-6 w-[776px]" }, Ng = { class: "fields" }, jg = { class: "form-builder-draggable" }, Vg = { class: "mb-[20px] text-lg font-semibold text-gray-900" }, kg = { class: "fixed -bottom-8 right-0 flex justify-end gap-2 text-sm font-semibold bg-white w-full py-2 px-6 rounded-b-lg z-50" };
+function $g(t, e, n, a, i, c) {
   const r = on("field-draggable");
-  return _(), oe("div", jg, [
-    k("div", Vg, [
-      k("div", kg, [
-        k("h4", $g, "Row " + $e(n.index + 1) + ": multiple columns", 1),
+  return _(), oe("div", Ug, [
+    k("div", Ng, [
+      k("div", jg, [
+        k("h4", Vg, "Row " + $e(n.index + 1) + ": multiple columns", 1),
         ie(r, {
           modelValue: i.localFields,
           "onUpdate:modelValue": e[0] || (e[0] = (s) => i.localFields = s),
           "disable-dropzone": ""
         }, null, 8, ["modelValue"])
       ]),
-      k("div", Bg, [
+      k("div", kg, [
         k("a", {
           onClick: e[1] || (e[1] = (...s) => c.close && c.close(...s)),
           class: "rounded-full cursor-pointer px-3 py-2 border hover:bg-gray-200"
@@ -17676,10 +17674,10 @@ function Hg(t, e, n, a, i, c) {
     ])
   ]);
 }
-const zg = /* @__PURE__ */ bt(Ng, [["render", Hg]]), Gg = {
+const Bg = /* @__PURE__ */ bt(Lg, [["render", $g]]), Hg = {
   inject: ["bus"],
   components: {
-    EditFieldGrid: zg
+    EditFieldGrid: Bg
   },
   data() {
     return {
@@ -17723,20 +17721,20 @@ const zg = /* @__PURE__ */ bt(Ng, [["render", Hg]]), Gg = {
       this.isAsyncCallback && this.callback ? await this.callback(t) : this.callback && this.callback(t), this.isOpen = !1;
     }
   }
-}, Wg = {
+}, zg = {
   key: 0,
   class: "fixed left-1/2 top-1/2 z-50 flex max-h-screen -translate-x-1/2 -translate-y-1/2 transform flex-col rounded-xl border-tertiary-500 bg-white"
-}, Yg = {
+}, Gg = {
   key: 1,
   class: "p-smSpace"
-}, Kg = ["innerHTML"], Xg = { class: "flex justify-center space-x-xsSpace pt-xsSpace" }, Jg = ["textContent"], Qg = ["textContent"];
-function Zg(t, e, n, a, i, c) {
+}, Wg = ["innerHTML"], Yg = { class: "flex justify-center space-x-xsSpace pt-xsSpace" }, Kg = ["textContent"], Xg = ["textContent"];
+function Jg(t, e, n, a, i, c) {
   return _(), oe("div", {
     class: rt([{ "-open": i.isOpen }, "v-modal"])
   }, [
     ie(Fa, { name: "fade" }, {
       default: Tt(() => [
-        i.isOpen ? (_(), oe("div", Wg, [
+        i.isOpen ? (_(), oe("div", zg, [
           xn(t.$slots, "default", {}, () => [
             k("div", {
               class: rt(["relative max-h-[720px] overflow-y-auto", { "overflow-y-visible": !i.scrollable }])
@@ -17744,22 +17742,22 @@ function Zg(t, e, n, a, i, c) {
               i.componentName ? (_(), Qt(Hn(i.componentName), Ma({ key: 0 }, i.componentData, {
                 onConfirm: c.confirm,
                 onCloseModal: c.close
-              }), null, 16, ["onConfirm", "onCloseModal"])) : (_(), oe("div", Yg, [
+              }), null, 16, ["onConfirm", "onCloseModal"])) : (_(), oe("div", Gg, [
                 k("div", {
                   innerHTML: i.componentData,
                   class: "py-mdSpace"
-                }, null, 8, Kg),
-                k("div", Xg, [
+                }, null, 8, Wg),
+                k("div", Yg, [
                   k("a", {
                     onClick: e[0] || (e[0] = (...r) => c.close && c.close(...r)),
                     class: "btn-secondary btn-sm",
                     textContent: $e(c.cancelButton)
-                  }, null, 8, Jg),
+                  }, null, 8, Kg),
                   k("a", {
                     onClick: e[1] || (e[1] = ar((...r) => c.confirm && c.confirm(...r), ["prevent"])),
                     class: "btn-primary btn-sm",
                     textContent: $e(c.confirmButton)
-                  }, null, 8, Qg)
+                  }, null, 8, Xg)
                 ])
               ]))
             ], 2)
@@ -17770,14 +17768,14 @@ function Zg(t, e, n, a, i, c) {
     })
   ], 2);
 }
-const qg = /* @__PURE__ */ bt(Gg, [["render", Zg], ["__scopeId", "data-v-88cae789"]]), _g = {
+const Qg = /* @__PURE__ */ bt(Hg, [["render", Jg], ["__scopeId", "data-v-88cae789"]]), Zg = {
   xmlns: "http://www.w3.org/2000/svg",
   fill: "none",
   stroke: "currentColor",
   viewBox: "0 0 24 24"
 };
-function ey(t, e) {
-  return _(), oe("svg", _g, [...e[0] || (e[0] = [
+function qg(t, e) {
+  return _(), oe("svg", Zg, [...e[0] || (e[0] = [
     k("path", {
       "stroke-linecap": "round",
       "stroke-linejoin": "round",
@@ -17792,13 +17790,13 @@ function ey(t, e) {
     }, null, -1)
   ])]);
 }
-const ty = { render: ey }, ny = {
+const _g = { render: qg }, ey = {
   xmlns: "http://www.w3.org/2000/svg",
   fill: "none",
   viewBox: "0 0 24 24"
 };
-function ry(t, e) {
-  return _(), oe("svg", ny, [...e[0] || (e[0] = [
+function ty(t, e) {
+  return _(), oe("svg", ey, [...e[0] || (e[0] = [
     k("circle", {
       cx: "12",
       cy: "12",
@@ -17814,8 +17812,8 @@ function ry(t, e) {
     }, null, -1)
   ])]);
 }
-const ds = { render: ry };
-function oy() {
+const ds = { render: ty };
+function ny() {
   return [
     {
       name: "grid",
@@ -17942,55 +17940,55 @@ function oy() {
     }
   ];
 }
-const ay = {
+const ry = {
   key: 0,
   class: "form-builder__breadcrumbs"
-}, iy = ["href"], sy = ["textContent"], ly = { class: "form-builder__header" }, uy = { class: "form-builder__page-title" }, cy = {
+}, oy = ["href"], ay = ["textContent"], iy = { class: "form-builder__header" }, sy = { class: "form-builder__page-title" }, ly = {
   key: 0,
   class: "form-builder__btn-label"
-}, dy = {
+}, uy = {
   key: 1,
   class: "form-builder__btn-label"
-}, fy = ["name", "value"], hy = {
+}, cy = ["name", "value"], dy = {
   key: 1,
   class: "form-builder-preview-container"
-}, py = {
+}, fy = {
   key: 0,
   class: "form-builder-preview__title"
-}, vy = { class: "form-builder-preview" }, my = {
+}, hy = { class: "form-builder-preview" }, py = {
   key: 2,
   class: "form-builder-container"
-}, gy = { class: "form-builder__layout" }, yy = { class: "form-builder" }, by = { class: "form-builder-fields" }, xy = { class: "form-builder__settings settings" }, Sy = {
+}, vy = { class: "form-builder__layout" }, my = { class: "form-builder" }, gy = { class: "form-builder-fields" }, yy = { class: "form-builder__settings settings" }, by = {
   key: 0,
   class: "form-builder__field-error"
-}, Ey = {
+}, xy = {
   key: 0,
   class: "form-builder__field-group"
-}, wy = {
+}, Sy = {
   key: 0,
   class: "form-builder__field-error"
-}, Ty = { class: "fields" }, Ay = { class: "form-builder__sidebar" }, Oy = {
+}, Ey = { class: "fields" }, wy = { class: "form-builder__sidebar" }, Ty = {
   key: 0,
   class: "form-builder__status-panel"
-}, Cy = { class: "form-builder__status-list" }, Py = {
+}, Ay = { class: "form-builder__status-list" }, Oy = {
   width: "6",
   height: "6",
   viewBox: "0 0 6 6",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
-}, Ry = ["fill"], Iy = {
+}, Cy = ["fill"], Py = {
   key: 0,
   class: "form-builder__meta"
-}, Dy = { class: "form-builder__meta-value" }, Fy = { class: "form-builder__meta" }, My = { class: "form-builder__meta-value" }, Ly = { class: "form-builder-templates" }, Uy = ["onClick"], Ny = { class: "form-builder__component-icon" }, jy = ["innerHTML"], Vy = { class: "form-builder__tooltip" }, ky = {
+}, Ry = { class: "form-builder__meta-value" }, Iy = { class: "form-builder__meta" }, Dy = { class: "form-builder__meta-value" }, Fy = { class: "form-builder-templates" }, My = ["onClick"], Ly = { class: "form-builder__component-icon" }, Uy = ["innerHTML"], Ny = { class: "form-builder__tooltip" }, jy = {
   key: 3,
   class: "form-builder__actions"
-}, $y = { class: "form-builder__actions-group" }, By = { key: 0 }, Hy = {
+}, Vy = { class: "form-builder__actions-group" }, ky = { key: 0 }, $y = {
   key: 1,
   class: "form-builder__btn-loading"
-}, zy = { key: 0 }, Gy = {
+}, By = { key: 0 }, Hy = {
   key: 1,
   class: "form-builder__btn-loading"
-}, f1 = {
+}, c1 = {
   __name: "FormBuilder",
   props: {
     name: String,
@@ -18017,7 +18015,7 @@ const ay = {
     const e = t;
     $o("bus", hv);
     let n = hu(e.form), a = qe(n.id || null), i = qe(n.title || null), c = qe((n == null ? void 0 : n.recipients) ?? ""), r = qe(n.fields || []);
-    const s = qe([]), o = qe(!1), l = qe(!1), u = qe(!1), d = qe(oy()), h = (P) => {
+    const s = qe([]), o = qe(!1), l = qe(!1), u = qe(!1), d = qe(ny()), h = (P) => {
       r.value.map((C) => (["builder", "presenter"].forEach((D) => {
         const j = P == null ? void 0 : P.find((V) => C.hasOwnProperty(D) && V[D].__name === C[D].__name);
         j && (C[D] = nt(j[D]));
@@ -18098,25 +18096,25 @@ const ay = {
     return (P, C) => {
       var D, j;
       return _(), oe(Pt, null, [
-        ie(qg),
-        t.showBreadcrumbs ? (_(), oe("div", ay, [
+        ie(Qg),
+        t.showBreadcrumbs ? (_(), oe("div", ry, [
           k("a", {
             href: t.redirectUrl,
             class: "form-builder__breadcrumb-link"
-          }, " Form ", 8, iy),
+          }, " Form ", 8, oy),
           C[6] || (C[6] = Jt(" / ", -1)),
           k("span", {
             class: "form-builder__breadcrumb-current",
             textContent: $e(Ze(i) ? Ze(i) : o.value ? "Preview" : "Add New Form")
-          }, null, 8, sy)
+          }, null, 8, ay)
         ])) : Me("", !0),
-        k("div", ly, [
-          k("h4", uy, $e(o.value ? "Preview" : Ze(i) ? Ze(i) : "Add New Form"), 1),
+        k("div", iy, [
+          k("h4", sy, $e(o.value ? "Preview" : Ze(i) ? Ze(i) : "Add New Form"), 1),
           k("a", {
             class: "form-builder__btn form-builder__btn--preview",
             onClick: v
           }, [
-            o.value ? (_(), oe("span", dy, [...C[8] || (C[8] = [
+            o.value ? (_(), oe("span", uy, [...C[8] || (C[8] = [
               k("svg", {
                 width: "19",
                 height: "19",
@@ -18133,8 +18131,8 @@ const ay = {
                 })
               ], -1),
               Jt(" Edit ", -1)
-            ])])) : (_(), oe("span", cy, [
-              ie(Ze(ty), { class: "form-builder__icon" }),
+            ])])) : (_(), oe("span", ly, [
+              ie(Ze(_g), { class: "form-builder__icon" }),
               C[7] || (C[7] = Jt(" Preview ", -1))
             ]))
           ])
@@ -18143,10 +18141,10 @@ const ay = {
           type: "hidden",
           name: t.name,
           value: p.value
-        }, null, 8, fy),
-        o.value ? (_(), oe("div", hy, [
-          Ze(i) ? (_(), oe("p", py, $e(Ze(i)), 1)) : Me("", !0),
-          k("div", vy, [
+        }, null, 8, cy),
+        o.value ? (_(), oe("div", dy, [
+          Ze(i) ? (_(), oe("p", fy, $e(Ze(i)), 1)) : Me("", !0),
+          k("div", hy, [
             ie(dv, {
               "model-value": { fields: Ze(r) },
               preview: !0,
@@ -18154,11 +18152,11 @@ const ay = {
               "can-interact": o.value
             }, null, 8, ["model-value", "can-interact"])
           ])
-        ])) : (_(), oe("div", my, [
-          k("div", gy, [
-            k("div", yy, [
-              k("div", by, [
-                k("div", xy, [
+        ])) : (_(), oe("div", py, [
+          k("div", vy, [
+            k("div", my, [
+              k("div", gy, [
+                k("div", yy, [
                   C[12] || (C[12] = k("h3", null, "Settings", -1)),
                   k("div", null, [
                     C[9] || (C[9] = k("p", { class: "form-builder__field-label" }, "Form Title *", -1)),
@@ -18169,9 +18167,9 @@ const ay = {
                     }, null, 512), [
                       [yt, Ze(i)]
                     ]),
-                    (D = s.value) != null && D.title ? (_(), oe("span", Sy, $e(s.value.title[0]), 1)) : Me("", !0)
+                    (D = s.value) != null && D.title ? (_(), oe("span", by, $e(s.value.title[0]), 1)) : Me("", !0)
                   ]),
-                  t.hasRecipient ? (_(), oe("div", Ey, [
+                  t.hasRecipient ? (_(), oe("div", xy, [
                     C[10] || (C[10] = k("p", { class: "form-builder__field-label" }, "Submission Recipients", -1)),
                     et(k("input", {
                       type: "text",
@@ -18181,13 +18179,13 @@ const ay = {
                       [yt, Ze(c)]
                     ]),
                     C[11] || (C[11] = k("span", { class: "form-builder__field-hint" }, "Notification emails will be sent to the specified address(es) upon form submission. Use commas to separate multiple addresses.", -1)),
-                    (j = s.value) != null && j.recipients ? (_(), oe("span", wy, $e(s.value.recipients[0]), 1)) : Me("", !0)
+                    (j = s.value) != null && j.recipients ? (_(), oe("span", Sy, $e(s.value.recipients[0]), 1)) : Me("", !0)
                   ])) : Me("", !0)
                 ]),
-                k("div", Ty, [
+                k("div", Ey, [
                   C[13] || (C[13] = k("h3", null, "Form", -1)),
                   k("div", {
-                    class: rt(["draggable", { "draggable--has-fields": Ze(r).length }])
+                    class: rt(["form-builder-draggable", { "form-builder-draggable--filled": Ze(r).length }])
                   }, [
                     ie(Ll, {
                       modelValue: Ze(r),
@@ -18198,34 +18196,34 @@ const ay = {
                   ], 2)
                 ])
               ]),
-              k("div", Ay, [
-                Ze(a) ? (_(), oe("div", Oy, [
+              k("div", wy, [
+                Ze(a) ? (_(), oe("div", Ty, [
                   C[16] || (C[16] = k("p", { class: "form-builder__status-heading" }, "Status", -1)),
-                  k("div", Cy, [
+                  k("div", Ay, [
                     k("div", {
                       class: rt(["form-builder__status-badge", { "form-builder__status-badge--published": Ze(n).status === "published" }])
                     }, [
-                      (_(), oe("svg", Py, [
+                      (_(), oe("svg", Oy, [
                         k("circle", {
                           cx: "3",
                           cy: "3",
                           r: "3",
                           fill: Ze(n).status === "published" ? "#17B26A" : "#F79009"
-                        }, null, 8, Ry)
+                        }, null, 8, Cy)
                       ])),
                       Jt(" " + $e(w(Ze(n).status)), 1)
                     ], 2),
-                    Ze(n).status === "published" ? (_(), oe("div", Iy, [
+                    Ze(n).status === "published" ? (_(), oe("div", Py, [
                       C[14] || (C[14] = k("label", null, " Published ", -1)),
-                      k("label", Dy, $e(Ze(n).formatted_published_at), 1)
+                      k("label", Ry, $e(Ze(n).formatted_published_at), 1)
                     ])) : Me("", !0),
-                    k("div", Fy, [
+                    k("div", Iy, [
                       C[15] || (C[15] = k("label", null, " Last Modified ", -1)),
-                      k("label", My, $e(Ze(n).last_modified), 1)
+                      k("label", Dy, $e(Ze(n).last_modified), 1)
                     ])
                   ])
                 ])) : Me("", !0),
-                k("div", Ly, [
+                k("div", Fy, [
                   C[17] || (C[17] = k("div", { class: "heading" }, [
                     k("h3", null, "Select layouts/components"),
                     k("p", null, "Click and/or drag a field to the left")
@@ -18246,14 +18244,14 @@ const ay = {
                         onClick: (z) => S(V)
                       }, [
                         Jt($e(V.label) + " ", 1),
-                        k("div", Ny, [
+                        k("div", Ly, [
                           V.icon ? (_(), oe("span", {
                             key: 0,
                             innerHTML: V.icon
-                          }, null, 8, jy)) : Me("", !0),
-                          k("div", Vy, $e(V.tooltip_text), 1)
+                          }, null, 8, Uy)) : Me("", !0),
+                          k("div", Ny, $e(V.tooltip_text), 1)
                         ])
-                      ], 8, Uy))
+                      ], 8, My))
                     ]),
                     _: 1
                   }, 8, ["modelValue"]),
@@ -18263,27 +18261,27 @@ const ay = {
             ])
           ])
         ])),
-        o.value ? Me("", !0) : (_(), oe("div", ky, [
+        o.value ? Me("", !0) : (_(), oe("div", jy, [
           k("a", {
             onClick: f,
             class: "form-builder__btn form-builder__btn--discard"
           }, "Discard"),
-          k("div", $y, [
+          k("div", Vy, [
             k("a", {
               onClick: C[4] || (C[4] = ar((V) => m("draft"), ["prevent"])),
               class: "form-builder__btn form-builder__btn--draft"
             }, [
-              u.value ? (_(), oe("span", Hy, [
+              u.value ? (_(), oe("span", $y, [
                 ie(Ze(ds), { class: "form-builder__icon--spin" })
-              ])) : (_(), oe("span", By, " Save as draft "))
+              ])) : (_(), oe("span", ky, " Save as draft "))
             ]),
             k("a", {
               onClick: C[5] || (C[5] = ar((V) => m("published"), ["prevent"])),
               class: "form-builder__btn form-builder__btn--publish"
             }, [
-              u.value ? (_(), oe("span", Gy, [
+              u.value ? (_(), oe("span", Hy, [
                 ie(Ze(ds), { class: "form-builder__icon--spin" })
-              ])) : (_(), oe("span", zy, " Publish "))
+              ])) : (_(), oe("span", By, " Publish "))
             ])
           ])
         ]))
@@ -18292,6 +18290,6 @@ const ay = {
   }
 };
 export {
-  f1 as FormBuilder,
+  c1 as FormBuilder,
   dv as VForm
 };
