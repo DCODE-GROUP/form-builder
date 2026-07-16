@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { prefix: 'form-builder-',
   content: [
     './src/**/*.{vue,js,ts,jsx,tsx}',
     './resources/js/**/*.{vue,js,ts,jsx,tsx}',
