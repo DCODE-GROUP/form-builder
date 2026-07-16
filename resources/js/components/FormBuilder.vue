@@ -1,5 +1,6 @@
 <template>
-  <v-modal></v-modal>
+  <div class="form-builder">
+    <v-modal></v-modal>
   <div v-if="showBreadcrumbs" class="form-builder__breadcrumbs">
     <a :href="redirectUrl" class="form-builder__breadcrumb-link"> Form </a>
     / <span class="form-builder__breadcrumb-current" v-text="title ? title : (showPreview ? 'Preview' : 'Add New Form')"></span>
@@ -147,6 +148,7 @@
       </a>
     </div>
   </div>
+</div>
 </template>
 
 <script setup>
