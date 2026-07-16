@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 @layer components {
-    .input-base {
+    .form-builder-input-base {
         @apply form-builder-text-base form-builder-block form-builder-w-full form-builder-rounded-lg form-builder-border form-builder-border-gray-300 !form-builder-border-double placeholder:form-builder-text-gray-400 focus:form-builder-border-sky-300 focus:form-builder-ring focus:form-builder-ring-sky-200/50 form-builder-py-2 form-builder-px-3;
     }
 }
