@@ -55,7 +55,7 @@
               <span class="form-builder__field-error" v-if="errors?.recipients">{{ errors.recipients[0] }}</span>
             </div>
           </div>
-          <div class="fields">
+          <div class="form-builder-fields">
             <h3>Form</h3>
             <div class="draggable" :class="{'draggable--has-fields': fields.length}">
               <field-draggable v-model="fields" :is-dragging="isDragging" :actions="actions"></field-draggable>

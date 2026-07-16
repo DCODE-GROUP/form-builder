@@ -17988,7 +17988,7 @@ const ay = {
   },
   setup(t) {
     const e = t;
-    $o("bus", hv), console.log(e);
+    $o("bus", hv);
     let n = hu(e.form), a = qe(n.id || null), i = qe(n.title || null), c = qe((n == null ? void 0 : n.recipients) ?? ""), r = qe(n.fields || []);
     const s = qe([]), o = qe(!1), l = qe(!1), u = qe(!1), d = qe(oy()), h = (P) => {
       r.value.map((C) => (["builder", "presenter"].forEach((D) => {

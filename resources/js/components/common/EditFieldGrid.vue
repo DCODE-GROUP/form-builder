@@ -1,6 +1,6 @@
 <template>
   <div class="p-6 w-[776px]">
-    <div class="fields">
+    <div class="form-builder-fields">
       <div class="draggable">
         <h4 class="mb-[20px] text-lg font-semibold text-gray-900">Row {{ index + 1 }}: multiple columns</h4>
         <field-draggable v-model="localFields" disable-dropzone></field-draggable>

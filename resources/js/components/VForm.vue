@@ -4,7 +4,7 @@
     <input type="hidden" name="_method" :value="method"/>
     <input type="hidden" :name="name" :value="JSON.stringify(updatedData)"/>
     <div
-        class="v-form__fields fields"
+        class="v-form__fields form-builder-fields"
         :style="{
         'pointer-events': canInteract ? 'auto' : 'none',
         'user-select': canInteract ? 'auto' : 'none'
