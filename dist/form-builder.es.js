@@ -1,5 +1,5 @@
 import * as ru from "vue";
-import { openBlock as _, createElementBlock as oe, Fragment as Pt, renderList as bn, withDirectives as et, createElementVNode as k, normalizeClass as rt, vModelDynamic as Ia, toDisplayString as $e, createCommentVNode as Me, resolveDirective as fs, resolveComponent as on, createVNode as ie, vModelText as yt, defineComponent as ou, ref as qe, onMounted as Fr, onUnmounted as au, inject as Da, watchEffect as Zt, watch as To, computed as an, toRef as iu, shallowRef as su, provide as $o, isVNode as lu, Teleport as uu, Transition as Fa, h as yi, createBlock as Qt, renderSlot as xn, withCtx as Tt, resolveDynamicComponent as Hn, createTextVNode as Jt, toRaw as bi, markRaw as nt, mergeProps as Ma, normalizeStyle as cu, getCurrentInstance as hs, withModifiers as ar, vShow as du, unref as Ze, normalizeProps as fu, vModelSelect as ro, reactive as hu, isRef as ea } from "vue";
+import { openBlock as _, createElementBlock as oe, Fragment as Dt, renderList as bn, withDirectives as et, createElementVNode as k, normalizeClass as rt, vModelDynamic as Ia, toDisplayString as $e, createCommentVNode as Me, resolveDirective as fs, resolveComponent as on, createVNode as ie, vModelText as yt, defineComponent as ou, ref as qe, onMounted as Fr, onUnmounted as au, inject as Da, watchEffect as Zt, watch as To, computed as an, toRef as iu, shallowRef as su, provide as $o, isVNode as lu, Teleport as uu, Transition as Fa, h as yi, createBlock as Qt, renderSlot as xn, withCtx as Tt, resolveDynamicComponent as Hn, createTextVNode as Jt, toRaw as bi, markRaw as nt, mergeProps as Ma, normalizeStyle as cu, getCurrentInstance as hs, withModifiers as ar, vShow as du, unref as Ze, normalizeProps as fu, vModelSelect as ro, reactive as hu, isRef as ea } from "vue";
 const fn = {
   props: {
     /**
@@ -65,7 +65,7 @@ const fn = {
 function bu(t, e, n, a, i, c) {
   var r, s;
   return _(), oe("div", vu, [
-    (_(!0), oe(Pt, null, bn(((r = n.modelValue) == null ? void 0 : r.options) ?? [], (o) => (_(), oe("label", mu, [
+    (_(!0), oe(Dt, null, bn(((r = n.modelValue) == null ? void 0 : r.options) ?? [], (o) => (_(), oe("label", mu, [
       et(k("input", {
         type: c.inputType,
         name: c.inputName,
@@ -479,7 +479,7 @@ function xc(t, e) {
     });
   });
 }
-let It = class {
+let Rt = class {
   constructor(e) {
     e && this.set(e);
   }
@@ -605,7 +605,7 @@ let It = class {
     return W.isArray(e) ? e.forEach(c) : c(e), this;
   }
 };
-It.accessor([
+Rt.accessor([
   "Content-Type",
   "Content-Length",
   "Accept",
@@ -613,7 +613,7 @@ It.accessor([
   "User-Agent",
   "Authorization"
 ]);
-W.reduceDescriptors(It.prototype, ({ value: t }, e) => {
+W.reduceDescriptors(Rt.prototype, ({ value: t }, e) => {
   let n = e[0].toUpperCase() + e.slice(1);
   return {
     get: () => t,
@@ -622,7 +622,7 @@ W.reduceDescriptors(It.prototype, ({ value: t }, e) => {
     }
   };
 });
-W.freezeMethods(It);
+W.freezeMethods(Rt);
 const Sc = "[REDACTED ****]";
 function Ec(t) {
   if (W.hasOwnProp(t, "toJSON"))
@@ -639,7 +639,7 @@ function wc(t, e) {
   const n = new Set(e.map((c) => String(c).toLowerCase())), a = [], i = (c) => {
     if (c === null || typeof c != "object" || W.isBuffer(c)) return c;
     if (a.indexOf(c) !== -1) return;
-    c instanceof It && (c = c.toJSON()), a.push(c);
+    c instanceof Rt && (c = c.toJSON()), a.push(c);
     let r;
     if (W.isArray(c))
       r = [], c.forEach((s, o) => {
@@ -1094,7 +1094,7 @@ W.forEach(["delete", "get", "head", "post", "put", "patch", "query"], (t) => {
   jr.headers[t] = {};
 });
 function ra(t, e) {
-  const n = this || jr, a = e || n, i = It.from(a.headers);
+  const n = this || jr, a = e || n, i = Rt.from(a.headers);
   let c = a.data;
   return W.forEach(t, function(s) {
     c = s.call(n, c, i.normalize(), e ? e.status : void 0);
@@ -1260,7 +1260,7 @@ function Ms(t, e, n, a) {
   let i = !Wc(e);
   return t && (i || n === !1) ? (Pi(t, a), Yc(t, e)) : e;
 }
-const Ri = (t) => t instanceof It ? { ...t } : t;
+const Ri = (t) => t instanceof Rt ? { ...t } : t;
 function Yn(t, e) {
   t = t || {}, e = e || {};
   const n = /* @__PURE__ */ Object.create(null);
@@ -1368,7 +1368,7 @@ function Ls(t) {
   const c = n("xsrfHeaderName"), r = n("xsrfCookieName");
   let s = n("headers");
   const o = n("auth"), l = n("baseURL"), u = n("allowAbsoluteUrls"), d = n("url");
-  if (e.headers = s = It.from(s), e.url = Ps(
+  if (e.headers = s = Rt.from(s), e.url = Ps(
     Ms(l, d, u, e),
     n("params"),
     n("paramsSerializer")
@@ -1393,7 +1393,7 @@ const ed = typeof XMLHttpRequest < "u", td = ed && function(t) {
   return new Promise(function(n, a) {
     const i = Ls(t);
     let c = i.data;
-    const r = It.from(i.headers).normalize();
+    const r = Rt.from(i.headers).normalize();
     let { responseType: s, onUploadProgress: o, onDownloadProgress: l } = i, u, d, h, p, f;
     function m() {
       p && p(), f && f(), i.cancelToken && i.cancelToken.unsubscribe(u), i.signal && i.signal.removeEventListener("abort", u);
@@ -1403,7 +1403,7 @@ const ed = typeof XMLHttpRequest < "u", td = ed && function(t) {
     function g() {
       if (!v)
         return;
-      const S = It.from(
+      const S = Rt.from(
         "getAllResponseHeaders" in v && v.getAllResponseHeaders()
       ), A = {
         data: !s || s === "text" || s === "json" ? v.responseText : v.response,
@@ -1784,7 +1784,7 @@ const ka = "1.18.1", Di = 64 * 1024, { isFunction: oo } = W, ld = (t) => encodeU
       };
       be = o && new c(y, L);
       let b = await (o ? he(be, $) : he(y, L));
-      const x = It.from(b.headers);
+      const x = Rt.from(b.headers);
       if (Y) {
         const U = W.toFiniteNumber(x.getContentLength());
         if (U != null && U > H)
@@ -1841,7 +1841,7 @@ const ka = "1.18.1", Di = 64 * 1024, { isFunction: oo } = W, ld = (t) => encodeU
       return !I && Ce && Ce(), await new Promise((U, B) => {
         Fs(U, B, {
           data: N,
-          headers: It.from(b.headers),
+          headers: Rt.from(b.headers),
           status: b.status,
           statusText: b.statusText,
           config: g,
@@ -1953,7 +1953,7 @@ function oa(t) {
     throw new Vr(null, t);
 }
 function Ui(t) {
-  return oa(t), t.headers = It.from(t.headers), t.data = ra.call(t, t.transformRequest), ["post", "put", "patch"].indexOf(t.method) !== -1 && t.headers.setContentType("application/x-www-form-urlencoded", !1), Ns.getAdapter(t.adapter || jr.adapter, t)(t).then(
+  return oa(t), t.headers = Rt.from(t.headers), t.data = ra.call(t, t.transformRequest), ["post", "put", "patch"].indexOf(t.method) !== -1 && t.headers.setContentType("application/x-www-form-urlencoded", !1), Ns.getAdapter(t.adapter || jr.adapter, t)(t).then(
     function(a) {
       oa(t), t.response = a;
       try {
@@ -1961,7 +1961,7 @@ function Ui(t) {
       } finally {
         delete t.response;
       }
-      return a.headers = It.from(a.headers), a;
+      return a.headers = Rt.from(a.headers), a;
     },
     function(a) {
       if (!Ds(a) && (oa(t), a && a.response)) {
@@ -1975,7 +1975,7 @@ function Ui(t) {
         } finally {
           delete t.response;
         }
-        a.response.headers = It.from(a.response.headers);
+        a.response.headers = Rt.from(a.response.headers);
       }
       return Promise.reject(a);
     }
@@ -2112,7 +2112,7 @@ let zn = class {
     let r = c && W.merge(c.common, c[n.method]);
     c && W.forEach(["delete", "get", "head", "post", "put", "patch", "query", "common"], (f) => {
       delete c[f];
-    }), n.headers = It.concat(r, c);
+    }), n.headers = Rt.concat(r, c);
     const s = [];
     let o = !0;
     this.interceptors.request.forEach(function(m) {
@@ -2363,29 +2363,29 @@ vt.all = function(e) {
 vt.spread = md;
 vt.isAxiosError = gd;
 vt.mergeConfig = Yn;
-vt.AxiosHeaders = It;
+vt.AxiosHeaders = Rt;
 vt.formToJSON = (t) => Is(W.isHTMLForm(t) ? new FormData(t) : t);
 vt.getAdapter = Ns.getAdapter;
 vt.HttpStatusCode = Ea;
 vt.default = vt;
 const {
-  Axios: Ky,
-  AxiosError: Xy,
-  CanceledError: Jy,
-  isCancel: Qy,
-  CancelToken: Zy,
-  VERSION: qy,
-  all: _y,
-  Cancel: e1,
-  isAxiosError: t1,
-  spread: n1,
-  toFormData: r1,
-  AxiosHeaders: o1,
-  HttpStatusCode: a1,
-  formToJSON: i1,
-  getAdapter: s1,
-  mergeConfig: l1,
-  create: u1
+  Axios: Jy,
+  AxiosError: Qy,
+  CanceledError: Zy,
+  isCancel: qy,
+  CancelToken: _y,
+  VERSION: e1,
+  all: t1,
+  Cancel: n1,
+  isAxiosError: r1,
+  spread: o1,
+  toFormData: a1,
+  AxiosHeaders: i1,
+  HttpStatusCode: s1,
+  formToJSON: l1,
+  getAdapter: u1,
+  mergeConfig: c1,
+  create: d1
 } = vt;
 var ao = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function Ba(t) {
@@ -8279,7 +8279,7 @@ function Fd(t, e, n, a, i, c) {
       value: c.valueJson
     }, null, 8, Ed),
     i.files.length ? (_(), oe("div", wd, [
-      (_(!0), oe(Pt, null, bn(i.files, (s, o) => (_(), oe("div", {
+      (_(!0), oe(Dt, null, bn(i.files, (s, o) => (_(), oe("div", {
         key: `file_${s == null ? void 0 : s.id}_${o}`,
         class: "file-upload-file"
       }, [
@@ -8927,7 +8927,7 @@ function Wd(t, e, n, a, i, c) {
       onClick: e[0] || (e[0] = (...h) => c.toggleDropdown && c.toggleDropdown(...h))
     }, $e(i.selectedLabel || ((l = n.modelValue) == null ? void 0 : l.placeholder) || "Select an option"), 3),
     i.isOpen ? (_(), oe("ul", Hd, [
-      (_(!0), oe(Pt, null, bn(((u = n.modelValue) == null ? void 0 : u.options) ?? [], (h, p) => (_(), oe("li", {
+      (_(!0), oe(Dt, null, bn(((u = n.modelValue) == null ? void 0 : u.options) ?? [], (h, p) => (_(), oe("li", {
         key: p,
         onClick: (f) => c.selectOption(h),
         class: "px-4 py-2 hover:bg-gray-100 cursor-pointer"
@@ -11401,7 +11401,7 @@ function dp(t, e, n, a, i, c) {
     class: "block space-y-2xsSpace text-sm font-medium leading-none text-tertiary-700"
   }, [
     n.labelText || t.$slots.label ? (_(), oe("span", lp, [
-      t.$slots.label ? xn(t.$slots, "label", { key: 0 }) : (_(), oe(Pt, { key: 1 }, [
+      t.$slots.label ? xn(t.$slots, "label", { key: 0 }) : (_(), oe(Dt, { key: 1 }, [
         k("span", { innerHTML: n.labelText }, null, 8, up),
         n.isRequired ? (_(), oe("span", cp, " *")) : Me("", !0)
       ], 64))
@@ -11931,11 +11931,11 @@ function Xp(t, e, n, a, i, c) {
   return _(), oe("div", null, [
     n.modelValue.hint ? (_(), oe("p", kp, $e(n.modelValue.hint), 1)) : Me("", !0),
     k("div", $p, [
-      (_(!0), oe(Pt, null, bn(c.grid, (o, l) => (_(), oe("div", {
+      (_(!0), oe(Dt, null, bn(c.grid, (o, l) => (_(), oe("div", {
         key: "row-" + l
       }, [
         o.filter((u) => u.length).length ? (_(), oe("div", Bp, [
-          (_(!0), oe(Pt, null, bn(o, (u, d) => {
+          (_(!0), oe(Dt, null, bn(o, (u, d) => {
             var h, p, f, m, v, g, y, S, E;
             return _(), oe("div", {
               key: "cell-" + l + "-" + d + "-" + ((h = u[0]) == null ? void 0 : h.name),
@@ -12231,7 +12231,7 @@ function cv(t, e, n, a, i, c) {
         k("h3", lv, $e(n.title), 1),
         e[0] || (e[0] = k("hr", { class: "v-form__divider" }, null, -1))
       ])) : Me("", !0),
-      (o = (s = n.modelValue) == null ? void 0 : s.fields) != null && o.length ? (_(!0), oe(Pt, { key: 1 }, bn(n.modelValue.fields, (l, u) => (_(), oe("div", {
+      (o = (s = n.modelValue) == null ? void 0 : s.fields) != null && o.length ? (_(!0), oe(Dt, { key: 1 }, bn(n.modelValue.fields, (l, u) => (_(), oe("div", {
         key: l.id,
         class: "v-form__field"
       }, [
@@ -12596,7 +12596,7 @@ function ns(t, e) {
 function ca(t) {
   Le(t, "position", ""), Le(t, "top", ""), Le(t, "left", ""), Le(t, "width", ""), Le(t, "height", "");
 }
-var Rt = "Sortable" + (/* @__PURE__ */ new Date()).getTime();
+var Pt = "Sortable" + (/* @__PURE__ */ new Date()).getTime();
 function Rv() {
   var t = [], e;
   return {
@@ -12715,7 +12715,7 @@ var qn = [], da = {
 };
 function Er(t) {
   var e = t.sortable, n = t.rootEl, a = t.name, i = t.targetEl, c = t.cloneEl, r = t.toEl, s = t.fromEl, o = t.oldIndex, l = t.newIndex, u = t.oldDraggableIndex, d = t.newDraggableIndex, h = t.originalEvent, p = t.putSortable, f = t.extraEventProperties;
-  if (e = e || n && n[Rt], !!e) {
+  if (e = e || n && n[Pt], !!e) {
     var m, v = e.options, g = "on" + a.charAt(0).toUpperCase() + a.substr(1);
     window.CustomEvent && !Tn && !Br ? m = new CustomEvent(a, {
       bubbles: !0,
@@ -12755,7 +12755,7 @@ var Fv = ["evt"], jt = function(e, n) {
       On = !1;
     },
     dispatchSortableEvent: function(s) {
-      Dt({
+      It({
         sortable: n,
         name: s,
         originalEvent: i
@@ -12763,7 +12763,7 @@ var Fv = ["evt"], jt = function(e, n) {
     }
   }, c));
 };
-function Dt(t) {
+function It(t) {
   Er(dn({
     putSortable: wt,
     cloneEl: ht,
@@ -12799,7 +12799,7 @@ var Se, ft, Ye, ut, Vn, xo, ht, On, or, zt, Rr, An, lo, wt, nr = !1, Uo = !1, No
 }, Uv = function(e, n) {
   var a;
   return No.some(function(i) {
-    var c = i[Rt].options.emptyInsertThreshold;
+    var c = i[Pt].options.emptyInsertThreshold;
     if (!(!c || oi(i))) {
       var r = ct(i), s = e >= r.left - c && e <= r.right + c, o = n >= r.top - c && n <= r.bottom + c;
       if (s && o)
@@ -12843,16 +12843,16 @@ var jn = function(e) {
       var a = {};
       for (var i in e)
         e.hasOwnProperty(i) && (a[i] = e[i]);
-      a.target = a.rootEl = n, a.preventDefault = void 0, a.stopPropagation = void 0, n[Rt]._onDragOver(a);
+      a.target = a.rootEl = n, a.preventDefault = void 0, a.stopPropagation = void 0, n[Pt]._onDragOver(a);
     }
   }
 }, Nv = function(e) {
-  Se && Se.parentNode[Rt]._isOutsideThisEl(e.target);
+  Se && Se.parentNode[Pt]._isOutsideThisEl(e.target);
 };
 function Be(t, e) {
   if (!(t && t.nodeType && t.nodeType === 1))
     throw "Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(t));
-  this.el = t, this.options = e = _t({}, e), t[Rt] = this;
+  this.el = t, this.options = e = _t({}, e), t[Pt] = this;
   var n = {
     group: null,
     sort: !0,
@@ -12921,7 +12921,7 @@ Be.prototype = /** @lends Sortable.prototype */
       if (Gv(a), !Se && !(/mousedown|pointerdown/.test(r) && e.button !== 0 || i.disabled) && !l.isContentEditable && !(!this.nativeDraggable && Cr && o && o.tagName.toUpperCase() === "SELECT") && (o = rn(o, i.draggable, a, !1), !(o && o.animated) && xo !== o)) {
         if (or = pt(o), Rr = pt(o, i.draggable), typeof u == "function") {
           if (u.call(this, e, o, this)) {
-            Dt({
+            It({
               sortable: n,
               rootEl: l,
               name: "filter",
@@ -12935,7 +12935,7 @@ Be.prototype = /** @lends Sortable.prototype */
           }
         } else if (u && (u = u.split(",").some(function(d) {
           if (d = rn(l, d.trim(), a, !1), d)
-            return Dt({
+            return It({
               sortable: n,
               rootEl: d,
               name: "filter",
@@ -12968,7 +12968,7 @@ Be.prototype = /** @lends Sortable.prototype */
           i._onDrop();
           return;
         }
-        i._disableDelayedDragEvents(), !qi && i.nativeDraggable && (Se.draggable = !0), i._triggerDragStart(e, n), Dt({
+        i._disableDelayedDragEvents(), !qi && i.nativeDraggable && (Se.draggable = !0), i._triggerDragStart(e, n), It({
           sortable: i,
           name: "choose",
           originalEvent: e
@@ -13013,7 +13013,7 @@ Be.prototype = /** @lends Sortable.prototype */
         evt: n
       }), this.nativeDraggable && Je(document, "dragover", Nv);
       var a = this.options;
-      !e && dt(Se, a.dragClass, !1), dt(Se, a.ghostClass, !0), Be.active = this, e && this._appendGhost(), Dt({
+      !e && dt(Se, a.dragClass, !1), dt(Se, a.ghostClass, !0), Be.active = this, e && this._appendGhost(), It({
         sortable: this,
         name: "start",
         originalEvent: n
@@ -13026,11 +13026,11 @@ Be.prototype = /** @lends Sortable.prototype */
       this._lastX = tn.clientX, this._lastY = tn.clientY, Il();
       for (var e = document.elementFromPoint(tn.clientX, tn.clientY), n = e; e && e.shadowRoot && (e = e.shadowRoot.elementFromPoint(tn.clientX, tn.clientY), e !== n); )
         n = e;
-      if (Se.parentNode[Rt]._isOutsideThisEl(e), n)
+      if (Se.parentNode[Pt]._isOutsideThisEl(e), n)
         do {
-          if (n[Rt]) {
+          if (n[Pt]) {
             var a = void 0;
-            if (a = n[Rt]._onDragOver({
+            if (a = n[Pt]._onDragOver({
               clientX: tn.clientX,
               clientY: tn.clientY,
               target: e,
@@ -13086,7 +13086,7 @@ Be.prototype = /** @lends Sortable.prototype */
       return;
     }
     jt("setupClone", this), Be.eventCanceled || (ht = ai(Se), ht.draggable = !1, ht.style["will-change"] = "", this._hideClone(), dt(ht, this.options.chosenClass, !1), Be.clone = ht), a.cloneId = Eo(function() {
-      jt("clone", a), !Be.eventCanceled && (a.options.removeCloneOnHide || ut.insertBefore(ht, Se), a._hideClone(), Dt({
+      jt("clone", a), !Be.eventCanceled && (a.options.removeCloneOnHide || ut.insertBefore(ht, Se), a._hideClone(), It({
         sortable: a,
         name: "clone"
       }));
@@ -13122,10 +13122,10 @@ Be.prototype = /** @lends Sortable.prototype */
         insertion: J
       }), J && (u ? l._hideClone() : l._showClone(f), f !== h && (dt(Se, wt ? wt.options.ghostClass : l.options.ghostClass, !1), dt(Se, s.ghostClass, !0)), wt !== f && f !== Be.active ? wt = f : f === Be.active && wt && (wt = null), h === f && (f._ignoreWhileAnimating = a), f.animateAll(function() {
         v("dragOverAnimationComplete"), f._ignoreWhileAnimating = null;
-      }), f !== h && (h.animateAll(), h._ignoreWhileAnimating = null)), (a === Se && !Se.animated || a === n && !a.animated) && (_n = null), !s.dragoverBubble && !e.rootEl && a !== document && (Se.parentNode[Rt]._isOutsideThisEl(e.target), !J && jn(e)), !s.dragoverBubble && e.stopPropagation && e.stopPropagation(), m = !0;
+      }), f !== h && (h.animateAll(), h._ignoreWhileAnimating = null)), (a === Se && !Se.animated || a === n && !a.animated) && (_n = null), !s.dragoverBubble && !e.rootEl && a !== document && (Se.parentNode[Pt]._isOutsideThisEl(e.target), !J && jn(e)), !s.dragoverBubble && e.stopPropagation && e.stopPropagation(), m = !0;
     }
     function S() {
-      zt = pt(Se), An = pt(Se, s.draggable), Dt({
+      zt = pt(Se), An = pt(Se, s.draggable), It({
         sortable: f,
         name: "change",
         toEl: n,
@@ -13194,46 +13194,46 @@ Be.prototype = /** @lends Sortable.prototype */
       this._nulling();
       return;
     }
-    nr = !1, uo = !1, Dr = !1, clearInterval(this._loopId), clearTimeout(this._dragStartTimer), Ca(this.cloneId), Ca(this._dragStartId), this.nativeDraggable && (Xe(document, "drop", this), Xe(n, "dragstart", this._onDragStart)), this._offMoveEvents(), this._offUpEvents(), Cr && Le(document.body, "user-select", ""), Le(Se, "transform", ""), e && (wr && (e.cancelable && e.preventDefault(), !a.dropBubble && e.stopPropagation()), Ye && Ye.parentNode && Ye.parentNode.removeChild(Ye), (ut === ft || wt && wt.lastPutMode !== "clone") && ht && ht.parentNode && ht.parentNode.removeChild(ht), Se && (this.nativeDraggable && Xe(Se, "dragend", this), va(Se), Se.style["will-change"] = "", wr && !nr && dt(Se, wt ? wt.options.ghostClass : this.options.ghostClass, !1), dt(Se, this.options.chosenClass, !1), Dt({
+    nr = !1, uo = !1, Dr = !1, clearInterval(this._loopId), clearTimeout(this._dragStartTimer), Ca(this.cloneId), Ca(this._dragStartId), this.nativeDraggable && (Xe(document, "drop", this), Xe(n, "dragstart", this._onDragStart)), this._offMoveEvents(), this._offUpEvents(), Cr && Le(document.body, "user-select", ""), Le(Se, "transform", ""), e && (wr && (e.cancelable && e.preventDefault(), !a.dropBubble && e.stopPropagation()), Ye && Ye.parentNode && Ye.parentNode.removeChild(Ye), (ut === ft || wt && wt.lastPutMode !== "clone") && ht && ht.parentNode && ht.parentNode.removeChild(ht), Se && (this.nativeDraggable && Xe(Se, "dragend", this), va(Se), Se.style["will-change"] = "", wr && !nr && dt(Se, wt ? wt.options.ghostClass : this.options.ghostClass, !1), dt(Se, this.options.chosenClass, !1), It({
       sortable: this,
       name: "unchoose",
       toEl: ft,
       newIndex: null,
       newDraggableIndex: null,
       originalEvent: e
-    }), ut !== ft ? (zt >= 0 && (Dt({
+    }), ut !== ft ? (zt >= 0 && (It({
       rootEl: ft,
       name: "add",
       toEl: ft,
       fromEl: ut,
       originalEvent: e
-    }), Dt({
+    }), It({
       sortable: this,
       name: "remove",
       toEl: ft,
       originalEvent: e
-    }), Dt({
+    }), It({
       rootEl: ft,
       name: "sort",
       toEl: ft,
       fromEl: ut,
       originalEvent: e
-    }), Dt({
+    }), It({
       sortable: this,
       name: "sort",
       toEl: ft,
       originalEvent: e
-    })), wt && wt.save()) : zt !== or && zt >= 0 && (Dt({
+    })), wt && wt.save()) : zt !== or && zt >= 0 && (It({
       sortable: this,
       name: "update",
       toEl: ft,
       originalEvent: e
-    }), Dt({
+    }), It({
       sortable: this,
       name: "sort",
       toEl: ft,
       originalEvent: e
-    })), Be.active && ((zt == null || zt === -1) && (zt = or, An = Rr), Dt({
+    })), Be.active && ((zt == null || zt === -1) && (zt = or, An = Rr), It({
       sortable: this,
       name: "end",
       toEl: ft,
@@ -13317,7 +13317,7 @@ Be.prototype = /** @lends Sortable.prototype */
   destroy: function() {
     jt("destroy", this);
     var e = this.el;
-    e[Rt] = null, Xe(e, "mousedown", this._onTapStart), Xe(e, "touchstart", this._onTapStart), Xe(e, "pointerdown", this._onTapStart), this.nativeDraggable && (Xe(e, "dragover", this), Xe(e, "dragenter", this)), Array.prototype.forEach.call(e.querySelectorAll("[draggable]"), function(n) {
+    e[Pt] = null, Xe(e, "mousedown", this._onTapStart), Xe(e, "touchstart", this._onTapStart), Xe(e, "pointerdown", this._onTapStart), this.nativeDraggable && (Xe(e, "dragover", this), Xe(e, "dragenter", this)), Array.prototype.forEach.call(e.querySelectorAll("[draggable]"), function(n) {
       n.removeAttribute("draggable");
     }), this._onDrop(), this._disableDelayedDragEvents(), No.splice(No.indexOf(this.el), 1), this.el = e = null;
   },
@@ -13342,7 +13342,7 @@ function jv(t) {
   t.dataTransfer && (t.dataTransfer.dropEffect = "move"), t.cancelable && t.preventDefault();
 }
 function fo(t, e, n, a, i, c, r, s) {
-  var o, l = t[Rt], u = l.options.onMove, d;
+  var o, l = t[Pt], u = l.options.onMove, d;
   return window.CustomEvent && !Tn && !Br ? o = new CustomEvent("move", {
     bubbles: !0,
     cancelable: !0
@@ -13419,7 +13419,7 @@ Be.utils = {
   getChild: lr
 };
 Be.get = function(t) {
-  return t[Rt];
+  return t[Pt];
 };
 Be.mount = function() {
   for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++)
@@ -13510,7 +13510,7 @@ var ya = Al(function(t, e, n, a) {
       (gt[d].vx != z || gt[d].vy != $ || gt[d].el !== p) && (gt[d].el = p, gt[d].vx = z, gt[d].vy = $, clearInterval(gt[d].pid), (z != 0 || $ != 0) && (l = !0, gt[d].pid = setInterval((function() {
         a && this.layer === 0 && Be.active._onTouchMove(Vo);
         var K = gt[this.layer].vy ? gt[this.layer].vy * s : 0, Y = gt[this.layer].vx ? gt[this.layer].vx * s : 0;
-        typeof u == "function" && u.call(Be.dragged.parentNode[Rt], Y, K, t, Vo, gt[this.layer].el) !== "continue" || Ol(gt[this.layer].el, Y, K);
+        typeof u == "function" && u.call(Be.dragged.parentNode[Pt], Y, K, t, Vo, gt[this.layer].el) !== "continue" || Ol(gt[this.layer].el, Y, K);
       }).bind({
         layer: d
       }), 24))), d++;
@@ -13764,7 +13764,7 @@ function Xv() {
             nn = u;
           }
         if (er && this.isMultiDrag) {
-          if (Vt = !1, (c[Rt].options.sort || c !== i) && We.length > 1) {
+          if (Vt = !1, (c[Pt].options.sort || c !== i) && We.length > 1) {
             var g = ct(it), y = pt(it, ":not(." + this.options.selectedClass + ")");
             if (!yr && d.animation && (it.thisAnimationDuration = null), u.captureAnimationState(), !yr && (d.animation && (it.fromRect = g, We.forEach(function(E) {
               if (E.thisAnimationDuration = null, E !== it) {
@@ -13829,7 +13829,7 @@ function Xv() {
        * @param  {HTMLElement} el    The element to be selected
        */
       select: function(n) {
-        var a = n.parentNode[Rt];
+        var a = n.parentNode[Pt];
         !a || !a.options.multiDrag || ~We.indexOf(n) || (nn && nn !== a && (nn.multiDrag._deselectMultiDrag(), nn = a), dt(n, a.options.selectedClass, !0), We.push(n));
       },
       /**
@@ -13837,7 +13837,7 @@ function Xv() {
        * @param  {HTMLElement} el    The element to be deselected
        */
       deselect: function(n) {
-        var a = n.parentNode[Rt], i = We.indexOf(n);
+        var a = n.parentNode[Pt], i = We.indexOf(n);
         !a || !a.options.multiDrag || !~i || (dt(n, a.options.selectedClass, !1), We.splice(i, 1));
       }
     },
@@ -16939,11 +16939,11 @@ function bm(t, e, n, a, i, c) {
       ])
     ]),
     k("div", lm, [
-      (_(!0), oe(Pt, null, bn(i.grid, (l, u) => (_(), oe("div", {
+      (_(!0), oe(Dt, null, bn(i.grid, (l, u) => (_(), oe("div", {
         key: "row-" + u,
         class: "flex gap-2 relative"
       }, [
-        (_(!0), oe(Pt, null, bn(l, (d, h) => (_(), oe("div", {
+        (_(!0), oe(Dt, null, bn(l, (d, h) => (_(), oe("div", {
           key: "cell-" + u + "-" + h,
           class: rt(c.getClassForItem(i.grid[u], h))
         }, [
@@ -17348,7 +17348,7 @@ const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, 
             ])
           ]),
           k("div", Vm, [
-            f != null && f.builder ? (_(), Qt(Hn(f.builder), fu(Ma({ key: 0 }, { component: f })), null, 16)) : f.type === "grid" ? (_(), oe(Pt, { key: 1 }, [
+            f != null && f.builder ? (_(), Qt(Hn(f.builder), fu(Ma({ key: 0 }, { component: f })), null, 16)) : f.type === "grid" ? (_(), oe(Dt, { key: 1 }, [
               k("div", km, [
                 p[2] || (p[2] = k("span", { class: "form-builder-field__label" }, "Label", -1)),
                 et(k("input", {
@@ -17374,7 +17374,7 @@ const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, 
                 "allow-add-row": f.allow_add_row,
                 "onUpdate:allowAddRow": (v) => f.allow_add_row = v
               }, null, 8, ["modelValue", "onUpdate:modelValue", "is-dragging", "allow-add-row", "onUpdate:allowAddRow"])
-            ], 64)) : f.type === "paragraph" ? (_(), oe(Pt, { key: 2 }, [
+            ], 64)) : f.type === "paragraph" ? (_(), oe(Dt, { key: 2 }, [
               k("div", zm, [
                 p[4] || (p[4] = k("span", { class: "form-builder-field__label" }, "Content", -1)),
                 et(k("textarea", {
@@ -17411,7 +17411,7 @@ const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, 
                   ])
                 ])
               ])
-            ], 64)) : f.type === "checkbox" ? (_(), oe(Pt, { key: 3 }, [
+            ], 64)) : f.type === "checkbox" ? (_(), oe(Dt, { key: 3 }, [
               k("div", Qm, [
                 p[8] || (p[8] = k("span", { class: "form-builder-field__label" }, "Label", -1)),
                 et(k("input", {
@@ -17455,7 +17455,7 @@ const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, 
                   ])
                 ])) : Me("", !0)
               ])
-            ], 64)) : (_(), oe(Pt, { key: 4 }, [
+            ], 64)) : (_(), oe(Dt, { key: 4 }, [
               ["check-group", "radio-group", "signature", "file-upload"].includes(f.type) ? (_(), oe("div", ag, [
                 k("div", ig, [
                   p[13] || (p[13] = k("span", { class: "form-builder-field__label" }, "Label", -1)),
@@ -17477,7 +17477,7 @@ const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, 
                     [ro, f.class]
                   ])
                 ])) : Me("", !0)
-              ])) : (_(), oe(Pt, { key: 1 }, [
+              ])) : (_(), oe(Dt, { key: 1 }, [
                 k("div", cg, [
                   k("span", dg, $e(f.type === "heading" ? "Heading" : "Label"), 1),
                   et(k("input", {
@@ -17590,7 +17590,7 @@ const Im = { render: Rm }, Dm = { class: "form-builder-field__header handle" }, 
                 }))
               ], 8, Ig),
               a.value[m] ? (_(), oe("div", Dg, [
-                (_(!0), oe(Pt, null, bn(t.actions, (v) => {
+                (_(!0), oe(Dt, null, bn(t.actions, (v) => {
                   var g;
                   return _(), oe("a", {
                     class: rt(["form-builder-field__custom-action", { "form-builder-field__custom-action--active": (g = f == null ? void 0 : f.actions) == null ? void 0 : g.includes(v.value) }]),
@@ -17940,55 +17940,55 @@ function ny() {
     }
   ];
 }
-const ry = {
+const ry = { class: "form-builder-page" }, oy = {
   key: 0,
   class: "form-builder__breadcrumbs"
-}, oy = ["href"], ay = ["textContent"], iy = { class: "form-builder__header" }, sy = { class: "form-builder__page-title" }, ly = {
+}, ay = ["href"], iy = ["textContent"], sy = { class: "form-builder__header" }, ly = { class: "form-builder__page-title" }, uy = {
   key: 0,
   class: "form-builder__btn-label"
-}, uy = {
+}, cy = {
   key: 1,
   class: "form-builder__btn-label"
-}, cy = ["name", "value"], dy = {
-  key: 1,
+}, dy = ["name", "value"], fy = { class: "form-builder-page__body" }, hy = {
+  key: 0,
   class: "form-builder-preview-container"
-}, fy = {
+}, py = {
   key: 0,
   class: "form-builder-preview__title"
-}, hy = { class: "form-builder-preview" }, py = {
-  key: 2,
+}, vy = { class: "form-builder-preview" }, my = {
+  key: 1,
   class: "form-builder-container"
-}, vy = { class: "form-builder__layout" }, my = { class: "form-builder" }, gy = { class: "form-builder-fields" }, yy = { class: "form-builder__settings settings" }, by = {
+}, gy = { class: "form-builder__layout" }, yy = { class: "form-builder" }, by = { class: "form-builder-fields" }, xy = { class: "form-builder__settings settings" }, Sy = {
   key: 0,
   class: "form-builder__field-error"
-}, xy = {
+}, Ey = {
   key: 0,
   class: "form-builder__field-group"
-}, Sy = {
+}, wy = {
   key: 0,
   class: "form-builder__field-error"
-}, Ey = { class: "fields" }, wy = { class: "form-builder__sidebar" }, Ty = {
+}, Ty = { class: "fields" }, Ay = { class: "form-builder__sidebar" }, Oy = {
   key: 0,
   class: "form-builder__status-panel"
-}, Ay = { class: "form-builder__status-list" }, Oy = {
+}, Cy = { class: "form-builder__status-list" }, Py = {
   width: "6",
   height: "6",
   viewBox: "0 0 6 6",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
-}, Cy = ["fill"], Py = {
+}, Ry = ["fill"], Iy = {
   key: 0,
   class: "form-builder__meta"
-}, Ry = { class: "form-builder__meta-value" }, Iy = { class: "form-builder__meta" }, Dy = { class: "form-builder__meta-value" }, Fy = { class: "form-builder-templates" }, My = ["onClick"], Ly = { class: "form-builder__component-icon" }, Uy = ["innerHTML"], Ny = { class: "form-builder__tooltip" }, jy = {
-  key: 3,
+}, Dy = { class: "form-builder__meta-value" }, Fy = { class: "form-builder__meta" }, My = { class: "form-builder__meta-value" }, Ly = { class: "form-builder-templates" }, Uy = ["onClick"], Ny = { class: "form-builder__component-icon" }, jy = ["innerHTML"], Vy = { class: "form-builder__tooltip" }, ky = {
+  key: 1,
   class: "form-builder__actions"
-}, Vy = { class: "form-builder__actions-group" }, ky = { key: 0 }, $y = {
+}, $y = { class: "form-builder__actions-group" }, By = { key: 0 }, Hy = {
   key: 1,
   class: "form-builder__btn-loading"
-}, By = { key: 0 }, Hy = {
+}, zy = { key: 0 }, Gy = {
   key: 1,
   class: "form-builder__btn-loading"
-}, c1 = {
+}, f1 = {
   __name: "FormBuilder",
   props: {
     name: String,
@@ -18095,26 +18095,26 @@ const ry = {
     }, w = (P) => P ? P.charAt(0).toUpperCase() + P.slice(1) : "";
     return (P, C) => {
       var D, j;
-      return _(), oe(Pt, null, [
+      return _(), oe("div", ry, [
         ie(Qg),
-        t.showBreadcrumbs ? (_(), oe("div", ry, [
+        t.showBreadcrumbs ? (_(), oe("div", oy, [
           k("a", {
             href: t.redirectUrl,
             class: "form-builder__breadcrumb-link"
-          }, " Form ", 8, oy),
+          }, " Form ", 8, ay),
           C[6] || (C[6] = Jt(" / ", -1)),
           k("span", {
             class: "form-builder__breadcrumb-current",
             textContent: $e(Ze(i) ? Ze(i) : o.value ? "Preview" : "Add New Form")
-          }, null, 8, ay)
+          }, null, 8, iy)
         ])) : Me("", !0),
-        k("div", iy, [
-          k("h4", sy, $e(o.value ? "Preview" : Ze(i) ? Ze(i) : "Add New Form"), 1),
+        k("div", sy, [
+          k("h4", ly, $e(o.value ? "Preview" : Ze(i) ? Ze(i) : "Add New Form"), 1),
           k("a", {
             class: "form-builder__btn form-builder__btn--preview",
             onClick: v
           }, [
-            o.value ? (_(), oe("span", uy, [...C[8] || (C[8] = [
+            o.value ? (_(), oe("span", cy, [...C[8] || (C[8] = [
               k("svg", {
                 width: "19",
                 height: "19",
@@ -18131,7 +18131,7 @@ const ry = {
                 })
               ], -1),
               Jt(" Edit ", -1)
-            ])])) : (_(), oe("span", ly, [
+            ])])) : (_(), oe("span", uy, [
               ie(Ze(_g), { class: "form-builder__icon" }),
               C[7] || (C[7] = Jt(" Preview ", -1))
             ]))
@@ -18141,155 +18141,157 @@ const ry = {
           type: "hidden",
           name: t.name,
           value: p.value
-        }, null, 8, cy),
-        o.value ? (_(), oe("div", dy, [
-          Ze(i) ? (_(), oe("p", fy, $e(Ze(i)), 1)) : Me("", !0),
-          k("div", hy, [
-            ie(dv, {
-              "model-value": { fields: Ze(r) },
-              preview: !0,
-              editable: !0,
-              "can-interact": o.value
-            }, null, 8, ["model-value", "can-interact"])
-          ])
-        ])) : (_(), oe("div", py, [
-          k("div", vy, [
-            k("div", my, [
-              k("div", gy, [
-                k("div", yy, [
-                  C[12] || (C[12] = k("h3", null, "Settings", -1)),
-                  k("div", null, [
-                    C[9] || (C[9] = k("p", { class: "form-builder__field-label" }, "Form Title *", -1)),
-                    et(k("input", {
-                      type: "text",
-                      placeholder: "Enter your form name",
-                      "onUpdate:modelValue": C[0] || (C[0] = (V) => ea(i) ? i.value = V : i = V)
-                    }, null, 512), [
-                      [yt, Ze(i)]
+        }, null, 8, dy),
+        k("div", fy, [
+          o.value ? (_(), oe("div", hy, [
+            Ze(i) ? (_(), oe("p", py, $e(Ze(i)), 1)) : Me("", !0),
+            k("div", vy, [
+              ie(dv, {
+                "model-value": { fields: Ze(r) },
+                preview: !0,
+                editable: !0,
+                "can-interact": o.value
+              }, null, 8, ["model-value", "can-interact"])
+            ])
+          ])) : (_(), oe("div", my, [
+            k("div", gy, [
+              k("div", yy, [
+                k("div", by, [
+                  k("div", xy, [
+                    C[12] || (C[12] = k("h3", null, "Settings", -1)),
+                    k("div", null, [
+                      C[9] || (C[9] = k("p", { class: "form-builder__field-label" }, "Form Title *", -1)),
+                      et(k("input", {
+                        type: "text",
+                        placeholder: "Enter your form name",
+                        "onUpdate:modelValue": C[0] || (C[0] = (V) => ea(i) ? i.value = V : i = V)
+                      }, null, 512), [
+                        [yt, Ze(i)]
+                      ]),
+                      (D = s.value) != null && D.title ? (_(), oe("span", Sy, $e(s.value.title[0]), 1)) : Me("", !0)
                     ]),
-                    (D = s.value) != null && D.title ? (_(), oe("span", by, $e(s.value.title[0]), 1)) : Me("", !0)
+                    t.hasRecipient ? (_(), oe("div", Ey, [
+                      C[10] || (C[10] = k("p", { class: "form-builder__field-label" }, "Submission Recipients", -1)),
+                      et(k("input", {
+                        type: "text",
+                        placeholder: "Emails separated by comma to have multiple recipients",
+                        "onUpdate:modelValue": C[1] || (C[1] = (V) => ea(c) ? c.value = V : c = V)
+                      }, null, 512), [
+                        [yt, Ze(c)]
+                      ]),
+                      C[11] || (C[11] = k("span", { class: "form-builder__field-hint" }, "Notification emails will be sent to the specified address(es) upon form submission. Use commas to separate multiple addresses.", -1)),
+                      (j = s.value) != null && j.recipients ? (_(), oe("span", wy, $e(s.value.recipients[0]), 1)) : Me("", !0)
+                    ])) : Me("", !0)
                   ]),
-                  t.hasRecipient ? (_(), oe("div", xy, [
-                    C[10] || (C[10] = k("p", { class: "form-builder__field-label" }, "Submission Recipients", -1)),
-                    et(k("input", {
-                      type: "text",
-                      placeholder: "Emails separated by comma to have multiple recipients",
-                      "onUpdate:modelValue": C[1] || (C[1] = (V) => ea(c) ? c.value = V : c = V)
-                    }, null, 512), [
-                      [yt, Ze(c)]
-                    ]),
-                    C[11] || (C[11] = k("span", { class: "form-builder__field-hint" }, "Notification emails will be sent to the specified address(es) upon form submission. Use commas to separate multiple addresses.", -1)),
-                    (j = s.value) != null && j.recipients ? (_(), oe("span", Sy, $e(s.value.recipients[0]), 1)) : Me("", !0)
-                  ])) : Me("", !0)
-                ]),
-                k("div", Ey, [
-                  C[13] || (C[13] = k("h3", null, "Form", -1)),
-                  k("div", {
-                    class: rt(["form-builder-draggable", { "form-builder-draggable--filled": Ze(r).length }])
-                  }, [
-                    ie(Ll, {
-                      modelValue: Ze(r),
-                      "onUpdate:modelValue": C[2] || (C[2] = (V) => ea(r) ? r.value = V : r = V),
-                      "is-dragging": l.value,
-                      actions: t.actions
-                    }, null, 8, ["modelValue", "is-dragging", "actions"])
-                  ], 2)
-                ])
-              ]),
-              k("div", wy, [
-                Ze(a) ? (_(), oe("div", Ty, [
-                  C[16] || (C[16] = k("p", { class: "form-builder__status-heading" }, "Status", -1)),
-                  k("div", Ay, [
+                  k("div", Ty, [
+                    C[13] || (C[13] = k("h3", null, "Form", -1)),
                     k("div", {
-                      class: rt(["form-builder__status-badge", { "form-builder__status-badge--published": Ze(n).status === "published" }])
+                      class: rt(["form-builder-draggable", { "form-builder-draggable--filled": Ze(r).length }])
                     }, [
-                      (_(), oe("svg", Oy, [
-                        k("circle", {
-                          cx: "3",
-                          cy: "3",
-                          r: "3",
-                          fill: Ze(n).status === "published" ? "#17B26A" : "#F79009"
-                        }, null, 8, Cy)
-                      ])),
-                      Jt(" " + $e(w(Ze(n).status)), 1)
-                    ], 2),
-                    Ze(n).status === "published" ? (_(), oe("div", Py, [
-                      C[14] || (C[14] = k("label", null, " Published ", -1)),
-                      k("label", Ry, $e(Ze(n).formatted_published_at), 1)
-                    ])) : Me("", !0),
-                    k("div", Iy, [
-                      C[15] || (C[15] = k("label", null, " Last Modified ", -1)),
-                      k("label", Dy, $e(Ze(n).last_modified), 1)
-                    ])
+                      ie(Ll, {
+                        modelValue: Ze(r),
+                        "onUpdate:modelValue": C[2] || (C[2] = (V) => ea(r) ? r.value = V : r = V),
+                        "is-dragging": l.value,
+                        actions: t.actions
+                      }, null, 8, ["modelValue", "is-dragging", "actions"])
+                    ], 2)
                   ])
-                ])) : Me("", !0),
-                k("div", Fy, [
-                  C[17] || (C[17] = k("div", { class: "heading" }, [
-                    k("h3", null, "Select layouts/components"),
-                    k("p", null, "Click and/or drag a field to the left")
-                  ], -1)),
-                  ie(Ze(ko), {
-                    "item-key": "id",
-                    modelValue: d.value,
-                    "onUpdate:modelValue": C[3] || (C[3] = (V) => d.value = V),
-                    clone: y,
-                    group: { name: "fields", pull: "clone", put: !1 },
-                    onStart: E,
-                    onEnd: A,
-                    class: "components"
-                  }, {
-                    item: Tt(({ element: V }) => [
-                      (_(), oe("li", {
-                        key: V.name,
-                        onClick: (z) => S(V)
+                ]),
+                k("div", Ay, [
+                  Ze(a) ? (_(), oe("div", Oy, [
+                    C[16] || (C[16] = k("p", { class: "form-builder__status-heading" }, "Status", -1)),
+                    k("div", Cy, [
+                      k("div", {
+                        class: rt(["form-builder__status-badge", { "form-builder__status-badge--published": Ze(n).status === "published" }])
                       }, [
-                        Jt($e(V.label) + " ", 1),
-                        k("div", Ly, [
-                          V.icon ? (_(), oe("span", {
-                            key: 0,
-                            innerHTML: V.icon
-                          }, null, 8, Uy)) : Me("", !0),
-                          k("div", Ny, $e(V.tooltip_text), 1)
-                        ])
-                      ], 8, My))
-                    ]),
-                    _: 1
-                  }, 8, ["modelValue"]),
-                  xn(P.$slots, "default")
+                        (_(), oe("svg", Py, [
+                          k("circle", {
+                            cx: "3",
+                            cy: "3",
+                            r: "3",
+                            fill: Ze(n).status === "published" ? "#17B26A" : "#F79009"
+                          }, null, 8, Ry)
+                        ])),
+                        Jt(" " + $e(w(Ze(n).status)), 1)
+                      ], 2),
+                      Ze(n).status === "published" ? (_(), oe("div", Iy, [
+                        C[14] || (C[14] = k("label", null, " Published ", -1)),
+                        k("label", Dy, $e(Ze(n).formatted_published_at), 1)
+                      ])) : Me("", !0),
+                      k("div", Fy, [
+                        C[15] || (C[15] = k("label", null, " Last Modified ", -1)),
+                        k("label", My, $e(Ze(n).last_modified), 1)
+                      ])
+                    ])
+                  ])) : Me("", !0),
+                  k("div", Ly, [
+                    C[17] || (C[17] = k("div", { class: "heading" }, [
+                      k("h3", null, "Select layouts/components"),
+                      k("p", null, "Click and/or drag a field to the left")
+                    ], -1)),
+                    ie(Ze(ko), {
+                      "item-key": "id",
+                      modelValue: d.value,
+                      "onUpdate:modelValue": C[3] || (C[3] = (V) => d.value = V),
+                      clone: y,
+                      group: { name: "fields", pull: "clone", put: !1 },
+                      onStart: E,
+                      onEnd: A,
+                      class: "components"
+                    }, {
+                      item: Tt(({ element: V }) => [
+                        (_(), oe("li", {
+                          key: V.name,
+                          onClick: (z) => S(V)
+                        }, [
+                          Jt($e(V.label) + " ", 1),
+                          k("div", Ny, [
+                            V.icon ? (_(), oe("span", {
+                              key: 0,
+                              innerHTML: V.icon
+                            }, null, 8, jy)) : Me("", !0),
+                            k("div", Vy, $e(V.tooltip_text), 1)
+                          ])
+                        ], 8, Uy))
+                      ]),
+                      _: 1
+                    }, 8, ["modelValue"]),
+                    xn(P.$slots, "default")
+                  ])
                 ])
               ])
             ])
-          ])
-        ])),
-        o.value ? Me("", !0) : (_(), oe("div", jy, [
+          ]))
+        ]),
+        o.value ? Me("", !0) : (_(), oe("div", ky, [
           k("a", {
             onClick: f,
             class: "form-builder__btn form-builder__btn--discard"
           }, "Discard"),
-          k("div", Vy, [
+          k("div", $y, [
             k("a", {
               onClick: C[4] || (C[4] = ar((V) => m("draft"), ["prevent"])),
               class: "form-builder__btn form-builder__btn--draft"
             }, [
-              u.value ? (_(), oe("span", $y, [
+              u.value ? (_(), oe("span", Hy, [
                 ie(Ze(ds), { class: "form-builder__icon--spin" })
-              ])) : (_(), oe("span", ky, " Save as draft "))
+              ])) : (_(), oe("span", By, " Save as draft "))
             ]),
             k("a", {
               onClick: C[5] || (C[5] = ar((V) => m("published"), ["prevent"])),
               class: "form-builder__btn form-builder__btn--publish"
             }, [
-              u.value ? (_(), oe("span", Hy, [
+              u.value ? (_(), oe("span", Gy, [
                 ie(Ze(ds), { class: "form-builder__icon--spin" })
-              ])) : (_(), oe("span", By, " Publish "))
+              ])) : (_(), oe("span", zy, " Publish "))
             ])
           ])
         ]))
-      ], 64);
+      ]);
     };
   }
 };
 export {
-  c1 as FormBuilder,
+  f1 as FormBuilder,
   dv as VForm
 };

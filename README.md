@@ -75,6 +75,26 @@ after importing `@dcodegroup-au/form-builder/form-builder.css`:
 You can also scope overrides to a parent selector. Components that use `brand-*`
 utilities (buttons, checkboxes, radios, toggles/switches, links, etc.) pick these up automatically.
 
+### Viewport height (host layout)
+
+The builder uses a fixed viewport shell (`.form-builder-page`) so only the form
+column and component palette scroll — not the whole browser page.
+
+If your app has a top nav (or other chrome), set an offset or explicit height:
+
+```css
+:root {
+  /* Height of host chrome above the builder */
+  --fb-chrome-offset: 64px;
+}
+
+/* Or pin the builder to a flex slot */
+.my-builder-slot {
+  height: 100%;
+  --fb-page-height: 100%;
+}
+```
+
 **Note:** The `/example` directory remains on Tailwind v3 for backwards compatibility.
 
 ## Example
