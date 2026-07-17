@@ -13,7 +13,7 @@
             class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="#931C61" stroke-width="1.66667"
+            <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="currentColor" stroke-width="1.66667"
                   stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           Add Column
@@ -107,7 +107,7 @@
           class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="#931C61" stroke-width="1.66667"
+          <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="currentColor" stroke-width="1.66667"
                 stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         Add Row

@@ -1,5 +1,5 @@
 .form-builder__breadcrumbs {
-    @apply flex gap-4 mb-1 px-6 items-center;
+    @apply flex gap-4 mb-1 px-6 items-center flex-shrink-0;
 }
 
 .form-builder__breadcrumb-link {
@@ -11,7 +11,7 @@
 }
 
 .form-builder__header {
-    @apply flex justify-between items-center mb-6 px-6;
+    @apply flex justify-between items-center mb-6 px-6 flex-shrink-0;
 }
 
 .form-builder__page-title {
@@ -39,7 +39,7 @@
 }
 
 .form-builder-preview-container {
-    @apply px-6;
+    @apply px-6 flex-1 min-h-0 overflow-y-auto;
 }
 
 .form-builder-preview__title {
@@ -62,16 +62,31 @@
     @apply mt-2;
 }
 
+/**
+ * Viewport shell (Option B): one page region, interior columns scroll.
+ * Hosts with a nav chrome should set --fb-chrome-offset, e.g. 64px,
+ * or set --fb-page-height to the available slot (e.g. 100%).
+ */
+.form-builder-page {
+    @apply flex flex-col overflow-hidden;
+    height: var(--fb-page-height, calc(100dvh - var(--fb-chrome-offset, 0px)));
+    max-height: var(--fb-page-height, calc(100dvh - var(--fb-chrome-offset, 0px)));
+}
+
+.form-builder-page__body {
+    @apply flex flex-col flex-1 min-h-0 overflow-hidden;
+}
+
 .form-builder__layout {
-    @apply flex;
+    @apply flex flex-1 min-h-0 w-full overflow-hidden;
 }
 
 .form-builder__sidebar {
-    @apply flex w-1/3 flex-col;
+    @apply flex w-1/3 flex-col min-h-0 overflow-hidden;
 }
 
 .form-builder__status-panel {
-    @apply p-6 mb-4 bg-gray-50 shadow-sm rounded-xl;
+    @apply p-6 mb-4 bg-gray-50 shadow-sm rounded-xl flex-shrink-0;
 }
 
 .form-builder__status-heading {
@@ -111,7 +126,7 @@
 }
 
 .form-builder__actions {
-    @apply sticky bottom-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 mt-[22px] bg-gray-200;
+    @apply flex-shrink-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 bg-gray-200;
 }
 
 .form-builder__actions-group {
@@ -135,148 +150,73 @@
 }
 
 .form-builder-container {
-    @apply relative mb-1 px-6;
-
-    .form-builder {
-        @apply w-full flex flex-row h-[85vh] overflow-hidden;
-
-        .form-builder-templates {
-            @apply flex flex-col rounded-xl bg-gray-200 p-6 h-fit w-full overflow-y-auto;
-
-            .heading {
-                @apply pb-5 flex flex-col gap-1;
-
-                h3 {
-                    @apply text-lg font-semibold text-gray-900;
-                }
-
-                p {
-                    @apply text-sm text-gray-500;
-                }
-            }
-
-            .components {
-                @apply flex flex-col gap-2;
-                li {
-                    @apply list-none bg-white p-3 rounded-lg text-sm font-semibold text-gray-900 hover:bg-brand-700 hover:text-white flex gap-1 flex-row items-center cursor-pointer;
-                }
-            }
-        }
-
-        .form-builder-fields {
-            @apply flex flex-col rounded-xl w-2/3 pr-4 space-y-4;
-
-            .settings {
-                @apply bg-gray-50 shadow-sm rounded-xl px-6 py-4;
-
-                h3 {
-                    @apply text-lg font-semibold text-gray-900 mb-3 mt-2;
-                }
-            }
-
-            [type="text"],
-            [type="email"],
-            [type="url"],
-            [type="password"],
-            [type="number"],
-            [type="date"],
-            [type="tel"],
-            [multiple],
-            textarea,
-            select {
-                @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200/50 py-2 px-3;
-
-                > option {
-                    @apply text-gray-400;
-                }
-            }
-        }
-    }
+    @apply relative flex-1 min-h-0 overflow-hidden flex flex-col;
 }
 
+.form-builder {
+    @apply w-full flex flex-row flex-1 min-h-0 overflow-hidden;
+}
+
+.form-builder-templates {
+    @apply flex flex-col rounded-xl bg-gray-200 p-6 h-fit w-full flex-1 min-h-0 overflow-y-auto;
+}
+
+.form-builder-templates .heading {
+    @apply pb-5 flex flex-col gap-1 flex-shrink-0;
+}
+
+.form-builder-templates .heading h3 {
+    @apply text-lg font-semibold text-gray-900;
+}
+
+.form-builder-templates .heading p {
+    @apply text-sm text-gray-500;
+}
+
+.form-builder-templates .components {
+    @apply flex flex-col gap-2;
+}
+
+.form-builder-templates .components li {
+    @apply list-none bg-white p-3 rounded-lg text-sm font-semibold text-gray-900 hover:bg-brand-700 hover:text-white flex gap-1 flex-row items-center cursor-pointer;
+}
+
+.form-builder-fields {
+    @apply flex flex-col rounded-xl w-2/3 pr-4 space-y-4 flex-1 min-h-0 overflow-hidden;
+}
+
+.form-builder__settings,
+.form-builder-fields .settings {
+    @apply bg-gray-50 shadow-sm rounded-xl px-6 py-4 flex-shrink-0;
+}
+
+.form-builder__settings h3,
+.form-builder-fields .settings h3 {
+    @apply text-lg font-semibold text-gray-900 mb-3 mt-2;
+}
+
+.form-builder-fields [type="text"],
+.form-builder-fields [type="email"],
+.form-builder-fields [type="url"],
+.form-builder-fields [type="password"],
+.form-builder-fields [type="number"],
+.form-builder-fields [type="date"],
+.form-builder-fields [type="tel"],
+.form-builder-fields [multiple],
+.form-builder-fields textarea,
+.form-builder-fields select {
+    @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200/50 py-2 px-3;
+}
+
+.form-builder-fields select > option {
+    @apply text-gray-400;
+}
+
+/* Sole form-column scrollport */
 .fields {
-    @apply flex flex-col rounded-xl text-sm overflow-y-auto;
-
-    h3 {
-        @apply text-lg font-semibold text-gray-900 mb-2;
-    }
-
-    .draggable {
-        @apply relative space-y-2 h-[100vh];
-
-        &--has-fields {
-            @apply !border-none !shadow-none;
-        }
-
-        .-field {
-            @apply px-6 py-4 bg-gray-50 shadow-sm rounded-xl mb-2;
-
-            .-field-title {
-                @apply border-b border-gray-200 text-lg;
-            }
-
-            .handle {
-                @apply flex justify-between pb-4;
-
-                .-title {
-                    .-type-title {
-                        @apply text-lg font-semibold text-gray-900;
-                    }
-                }
-            }
-
-            .-field-properties {
-                @apply space-y-2 mt-6;
-
-                .-two-columns {
-                    @apply grid grid-cols-2 gap-2;
-                }
-
-                .-prop {
-                    @apply flex gap-1.5 flex-col;
-
-                    > span {
-                        @apply text-sm text-gray-700 font-medium;
-                    }
-
-                    .-label {
-                        @apply text-gray-700;
-                    }
-                }
-
-                .-options {
-                    @apply relative !mt-4;
-
-                    .-added {
-                        @apply flex flex-col gap-2;
-                    }
-
-                    .-option {
-                        @apply flex items-center;
-                    }
-                }
-            }
-        }
-
-        [type="text"],
-        [type="email"],
-        [type="url"],
-        [type="password"],
-        [type="number"],
-        [type="date"],
-        [type="tel"],
-        [multiple],
-        textarea,
-        select {
-            @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200/50 py-2 px-3;
-
-            > option {
-                @apply text-gray-400;
-            }
-        }
-    }
+    @apply flex flex-col rounded-xl text-sm flex-1 min-h-0 overflow-y-auto;
 }
 
-.dragging-item {
-    @apply bg-brand-700 p-3 rounded-xl text-sm font-semibold text-white;
+.fields > h3 {
+    @apply text-lg font-semibold text-gray-900 mb-2 flex-shrink-0;
 }

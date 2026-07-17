@@ -1,0 +1,24 @@
+/**
+ * Form Builder theme tokens.
+ * Consumers can override any of these on :root or a parent selector.
+ *
+ * @example
+ * :root {
+ *   --fb-brand-400: #2563eb;
+ *   --fb-brand-700: #1d4ed8;
+ * }
+ */
+:root {
+    --fb-brand-25: #F5EFF3;
+    --fb-brand-50: #EDDEE7;
+    --fb-brand-100: #E6CBDB;
+    --fb-brand-200: #D9B0C8;
+    --fb-brand-300: #C78AAD;
+    --fb-brand-400: #BA6E9A;
+    --fb-brand-500: #A94981;
+    --fb-brand-600: #9E3371;
+    --fb-brand-700: #931C61;
+    --fb-brand-800: #76164E;
+    --fb-brand-900: #58113A;
+    --fb-brand-950: #3B0B27;
+}
