@@ -90,7 +90,7 @@
 }
 
 .form-builder-field__options {
-    @apply relative !mt-4;
+    @apply relative;
 }
 
 .form-builder-field__options-header {

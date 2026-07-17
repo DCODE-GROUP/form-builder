@@ -1,3 +1,9 @@
+/* Prevent Tailwind's translate utilities from applying via the newer 'translate' property inside the FormBuilder
+   so the library's own transform rules remain authoritative. This targets any class that includes "translate-". */
+.form-builder-page [class*="translate-"] {
+    translate: none !important;
+}
+
 .form-builder__breadcrumbs {
     @apply flex gap-4 mb-1 px-6 items-center flex-shrink-0;
 }
@@ -158,7 +164,7 @@
 }
 
 .form-builder-templates {
-    @apply flex flex-col rounded-xl bg-gray-200 p-6 h-fit w-full flex-1 min-h-0 overflow-y-auto;
+    @apply flex flex-col rounded-xl bg-gray-200 p-6 h-fit w-full flex-1 min-h-0 overflow-y-auto mb-2;
 }
 
 .form-builder-templates .heading {
@@ -174,7 +180,7 @@
 }
 
 .form-builder-templates .components {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col gap-2 overflow-y-auto;
 }
 
 .form-builder-templates .components li {
