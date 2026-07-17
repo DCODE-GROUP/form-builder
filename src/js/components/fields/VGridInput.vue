@@ -76,8 +76,8 @@ import Select from "./Select.vue";
 import SignaturePad from "./SignaturePad.vue";
 import Textarea from "./Textarea.vue";
 import Paragraph from "./Paragraph.vue";
-import MinusCircle from "@r/icons/minus-circle.svg";
-import Plus from "@r/icons/plus.svg";
+import MinusCircle from "@/icons/minus-circle.svg";
+import Plus from "@/icons/plus.svg";
 import cloneDeep from "lodash.clonedeep";
 
 export default {

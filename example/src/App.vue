@@ -1,13 +1,13 @@
 <template>
   <div class="m-8">
     <h1>Form Builder Example</h1>
+    <FormBuilder v-model:form="formData1" :actions="[{value: 'send_mail', label: 'Send Mail'}, {value: 'send_sms', label: 'Send SMS'}]"/>
     <VForm v-model="formData1"
            :possible-values="possibleValues"
            action="/forms/store"
            method="post" editable
            google-api-key="AIzaSyBEbm9sxrbXcpUdKoqDMXMSqlh8h7t5Mko"
     />
-<!--        <FormBuilder v-model:form="formData1" :actions="[{value: 'send_mail', label: 'Send Mail'}, {value: 'send_sms', label: 'Send SMS'}]"/>-->
   </div>
 </template>
 

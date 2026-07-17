@@ -2,10 +2,8 @@
 /build
 /laravel
 /node_modules
-/vendor
 .php-cs-fixer.cache
 .phpunit.result.cache
-composer.lock
 # Only use pnpm for development
 package-lock.json
 

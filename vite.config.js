@@ -8,7 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@r': path.resolve(__dirname, './resources'),
     },
   },
   css: {
@@ -24,7 +23,7 @@ export default defineConfig({
     outDir: 'dist',
     commonjsOptions: { esmExternals: true },
     lib: {
-      entry: path.resolve(__dirname, 'resources/js/index.js'),
+      entry: path.resolve(__dirname, 'src/js/index.js'),
       name: 'FormBuilder',
       fileName: (format) => `form-builder.${format}.js`,
     },

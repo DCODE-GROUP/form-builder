@@ -1,0 +1,155 @@
+/* Flat BEM — no nested class chaining */
+
+.form-builder-draggable {
+    @apply relative space-y-2 min-h-full;
+}
+
+.form-builder-draggable--filled {
+    @apply !border-none !shadow-none;
+}
+
+.form-builder-draggable__list {
+    @apply pb-60 relative z-10;
+}
+
+.form-builder-draggable__list--compact {
+    @apply !pb-4;
+}
+
+.form-builder-draggable__dropzone {
+    @apply absolute shadow-sm border border-dashed border-gray-300 border-spacing-96 mb-[96px] rounded-xl w-full h-36 bottom-0 z-0 flex items-center justify-center text-sm text-gray-600;
+}
+
+.form-builder-draggable__dropzone--empty {
+    @apply h-[638px] !top-0;
+}
+
+.form-builder-field {
+    @apply relative px-6 py-4 bg-gray-50 shadow-sm rounded-xl mb-2;
+}
+
+.form-builder-field__header {
+    @apply flex justify-between pb-4 border-b border-gray-200 text-lg;
+}
+
+.form-builder-field__heading {
+    @apply relative cursor-pointer;
+}
+
+.form-builder-field__handle-icon {
+    @apply w-5 h-5 absolute top-[6px] -left-[20px];
+}
+
+.form-builder-field__type-title {
+    @apply text-lg font-semibold text-gray-900;
+}
+
+.form-builder-field__header-actions {
+    @apply flex gap-6 items-center;
+}
+
+.form-builder-field__actions-menu {
+    @apply divide-y text-sm text-gray-700;
+}
+
+.form-builder-field__actions-item {
+    @apply cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-50 rounded;
+}
+
+.form-builder-field__icon {
+    @apply w-5 h-5;
+}
+
+.form-builder-field__body {
+    @apply space-y-2 mt-6;
+}
+
+.form-builder-field__two-columns {
+    @apply grid grid-cols-2 gap-2;
+}
+
+.form-builder-field__prop {
+    @apply flex gap-1.5 flex-col;
+}
+
+.form-builder-field__prop > span,
+.form-builder-field__label {
+    @apply text-sm text-gray-700 font-medium;
+}
+
+.form-builder-field__label--options {
+    @apply mb-2 text-base font-semibold text-gray-900;
+}
+
+.form-builder-field__row {
+    @apply flex w-full gap-2;
+}
+
+.form-builder-field__prop--grow {
+    @apply w-full;
+}
+
+.form-builder-field__options {
+    @apply relative !mt-4;
+}
+
+.form-builder-field__options-header {
+    @apply flex justify-between;
+}
+
+.form-builder-field__add-option {
+    @apply cursor-pointer text-brand-700 flex items-center text-sm font-semibold mr-3.5 hover:bg-brand-50 py-1 px-2 gap-1 rounded;
+}
+
+.form-builder-field__options-list {
+    @apply flex flex-col gap-2;
+}
+
+.form-builder-field__option {
+    @apply flex items-center;
+}
+
+.form-builder-field__option-input {
+    @apply mx-2 text-base text-gray-900;
+}
+
+.form-builder-field__option-remove {
+    @apply hover:bg-brand-50 rounded cursor-pointer py-1;
+}
+
+.form-builder-field__custom-actions-toggle {
+    @apply rounded-full text-brand-600 hover:text-brand-900 py-1 cursor-pointer text-sm inline-flex gap-1;
+}
+
+.form-builder-field__custom-actions {
+    @apply bg-gray-100 py-2 px-3 flex gap-2 rounded-lg mt-2;
+}
+
+.form-builder-field__custom-action {
+    @apply cursor-pointer hover:bg-brand-400 px-2 py-1 bg-brand-200 rounded-lg text-white;
+}
+
+.form-builder-field__custom-action--active {
+    @apply !bg-brand-700;
+}
+
+.form-builder-draggable [type="text"],
+.form-builder-draggable [type="email"],
+.form-builder-draggable [type="url"],
+.form-builder-draggable [type="password"],
+.form-builder-draggable [type="number"],
+.form-builder-draggable [type="date"],
+.form-builder-draggable [type="tel"],
+.form-builder-draggable [multiple],
+.form-builder-draggable textarea,
+.form-builder-draggable select {
+    @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200/50 py-2 px-3;
+}
+
+.form-builder-draggable select > option {
+    @apply text-gray-400;
+}
+
+.dragging-item {
+    @apply bg-brand-700 p-3 rounded-xl text-sm font-semibold text-white;
+}

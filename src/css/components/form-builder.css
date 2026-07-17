@@ -1,0 +1,222 @@
+.form-builder__breadcrumbs {
+    @apply flex gap-4 mb-1 px-6 items-center flex-shrink-0;
+}
+
+.form-builder__breadcrumb-link {
+    @apply cursor-pointer;
+}
+
+.form-builder__breadcrumb-current {
+    @apply text-sm font-semibold;
+}
+
+.form-builder__header {
+    @apply flex justify-between items-center mb-6 px-6 flex-shrink-0;
+}
+
+.form-builder__page-title {
+    @apply text-gray-900 text-[30px] font-semibold;
+}
+
+.form-builder__btn {
+    @apply inline-block cursor-pointer;
+}
+
+.form-builder__btn--preview {
+    @apply rounded-full px-3 py-2 text-sm text-gray-700 font-semibold border border-gray-300 hover:bg-gray-200;
+}
+
+.form-builder__btn-label {
+    @apply flex gap-1 items-center;
+}
+
+.form-builder__icon {
+    @apply w-5 h-5;
+}
+
+.form-builder__icon--spin {
+    @apply w-5 h-5 animate-spin text-white;
+}
+
+.form-builder-preview-container {
+    @apply px-6 flex-1 min-h-0 overflow-y-auto;
+}
+
+.form-builder-preview__title {
+    @apply pb-6 text-xl font-semibold text-gray-900;
+}
+
+.form-builder__field-label {
+    @apply mb-1;
+}
+
+.form-builder__field-error {
+    @apply text-red-600 text-sm mt-0.5 inline-block;
+}
+
+.form-builder__field-hint {
+    @apply text-gray-600 text-sm mt-0.5 inline-block;
+}
+
+.form-builder__field-group {
+    @apply mt-2;
+}
+
+/**
+ * Viewport shell (Option B): one page region, interior columns scroll.
+ * Hosts with a nav chrome should set --fb-chrome-offset, e.g. 64px,
+ * or set --fb-page-height to the available slot (e.g. 100%).
+ */
+.form-builder-page {
+    @apply flex flex-col overflow-hidden;
+    height: var(--fb-page-height, calc(100dvh - var(--fb-chrome-offset, 0px)));
+    max-height: var(--fb-page-height, calc(100dvh - var(--fb-chrome-offset, 0px)));
+}
+
+.form-builder-page__body {
+    @apply flex flex-col flex-1 min-h-0 overflow-hidden;
+}
+
+.form-builder__layout {
+    @apply flex flex-1 min-h-0 w-full overflow-hidden;
+}
+
+.form-builder__sidebar {
+    @apply flex w-1/3 flex-col min-h-0 overflow-hidden;
+}
+
+.form-builder__status-panel {
+    @apply p-6 mb-4 bg-gray-50 shadow-sm rounded-xl flex-shrink-0;
+}
+
+.form-builder__status-heading {
+    @apply mb-5;
+}
+
+.form-builder__status-list {
+    @apply space-y-3;
+}
+
+.form-builder__status-badge {
+    @apply px-3 py-1 text-sm text-gray-700 border font-medium border-warning-200 bg-warning-50 text-warning-700 rounded-full flex w-fit items-center gap-2;
+}
+
+.form-builder__status-badge--published {
+    @apply !text-success-700 !bg-success-50 !border-success-200;
+}
+
+.form-builder__meta {
+    @apply flex flex-col text-sm font-normal text-gray-900 gap-1;
+}
+
+.form-builder__meta-value {
+    @apply text-base;
+}
+
+.form-builder__component-icon {
+    @apply relative;
+}
+
+.form-builder__tooltip {
+    @apply absolute hidden bg-black text-white text-sm rounded px-4 py-2 -top-16 left-0 w-[200px];
+}
+
+.form-builder__component-icon:hover .form-builder__tooltip {
+    @apply block;
+}
+
+.form-builder__actions {
+    @apply flex-shrink-0 flex justify-between items-center text-sm font-semibold w-fill h-[56px] py-2 px-6 z-50 bg-gray-200;
+}
+
+.form-builder__actions-group {
+    @apply flex gap-2;
+}
+
+.form-builder__btn--discard {
+    @apply text-error-500 hover:text-error-700;
+}
+
+.form-builder__btn--draft {
+    @apply rounded-full border border-brand-300 text-brand-700 hover:bg-brand-700 hover:text-white px-3 py-[7px];
+}
+
+.form-builder__btn--publish {
+    @apply rounded-full bg-brand-400 hover:bg-brand-700 text-white px-3 py-[7px];
+}
+
+.form-builder__btn-loading {
+    @apply flex items-center gap-2;
+}
+
+.form-builder-container {
+    @apply relative flex-1 min-h-0 overflow-hidden flex flex-col;
+}
+
+.form-builder {
+    @apply w-full flex flex-row flex-1 min-h-0 overflow-hidden;
+}
+
+.form-builder-templates {
+    @apply flex flex-col rounded-xl bg-gray-200 p-6 h-fit w-full flex-1 min-h-0 overflow-y-auto;
+}
+
+.form-builder-templates .heading {
+    @apply pb-5 flex flex-col gap-1 flex-shrink-0;
+}
+
+.form-builder-templates .heading h3 {
+    @apply text-lg font-semibold text-gray-900;
+}
+
+.form-builder-templates .heading p {
+    @apply text-sm text-gray-500;
+}
+
+.form-builder-templates .components {
+    @apply flex flex-col gap-2;
+}
+
+.form-builder-templates .components li {
+    @apply list-none bg-white p-3 rounded-lg text-sm font-semibold text-gray-900 hover:bg-brand-700 hover:text-white flex gap-1 flex-row items-center cursor-pointer;
+}
+
+.form-builder-fields {
+    @apply flex flex-col rounded-xl w-2/3 pr-4 space-y-4 flex-1 min-h-0 overflow-hidden;
+}
+
+.form-builder__settings,
+.form-builder-fields .settings {
+    @apply bg-gray-50 shadow-sm rounded-xl px-6 py-4 flex-shrink-0;
+}
+
+.form-builder__settings h3,
+.form-builder-fields .settings h3 {
+    @apply text-lg font-semibold text-gray-900 mb-3 mt-2;
+}
+
+.form-builder-fields [type="text"],
+.form-builder-fields [type="email"],
+.form-builder-fields [type="url"],
+.form-builder-fields [type="password"],
+.form-builder-fields [type="number"],
+.form-builder-fields [type="date"],
+.form-builder-fields [type="tel"],
+.form-builder-fields [multiple],
+.form-builder-fields textarea,
+.form-builder-fields select {
+    @apply text-base block w-full rounded-lg border border-gray-300 !border-double placeholder:text-gray-400 focus:border-sky-300 focus:ring focus:ring-sky-200/50 py-2 px-3;
+}
+
+.form-builder-fields select > option {
+    @apply text-gray-400;
+}
+
+/* Sole form-column scrollport */
+.fields {
+    @apply flex flex-col rounded-xl text-sm flex-1 min-h-0 overflow-y-auto;
+}
+
+.fields > h3 {
+    @apply text-lg font-semibold text-gray-900 mb-2 flex-shrink-0;
+}

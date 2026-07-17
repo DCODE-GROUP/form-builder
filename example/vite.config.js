@@ -13,7 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@s': resolve(__dirname, './src'),
-      'form-builder': resolve(__dirname, '../resources'),
+      'form-builder': resolve(__dirname, '../src'),
     },
   },
   css: {

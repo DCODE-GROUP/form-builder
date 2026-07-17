@@ -21,7 +21,7 @@
 
 <script>
 import SignaturePad from "signature_pad";
-import XClose from "@r/icons/x-close.svg";
+import XClose from "@/icons/x-close.svg";
 import BaseField from "../mixins/BaseField";
 
 export default {
