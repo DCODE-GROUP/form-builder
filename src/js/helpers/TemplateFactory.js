@@ -1,6 +1,12 @@
 function getTemplates() {
   return [
     {
+      name: "heading",
+      type: "heading",
+      label: "Heading",
+      placeholder: null,
+    },
+    {
       name: "grid",
       type: "grid",
       label: "Grid",
@@ -10,12 +16,6 @@ function getTemplates() {
         "</svg>\n",
       tooltip_text: "Use a grid for multiple columns and/or rows.",
       allow_add_row: true,
-    },
-    {
-      name: "heading",
-      type: "heading",
-      label: "Heading",
-      placeholder: null,
     },
     {
       name: "paragraph",

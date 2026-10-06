@@ -59,6 +59,7 @@
                 v-model="element.grid"
                 :is-dragging="isDragging"
                 v-model:allow-add-row="element.allow_add_row"
+                v-model:template-row-count="element.template_row_count"
             ></v-grid>
           </template>
           <template v-else-if="element.type === 'paragraph'">

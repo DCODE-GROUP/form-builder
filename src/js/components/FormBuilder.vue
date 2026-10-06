@@ -32,7 +32,7 @@
         <p class="form-builder-preview__title" v-if="title">{{ title }}</p>
         <div class="form-builder-preview">
           <v-form
-              :model-value="{fields}"
+              :model-value="{ fields: previewFields }"
               :preview="true"
               :editable="true"
               :can-interact="showPreview">
@@ -202,6 +202,7 @@ let recipients = ref(localForm?.recipients ?? '');
 let fields = ref(localForm.fields || []);
 const errors = ref([]);
 const showPreview = ref(false);
+const previewFields = ref(null);
 const isDragging = ref(false);
 const loading = ref(false);
 const templates = ref(getTemplates());
@@ -310,6 +311,11 @@ const save = async (status = null) => {
 };
 
 const handleShowPreview = () => {
+  if (!showPreview.value) {
+    previewFields.value = cloneDeep(fields.value);
+  } else {
+    previewFields.value = null;
+  }
   showPreview.value = !showPreview.value;
 };
 
@@ -327,7 +333,7 @@ const cloneTemplate = (template) => {
     options: cloneDeep(template.options),
   }
 
-  const fields = ['hint', 'placeholder', 'class', 'content', 'content_type', 'allow_add_row'];
+  const fields = ['hint', 'placeholder', 'class', 'content', 'content_type', 'allow_add_row', 'template_row_count'];
   fields.forEach((f) => {
     if (template.hasOwnProperty(f)) {
       field[f] = template[f]

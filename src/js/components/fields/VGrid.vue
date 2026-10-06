@@ -12,10 +12,7 @@
             @click="addColumn"
             class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="currentColor" stroke-width="1.66667"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <Plus class="w-3.5 h-3.5"/>
           Add Column
         </a>
       </div>
@@ -25,6 +22,7 @@
           v-for="(row, rowIndex) in grid"
           :key="'row-' + rowIndex"
           class="flex gap-2 relative"
+          :class="{ 'pr-10': canRemoveRow }"
       >
         <div v-for="(cell, colIndex) in row" :key="'cell-' + rowIndex + '-' + colIndex"
              :class="getClassForItem(grid[rowIndex], colIndex)">
@@ -41,17 +39,7 @@
           >
             <template #item="{element}">
               <div class="pl-1 pr-3 py-2.5 w-full bg-white rounded-lg flex items-center gap-2">
-                <svg class="cursor-pointer" width="8" height="13" viewBox="0 0 7 13" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1" y="1" width="2" height="2" fill="#667085"/>
-                  <rect x="4" y="1" width="2" height="2" fill="#667085"/>
-                  <rect x="1" y="4" width="2" height="2" fill="#667085"/>
-                  <rect x="4" y="4" width="2" height="2" fill="#667085"/>
-                  <rect x="1" y="7" width="2" height="2" fill="#667085"/>
-                  <rect x="1" y="10" width="2" height="2" fill="#667085"/>
-                  <rect x="4" y="7" width="2" height="2" fill="#667085"/>
-                  <rect x="4" y="10" width="2" height="2" fill="#667085"/>
-                </svg>
+                <Handle class="cursor-pointer shrink-0"/>
                 <div class="flex flex-row justify-between items-center w-full">
                   <span class="text-sm text-gray-900">{{ element.label }}</span>
                   <v-actions>
@@ -59,32 +47,23 @@
                       <ul class="divide-y text-sm text-gray-700">
                         <li @click="edit(rowIndex)"
                             class="cursor-pointer flex items-center p-2 hover:bg-brand-50 gap-2 rounded-t">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                               xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M1.66602 14.3334L5.36553 12.9105C5.60216 12.8195 5.72047 12.774 5.83116 12.7146C5.92948 12.6618 6.02322 12.6009 6.11138 12.5324C6.21063 12.4554 6.30027 12.3658 6.47954 12.1865L13.9994 4.66671C14.7357 3.93033 14.7357 2.73642 13.9994 2.00004C13.263 1.26366 12.0691 1.26366 11.3327 2.00004L3.81287 9.51985C3.6336 9.69912 3.54396 9.78876 3.46694 9.88801C3.39853 9.97617 3.33762 10.0699 3.28484 10.1682C3.22542 10.2789 3.17991 10.3972 3.0889 10.6339L1.66602 14.3334ZM1.66602 14.3334L3.0381 10.766C3.13628 10.5107 3.18537 10.3831 3.26958 10.3246C3.34316 10.2735 3.43422 10.2542 3.52221 10.271C3.6229 10.2902 3.7196 10.3869 3.913 10.5803L5.41906 12.0864C5.61246 12.2798 5.70916 12.3765 5.72839 12.4772C5.7452 12.5652 5.72587 12.6562 5.67478 12.7298C5.61631 12.814 5.48867 12.8631 5.2334 12.9613L1.66602 14.3334Z"
-                                stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                          <Edit01 class="w-4 h-4 shrink-0 text-gray-500"/>
                           <span>Edit</span>
                         </li>
                         <li @click="removeField(rowIndex, colIndex)"
                             class="cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-200">
-                          <svg width="14" height="16" viewBox="0 0 14 16" fill="none"
-                               xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.66667 3.99992V3.46659C9.66667 2.71985 9.66667 2.34648 9.52134 2.06126C9.39351 1.81038 9.18954 1.60641 8.93865 1.47858C8.65344 1.33325 8.28007 1.33325 7.53333 1.33325H6.46667C5.71993 1.33325 5.34656 1.33325 5.06135 1.47858C4.81046 1.60641 4.60649 1.81038 4.47866 2.06126C4.33333 2.34648 4.33333 2.71985 4.33333 3.46659V3.99992M5.66667 7.66659V10.9999M8.33333 7.66659V10.9999M1 3.99992H13M11.6667 3.99992V11.4666C11.6667 12.5867 11.6667 13.1467 11.4487 13.5746C11.2569 13.9509 10.951 14.2569 10.5746 14.4486C10.1468 14.6666 9.58677 14.6666 8.46667 14.6666H5.53333C4.41323 14.6666 3.85318 14.6666 3.42535 14.4486C3.04903 14.2569 2.74307 13.9509 2.55132 13.5746C2.33333 13.1467 2.33333 12.5867 2.33333 11.4666V3.99992"
-                                stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                          <Trash class="w-3.5 h-4 shrink-0 text-gray-500"/>
                           <span>Remove this cell</span>
+                        </li>
+                        <li v-if="canRemoveRow"
+                            @click="removeRow(rowIndex)"
+                            class="cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-50">
+                          <Trash class="w-3.5 h-4 shrink-0 text-gray-500"/>
+                          <span>Remove whole row</span>
                         </li>
                         <li @click="removeColumn(rowIndex, colIndex)"
                             class="cursor-pointer flex items-center gap-2 p-2 hover:bg-brand-50 rounded-b">
-                          <svg width="14" height="16" viewBox="0 0 14 16" fill="none"
-                               xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.66667 3.99992V3.46659C9.66667 2.71985 9.66667 2.34648 9.52134 2.06126C9.39351 1.81038 9.18954 1.60641 8.93865 1.47858C8.65344 1.33325 8.28007 1.33325 7.53333 1.33325H6.46667C5.71993 1.33325 5.34656 1.33325 5.06135 1.47858C4.81046 1.60641 4.60649 1.81038 4.47866 2.06126C4.33333 2.34648 4.33333 2.71985 4.33333 3.46659V3.99992M5.66667 7.66659V10.9999M8.33333 7.66659V10.9999M1 3.99992H13M11.6667 3.99992V11.4666C11.6667 12.5867 11.6667 13.1467 11.4487 13.5746C11.2569 13.9509 10.951 14.2569 10.5746 14.4486C10.1468 14.6666 9.58677 14.6666 8.46667 14.6666H5.53333C4.41323 14.6666 3.85318 14.6666 3.42535 14.4486C3.04903 14.2569 2.74307 13.9509 2.55132 13.5746C2.33333 13.1467 2.33333 12.5867 2.33333 11.4666V3.99992"
-                                stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                          <Trash class="w-3.5 h-4 shrink-0 text-gray-500"/>
                           <span>Remove whole column</span>
                         </li>
                       </ul>
@@ -99,6 +78,13 @@
             <span v-if="!isDragging">Drag a layout/component in</span>
           </p>
         </div>
+        <a v-if="canRemoveRow"
+           class="cursor-pointer absolute top-1/2 right-0 -translate-y-1/2"
+           title="Remove whole row"
+           @click="removeRow(rowIndex)"
+        >
+          <Trash class="w-5 h-5 text-gray-400 hover:text-red-600"/>
+        </a>
       </div>
     </div>
     <div class="mt-2 flex gap-2" v-if="allowAddRowAsTemplate">
@@ -106,10 +92,7 @@
           @click="addRow"
           class="cursor-pointer text-brand-700 flex items-center text-sm font-semibold hover:bg-brand-50 p-1 gap-1 rounded"
       >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.99935 1.1665V12.8332M1.16602 6.99984H12.8327" stroke="currentColor" stroke-width="1.66667"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <Plus class="w-3.5 h-3.5"/>
         Add Row
       </a>
     </div>
@@ -120,12 +103,16 @@
 import VToggle from "../common/VToggle.vue";
 import draggable from "vuedraggable";
 import VActions from "../common/VActions.vue";
+import Plus from "@/icons/plus.svg";
+import Handle from "@/icons/handle.svg";
+import Edit01 from "@/icons/edit-01.svg";
+import Trash from "@/icons/trash-01.svg";
 import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "VGrid",
   inject: ['bus'],
-  components: {VActions, VToggle, draggable},
+  components: {VActions, VToggle, draggable, Plus, Handle, Edit01, Trash},
   props: {
     modelValue: {
       type: Array,
@@ -140,6 +127,10 @@ export default {
     allowAddRowAsTemplate: {
       type: Boolean,
       default: true,
+    },
+    templateRowCount: {
+      type: Number,
+      default: null,
     },
     isDragging: {
       type: Boolean,
@@ -157,6 +148,12 @@ export default {
     canAddColumn() {
       return this.grid[0].length < 7;
     },
+    canRemoveRow() {
+      return this.grid.length > 1;
+    },
+  },
+  mounted() {
+    this.$emit("update:templateRowCount", this.grid.length);
   },
   methods: {
     getClassForItem(rowItems, colIndex) {
@@ -189,6 +186,15 @@ export default {
       this.grid.forEach((row) => {
         row.splice(colIndex, 1);
       });
+      this.previousGrid = cloneDeep(this.grid);
+    },
+    removeRow(rowIndex) {
+      if (!this.canRemoveRow) {
+        return;
+      }
+
+      this.grid.splice(rowIndex, 1);
+      this.previousGrid = cloneDeep(this.grid);
     },
     findFieldPosition(movingField) {
       for (let rowIndex = 0; rowIndex < this.previousGrid.length; rowIndex++) {
@@ -244,6 +250,7 @@ export default {
       deep: true,
       handler(newGrid) {
         this.$emit("update:modelValue", newGrid);
+        this.$emit("update:templateRowCount", newGrid.length);
       },
     },
     localAllowToAdd: {
