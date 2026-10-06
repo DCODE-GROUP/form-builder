@@ -6,47 +6,54 @@
           v-for="(row, rowIndex) in grid"
           :key="'row-' + rowIndex"
       >
-        <div v-if="row.filter(o => o.length).length" class="flex gap-2 relative">
-          <div
-              v-for="(cell, colIndex) in row"
-              :key="'cell-' + rowIndex + '-' + colIndex + '-' + cell[0]?.name"
-              :class="getClassForItem(grid[rowIndex], colIndex) + (canRemoveRow(rowIndex) ? ' pr-[40px]' : '')">
+        <div
+            v-if="row.filter(o => o.length).length"
+            class="flex gap-2 items-end"
+        >
+          <div class="flex gap-2 flex-1 min-w-0">
             <div
-                v-if="cell[0]?.type"
-                class="v-field"
-                :class="fieldClass(cell[0])">
-              <label
-                  :for="modelValue.name"
-                  v-if="cell[0].type === 'heading' && !cell[0]?.on_flight"
-                  class="text-lg font-semibold !text-gray-900">
-                {{ cell[0]?.label }}
-              </label>
-              <label
-                  class="text-sm text-gray-700"
-                  :for="modelValue.name"
-                  v-else-if="!['paragraph', 'checkbox'].includes(cell[0]?.type) && !cell[0]?.on_flight">
-                <component v-if="cell[0]?.label" :is="fieldLabel(cell[0])">{{ cell[0]?.label }}
-                  {{ cell[0]?.required ? '*' : '' }}
-                </component>
-                <span v-else>&nbsp;</span>
-              </label>
-              <component
-                  :key="modelValue.name + cell[0]?.name"
-                  v-if="fieldComponent(cell[0]) && cell[0]?.name && !processing"
-                  v-model="grid[rowIndex][colIndex][0]"
-                  :is="fieldComponent(cell[0])"
-                  :editable="editable"
-              ></component>
-              <p v-if="getError(rowIndex, colIndex)" class="text-red-700 text-xs mt-1">{{ getError(rowIndex, colIndex) }}</p>
-              <slot></slot>
+                v-for="(cell, colIndex) in row"
+                :key="'cell-' + rowIndex + '-' + colIndex + '-' + cell[0]?.name"
+                :class="getClassForItem(grid[rowIndex], colIndex)">
+              <div
+                  v-if="cell[0]?.type"
+                  class="v-field"
+                  :class="fieldClass(cell[0])">
+                <label
+                    :for="modelValue.name"
+                    v-if="cell[0].type === 'heading' && !cell[0]?.on_flight"
+                    class="text-lg font-semibold !text-gray-900">
+                  {{ cell[0]?.label }}
+                </label>
+                <label
+                    class="text-sm text-gray-700"
+                    :for="modelValue.name"
+                    v-else-if="!['paragraph', 'checkbox'].includes(cell[0]?.type) && !cell[0]?.on_flight">
+                  <component v-if="cell[0]?.label" :is="fieldLabel(cell[0])">{{ cell[0]?.label }}
+                    {{ cell[0]?.required ? '*' : '' }}
+                  </component>
+                  <span v-else>&nbsp;</span>
+                </label>
+                <component
+                    :key="modelValue.name + cell[0]?.name"
+                    v-if="fieldComponent(cell[0]) && cell[0]?.name && !processing"
+                    v-model="grid[rowIndex][colIndex][0]"
+                    :is="fieldComponent(cell[0])"
+                    :editable="editable"
+                ></component>
+                <p v-if="getError(rowIndex, colIndex)" class="text-red-700 text-xs mt-1">{{ getError(rowIndex, colIndex) }}</p>
+                <slot></slot>
+              </div>
             </div>
           </div>
-          <a v-if="canRemoveRow(rowIndex)"
-             class="cursor-pointer absolute top-2.5 right-[12px]"
-             @click="removeRow(rowIndex)"
-          >
-            <MinusCircle class="w-5 h-5 text-brand-700 hover:text-brand-800"></MinusCircle>
-          </a>
+          <div v-if="hasRemovableGroups" class="w-5 shrink-0 flex items-center justify-center h-10">
+            <a v-if="canRemoveRow(rowIndex)"
+               class="cursor-pointer"
+               @click="removeRow(rowIndex)"
+            >
+              <MinusCircle class="w-5 h-5 text-brand-700 hover:text-brand-800"></MinusCircle>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -122,6 +129,12 @@ export default {
         const lastColumn = row[row.length - 1];
         return !lastColumn || lastColumn.length === 0;
       });
+    },
+    hasRemovableGroups() {
+      return this.editable
+          && this.modelValue.allow_add_row
+          && this.groupSize
+          && this.grid.length > this.groupSize;
     },
   },
   created() {
