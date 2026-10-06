@@ -10,7 +10,7 @@
           <div
               v-for="(cell, colIndex) in row"
               :key="'cell-' + rowIndex + '-' + colIndex + '-' + cell[0]?.name"
-              :class="getClassForItem(grid[rowIndex], colIndex) + (canRemove ? ' pr-[40px]' : '')">
+              :class="getClassForItem(grid[rowIndex], colIndex) + (canRemoveRow(rowIndex) ? ' pr-[40px]' : '')">
             <div
                 v-if="cell[0]?.type"
                 class="v-field"
@@ -41,9 +41,8 @@
               <slot></slot>
             </div>
           </div>
-          <a v-if="canRemoveRow(rowIndex) && originalGrid"
+          <a v-if="canRemoveRow(rowIndex)"
              class="cursor-pointer absolute top-2.5 right-[12px]"
-             :class="{'!top-[38px]': rowIndex === 0}"
              @click="removeRow(rowIndex)"
           >
             <MinusCircle class="w-5 h-5 text-brand-700 hover:text-brand-800"></MinusCircle>
@@ -94,6 +93,7 @@ export default {
     return {
       localField: this.modelValue,
       processing: false,
+      groupSize: 0,
       componentTypes: {
         checkbox: markRaw(SingleCheckbox),
         "check-group": markRaw(CheckGroup),
@@ -123,23 +123,79 @@ export default {
         return !lastColumn || lastColumn.length === 0;
       });
     },
-    originalGrid() {
-      return this.grid.filter(row =>
-          row.some(cell => cell.some(item => !item?.on_flight))
-      );
-    },
-    canRemove() {
-      return this.grid.some((row, rowIndex) => this.canRemoveRow(rowIndex));
-    },
   },
   created() {
     this.localField = this.modelValue;
-    // this.initiateGrid(this.grid && this.localField?.length > this.grid.length);
+    this.groupSize = this.calculateGroupSize();
+  },
+  watch: {
+    'localField.template_row_count'(count) {
+      if (count) {
+        this.groupSize = count;
+      }
+    },
   },
   methods: {
+    calculateGroupSize() {
+      if (!this.grid?.length) {
+        return 0;
+      }
+
+      if (this.localField.template_row_count) {
+        return this.localField.template_row_count;
+      }
+
+      let size = 0;
+      for (const row of this.grid) {
+        if (this.isAddedRow(row)) {
+          break;
+        }
+        size++;
+      }
+
+      return size || this.grid.length;
+    },
+    isAddedRow(row) {
+      const fields = row.flatMap(cell => cell).filter(Boolean);
+
+      if (!fields.length) {
+        return false;
+      }
+
+      return fields.every(item => item.on_flight === true);
+    },
+    rowHasContent(rowIndex) {
+      const row = this.grid[rowIndex];
+      return row && row.some(cell => cell.length > 0);
+    },
+    getTemplateRows() {
+      return this.grid.slice(0, this.groupSize);
+    },
     canRemoveRow(rowIndex) {
-      return this.editable && (rowIndex + this.originalGrid.length) % this.originalGrid.length === 0 &&
-          this.modelValue.allow_add_row && this.grid.length > this.originalGrid.length;
+      if (!this.editable || !this.modelValue.allow_add_row || !this.groupSize) {
+        return false;
+      }
+
+      if (this.grid.length <= this.groupSize || rowIndex < this.groupSize || rowIndex >= this.grid.length) {
+        return false;
+      }
+
+      return this.isLastVisibleRowOfGroup(rowIndex);
+    },
+    isLastVisibleRowOfGroup(rowIndex) {
+      const groupStart = Math.floor(rowIndex / this.groupSize) * this.groupSize;
+      const groupEnd = groupStart + this.groupSize - 1;
+
+      for (let i = groupEnd; i >= groupStart; i--) {
+        if (this.rowHasContent(i)) {
+          return rowIndex === i;
+        }
+      }
+
+      return rowIndex === groupEnd;
+    },
+    getGroupStartIndex(rowIndex) {
+      return Math.floor(rowIndex / this.groupSize) * this.groupSize;
     },
     initiateGrid(populate = false) {
       this.grid?.forEach((row, rowIndex) => {
@@ -165,7 +221,7 @@ export default {
       if (populate) {
         this.processing = true;
         this.localField.filter((value, index) => (index + 1) > this.grid.length).forEach((savedRow) => {
-          this.originalGrid.forEach((row) => {
+          this.getTemplateRows().forEach((row) => {
             const newRow = cloneDeep(row.map((o) => {
               return toRaw(o);
             })).map((r) => {
@@ -181,9 +237,11 @@ export default {
 
             this.grid.push(newRow.map((o) => {
               const id = Math.floor(Math.random() * Date.now());
-              if (o[0]?.id) {
-                o[0].id = id;
+              if (o[0]) {
                 o[0].on_flight = true;
+                if (o[0].id) {
+                  o[0].id = id;
+                }
               }
 
               return o;
@@ -202,50 +260,42 @@ export default {
       return str.substring(0, lastUnderscoreIndex);
     },
     removeRow(rowIndex) {
-      if (rowIndex >= 0 && rowIndex < this.grid.length) {
-        const isOriginalGrid = this.grid[rowIndex].some(cell =>
-            cell.some(item => !item.hasOwnProperty('on_flight') || !item.on_flight)
-        );
-
-        const length = this.originalGrid.length;
-        this.grid.splice(rowIndex, length);
-        if (isOriginalGrid) {
-          for (let i = 0; i < length; i++) {
-            this.grid[i].forEach(cell => {
-              cell.forEach(item => {
-                item.on_flight = false;
-              });
-            });
-          }
-        }
-
-        if (this.localField.hasOwnProperty(rowIndex)) {
-          this.localField.splice(rowIndex, length);
-        }
+      if (!this.canRemoveRow(rowIndex)) {
+        return;
       }
+
+      const groupStartIndex = this.getGroupStartIndex(rowIndex);
+
+      if (groupStartIndex < 0 || groupStartIndex >= this.grid.length) {
+        return;
+      }
+
+      this.grid.splice(groupStartIndex, this.groupSize);
     },
     addRow() {
       if (!this.localField.allow_add_row) {
         return;
       }
 
-      if (this.grid && this.grid.length) {
+      if (this.grid && this.grid.length && this.groupSize) {
         this.processing = true;
-        const originalGrid = cloneDeep(this.grid.filter(row =>
-            row.some(cell => cell.some(item => !item?.on_flight))
-        ));
+        const templateRows = cloneDeep(this.getTemplateRows().map((row) => {
+          return row.map((o) => toRaw(o));
+        }));
 
-        originalGrid.forEach((row) => {
-          const newRow = cloneDeep(row.map((o) => {
-            return toRaw(o);
-          }));
+        templateRows.forEach((row) => {
+          const newRow = cloneDeep(row);
 
           this.grid.push(newRow.map((o) => {
+            if (!o[0]) {
+              return o;
+            }
+
             const id = Math.floor(Math.random() * Date.now());
             o[0].value = null;
-            if (o[0]?.id) {
+            o[0].on_flight = true;
+            if (o[0].id) {
               o[0].id = id;
-              o[0].on_flight = true;
               o[0].name = `${o[0].name}_${id}`;
             }
 
