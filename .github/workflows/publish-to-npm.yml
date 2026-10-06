@@ -3,7 +3,7 @@ name: Publish to NPM Registry
 on:
   push:
     branches:
-      - 3.x
+      - 4.x
 
 jobs:
   publish:
