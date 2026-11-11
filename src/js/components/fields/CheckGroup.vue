@@ -17,10 +17,12 @@
 
 <script>
 import BaseField from "../mixins/BaseField";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "CheckGroup",
   mixins: [BaseField],
+  inject: ["possibleFormValues", "getFormValue"],
   props: {
     modelValue: {default: () => []},
   },
@@ -30,7 +32,7 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue?.value ?? [];
+    this.input = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key) ?? [];
   },
   watch: {
     input(val) {
