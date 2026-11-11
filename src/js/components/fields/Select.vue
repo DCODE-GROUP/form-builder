@@ -30,10 +30,12 @@
 <script>
 import BaseField from "../mixins/BaseField";
 import clickOutside from "../../helpers/ClickOutSide";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "Select",
   mixins: [BaseField],
+  inject: ["possibleFormValues", "getFormValue"],
   directives: {
     clickOutside,
   },
@@ -48,7 +50,7 @@ export default {
     };
   },
   created() {
-    this.selectedLabel = this.modelValue?.value;
+    this.selectedLabel = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
   },
   methods: {
     toggleDropdown() {

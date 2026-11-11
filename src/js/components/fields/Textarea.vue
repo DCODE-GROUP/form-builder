@@ -1,9 +1,9 @@
 <template>
   <div :class="modelValue?.class">
-    <textarea :name="modelValue.name"
+    <textarea v-if="editable"
               v-model="input"
+              :name="modelValue.name"
               rows="4"
-              v-if="editable"
               :placeholder="modelValue?.placeholder">
     </textarea>
     <p v-else>{{ input }}</p>
@@ -13,10 +13,12 @@
 
 <script>
 import BaseField from "../mixins/BaseField";
+import cloneDeep from "lodash.clonedeep";
 
 export default {
   name: "Textarea",
   mixins: [BaseField],
+  inject: ["possibleFormValues", "getFormValue"],
   props: {
     modelValue: {default: null},
   },
@@ -26,7 +28,7 @@ export default {
     };
   },
   created() {
-    this.input = this.modelValue.value;
+    this.input = cloneDeep(this.modelValue?.value) ?? this.getFormValue(this.possibleFormValues, this.modelValue?.defined_key);
   },
   watch: {
     input(val) {
